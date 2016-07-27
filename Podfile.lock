@@ -1,0 +1,21 @@
+PODS:
+  - Alamofire (3.4.1)
+  - FoldingTabBar (1.0.4)
+  - Kingfisher (2.4.1)
+  - Material (1.42.6)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - FoldingTabBar (~> 1.0.3)
+  - Kingfisher (~> 2.4)
+  - Material (~> 1.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  FoldingTabBar: 0b099ae881bb5e009eb5f893aba2d6d8d8a066a2
+  Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
+  Material: 76dc9b14ad8b3a2ad673b77ad73dd66ed1eee68c
+
+PODFILE CHECKSUM: 804b1383f18e6f9639a11604a4661834360276ee
+
+COCOAPODS: 1.0.1

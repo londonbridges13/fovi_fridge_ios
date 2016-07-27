@@ -1,0 +1,1076 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E0B52D41D435FBC007138CE /* SeeYouLater_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B52D31D435FBB007138CE /* SeeYouLater_View.xib */; };
+		3E0B52D61D4361DB007138CE /* SeeYouLater_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B52D51D4361DB007138CE /* SeeYouLater_View.swift */; };
+		3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */; };
+		3E4FF62D1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */; };
+		3E4FF6751D1C63C6005BFFF4 /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */; };
+		3E4FF6771D1C6478005BFFF4 /* ShoppingListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6761D1C6478005BFFF4 /* ShoppingListTVC.swift */; };
+		3E4FF67B1D1C9B83005BFFF4 /* CustomSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF67A1D1C9B83005BFFF4 /* CustomSegue.swift */; };
+		3E4FF67D1D1CAAEC005BFFF4 /* ChooseFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF67C1D1CAAEC005BFFF4 /* ChooseFoodVC.swift */; };
+		3E4FF67F1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */; };
+		3E4FF6811D1CED9A005BFFF4 /* MyFoodMiniCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6801D1CED9A005BFFF4 /* MyFoodMiniCVC.swift */; };
+		3E4FF6831D1E28DD005BFFF4 /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6821D1E28DD005BFFF4 /* ShoppingCell.swift */; };
+		3E5FAACF1D3643CD00E94EA8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAACE1D3643CD00E94EA8 /* SettingsVC.swift */; };
+		3E5FAAD11D38B7B700E94EA8 /* CategoryItemsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAD01D38B7B700E94EA8 /* CategoryItemsVC.swift */; };
+		3E5FAAD31D39DF5A00E94EA8 /* YesNo_SurveyQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAD21D39DF5A00E94EA8 /* YesNo_SurveyQ.swift */; };
+		3E5FAAD61D39DFC200E94EA8 /* YesNo_SurveyQ.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAAD51D39DFC200E94EA8 /* YesNo_SurveyQ.xib */; };
+		3E5FAAD81D39E65500E94EA8 /* SurveyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAD71D39E65400E94EA8 /* SurveyVC.swift */; };
+		3E5FAADA1D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAAD91D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib */; };
+		3E5FAADC1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAADB1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift */; };
+		3E5FAAE11D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAADF1D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift */; };
+		3E5FAAE51D3AC8DA00E94EA8 /* MultiChoice_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAE31D3AC8DA00E94EA8 /* MultiChoice_Cell.swift */; };
+		3E5FAAE81D3D898400E94EA8 /* MultiChoice-Other_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAE71D3D898400E94EA8 /* MultiChoice-Other_Cell.swift */; };
+		3E5FAAEC1D3D956D00E94EA8 /* DOFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAAEB1D3D956D00E94EA8 /* DOFavoriteButton.swift */; };
+		3E5FAAEF1D3D998300E94EA8 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAAEE1D3D998300E94EA8 /* circle.png */; };
+		3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */; };
+		3E5FAB2F1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */; };
+		3E9E412A1D1B79E1009C9808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E41291D1B79E1009C9808 /* AppDelegate.swift */; };
+		3E9E412C1D1B79E1009C9808 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E412B1D1B79E1009C9808 /* ViewController.swift */; };
+		3E9E412F1D1B79E1009C9808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E412D1D1B79E1009C9808 /* Main.storyboard */; };
+		3E9E41311D1B79E2009C9808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E41301D1B79E2009C9808 /* Assets.xcassets */; };
+		3E9E41341D1B79E2009C9808 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E41321D1B79E2009C9808 /* LaunchScreen.storyboard */; };
+		3E9E413F1D1B79E2009C9808 /* FoviFridgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E413E1D1B79E2009C9808 /* FoviFridgeTests.swift */; };
+		3E9E414A1D1B79E2009C9808 /* FoviFridgeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E41491D1B79E2009C9808 /* FoviFridgeUITests.swift */; };
+		3EAF0E311D3F3B0F00A302B0 /* LongAnswer_SurveyQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E301D3F3B0D00A302B0 /* LongAnswer_SurveyQ.swift */; };
+		3EAF0E331D3FDE8C00A302B0 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E321D3FDE8C00A302B0 /* UserDetails.swift */; };
+		3EAF0E351D3FF02F00A302B0 /* CVCalendarKitOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E341D3FF02F00A302B0 /* CVCalendarKitOperators.swift */; };
+		3EAF0E371D3FF09D00A302B0 /* CVCalendarKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E361D3FF09D00A302B0 /* CVCalendarKitExtensions.swift */; };
+		3EAF0E601D40569800A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3A1D40569700A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift */; };
+		3EAF0E611D40569800A302B0 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3B1D40569700A302B0 /* NVActivityIndicatorAnimationBallBeat.swift */; };
+		3EAF0E621D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3C1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift */; };
+		3EAF0E631D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3D1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */; };
+		3EAF0E641D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3E1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift */; };
+		3EAF0E651D40569800A302B0 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E3F1D40569700A302B0 /* NVActivityIndicatorAnimationBallGridBeat.swift */; };
+		3EAF0E661D40569800A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E401D40569700A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift */; };
+		3EAF0E671D40569800A302B0 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E411D40569700A302B0 /* NVActivityIndicatorAnimationBallPulse.swift */; };
+		3EAF0E681D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E421D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift */; };
+		3EAF0E691D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E431D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift */; };
+		3EAF0E6A1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E441D40569700A302B0 /* NVActivityIndicatorAnimationBallRotate.swift */; };
+		3EAF0E6B1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E451D40569700A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift */; };
+		3EAF0E6C1D40569800A302B0 /* NVActivityIndicatorAnimationBallScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E461D40569700A302B0 /* NVActivityIndicatorAnimationBallScale.swift */; };
+		3EAF0E6D1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E471D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleMultiple.swift */; };
+		3EAF0E6E1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E481D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift */; };
+		3EAF0E6F1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E491D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift */; };
+		3EAF0E701D40569800A302B0 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4A1D40569700A302B0 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift */; };
+		3EAF0E711D40569800A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4B1D40569700A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift */; };
+		3EAF0E721D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4C1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift */; };
+		3EAF0E731D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4D1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift */; };
+		3EAF0E741D40569800A302B0 /* NVActivityIndicatorAnimationBlank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4E1D40569700A302B0 /* NVActivityIndicatorAnimationBlank.swift */; };
+		3EAF0E751D40569800A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E4F1D40569700A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift */; };
+		3EAF0E761D40569800A302B0 /* NVActivityIndicatorAnimationLineScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E501D40569700A302B0 /* NVActivityIndicatorAnimationLineScale.swift */; };
+		3EAF0E771D40569800A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E511D40569700A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift */; };
+		3EAF0E781D40569800A302B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E521D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift */; };
+		3EAF0E791D40569800A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E531D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift */; };
+		3EAF0E7A1D40569800A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E541D40569700A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift */; };
+		3EAF0E7B1D40569800A302B0 /* NVActivityIndicatorAnimationOrbit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E551D40569700A302B0 /* NVActivityIndicatorAnimationOrbit.swift */; };
+		3EAF0E7C1D40569800A302B0 /* NVActivityIndicatorAnimationPacman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E561D40569700A302B0 /* NVActivityIndicatorAnimationPacman.swift */; };
+		3EAF0E7D1D40569800A302B0 /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E571D40569700A302B0 /* NVActivityIndicatorAnimationSemiCircleSpin.swift */; };
+		3EAF0E7E1D40569800A302B0 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E581D40569700A302B0 /* NVActivityIndicatorAnimationSquareSpin.swift */; };
+		3EAF0E7F1D40569800A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E591D40569700A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift */; };
+		3EAF0E801D40569800A302B0 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5A1D40569800A302B0 /* Info.plist */; };
+		3EAF0E811D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5B1D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift */; };
+		3EAF0E821D40569800A302B0 /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5C1D40569800A302B0 /* NVActivityIndicatorShape.swift */; };
+		3EAF0E831D40569800A302B0 /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5E1D40569800A302B0 /* NVActivityIndicatorView.swift */; };
+		3EAF0E841D40569800A302B0 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5F1D40569800A302B0 /* NVActivityIndicatorViewable.swift */; };
+		3EC508991D20491500630E8F /* FoodItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC508981D20491500630E8F /* FoodItemCollectionViewCell.swift */; };
+		3EC508E41D2213DC00630E8F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508DF1D2212B400630E8F /* Realm.framework */; };
+		3EC508E51D2213DC00630E8F /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508DF1D2212B400630E8F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EC508E61D2213DC00630E8F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508E01D2212B400630E8F /* RealmSwift.framework */; };
+		3EC508E71D2213DC00630E8F /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508E01D2212B400630E8F /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3EC508EB1D22170000630E8F /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC508EA1D22170000630E8F /* FoodItem.swift */; };
+		3EC508ED1D240D7600630E8F /* Thoughts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC508EC1D240D7600630E8F /* Thoughts.swift */; };
+		3EC757121D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC757111D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift */; };
+		3EFE53601D427BA6002EDCD7 /* SurveyQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFE535F1D427BA6002EDCD7 /* SurveyQuestion.swift */; };
+		91C6FFB2D0B3B17FD3837444 /* Pods_FoviFridgeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B173ED43EE14787C9127D83 /* Pods_FoviFridgeUITests.framework */; };
+		AD19F8179E4A6B4DA1E8FCF1 /* Pods_FoviFridgeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A143B6FE06280902B9E7F8 /* Pods_FoviFridgeTests.framework */; };
+		CAB5F75D727CEBE746B62703 /* Pods_FoviFridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB0667121A58887515599A52 /* Pods_FoviFridge.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E9E413B1D1B79E2009C9808 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E9E411E1D1B79E1009C9808 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E9E41251D1B79E1009C9808;
+			remoteInfo = FoviFridge;
+		};
+		3E9E41461D1B79E2009C9808 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E9E411E1D1B79E1009C9808 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E9E41251D1B79E1009C9808;
+			remoteInfo = FoviFridge;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3EC508E81D2213DC00630E8F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3EC508E71D2213DC00630E8F /* RealmSwift.framework in Embed Frameworks */,
+				3EC508E51D2213DC00630E8F /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		17A143B6FE06280902B9E7F8 /* Pods_FoviFridgeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoviFridgeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E98CCFB7CFC2B3173404227 /* Pods-FoviFridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge.debug.xcconfig"; sourceTree = "<group>"; };
+		3E0B52D31D435FBB007138CE /* SeeYouLater_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeYouLater_View.xib; sourceTree = "<group>"; };
+		3E0B52D51D4361DB007138CE /* SeeYouLater_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeYouLater_View.swift; sourceTree = "<group>"; };
+		3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeVC.swift; sourceTree = "<group>"; };
+		3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodsCell.swift; sourceTree = "<group>"; };
+		3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
+		3E4FF6761D1C6478005BFFF4 /* ShoppingListTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingListTVC.swift; sourceTree = "<group>"; };
+		3E4FF67A1D1C9B83005BFFF4 /* CustomSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegue.swift; sourceTree = "<group>"; };
+		3E4FF67C1D1CAAEC005BFFF4 /* ChooseFoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFoodVC.swift; sourceTree = "<group>"; };
+		3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUniqueTVC.swift; sourceTree = "<group>"; };
+		3E4FF6801D1CED9A005BFFF4 /* MyFoodMiniCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFoodMiniCVC.swift; sourceTree = "<group>"; };
+		3E4FF6821D1E28DD005BFFF4 /* ShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCell.swift; sourceTree = "<group>"; };
+		3E5FAACE1D3643CD00E94EA8 /* SettingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		3E5FAAD01D38B7B700E94EA8 /* CategoryItemsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItemsVC.swift; sourceTree = "<group>"; };
+		3E5FAAD21D39DF5A00E94EA8 /* YesNo_SurveyQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YesNo_SurveyQ.swift; sourceTree = "<group>"; };
+		3E5FAAD51D39DFC200E94EA8 /* YesNo_SurveyQ.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YesNo_SurveyQ.xib; sourceTree = "<group>"; };
+		3E5FAAD71D39E65400E94EA8 /* SurveyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyVC.swift; sourceTree = "<group>"; };
+		3E5FAAD91D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YesNoPic_SurveyQ.xib; sourceTree = "<group>"; };
+		3E5FAADB1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YesNoPic_SurveyQ.swift; sourceTree = "<group>"; };
+		3E5FAADF1D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiChoice_SurveyQ.swift; sourceTree = "<group>"; };
+		3E5FAAE31D3AC8DA00E94EA8 /* MultiChoice_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiChoice_Cell.swift; sourceTree = "<group>"; };
+		3E5FAAE71D3D898400E94EA8 /* MultiChoice-Other_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultiChoice-Other_Cell.swift"; sourceTree = "<group>"; };
+		3E5FAAEB1D3D956D00E94EA8 /* DOFavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOFavoriteButton.swift; sourceTree = "<group>"; };
+		3E5FAAEE1D3D998300E94EA8 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYou_SurveyView.swift; sourceTree = "<group>"; };
+		3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYou_SurveyView.xib; sourceTree = "<group>"; };
+		3E9E41261D1B79E1009C9808 /* FoviFridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoviFridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E9E41291D1B79E1009C9808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3E9E412B1D1B79E1009C9808 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E9E412E1D1B79E1009C9808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E9E41301D1B79E2009C9808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E9E41331D1B79E2009C9808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E9E41351D1B79E2009C9808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E9E413A1D1B79E2009C9808 /* FoviFridgeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoviFridgeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E9E413E1D1B79E2009C9808 /* FoviFridgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoviFridgeTests.swift; sourceTree = "<group>"; };
+		3E9E41401D1B79E2009C9808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E9E41451D1B79E2009C9808 /* FoviFridgeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoviFridgeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E9E41491D1B79E2009C9808 /* FoviFridgeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoviFridgeUITests.swift; sourceTree = "<group>"; };
+		3E9E414B1D1B79E2009C9808 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EAF0E301D3F3B0D00A302B0 /* LongAnswer_SurveyQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongAnswer_SurveyQ.swift; sourceTree = "<group>"; };
+		3EAF0E321D3FDE8C00A302B0 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
+		3EAF0E341D3FF02F00A302B0 /* CVCalendarKitOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarKitOperators.swift; sourceTree = "<group>"; };
+		3EAF0E361D3FF09D00A302B0 /* CVCalendarKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVCalendarKitExtensions.swift; sourceTree = "<group>"; };
+		3EAF0E3A1D40569700A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationAudioEqualizer.swift; sourceTree = "<group>"; };
+		3EAF0E3B1D40569700A302B0 /* NVActivityIndicatorAnimationBallBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallBeat.swift; sourceTree = "<group>"; };
+		3EAF0E3C1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotate.swift; sourceTree = "<group>"; };
+		3EAF0E3D1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotateMultiple.swift; sourceTree = "<group>"; };
+		3EAF0E3E1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotatePulse.swift; sourceTree = "<group>"; };
+		3EAF0E3F1D40569700A302B0 /* NVActivityIndicatorAnimationBallGridBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallGridBeat.swift; sourceTree = "<group>"; };
+		3EAF0E401D40569700A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallGridPulse.swift; sourceTree = "<group>"; };
+		3EAF0E411D40569700A302B0 /* NVActivityIndicatorAnimationBallPulse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallPulse.swift; sourceTree = "<group>"; };
+		3EAF0E421D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallPulseRise.swift; sourceTree = "<group>"; };
+		3EAF0E431D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallPulseSync.swift; sourceTree = "<group>"; };
+		3EAF0E441D40569700A302B0 /* NVActivityIndicatorAnimationBallRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallRotate.swift; sourceTree = "<group>"; };
+		3EAF0E451D40569700A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallRotateChase.swift; sourceTree = "<group>"; };
+		3EAF0E461D40569700A302B0 /* NVActivityIndicatorAnimationBallScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScale.swift; sourceTree = "<group>"; };
+		3EAF0E471D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleMultiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScaleMultiple.swift; sourceTree = "<group>"; };
+		3EAF0E481D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScaleRipple.swift; sourceTree = "<group>"; };
+		3EAF0E491D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallScaleRippleMultiple.swift; sourceTree = "<group>"; };
+		3EAF0E4A1D40569700A302B0 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallSpinFadeLoader.swift; sourceTree = "<group>"; };
+		3EAF0E4B1D40569700A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallTrianglePath.swift; sourceTree = "<group>"; };
+		3EAF0E4C1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallZigZag.swift; sourceTree = "<group>"; };
+		3EAF0E4D1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallZigZagDeflect.swift; sourceTree = "<group>"; };
+		3EAF0E4E1D40569700A302B0 /* NVActivityIndicatorAnimationBlank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBlank.swift; sourceTree = "<group>"; };
+		3EAF0E4F1D40569700A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationCubeTransition.swift; sourceTree = "<group>"; };
+		3EAF0E501D40569700A302B0 /* NVActivityIndicatorAnimationLineScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScale.swift; sourceTree = "<group>"; };
+		3EAF0E511D40569700A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScaleParty.swift; sourceTree = "<group>"; };
+		3EAF0E521D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScalePulseOut.swift; sourceTree = "<group>"; };
+		3EAF0E531D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineScalePulseOutRapid.swift; sourceTree = "<group>"; };
+		3EAF0E541D40569700A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationLineSpinFadeLoader.swift; sourceTree = "<group>"; };
+		3EAF0E551D40569700A302B0 /* NVActivityIndicatorAnimationOrbit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationOrbit.swift; sourceTree = "<group>"; };
+		3EAF0E561D40569700A302B0 /* NVActivityIndicatorAnimationPacman.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationPacman.swift; sourceTree = "<group>"; };
+		3EAF0E571D40569700A302B0 /* NVActivityIndicatorAnimationSemiCircleSpin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationSemiCircleSpin.swift; sourceTree = "<group>"; };
+		3EAF0E581D40569700A302B0 /* NVActivityIndicatorAnimationSquareSpin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationSquareSpin.swift; sourceTree = "<group>"; };
+		3EAF0E591D40569700A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationTriangleSkewSpin.swift; sourceTree = "<group>"; };
+		3EAF0E5A1D40569800A302B0 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EAF0E5B1D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationDelegate.swift; sourceTree = "<group>"; };
+		3EAF0E5C1D40569800A302B0 /* NVActivityIndicatorShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorShape.swift; sourceTree = "<group>"; };
+		3EAF0E5D1D40569800A302B0 /* NVActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVActivityIndicatorView.h; sourceTree = "<group>"; };
+		3EAF0E5E1D40569800A302B0 /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
+		3EAF0E5F1D40569800A302B0 /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
+		3EC508981D20491500630E8F /* FoodItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		3EC508DF1D2212B400630E8F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		3EC508E01D2212B400630E8F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		3EC508EA1D22170000630E8F /* FoodItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
+		3EC508EC1D240D7600630E8F /* Thoughts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thoughts.swift; sourceTree = "<group>"; };
+		3EC757111D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = B68UIFloatLabelTextField.swift; sourceTree = "<group>"; };
+		3EFE535F1D427BA6002EDCD7 /* SurveyQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestion.swift; sourceTree = "<group>"; };
+		400B8CA5F8E2CB6BC171D660 /* Pods-FoviFridgeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests.release.xcconfig"; sourceTree = "<group>"; };
+		4B173ED43EE14787C9127D83 /* Pods_FoviFridgeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoviFridgeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		538FA4B6F891D976EACA21D2 /* Pods-FoviFridgeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		86155966566E60AFF578E21C /* Pods-FoviFridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridge.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge.release.xcconfig"; sourceTree = "<group>"; };
+		AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		CA920F867649DB2218CB3B94 /* Pods-FoviFridgeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CB0667121A58887515599A52 /* Pods_FoviFridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoviFridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E9E41231D1B79E1009C9808 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC508E41D2213DC00630E8F /* Realm.framework in Frameworks */,
+				3EC508E61D2213DC00630E8F /* RealmSwift.framework in Frameworks */,
+				CAB5F75D727CEBE746B62703 /* Pods_FoviFridge.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41371D1B79E2009C9808 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD19F8179E4A6B4DA1E8FCF1 /* Pods_FoviFridgeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41421D1B79E2009C9808 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91C6FFB2D0B3B17FD3837444 /* Pods_FoviFridgeUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E5FAAD41D39DF7D00E94EA8 /* Survey Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E5FAAD71D39E65400E94EA8 /* SurveyVC.swift */,
+				3E0B52D31D435FBB007138CE /* SeeYouLater_View.xib */,
+				3E0B52D51D4361DB007138CE /* SeeYouLater_View.swift */,
+				3EAF0E301D3F3B0D00A302B0 /* LongAnswer_SurveyQ.swift */,
+				3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */,
+				3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */,
+				3E5FAAD21D39DF5A00E94EA8 /* YesNo_SurveyQ.swift */,
+				3E5FAAD51D39DFC200E94EA8 /* YesNo_SurveyQ.xib */,
+				3E5FAADB1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift */,
+				3E5FAAD91D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib */,
+				3E5FAADF1D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift */,
+				3E5FAAE31D3AC8DA00E94EA8 /* MultiChoice_Cell.swift */,
+				3E5FAAE71D3D898400E94EA8 /* MultiChoice-Other_Cell.swift */,
+			);
+			name = "Survey Views";
+			sourceTree = "<group>";
+		};
+		3E5FAAED1D3D95A400E94EA8 /* DOFavoriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				3E5FAAEB1D3D956D00E94EA8 /* DOFavoriteButton.swift */,
+			);
+			name = DOFavoriteButton;
+			sourceTree = "<group>";
+		};
+		3E9E411D1D1B79E1009C9808 = {
+			isa = PBXGroup;
+			children = (
+				3E9E41281D1B79E1009C9808 /* FoviFridge */,
+				3E9E413D1D1B79E2009C9808 /* FoviFridgeTests */,
+				3E9E41481D1B79E2009C9808 /* FoviFridgeUITests */,
+				3E9E41271D1B79E1009C9808 /* Products */,
+				7472502C68F6EDE977C4588F /* Pods */,
+				5BDF3537E133B93EADE436DD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3E9E41271D1B79E1009C9808 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E41261D1B79E1009C9808 /* FoviFridge.app */,
+				3E9E413A1D1B79E2009C9808 /* FoviFridgeTests.xctest */,
+				3E9E41451D1B79E2009C9808 /* FoviFridgeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E9E41281D1B79E1009C9808 /* FoviFridge */ = {
+			isa = PBXGroup;
+			children = (
+				3EC508EC1D240D7600630E8F /* Thoughts.swift */,
+				3E9E41291D1B79E1009C9808 /* AppDelegate.swift */,
+				3E9E412B1D1B79E1009C9808 /* ViewController.swift */,
+				3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */,
+				3E5FAAD01D38B7B700E94EA8 /* CategoryItemsVC.swift */,
+				3E4FF67C1D1CAAEC005BFFF4 /* ChooseFoodVC.swift */,
+				3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */,
+				3E4FF6801D1CED9A005BFFF4 /* MyFoodMiniCVC.swift */,
+				3E9E412D1D1B79E1009C9808 /* Main.storyboard */,
+				3E5FAAD41D39DF7D00E94EA8 /* Survey Views */,
+				3E5FAACE1D3643CD00E94EA8 /* SettingsVC.swift */,
+				3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */,
+				3EC508981D20491500630E8F /* FoodItemCollectionViewCell.swift */,
+				3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */,
+				3E4FF6761D1C6478005BFFF4 /* ShoppingListTVC.swift */,
+				3E4FF6821D1E28DD005BFFF4 /* ShoppingCell.swift */,
+				3E9E41301D1B79E2009C9808 /* Assets.xcassets */,
+				3E9E41321D1B79E2009C9808 /* LaunchScreen.storyboard */,
+				3E9E41351D1B79E2009C9808 /* Info.plist */,
+				3E4FF67A1D1C9B83005BFFF4 /* CustomSegue.swift */,
+				3E5FAAED1D3D95A400E94EA8 /* DOFavoriteButton */,
+				3E5FAAEE1D3D998300E94EA8 /* circle.png */,
+				3EAF0E361D3FF09D00A302B0 /* CVCalendarKitExtensions.swift */,
+				3EAF0E341D3FF02F00A302B0 /* CVCalendarKitOperators.swift */,
+				3EAF0E381D40569700A302B0 /* NVActivityIndicatorView */,
+				3EC757101D28BB9C00F3BEEF /* B68UIFloatLabelTextField */,
+				3EC508E31D2212D600630E8F /* Realm */,
+			);
+			path = FoviFridge;
+			sourceTree = "<group>";
+		};
+		3E9E413D1D1B79E2009C9808 /* FoviFridgeTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E413E1D1B79E2009C9808 /* FoviFridgeTests.swift */,
+				3E9E41401D1B79E2009C9808 /* Info.plist */,
+			);
+			path = FoviFridgeTests;
+			sourceTree = "<group>";
+		};
+		3E9E41481D1B79E2009C9808 /* FoviFridgeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E41491D1B79E2009C9808 /* FoviFridgeUITests.swift */,
+				3E9E414B1D1B79E2009C9808 /* Info.plist */,
+			);
+			path = FoviFridgeUITests;
+			sourceTree = "<group>";
+		};
+		3EAF0E381D40569700A302B0 /* NVActivityIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+				3EAF0E391D40569700A302B0 /* Animations */,
+				3EAF0E5A1D40569800A302B0 /* Info.plist */,
+				3EAF0E5B1D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift */,
+				3EAF0E5C1D40569800A302B0 /* NVActivityIndicatorShape.swift */,
+				3EAF0E5D1D40569800A302B0 /* NVActivityIndicatorView.h */,
+				3EAF0E5E1D40569800A302B0 /* NVActivityIndicatorView.swift */,
+				3EAF0E5F1D40569800A302B0 /* NVActivityIndicatorViewable.swift */,
+			);
+			path = NVActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		3EAF0E391D40569700A302B0 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				3EAF0E3A1D40569700A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift */,
+				3EAF0E3B1D40569700A302B0 /* NVActivityIndicatorAnimationBallBeat.swift */,
+				3EAF0E3C1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift */,
+				3EAF0E3D1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift */,
+				3EAF0E3E1D40569700A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift */,
+				3EAF0E3F1D40569700A302B0 /* NVActivityIndicatorAnimationBallGridBeat.swift */,
+				3EAF0E401D40569700A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift */,
+				3EAF0E411D40569700A302B0 /* NVActivityIndicatorAnimationBallPulse.swift */,
+				3EAF0E421D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift */,
+				3EAF0E431D40569700A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift */,
+				3EAF0E441D40569700A302B0 /* NVActivityIndicatorAnimationBallRotate.swift */,
+				3EAF0E451D40569700A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift */,
+				3EAF0E461D40569700A302B0 /* NVActivityIndicatorAnimationBallScale.swift */,
+				3EAF0E471D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleMultiple.swift */,
+				3EAF0E481D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift */,
+				3EAF0E491D40569700A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift */,
+				3EAF0E4A1D40569700A302B0 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift */,
+				3EAF0E4B1D40569700A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift */,
+				3EAF0E4C1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift */,
+				3EAF0E4D1D40569700A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift */,
+				3EAF0E4E1D40569700A302B0 /* NVActivityIndicatorAnimationBlank.swift */,
+				3EAF0E4F1D40569700A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift */,
+				3EAF0E501D40569700A302B0 /* NVActivityIndicatorAnimationLineScale.swift */,
+				3EAF0E511D40569700A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift */,
+				3EAF0E521D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift */,
+				3EAF0E531D40569700A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift */,
+				3EAF0E541D40569700A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift */,
+				3EAF0E551D40569700A302B0 /* NVActivityIndicatorAnimationOrbit.swift */,
+				3EAF0E561D40569700A302B0 /* NVActivityIndicatorAnimationPacman.swift */,
+				3EAF0E571D40569700A302B0 /* NVActivityIndicatorAnimationSemiCircleSpin.swift */,
+				3EAF0E581D40569700A302B0 /* NVActivityIndicatorAnimationSquareSpin.swift */,
+				3EAF0E591D40569700A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
+		3EC508E31D2212D600630E8F /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				3EC508EA1D22170000630E8F /* FoodItem.swift */,
+				3EAF0E321D3FDE8C00A302B0 /* UserDetails.swift */,
+				3EFE535F1D427BA6002EDCD7 /* SurveyQuestion.swift */,
+				3EC508DF1D2212B400630E8F /* Realm.framework */,
+				3EC508E01D2212B400630E8F /* RealmSwift.framework */,
+			);
+			name = Realm;
+			sourceTree = "<group>";
+		};
+		3EC757101D28BB9C00F3BEEF /* B68UIFloatLabelTextField */ = {
+			isa = PBXGroup;
+			children = (
+				3EC757111D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift */,
+			);
+			path = B68UIFloatLabelTextField;
+			sourceTree = "<group>";
+		};
+		5BDF3537E133B93EADE436DD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB0667121A58887515599A52 /* Pods_FoviFridge.framework */,
+				17A143B6FE06280902B9E7F8 /* Pods_FoviFridgeTests.framework */,
+				4B173ED43EE14787C9127D83 /* Pods_FoviFridgeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7472502C68F6EDE977C4588F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2E98CCFB7CFC2B3173404227 /* Pods-FoviFridge.debug.xcconfig */,
+				86155966566E60AFF578E21C /* Pods-FoviFridge.release.xcconfig */,
+				CA920F867649DB2218CB3B94 /* Pods-FoviFridgeTests.debug.xcconfig */,
+				400B8CA5F8E2CB6BC171D660 /* Pods-FoviFridgeTests.release.xcconfig */,
+				538FA4B6F891D976EACA21D2 /* Pods-FoviFridgeUITests.debug.xcconfig */,
+				AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E9E41251D1B79E1009C9808 /* FoviFridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E9E414E1D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridge" */;
+			buildPhases = (
+				7B5308CB67EF011A1CD2695B /* [CP] Check Pods Manifest.lock */,
+				3E9E41221D1B79E1009C9808 /* Sources */,
+				3E9E41231D1B79E1009C9808 /* Frameworks */,
+				3E9E41241D1B79E1009C9808 /* Resources */,
+				09C632C58E16ECC5D6F00906 /* [CP] Embed Pods Frameworks */,
+				4C6E7863F671EB88E0772A5F /* [CP] Copy Pods Resources */,
+				3EC508E81D2213DC00630E8F /* Embed Frameworks */,
+				3EC508E91D2213E600630E8F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FoviFridge;
+			productName = FoviFridge;
+			productReference = 3E9E41261D1B79E1009C9808 /* FoviFridge.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3E9E41391D1B79E2009C9808 /* FoviFridgeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E9E41511D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridgeTests" */;
+			buildPhases = (
+				69716A8A38E15492ECF6529F /* [CP] Check Pods Manifest.lock */,
+				3E9E41361D1B79E2009C9808 /* Sources */,
+				3E9E41371D1B79E2009C9808 /* Frameworks */,
+				3E9E41381D1B79E2009C9808 /* Resources */,
+				D7281DCFD2CE2DC6A8278887 /* [CP] Embed Pods Frameworks */,
+				6D1E9B37D6E5161CD8671789 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E9E413C1D1B79E2009C9808 /* PBXTargetDependency */,
+			);
+			name = FoviFridgeTests;
+			productName = FoviFridgeTests;
+			productReference = 3E9E413A1D1B79E2009C9808 /* FoviFridgeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3E9E41441D1B79E2009C9808 /* FoviFridgeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E9E41541D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridgeUITests" */;
+			buildPhases = (
+				54022673064C259C2669418C /* [CP] Check Pods Manifest.lock */,
+				3E9E41411D1B79E2009C9808 /* Sources */,
+				3E9E41421D1B79E2009C9808 /* Frameworks */,
+				3E9E41431D1B79E2009C9808 /* Resources */,
+				FDFDA664C0E004EAC2D7B313 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E9E41471D1B79E2009C9808 /* PBXTargetDependency */,
+			);
+			name = FoviFridgeUITests;
+			productName = FoviFridgeUITests;
+			productReference = 3E9E41451D1B79E2009C9808 /* FoviFridgeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E9E411E1D1B79E1009C9808 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Lyndon Samual McKay";
+				TargetAttributes = {
+					3E9E41251D1B79E1009C9808 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = MP76YT95VQ;
+					};
+					3E9E41391D1B79E2009C9808 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 3E9E41251D1B79E1009C9808;
+					};
+					3E9E41441D1B79E2009C9808 = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 3E9E41251D1B79E1009C9808;
+					};
+				};
+			};
+			buildConfigurationList = 3E9E41211D1B79E1009C9808 /* Build configuration list for PBXProject "FoviFridge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E9E411D1D1B79E1009C9808;
+			productRefGroup = 3E9E41271D1B79E1009C9808 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E9E41251D1B79E1009C9808 /* FoviFridge */,
+				3E9E41391D1B79E2009C9808 /* FoviFridgeTests */,
+				3E9E41441D1B79E2009C9808 /* FoviFridgeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E9E41241D1B79E1009C9808 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0B52D41D435FBC007138CE /* SeeYouLater_View.xib in Resources */,
+				3EAF0E801D40569800A302B0 /* Info.plist in Resources */,
+				3E9E41341D1B79E2009C9808 /* LaunchScreen.storyboard in Resources */,
+				3E5FAADA1D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib in Resources */,
+				3E9E41311D1B79E2009C9808 /* Assets.xcassets in Resources */,
+				3E5FAB2F1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib in Resources */,
+				3E5FAAEF1D3D998300E94EA8 /* circle.png in Resources */,
+				3E5FAAD61D39DFC200E94EA8 /* YesNo_SurveyQ.xib in Resources */,
+				3E9E412F1D1B79E1009C9808 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41381D1B79E2009C9808 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41431D1B79E2009C9808 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09C632C58E16ECC5D6F00906 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EC508E91D2213E600630E8F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"\n";
+		};
+		4C6E7863F671EB88E0772A5F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		54022673064C259C2669418C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		69716A8A38E15492ECF6529F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6D1E9B37D6E5161CD8671789 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B5308CB67EF011A1CD2695B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D7281DCFD2CE2DC6A8278887 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDFDA664C0E004EAC2D7B313 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E9E41221D1B79E1009C9808 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EAF0E651D40569800A302B0 /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
+				3EAF0E701D40569800A302B0 /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
+				3EAF0E781D40569800A302B0 /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
+				3EAF0E741D40569800A302B0 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
+				3E4FF67B1D1C9B83005BFFF4 /* CustomSegue.swift in Sources */,
+				3EAF0E631D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
+				3EAF0E6C1D40569800A302B0 /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
+				3EAF0E7D1D40569800A302B0 /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */,
+				3E4FF6751D1C63C6005BFFF4 /* AddFoodVC.swift in Sources */,
+				3EAF0E7E1D40569800A302B0 /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
+				3E5FAAE81D3D898400E94EA8 /* MultiChoice-Other_Cell.swift in Sources */,
+				3EAF0E841D40569800A302B0 /* NVActivityIndicatorViewable.swift in Sources */,
+				3EAF0E721D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
+				3EAF0E661D40569800A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
+				3EAF0E371D3FF09D00A302B0 /* CVCalendarKitExtensions.swift in Sources */,
+				3E5FAAEC1D3D956D00E94EA8 /* DOFavoriteButton.swift in Sources */,
+				3EAF0E311D3F3B0F00A302B0 /* LongAnswer_SurveyQ.swift in Sources */,
+				3EAF0E641D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
+				3EAF0E671D40569800A302B0 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
+				3EAF0E601D40569800A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
+				3E5FAAD31D39DF5A00E94EA8 /* YesNo_SurveyQ.swift in Sources */,
+				3EAF0E771D40569800A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				3EAF0E6E1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
+				3E4FF6831D1E28DD005BFFF4 /* ShoppingCell.swift in Sources */,
+				3EAF0E6D1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
+				3E4FF62D1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift in Sources */,
+				3EAF0E611D40569800A302B0 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
+				3EAF0E691D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
+				3EFE53601D427BA6002EDCD7 /* SurveyQuestion.swift in Sources */,
+				3E9E412C1D1B79E1009C9808 /* ViewController.swift in Sources */,
+				3E5FAACF1D3643CD00E94EA8 /* SettingsVC.swift in Sources */,
+				3EAF0E6A1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
+				3EAF0E811D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
+				3E5FAAD11D38B7B700E94EA8 /* CategoryItemsVC.swift in Sources */,
+				3E9E412A1D1B79E1009C9808 /* AppDelegate.swift in Sources */,
+				3E5FAADC1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift in Sources */,
+				3E5FAAE51D3AC8DA00E94EA8 /* MultiChoice_Cell.swift in Sources */,
+				3EAF0E681D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
+				3EAF0E761D40569800A302B0 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
+				3EC508991D20491500630E8F /* FoodItemCollectionViewCell.swift in Sources */,
+				3EC508ED1D240D7600630E8F /* Thoughts.swift in Sources */,
+				3E5FAAD81D39E65500E94EA8 /* SurveyVC.swift in Sources */,
+				3EAF0E751D40569800A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
+				3E4FF67F1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift in Sources */,
+				3EAF0E7C1D40569800A302B0 /* NVActivityIndicatorAnimationPacman.swift in Sources */,
+				3EAF0E351D3FF02F00A302B0 /* CVCalendarKitOperators.swift in Sources */,
+				3EAF0E731D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
+				3E5FAAE11D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift in Sources */,
+				3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */,
+				3E4FF6771D1C6478005BFFF4 /* ShoppingListTVC.swift in Sources */,
+				3EAF0E6B1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
+				3EC508EB1D22170000630E8F /* FoodItem.swift in Sources */,
+				3EAF0E831D40569800A302B0 /* NVActivityIndicatorView.swift in Sources */,
+				3EAF0E621D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				3EAF0E7B1D40569800A302B0 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
+				3EAF0E711D40569800A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
+				3E4FF6811D1CED9A005BFFF4 /* MyFoodMiniCVC.swift in Sources */,
+				3EAF0E791D40569800A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
+				3EAF0E821D40569800A302B0 /* NVActivityIndicatorShape.swift in Sources */,
+				3EAF0E7F1D40569800A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
+				3EAF0E6F1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
+				3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */,
+				3EAF0E331D3FDE8C00A302B0 /* UserDetails.swift in Sources */,
+				3E4FF67D1D1CAAEC005BFFF4 /* ChooseFoodVC.swift in Sources */,
+				3E0B52D61D4361DB007138CE /* SeeYouLater_View.swift in Sources */,
+				3EC757121D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift in Sources */,
+				3EAF0E7A1D40569800A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41361D1B79E2009C9808 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E9E413F1D1B79E2009C9808 /* FoviFridgeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E9E41411D1B79E2009C9808 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E9E414A1D1B79E2009C9808 /* FoviFridgeUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E9E413C1D1B79E2009C9808 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E9E41251D1B79E1009C9808 /* FoviFridge */;
+			targetProxy = 3E9E413B1D1B79E2009C9808 /* PBXContainerItemProxy */;
+		};
+		3E9E41471D1B79E2009C9808 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E9E41251D1B79E1009C9808 /* FoviFridge */;
+			targetProxy = 3E9E41461D1B79E2009C9808 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3E9E412D1D1B79E1009C9808 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E9E412E1D1B79E1009C9808 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3E9E41321D1B79E2009C9808 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E9E41331D1B79E2009C9808 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E9E414C1D1B79E2009C9808 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3E9E414D1D1B79E2009C9808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E9E414F1D1B79E2009C9808 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E98CCFB7CFC2B3173404227 /* Pods-FoviFridge.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FoviFridge",
+				);
+				INFOPLIST_FILE = FoviFridge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3E9E41501D1B79E2009C9808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86155966566E60AFF578E21C /* Pods-FoviFridge.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FoviFridge",
+				);
+				INFOPLIST_FILE = FoviFridge/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3E9E41521D1B79E2009C9808 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA920F867649DB2218CB3B94 /* Pods-FoviFridgeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FoviFridgeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridgeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoviFridge.app/FoviFridge";
+			};
+			name = Debug;
+		};
+		3E9E41531D1B79E2009C9808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 400B8CA5F8E2CB6BC171D660 /* Pods-FoviFridgeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FoviFridgeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridgeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoviFridge.app/FoviFridge";
+			};
+			name = Release;
+		};
+		3E9E41551D1B79E2009C9808 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 538FA4B6F891D976EACA21D2 /* Pods-FoviFridgeUITests.debug.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = FoviFridgeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridgeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FoviFridge;
+			};
+			name = Debug;
+		};
+		3E9E41561D1B79E2009C9808 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */;
+			buildSettings = {
+				INFOPLIST_FILE = FoviFridgeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridgeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FoviFridge;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E9E41211D1B79E1009C9808 /* Build configuration list for PBXProject "FoviFridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E9E414C1D1B79E2009C9808 /* Debug */,
+				3E9E414D1D1B79E2009C9808 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E9E414E1D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E9E414F1D1B79E2009C9808 /* Debug */,
+				3E9E41501D1B79E2009C9808 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E9E41511D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridgeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E9E41521D1B79E2009C9808 /* Debug */,
+				3E9E41531D1B79E2009C9808 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E9E41541D1B79E2009C9808 /* Build configuration list for PBXNativeTarget "FoviFridgeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E9E41551D1B79E2009C9808 /* Debug */,
+				3E9E41561D1B79E2009C9808 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E9E411E1D1B79E1009C9808 /* Project object */;
+}

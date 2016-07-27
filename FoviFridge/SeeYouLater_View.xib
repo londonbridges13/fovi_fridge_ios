@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeeYouLater_View" customModule="FoviFridge" customModuleProvider="target">
+            <connections>
+                <outlet property="okayButton" destination="0CR-g3-cP3" id="jHP-dQ-AYu"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="162"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See You Tomorrow!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ju-SN-Ueq">
+                    <rect key="frame" x="8" y="22" width="234" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="234" id="Srq-wC-MqL"/>
+                        <constraint firstAttribute="height" constant="26" id="gSe-Ls-hOL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorTelugu-Regular" family="Kohinoor Telugu" pointSize="21"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CR-g3-cP3">
+                    <rect key="frame" x="77" y="97" width="96" height="36"/>
+                    <color key="backgroundColor" red="0.2389431510133645" green="0.68670050639496849" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="EzS-XU-Uof"/>
+                        <constraint firstAttribute="width" constant="96" id="b6Z-LY-fdB"/>
+                    </constraints>
+                    <state key="normal" title="OKay!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="0CR-g3-cP3" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="G6v-ZF-vvd"/>
+                <constraint firstItem="6ju-SN-Ueq" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="22" id="eYK-We-0Ds"/>
+                <constraint firstAttribute="bottom" secondItem="0CR-g3-cP3" secondAttribute="bottom" constant="29" id="j1N-FB-GDq"/>
+                <constraint firstItem="6ju-SN-Ueq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vMR-YD-qCn"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
