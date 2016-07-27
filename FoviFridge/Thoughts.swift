@@ -9,12 +9,12 @@
 import Foundation
 
 // MARK: To-Dos:
-/*
+/*m
     FoodItem Object: Create a Bool for previouslyBought in FoodItem Object
     Design AlertViews in Sketch
     Create AlertViews in xib
  
-  
+ 
  */
 
 
@@ -22,6 +22,6 @@ import Foundation
 
 /*
     FrigdeVC: missingItems = All items peviously bought that fridgeAmount = 0
-
+zzxz
  
  */
