@@ -10,6 +10,8 @@ import UIKit
 import FoldingTabBar
 import RealmSwift
 import Material
+import Social
+
 
 class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, TextFieldDelegate, MaterialDelegate {
 
@@ -41,6 +43,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         checkSurvey()
 //        createDummyUser()
         
+
         // TableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -50,7 +53,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         groceryBagButton.layer.cornerRadius = 20
         searchButton.layer.cornerRadius = 20
         settingsButton.layer.cornerRadius = 20
-        
         
         
     }
@@ -356,6 +358,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         }else{
             // Run Onboard
             print("Run Onboard")
+            self.runOnboard()
         }
     }
     
@@ -373,10 +376,29 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         return day
     }
 
+    
+    func runOnboard(){
+        print("Running Onboard")
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("runOnboard", sender: self)
+        }
+    }
+    
+    
+    func inviteFriend_facebook(){
+        print("inviting...")
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
 
-    
-    
-    
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+            vc.setInitialText("Hey Barbara, this app helps you know what's in your fridge, isn't that amazing!")
+//            vc.addImage(UIImage(named: "myImage.jpg")!) // Icon
+            vc.addURL(NSURL(string: "https://www.google.com"))
+            self.presentViewController(vc, animated: true, completion: nil)
+            
+        }
+    }
     
     
     

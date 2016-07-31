@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import Alamofire
+import RealmSwift
+import Kingfisher
+
 
 class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var collViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var collViewTopConstraint: NSLayoutConstraint!
     
-    var food = [1,2,3,4,4,5,5,3,3,3,3,3,3,34,4,5,56,6,6,7,7,7,78,8,89,8,7,67,6,6,5,5,4,4,4,54,6,7,8,9,9,90,9,8,7,6,5,4,43,3,2,2,2,1,1]//[String]()
+//    var food = [1,2,3,4,4,5,5,3,3,3,3,3,3,34,4,5,56,6,6,7,7,7,78,8,89,8,7,67,6,6,5,5,4,4,4,54,6,7,8,9,9,90,9,8,7,6,5,4,43,3,2,2,2,1,1]//[String]()
     
     var i = 0
     
+    var all_basicfooditems = [BasicFoodItem]()
     
+    var segueStick: String?
+
     
     @IBOutlet var searchBar: UISearchBar!
     
@@ -33,22 +40,17 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     @IBOutlet var uniqueBackground: UIView!
     
     
-    var segueStick: String?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.layer.cornerRadius = 9//15
-        collectionView.layer.borderColor = UIColor.lightGrayColor().CGColor
-//        collectionView.layer.borderWidth = 1
         finishedButton.layer.cornerRadius = 4
         uniqueBackground.layer.cornerRadius = 13
         uniqueButton.layer.cornerRadius = 4
         collectionView.delegate = self
         collectionView.dataSource = self
-//        // Collection View Insects
-//        let flow = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        flow.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
+
         
         if segueStick != nil{
             print(segueStick)
@@ -56,6 +58,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             print("segueStick = nil")
         }
 
+        // Run Query for BFI
+        requestit()
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -81,14 +85,19 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return food.count
+        return all_basicfooditems.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: UICollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! UICollectionViewCell
+        let cell: ChooseFoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! ChooseFoodItemCollectionViewCell
 
         cell.layer.cornerRadius = 12
-
+        if all_basicfooditems[indexPath.row].title != nil{
+            cell.foodLabel.text = all_basicfooditems[indexPath.row].title!
+        }
+        if all_basicfooditems[indexPath.row].image != nil{
+            cell.foodImage.image = all_basicfooditems[indexPath.row].image!
+        }
         
         return cell
     }
@@ -179,6 +188,107 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
 
+    // Query BFI
+    //me
+    func requestit() {
+        Alamofire.request(.GET, "https://rocky-fjord-88249.herokuapp.com/api/v1/basic_food_items").responseJSON { (response) in
+            print("prebuild")
+//            print(response.result.value)
+            if let usersArray = response.result.value as? NSArray {
+                print("P1")
+                for each in usersArray{
+                    if let user = each as? NSDictionary{
+                        var bfi = BasicFoodItem()
+                        let name = user["title"] as? String
+                        print(name)
+                        if name != nil{
+                            bfi.title = name!
+                        }
+                        let measurement_type = user["measurement_type"] as? String
+                        print(measurement_type)
+                        if measurement_type != nil{
+                            bfi.measurement_type = measurement_type!
+                        }
+                        let full_amount = user["full_amount"] as? Float
+                        print(full_amount)
+                        if full_amount != nil{
+                            bfi.full_amount = full_amount!
+                            bfi.current_amount = full_amount! // user just bought
+                        }
+                        
+//                        let current_amount = user["current_amount"] as? Float
+//                        print(current_amount)
+//                        if current_amount != nil{
+//                            bfi.current_amount = current_amount!
+//                        }
+                        let food_category = user["food_category"] as? String
+                        print(food_category)
+                        if food_category != nil{
+                            bfi.food_category = food_category!
+                        }
+//                        let fridge_amount = user["fridge_amount"] as? Int
+//                        print(fridge_amount)
+//                        if fridge_amount != nil{
+//                            bfi.fridge_amount = fridge_amount!
+//                        }
+//                        let shoppingList_amount = user["shoppingList_amount"] as? Int
+//                        print(shoppingList_amount)
+//                        if shoppingList_amount != nil{
+//                            bfi.shoppingList_amount = shoppingList_amount!
+//                        }
+//                        let mylist_amount = user["mylist_amount"] as? Int
+//                        print(mylist_amount)
+//                        if mylist_amount != nil{
+//                            bfi.mylist_amount = mylist_amount!
+//                        }
+                        let usually_expires = user["usually_expires"] as? Int
+                        print(usually_expires)
+                        if usually_expires != nil{
+                            bfi.usually_expires = usually_expires!
+                        }
+                        let fridge_usually_expires = user["fridge_usually_expires"] as? Int
+                        print(fridge_usually_expires)
+                        if fridge_usually_expires != nil{
+                            bfi.fridge_usually_expires = fridge_usually_expires!
+                        }
+
+//                        let image_url = user["image_url"] as? String
+                        
+                        var imageu = user["image"] as? String
+                        if imageu != nil{
+                            
+                            //KF
+                            // Get range of all characters past the first 6.
+                            let range = imageu!.startIndex.advancedBy(4)..<imageu!.endIndex
+                            
+                            // Access the substring.
+                            let sub_url = imageu![range]
+                            
+                            print("This is the url : https\(sub_url)")
+                            var url = NSURL(string: "https\(sub_url)")
+                            bfi.image_url = url!
+                            KingfisherManager.sharedManager.retrieveImageWithURL(url!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+                                print(image)
+                                bfi.image = image
+                                self.all_basicfooditems.append(bfi)
+                                
+                                self.collectionView.reloadData()
+                            })
+                        }
+                        //EndKF
+
+                        print("Added \(bfi.title) to BFIs")
+//                        self.collectionView.reloadData()
+                    }
+                }
+            }
+            if let JSON = response.result.value{// as? Array<Dictionary<String,AnyObject>> {
+                print("Here's JSON")
+                print(JSON)
+            }
+        }
+    }
+
     
     
     
@@ -187,7 +297,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     
-    
+    //Segue Back to AddFoodVC
     @IBAction func pressedFinished(sender: AnyObject) {
         //Save Data to realm, unwind segue
         
@@ -200,10 +310,6 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             //.sendActionsForControlEvents(.TouchUpInside)
         }
     }
-    
-    
-
-    
     
     // MARK: - Navigation
 

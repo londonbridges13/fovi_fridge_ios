@@ -10,6 +10,7 @@ target 'FoviFridge' do
 	pod 'Kingfisher', '~> 2.4'
     	pod 'Alamofire', '~> 3.4'
 	pod 'Material', '~> 1.0'
+	pod "GMStepper"
 
 
 
