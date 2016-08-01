@@ -39,7 +39,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
 
     @IBOutlet var uniqueBackground: UIView!
     
-    
+    var tint : UIView?
+    var foodView : Food_Quantity_View?
     
     
     override func viewDidLoad() {
@@ -69,9 +70,6 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -105,7 +103,13 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell: ChooseFoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! ChooseFoodItemCollectionViewCell
+        
+        print("Selected")
+        self.show_food_item(all_basicfooditems[indexPath.row])
+        
+    }
     
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -291,6 +295,65 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
 
     
     
+    
+    
+    
+    
+    
+    
+    
+    //Display FoodView
+    func show_food_item(fooditem : BasicFoodItem){
+        add_tint()
+        
+        // Display see you tomorrow view with ok button, push ok to segue to fridge vc
+        print("Displaying \(fooditem.title!)")
+        
+        var xp = self.view.frame.width / 2 - (250 / 2)
+        
+        self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
+        foodView!.alpha = 0
+        foodView!.fooditem.title = fooditem.title
+        foodView!.fooditem.is_basic = fooditem.is_basic
+        if fooditem.image != nil{
+            foodView!.fooditem.image = UIImagePNGRepresentation(fooditem.image!)
+        }
+        foodView!.fooditem.fridge_usually_expires.value = fooditem.fridge_usually_expires
+        foodView!.fooditem.usually_expires.value = fooditem.usually_expires
+        foodView!.fooditem.measurement_type = fooditem.measurement_type
+        foodView!.fooditem.food_category = fooditem.food_category
+        foodView!.fooditem.full_amount.value = fooditem.full_amount
+        foodView!.food_label.text = fooditem.title!
+        foodView!.add_food_buttom.setTitle("Add \(fooditem.title!)", forState: .Normal)
+        if fooditem.image != nil{
+            foodView!.food_image.image = fooditem.image
+        }
+        foodView!.fadeIn(duration: 0.3)
+        foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        view.addSubview(foodView!)
+    }
+    
+    
+    func add_tint(){
+        self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.alpha = 0.4
+        view.addSubview(self.tint!)
+    }
+    
+    func remove_tint(){
+        print("Removing Tint")
+        self.tint!.fadeOut()
+        self.tint!.alpha = 0
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.foodView?.removeFromSuperview()
+        }
+    }
+    
+
     
     
     

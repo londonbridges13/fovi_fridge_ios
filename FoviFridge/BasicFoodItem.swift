@@ -16,6 +16,7 @@ class BasicFoodItem{
     var title : String?
     var image : UIImage?
     var image_url : NSURL?
+    var is_basic = true
     
     //Measurements
     var measurement_type : String?

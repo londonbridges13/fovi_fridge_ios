@@ -34,6 +34,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     var containerView: UIView!
 
     
+    @IBOutlet var cancel_search_button : UIButton!
+    
     var today = NSDate()
     
     var i = 0
@@ -54,6 +56,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         searchButton.layer.cornerRadius = 20
         settingsButton.layer.cornerRadius = 20
         
+        
+        //Cancel Search
+        cancel_search_button.alpha = 0
+        cancel_search_button.layer.cornerRadius = 6
+        cancel_search_button.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
         
     }
     
@@ -193,6 +200,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             self.settingsButton.alpha = 0
             UIView.animateWithDuration(0.3) {
                 self.searchButton.alpha = 0
+                self.cancel_search_button.alpha = 1
             }
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
             dispatch_after(time, dispatch_get_main_queue()) {
@@ -264,6 +272,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
             self.searchBar.alpha = 0
             self.searchBar.endEditing(true)
+            self.cancel_search_button.alpha = 0
             self.containerView.alpha = 0
             self.searchButton.alpha = 1
             

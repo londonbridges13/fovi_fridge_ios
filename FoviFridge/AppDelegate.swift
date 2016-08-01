@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 5,
+            schemaVersion: 6,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -111,9 +111,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var last_checked : NSDate? = nil
                         newObject!["last_checked"] = last_checked
                     }
-                    
-//                    migration.enumerate(FoodItem.className()) { oldObject, newObject in
-//                    }
+                }
+                //FoodItem
+                migration.enumerate(FoodItem.className()) { oldObject, newObject in
+                    if oldSchemaVersion < 6{
+                        var is_basic = false
+                        newObject!["is_basic"] = is_basic
+                    }
                 }
             }
             

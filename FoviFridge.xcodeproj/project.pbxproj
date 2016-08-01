@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3E0B52D41D435FBC007138CE /* SeeYouLater_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0B52D31D435FBB007138CE /* SeeYouLater_View.xib */; };
 		3E0B52D61D4361DB007138CE /* SeeYouLater_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0B52D51D4361DB007138CE /* SeeYouLater_View.swift */; };
+		3E3C29E11D4F05080095A93B /* MyMiniFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */; };
 		3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */; };
 		3E4FF62D1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */; };
 		3E4FF6751D1C63C6005BFFF4 /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */; };
@@ -35,6 +36,7 @@
 		3E9E37371D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E37361D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift */; };
 		3E9E37411D4D62A400A15381 /* Food_Quantity_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */; };
 		3E9E37431D4D62C400A15381 /* Food_Quantity_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E37421D4D62C400A15381 /* Food_Quantity_View.xib */; };
+		3E9E37881D4EA5E000A15381 /* Fluent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E37861D4EA5E000A15381 /* Fluent.swift */; };
 		3E9E412A1D1B79E1009C9808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E41291D1B79E1009C9808 /* AppDelegate.swift */; };
 		3E9E412C1D1B79E1009C9808 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E412B1D1B79E1009C9808 /* ViewController.swift */; };
 		3E9E412F1D1B79E1009C9808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E9E412D1D1B79E1009C9808 /* Main.storyboard */; };
@@ -138,6 +140,7 @@
 		2E98CCFB7CFC2B3173404227 /* Pods-FoviFridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge.debug.xcconfig"; sourceTree = "<group>"; };
 		3E0B52D31D435FBB007138CE /* SeeYouLater_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeYouLater_View.xib; sourceTree = "<group>"; };
 		3E0B52D51D4361DB007138CE /* SeeYouLater_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeeYouLater_View.swift; sourceTree = "<group>"; };
+		3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMiniFoodCell.swift; sourceTree = "<group>"; };
 		3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeVC.swift; sourceTree = "<group>"; };
 		3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodsCell.swift; sourceTree = "<group>"; };
 		3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 		3E9E37361D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFoodItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food_Quantity_View.swift; sourceTree = "<group>"; };
 		3E9E37421D4D62C400A15381 /* Food_Quantity_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Food_Quantity_View.xib; sourceTree = "<group>"; };
+		3E9E37851D4EA5E000A15381 /* Fluent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fluent.h; sourceTree = "<group>"; };
+		3E9E37861D4EA5E000A15381 /* Fluent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fluent.swift; sourceTree = "<group>"; };
 		3E9E41261D1B79E1009C9808 /* FoviFridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoviFridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9E41291D1B79E1009C9808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E9E412B1D1B79E1009C9808 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -373,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				3E4FF6801D1CED9A005BFFF4 /* MyFoodMiniCVC.swift */,
+				3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */,
 			);
 			name = "My Foods";
 			sourceTree = "<group>";
@@ -389,12 +395,22 @@
 		3E9E37441D4D687B00A15381 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E9E37841D4EA5E000A15381 /* Fluent */,
 				3EAF0E381D40569700A302B0 /* NVActivityIndicatorView */,
 				3E5FAAED1D3D95A400E94EA8 /* DOFavoriteButton */,
 				3EC757101D28BB9C00F3BEEF /* B68UIFloatLabelTextField */,
 				3E9E373D1D4D614C00A15381 /* TimeFrameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E9E37841D4EA5E000A15381 /* Fluent */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E37851D4EA5E000A15381 /* Fluent.h */,
+				3E9E37861D4EA5E000A15381 /* Fluent.swift */,
+			);
+			path = Fluent;
 			sourceTree = "<group>";
 		};
 		3E9E411D1D1B79E1009C9808 = {
@@ -866,9 +882,11 @@
 				3EAF0E311D3F3B0F00A302B0 /* LongAnswer_SurveyQ.swift in Sources */,
 				3EAF0E641D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
 				3EAF0E671D40569800A302B0 /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
+				3E9E37881D4EA5E000A15381 /* Fluent.swift in Sources */,
 				3EAF0E601D40569800A302B0 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
 				3E5FAAD31D39DF5A00E94EA8 /* YesNo_SurveyQ.swift in Sources */,
 				3EAF0E771D40569800A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				3E3C29E11D4F05080095A93B /* MyMiniFoodCell.swift in Sources */,
 				3EAF0E6E1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				3E4FF6831D1E28DD005BFFF4 /* ShoppingCell.swift in Sources */,
 				3E9E37371D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift in Sources */,
