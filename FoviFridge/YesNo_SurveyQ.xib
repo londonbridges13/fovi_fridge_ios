@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YesNo_SurveyQ" customModule="FoviFridge" customModuleProvider="target">
             <connections>
+                <outlet property="idLabel" destination="n3m-3M-VIK" id="He6-gc-9HJ"/>
                 <outlet property="noButton" destination="pbc-gp-Oj9" id="lrE-Zi-oKq"/>
                 <outlet property="questionLabel" destination="Oyv-9K-e0T" id="iIK-f4-MuT"/>
                 <outlet property="yesButton" destination="dnC-ve-Xvc" id="btA-q5-N7J"/>
@@ -61,10 +62,21 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="n3m-3M-VIK">
+                    <rect key="frame" x="200" y="8" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="q5X-Xb-hy7"/>
+                        <constraint firstAttribute="width" constant="42" id="zLL-Gq-NtJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="18"/>
+                    <color key="textColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dnC-ve-Xvc" secondAttribute="bottom" constant="28" id="5li-cx-hr2"/>
+                <constraint firstItem="n3m-3M-VIK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="6bL-xr-b4G"/>
                 <constraint firstItem="zBk-As-8e6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="17" id="8H0-3J-q8a"/>
                 <constraint firstAttribute="trailing" secondItem="pbc-gp-Oj9" secondAttribute="trailing" constant="24" id="R0c-q6-IzN"/>
                 <constraint firstAttribute="bottom" secondItem="pbc-gp-Oj9" secondAttribute="bottom" constant="28" id="Xo5-v7-Roc"/>
@@ -72,6 +84,7 @@
                 <constraint firstItem="zBk-As-8e6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="17" id="psv-oO-ETD"/>
                 <constraint firstItem="Oyv-9K-e0T" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="sbQ-yz-DxN"/>
                 <constraint firstItem="dnC-ve-Xvc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="22" id="tk3-l9-L9A"/>
+                <constraint firstAttribute="trailing" secondItem="n3m-3M-VIK" secondAttribute="trailing" constant="8" id="wUq-77-i7a"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

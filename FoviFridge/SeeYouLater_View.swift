@@ -14,6 +14,8 @@ class SeeYouLater_View: UIView {
     
     @IBOutlet var okayButton : UIButton!
     
+
+    
     /*
      // Only override drawRect: if you perform custom drawing.
      // An empty implementation adversely affects performance during animation.

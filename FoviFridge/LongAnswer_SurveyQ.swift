@@ -21,6 +21,8 @@ class LongAnswer_SurveyQ: UIViewController, UITextViewDelegate {
     
     @IBOutlet var sendActionsButton: UIButton!
     
+    @IBOutlet var idLabel : UILabel!
+
     var question_id : Int?
     var cUser = UserDetails()
     var today = NSDate()

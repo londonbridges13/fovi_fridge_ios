@@ -20,6 +20,9 @@ class YesNo_SurveyQ: UIView {
 
     @IBOutlet var questionLabel: UILabel!
     
+    @IBOutlet var idLabel : UILabel!
+
+    
     var question = SurveyQuestion()
 
     var cUser = UserDetails()

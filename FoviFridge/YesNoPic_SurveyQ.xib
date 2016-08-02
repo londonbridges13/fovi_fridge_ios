@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YesNoPic_SurveyQ" customModule="FoviFridge" customModuleProvider="target">
             <connections>
+                <outlet property="idLabel" destination="Ncm-04-nKJ" id="CSE-Nq-Lz6"/>
                 <outlet property="noButton" destination="mX9-Ud-M99" id="eR7-3H-cqS"/>
                 <outlet property="questionLabel" destination="bLe-a8-hiS" id="2e0-L6-K0G"/>
                 <outlet property="surveyPic" destination="ozt-a0-FG1" id="nSQ-WX-c2u"/>
@@ -69,6 +70,16 @@
                         <constraint firstAttribute="height" constant="128" id="sAN-y9-TAm"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ncm-04-nKJ">
+                    <rect key="frame" x="200" y="8" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="g6m-Ng-ZzD"/>
+                        <constraint firstAttribute="height" constant="21" id="zT9-0k-mDD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="18"/>
+                    <color key="textColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -77,6 +88,8 @@
                 <constraint firstAttribute="trailing" secondItem="mX9-Ud-M99" secondAttribute="trailing" constant="20" id="8h5-hK-wa3"/>
                 <constraint firstItem="fJ4-R8-Vle" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="NfX-U8-iI2"/>
                 <constraint firstAttribute="bottom" secondItem="ozt-a0-FG1" secondAttribute="bottom" constant="72" id="PRh-vP-vAM"/>
+                <constraint firstAttribute="trailing" secondItem="Ncm-04-nKJ" secondAttribute="trailing" constant="8" id="WHN-pl-1kz"/>
+                <constraint firstItem="Ncm-04-nKJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Y17-HY-ReY"/>
                 <constraint firstItem="ozt-a0-FG1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="dI7-aH-w5a"/>
                 <constraint firstAttribute="trailing" secondItem="ozt-a0-FG1" secondAttribute="trailing" constant="5" id="ekV-sQ-0Yc"/>
                 <constraint firstItem="HmX-S3-jMe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="lBP-W3-778"/>

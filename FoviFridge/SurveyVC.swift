@@ -77,6 +77,7 @@ class SurveyVC: UIViewController {
         lav.cUser = self.cUser
         lav.questionLabel.text = q.question
         lav.question_id = q.question_id
+        lav.idLabel.text = "#\(q.question_id!)"
         print("+++ qid \(q.question_id)")
         print("+++ survey id\(self.survey_questions[0].question_id)")
         if q.question_id == self.survey_questions[0].question_id{
@@ -93,6 +94,7 @@ class SurveyVC: UIViewController {
         //mca.delegate = self // no need
         multichoice_View.fadeIn()
         mca.questionLabel.text = q.question
+        mca.idLabel.text = "#\(q.question_id!)"
         mca.question_id = q.question_id
         mca.answers_array = q.options
         mca.tableView.reloadData()
@@ -110,6 +112,7 @@ class SurveyVC: UIViewController {
         addRoundEdges(9)
         self.yesNo_View.fadeIn()
         ynv.questionLabel.text = q.question
+        ynv.idLabel.text = "#\(q.question_id!)"
         ynv.question = q
         // Sending survey from here
         if q.question_id == self.survey_questions[0].question_id{
@@ -130,6 +133,7 @@ class SurveyVC: UIViewController {
         ynpv.surveyPic.backgroundColor = UIColor.lightGrayColor()
         ynpv.questionLabel.text = q.question
         ynpv.question = q
+        ynpv.idLabel.text = "#\(q.question_id!)"
         ynpv.image_url = q.image_url
         if q.image_url != nil{
             print("Getting Image Now")

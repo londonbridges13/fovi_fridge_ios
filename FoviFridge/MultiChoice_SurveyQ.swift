@@ -19,6 +19,9 @@ class MultiChoice_SurveyQ: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet var idLabel : UILabel!
+
+    
     var my_answers = [String]()
     
     var question_id : Int?

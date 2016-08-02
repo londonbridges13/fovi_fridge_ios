@@ -128,7 +128,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
                                                                forIndexPath: indexPath) as! FridgeFoodsCell
 //        cell.the_category = self.categories[indexPath.row]
-        
+        cell.food.removeAll()
         cell.get_fooditems(self.categories[indexPath.row])
         cell.design_category_button(indexPath.row)
         cell.categoryButton.setTitle("\(self.categories[indexPath.row])", forState: .Normal)
@@ -322,6 +322,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     // Categories Query   /    Run this in viewWillLoad
     func get_all_categories(){
+        self.categories.removeAll()
         //Create an Array of all Categories
         print("Getting All Categories")
         let realm = try! Realm()
@@ -330,6 +331,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             if self.categories.contains(each.category) == false{
                 self.categories.append(each.category)
                 print("Appended : \(each.category)")
+                self.tableView.reloadData()
             }else{
                 print("self.categories Already Contains : \(each.category)")
             }

@@ -23,6 +23,9 @@ class YesNoPic_SurveyQ: UIView {
     
     @IBOutlet var surveyPic: UIImageView!
     
+    @IBOutlet var idLabel : UILabel!
+
+    
     var image_url : NSURL?
     
     var question = SurveyQuestion() // Set in Survey VC
