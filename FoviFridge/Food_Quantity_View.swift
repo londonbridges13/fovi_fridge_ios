@@ -74,6 +74,28 @@ class Food_Quantity_View: UIView {
                 try! realm.write {
                     same_food!.mylist_amount.value = quantity
                     print("Added \(quantity) to \(fooditem.title!), it now = \(add_quantity)")
+                    if same_food!.food_category == nil && fooditem.food_category != nil{
+                        same_food!.food_category = fooditem.food_category!
+                    }
+                    print("This is the Category: \(same_food!.food_category)")
+                    // Making sure that the fooditem saved has this new food_category
+                    let food_category = Category() //fooditem.food_category
+                    food_category.category = fooditem.food_category!
+                    var i = false
+                    for cat in same_food!.category{
+                        if cat.category == food_category.category{
+                            i = true
+                        }else{print("Has This FoodCategory already")}
+                    }
+                    
+                    if i == false{
+                        self.same_food!.category.append(food_category)
+                        print("Added NEW Food Category: \(food_category.category)")
+                    }else{
+                        //Has This FoodCategory already
+                        print("Has This FoodCategory already")
+                    }
+
                 }
             }else{
                 // Set quatity as the number
@@ -87,8 +109,14 @@ class Food_Quantity_View: UIView {
             print("Creating new Food Item Called: \(fooditem.title!)")
             fooditem.mylist_amount.value = quantity
             try! realm.write {
+                var food_category = Category() //fooditem.food_category
+                food_category.category = fooditem.food_category!
+                self.fooditem.category.append(food_category)
+                print("Added NEW Food Category: \(food_category.category)")
+
                 realm.add(self.fooditem)
                 print("Created \(fooditem), and the quantity = \(fooditem.mylist_amount.value)")
+                print("This is the Category: \(fooditem.food_category)")
             }
         }
         // Fade Out

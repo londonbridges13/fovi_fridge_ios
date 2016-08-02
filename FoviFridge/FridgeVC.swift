@@ -17,7 +17,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 
 
     
-    var foods = [1,2,3,4,5,6,7,8,9]//[String]() // Change later
+    var categories = [String]()//[String]() // Change later
     
     @IBOutlet var fridgeViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
@@ -68,7 +68,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        checkSurvey()
-//        tabBarController!.tabBarController?.tabBar.alpha = 1
+        get_all_categories()
         
 
     }
@@ -119,7 +119,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         // return categories.count + missingItems.count
         // missingItems = All items peviously bought that fridgeAmount = 0
         // Create a Bool for previouslyBought in FoodItem Object
-        return foods.count
+        return categories.count
     }
     
     func tableView(tableView: UITableView,
@@ -127,6 +127,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
         let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
                                                                forIndexPath: indexPath) as! FridgeFoodsCell
+//        cell.the_category = self.categories[indexPath.row]
+        
+        cell.get_fooditems(self.categories[indexPath.row])
+        cell.design_category_button(indexPath.row)
+        cell.categoryButton.setTitle("\(self.categories[indexPath.row])", forState: .Normal)
         tableView.rowHeight = 148.0
         
         return cell
@@ -303,6 +308,40 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         textField.endEditing(true)
         return true 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Categories Query   /    Run this in viewWillLoad
+    func get_all_categories(){
+        //Create an Array of all Categories
+        print("Getting All Categories")
+        let realm = try! Realm()
+        let all_categories = realm.objects(Category)
+        for each in all_categories{
+            if self.categories.contains(each.category) == false{
+                self.categories.append(each.category)
+                print("Appended : \(each.category)")
+            }else{
+                print("self.categories Already Contains : \(each.category)")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     
     

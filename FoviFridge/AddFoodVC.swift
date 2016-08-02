@@ -37,6 +37,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.collectionView.userInteractionEnabled = true
+
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.addFoodButton.layer.cornerRadius = 2
@@ -192,7 +194,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         let predicate = NSPredicate(format: "title = '\(each.title!)'")
         var same_food = realm.objects(FoodItem).filter(predicate).first
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2950 * Double(NSEC_PER_MSEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
          // Continue Here 
             if same_food != nil && each.is_basic == same_food?.is_basic{
@@ -241,7 +243,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
 //            }
         self.my_groceries.removeAll()
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2060 * Double(NSEC_PER_MSEC)))
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(260 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             // Send Actions
             print("Sending Actions")
@@ -257,6 +259,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         if self.my_groceries.count != 0{
             add_food_to_fridge()
         }else{
+
             performSegueWithIdentifier("DoneIt", sender: self)
         }
     }
@@ -267,6 +270,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        self.collectionView.userInteractionEnabled = false
         if segue.identifier == "addfood"{
             let vc: ChooseFoodVC = segue.destinationViewController as! ChooseFoodVC
             vc.segueStick = "addfood"

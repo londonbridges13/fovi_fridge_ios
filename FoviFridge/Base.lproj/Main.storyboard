@@ -565,7 +565,7 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="17" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FridgeFoodItem" id="89K-2I-XiS">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FridgeFoodItem" id="89K-2I-XiS" customClass="FridgeFoodItemCell" customModule="FoviFridge" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="2" width="70" height="74"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -600,6 +600,10 @@
                                                                 <constraint firstAttribute="trailingMargin" secondItem="XTS-QW-xOx" secondAttribute="trailing" constant="-8" id="wkd-w8-qFQ"/>
                                                             </constraints>
                                                             <size key="customSize" width="70" height="74"/>
+                                                            <connections>
+                                                                <outlet property="foodImage" destination="HjC-Om-Lpj" id="Rnj-jV-S8V"/>
+                                                                <outlet property="foodLabel" destination="XTS-QW-xOx" id="nhB-6T-rOg"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
@@ -630,7 +634,7 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                     <state key="normal" title="  Vegetables">
-                                                        <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleColor" red="0.66666666666666663" green="0.38677640682656828" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <segue destination="iUz-rQ-O1q" kind="showDetail" id="fAX-vj-oIP"/>
@@ -657,6 +661,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="categoryButton" destination="icn-DN-PAO" id="irz-yh-5uj"/>
                                             <outlet property="collectionView" destination="6tk-zm-J1W" id="Txs-aL-BZ5"/>
                                         </connections>
                                     </tableViewCell>
