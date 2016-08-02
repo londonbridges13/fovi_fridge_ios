@@ -12,7 +12,7 @@ import RealmSwift
 import Kingfisher
 
 
-class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate {
+class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, MiniDelegate {
 
     @IBOutlet weak var collViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var collViewTopConstraint: NSLayoutConstraint!
@@ -42,6 +42,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     var tint : UIView?
     var foodView : Food_Quantity_View?
     
+    var mini : MyFoodMiniCVC?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,10 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             print("segueStick = nil")
         }
 
+        // MiniDelegate
+        self.mini = childViewControllers.first as! MyFoodMiniCVC
+        mini!.delegate = self
+        
         // Run Query for BFI
         requestit()
     }
@@ -331,6 +337,9 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         foodView!.fadeIn(duration: 0.3)
         foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        foodView?.add_food_buttom.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
+        foodView?.remove_button.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
+        
         view.addSubview(foodView!)
     }
     
@@ -354,7 +363,33 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     }
     
 
-    
+    // MiniDelegate
+    //Display FoodView
+    func show_grocery_item(fooditem : FoodItem){
+        
+        add_tint()
+        
+        // Display see you tomorrow view with ok button, push ok to segue to fridge vc
+        print("Displaying \(fooditem.title!)")
+        
+        var xp = self.view.frame.width / 2 - (250 / 2)
+        
+        self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
+        foodView!.alpha = 0
+        foodView!.fadeIn(duration: 0.3)
+        foodView?.fooditem = fooditem
+        foodView!.food_label.text = fooditem.title!
+        foodView!.add_food_buttom.setTitle("Done", forState: .Normal)
+        foodView?.add_food_buttom.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
+        foodView?.remove_button.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
+        
+        if fooditem.image != nil{
+            foodView!.food_image.image = UIImage(data: fooditem.image!)
+        }
+        foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        view.addSubview(foodView!)
+    }
     
     
     

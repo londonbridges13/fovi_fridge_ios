@@ -42,6 +42,9 @@ class Food_Quantity_View: UIView {
         print("We have this item \(same_food?.title)")
         if same_food != nil{
             current_amount()
+            if same_food?.mylist_amount.value == 0{
+                remove_button.setTitle("Cancel", forState: .Normal)
+            }
         }
     }
     
@@ -97,6 +100,13 @@ class Food_Quantity_View: UIView {
     // Remove Food Item
     func remove_food_item(){
         print("Beginning to remove \(food_label.text)")
+        if same_food != nil{
+            let realm = try! Realm()
+            try! realm.write {
+                same_food?.mylist_amount.value = 0
+                print("Removed item from mylist")
+            }
+        }
         
         
         // Fade Out

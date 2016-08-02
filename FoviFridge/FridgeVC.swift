@@ -13,7 +13,7 @@ import Material
 import Social
 
 
-class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, TextFieldDelegate, MaterialDelegate {
+class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate {
 
 
     
@@ -30,7 +30,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     @IBOutlet var search_button_width: NSLayoutConstraint!
     
     /// Reference for SearchBar.
-    var searchBar: SearchBar!
+    var searchBar: SearchBar! = nil
     var containerView: UIView!
 
     
@@ -191,6 +191,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     
     
+    
+    
     // Animate SearchBar
     func showSearchBar(){
         self.search_button_width.constant = 450
@@ -236,16 +238,17 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     /// Prepares the toolbar
     func prepareSearchBar() {
         searchBar = SearchBar()
-        searchBar.delegate = self
+        searchBar.textField.delegate = self
+//        searchBar.delegate = self
 
         searchBar.alpha = 0
-        searchBar.becomeFirstResponder()
         searchBar.frame = CGRect(x: 0, y: 0, width: 300, height: 40)
 
         containerView.addSubview(searchBar)
         searchBar.fadeIn()
-        searchBar.becomeFirstResponder()
-        searchBar.clearButton.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
+        searchBar.textField.returnKeyType = .Search
+        searchBar.textField.becomeFirstResponder()
+//        searchBar.clearButton.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
         let image: UIImage? = MaterialIcon.cm.moreVertical
         
         // More button.
@@ -288,6 +291,19 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             }, completion: nil)
         }, completion: nil)
     }
+    
+    
+    
+    // Textfield Delegate
+    func textFieldDidEndEditing(textField: UITextField) {
+        print("Ended Editing")
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        print("Return Pressed")
+        textField.endEditing(true)
+        return true 
+    }
+    
     
     
     

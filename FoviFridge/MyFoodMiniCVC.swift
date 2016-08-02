@@ -9,6 +9,10 @@
 import UIKit
 import RealmSwift
 
+protocol MiniDelegate {
+    func show_grocery_item(fooditem : FoodItem)
+}
+
 class MyFoodMiniCVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
 
@@ -18,7 +22,7 @@ class MyFoodMiniCVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     var tint : UIView?
     
     var foodView : Food_Quantity_View?
-
+    var delegate : MiniDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,28 +109,34 @@ class MyFoodMiniCVC: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     //Display FoodView
     func show_food_item(fooditem : FoodItem){
-        add_tint()
         
-        // Display see you tomorrow view with ok button, push ok to segue to fridge vc
-        print("Displaying \(fooditem.title!)")
-        
-        var xp = self.view.frame.width / 2 - (250 / 2)
-        
-        self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
-        foodView!.alpha = 0
-        foodView!.fadeIn(duration: 0.3)
-        foodView?.fooditem = fooditem
-        foodView!.food_label.text = fooditem.title!
-        foodView!.add_food_buttom.setTitle("Done", forState: .Normal)
-        foodView?.add_food_buttom.addTarget(self, action: "get_groceries", forControlEvents: .TouchUpInside)
-        foodView?.remove_button.addTarget(self, action: "get_groceries", forControlEvents: .TouchUpInside)
-        
-        if fooditem.image != nil{
-            foodView!.food_image.image = UIImage(data: fooditem.image!)
+        if let delegate = delegate {
+            print("Running Mini Food Display Protocol")
+            delegate.show_grocery_item(fooditem)
         }
-        foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
-        foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
-        view.addSubview(foodView!)
+        
+//        add_tint()
+//        
+//        // Display see you tomorrow view with ok button, push ok to segue to fridge vc
+//        print("Displaying \(fooditem.title!)")
+//        
+//        var xp = self.view.frame.width / 2 - (250 / 2)
+//        
+//        self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
+//        foodView!.alpha = 0
+//        foodView!.fadeIn(duration: 0.3)
+//        foodView?.fooditem = fooditem
+//        foodView!.food_label.text = fooditem.title!
+//        foodView!.add_food_buttom.setTitle("Done", forState: .Normal)
+//        foodView?.add_food_buttom.addTarget(self, action: "get_groceries", forControlEvents: .TouchUpInside)
+//        foodView?.remove_button.addTarget(self, action: "get_groceries", forControlEvents: .TouchUpInside)
+//        
+//        if fooditem.image != nil{
+//            foodView!.food_image.image = UIImage(data: fooditem.image!)
+//        }
+//        foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+//        foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+//        view.addSubview(foodView!)
     }
     
     

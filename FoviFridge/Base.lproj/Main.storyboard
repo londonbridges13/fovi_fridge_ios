@@ -230,7 +230,6 @@
                                 </state>
                                 <connections>
                                     <action selector="doneWithFood:" destination="xKW-uL-h2H" eventType="touchUpInside" id="DNd-Ct-QgM"/>
-                                    <segue destination="UiV-Qy-wXb" kind="show" identifier="DoneIt" customClass="CustomUnwindSegue" customModule="FoviFridge" customModuleProvider="target" id="r8d-W0-eTk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="53h-rz-EwT">
@@ -289,6 +288,7 @@
                         <outlet property="searchBar" destination="wUb-gh-dOH" id="GQW-7c-KYi"/>
                         <outlet property="topLabel" destination="1aY-bZ-UMv" id="cS7-Ke-ll9"/>
                         <outlet property="unwindToFridgeButton" destination="OHC-5E-j5I" id="kM3-yz-RKf"/>
+                        <segue destination="UiV-Qy-wXb" kind="show" identifier="DoneIt" customClass="CustomUnwindSegue" customModule="FoviFridge" customModuleProvider="target" id="Xg7-cM-Kna"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xUY-Ek-D3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -302,7 +302,7 @@
                 </button>
                 <exit id="IcT-UR-ZZU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-467" y="-974"/>
+            <point key="canvasLocation" x="-419" y="-936"/>
         </scene>
         <!--Choose FoodVC-->
         <scene sceneID="aUc-sk-jKT">
@@ -1698,7 +1698,7 @@
         <image name="settings_icon" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Xg7-cM-Kna"/>
         <segue reference="Nib-6c-tMd"/>
-        <segue reference="r8d-W0-eTk"/>
     </inferredMetricsTieBreakers>
 </document>
