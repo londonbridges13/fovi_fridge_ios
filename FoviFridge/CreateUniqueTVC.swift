@@ -8,11 +8,21 @@
 
 import UIKit
 
-class CreateUniqueTVC: UITableViewController {
+class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    @IBOutlet var tableview : UITableView!
+    
+    var food_title : String?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tableview.delegate = self
+        self.tableview.dataSource = self
+        
+       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -60,25 +70,25 @@ class CreateUniqueTVC: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ccell1", forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -100,21 +110,30 @@ class CreateUniqueTVC: UITableViewController {
     }
     */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
 
+    
+    
+    
+    
+    
+    func show_Success(){
+        var undesr = Success_View()
+        undesr.frame = CGRect(x: 5, y: 70, width: 250, height: 200)
+        undesr.alpha = 0
+        undesr.successLabel.text = "Successfully Created: \(self.food_title!)"
+        self.view.addSubview(undesr)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    
+    func use_showagain(){
+        var undesr = ShowAgain_AlertView()
+        undesr.frame = CGRect(x: 5, y: 70, width: 290, height: 250)
+        undesr.alpha = 0
+        self.view.addSubview(undesr)
     }
-    */
-
+    
+    
+    
     /*
     // MARK: - Navigation
 

@@ -26,8 +26,8 @@
                         <constraint firstAttribute="height" constant="66" id="n9P-Wg-8uC"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z3f-rt-5hd" customClass="GMStepper" customModule="GMStepper">
-                    <rect key="frame" x="27" y="220" width="196" height="41"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3f-rt-5hd" customClass="GMStepper" customModule="GMStepper">
+                    <rect key="frame" x="27" y="215" width="196" height="41"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="196" id="GPI-ud-gzW"/>
@@ -66,18 +66,6 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-GT-Rdw">
-                    <rect key="frame" x="44" y="343" width="162" height="39"/>
-                    <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="39" id="2sN-JN-wOQ"/>
-                        <constraint firstAttribute="width" constant="162" id="eSw-Dj-Dod"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                    <state key="normal" title="Remove">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Y1-Ye-EN1">
                     <rect key="frame" x="0.0" y="0.0" width="250" height="63"/>
                     <subviews>
@@ -99,31 +87,44 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EZv-iv-EZB">
-                    <rect key="frame" x="24" y="286" width="202" height="40"/>
+                    <rect key="frame" x="103" y="342" width="139" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="202" id="PbE-X5-zNw"/>
-                        <constraint firstAttribute="height" constant="40" id="lz1-tD-boK"/>
+                        <constraint firstAttribute="width" constant="139" id="SmE-Gk-SaZ"/>
+                        <constraint firstAttribute="height" constant="40" id="rBV-gm-Zni"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                     <state key="normal" title="Add Grapes">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcc-GT-Rdw">
+                    <rect key="frame" x="8" y="342" width="80" height="40"/>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Q2w-vm-eJA"/>
+                        <constraint firstAttribute="width" constant="80" id="gId-j2-IFL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Remove">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="EZv-iv-EZB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="0Ow-li-JvY"/>
-                <constraint firstAttribute="bottom" secondItem="fcc-GT-Rdw" secondAttribute="bottom" constant="18" id="2Iq-N5-zb5"/>
                 <constraint firstItem="9Y1-Ye-EN1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Zu-6V-FeG"/>
                 <constraint firstItem="8LX-tM-TD0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ah4-23-r2r"/>
+                <constraint firstAttribute="bottom" secondItem="EZv-iv-EZB" secondAttribute="bottom" constant="18" id="EZd-LY-Pi5"/>
+                <constraint firstItem="fcc-GT-Rdw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Ez7-yv-K2F"/>
                 <constraint firstItem="8LX-tM-TD0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="85" id="Nbw-Mu-Wt7"/>
                 <constraint firstItem="9Y1-Ye-EN1" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OvJ-Uz-dkI"/>
                 <constraint firstItem="Mx6-hO-F6S" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SEh-Ao-vsX"/>
-                <constraint firstItem="fcc-GT-Rdw" firstAttribute="top" secondItem="EZv-iv-EZB" secondAttribute="bottom" constant="17" id="Vgp-xN-Tf6"/>
+                <constraint firstAttribute="trailing" secondItem="EZv-iv-EZB" secondAttribute="trailing" constant="8" id="VoJ-Ci-vT4"/>
                 <constraint firstAttribute="trailing" secondItem="9Y1-Ye-EN1" secondAttribute="trailing" id="ZQv-8c-Fu3"/>
                 <constraint firstItem="z3f-rt-5hd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Za7-7r-HSE"/>
-                <constraint firstItem="fcc-GT-Rdw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gxS-Lm-cFm"/>
+                <constraint firstAttribute="bottom" secondItem="fcc-GT-Rdw" secondAttribute="bottom" constant="18" id="ftE-qA-5a5"/>
+                <constraint firstAttribute="bottom" secondItem="z3f-rt-5hd" secondAttribute="bottom" constant="144" id="sz7-NL-QHr"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

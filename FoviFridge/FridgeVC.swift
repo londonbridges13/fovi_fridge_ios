@@ -13,7 +13,7 @@ import Material
 import Social
 
 
-class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate {
+class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate, SettingCategory {
 
 
     
@@ -33,6 +33,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     var searchBar: SearchBar! = nil
     var containerView: UIView!
 
+    var is_searching = false
+    var searchable_array = [Searchable]()
+    
+    var category : String?
+    var categoryColor : UIColor?
     
     @IBOutlet var cancel_search_button : UIButton!
     
@@ -110,6 +115,15 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
     }
     
+    func set_cat(cat : String, color : UIColor){
+        self.category = cat
+        self.categoryColor = color
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 100 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("view_cat", sender: self)
+        }
+    }
     
     
     //Tableview Stuff
@@ -119,22 +133,62 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         // return categories.count + missingItems.count
         // missingItems = All items peviously bought that fridgeAmount = 0
         // Create a Bool for previouslyBought in FoodItem Object
-        return categories.count
+        
+        if self.is_searching == false{
+            return categories.count
+        }else{
+            return self.searchable_array.count
+        }
     }
     
     func tableView(tableView: UITableView,
                             cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
-                                                               forIndexPath: indexPath) as! FridgeFoodsCell
-//        cell.the_category = self.categories[indexPath.row]
-        cell.food.removeAll()
-        cell.get_fooditems(self.categories[indexPath.row])
-        cell.design_category_button(indexPath.row)
-        cell.categoryButton.setTitle("\(self.categories[indexPath.row])", forState: .Normal)
-        tableView.rowHeight = 148.0
-        
-        return cell
+        if self.is_searching == false{
+            
+            let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
+                                                                                     forIndexPath: indexPath) as! FridgeFoodsCell
+            cell.delegate = self
+            cell.food.removeAll()
+            cell.get_fooditems(self.categories[indexPath.row])
+            cell.design_category_button(indexPath.row)
+            cell.categoryButton.setTitle("\(self.categories[indexPath.row])", forState: .Normal)
+            tableView.rowHeight = 148.0
+            
+            return cell
+        }else{
+            // display searched items and categories
+            
+            if self.searchable_array[indexPath.row].is_category == true{
+                // display category
+                let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",forIndexPath: indexPath) as! FridgeFoodsCell
+                cell.delegate = self
+                cell.food.removeAll()
+                cell.get_fooditems(self.searchable_array[indexPath.row].category.category)
+                cell.design_category_button(indexPath.row)
+                cell.categoryButton.setTitle("\(self.searchable_array[indexPath.row].category.category)", forState: .Normal)
+                tableView.rowHeight = 148.0
+                
+                return cell
+
+            }else{
+                // display fooditem
+                
+                let cell : FoodItemTableViewCell = tableView.dequeueReusableCellWithIdentifier("FoodItemTableViewCell",forIndexPath: indexPath) as! FoodItemTableViewCell
+                
+                if self.searchable_array[indexPath.row].fooditem.image != nil{
+                    cell.foodImage.image = UIImage(data : self.searchable_array[indexPath.row].fooditem.image!)
+                }
+
+                if self.searchable_array[indexPath.row].fooditem.title != nil{
+                    cell.foodLabel.text = self.searchable_array[indexPath.row].fooditem.title
+                }
+                tableView.rowHeight = 65
+                
+                return cell
+
+            }
+        }
     }
     
     
@@ -244,8 +298,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     func prepareSearchBar() {
         searchBar = SearchBar()
         searchBar.textField.delegate = self
-//        searchBar.delegate = self
-
+//        self.is_searching = true
+        
         searchBar.alpha = 0
         searchBar.frame = CGRect(x: 0, y: 0, width: 300, height: 40)
 
@@ -277,6 +331,9 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     func displayIcons(){
         print("displayIcons")
+        self.is_searching = false
+        self.tableView.reloadData()
+
         UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
             self.searchBar.alpha = 0
             self.searchBar.endEditing(true)
@@ -285,7 +342,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             self.searchButton.alpha = 1
             
             self.search_button_width.constant = 41
-            
+
             UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
                 self.view.layoutIfNeeded()
                 
@@ -302,6 +359,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     // Textfield Delegate
     func textFieldDidEndEditing(textField: UITextField) {
         print("Ended Editing")
+        self.tableView.reloadData()
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         print("Return Pressed")
@@ -309,12 +367,80 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         return true 
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        print(textField.text)
+        self.searchable_array.removeAll()
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.searchable_array.removeAll()
+            var already_have = [String]()
+            already_have.removeAll()
+            
+            if textField.text?.characters.count > 0{
+                self.is_searching = true
+                print("We are in")
+                // Query for categories and fooditem
+                
+                let realm = try! Realm()
+                let predicate = NSPredicate(format: "category CONTAINS[c] %@", textField.text!)
+                var filtered_categories = realm.objects(Category).filter(predicate)
+                print(filtered_categories.count)
+
+                
+                for each in filtered_categories{
+                    if already_have.contains(each.category) == false{
+                        print("We have a Category : \(each.category)")
+                        var a_cat = Searchable()
+                        a_cat.is_category = true
+                        a_cat.category = each
+                        self.searchable_array.append(a_cat)
+                        already_have.append(each.category)
+                    }else{
+                        print("We have this Category")
+                    }
+                }
+//                self.tableView.reloadData()
+                
+
+                // Query for fooditem
+                    let f_realm = try! Realm()
+                    let searchPredicate = NSPredicate(format: "title CONTAINS[c] %@", textField.text!)
+
+                    var filtered_fooditem = f_realm.objects(FoodItem).filter(searchPredicate)
+                    print(filtered_fooditem.count)
+                
+                    for each in filtered_fooditem{
+                        print("We have a FoodItem : \(each.title!)")
+                        var a_food = Searchable()
+                        a_food.is_category = false
+                        a_food.fooditem = each
+                        self.searchable_array.append(a_food)
+                    }
+                
+                
+            }else{
+                // display regular categories
+                self.is_searching = false
+                self.searchable_array.removeAll()
+                self.tableView.reloadData()
+            }
+            
+            let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 100 * Int64(NSEC_PER_MSEC))
+            dispatch_after(timer, dispatch_get_main_queue()) {
+                self.tableView.reloadData()
+            }
+        }
+//        let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 100 * Int64(NSEC_PER_MSEC))
+//        dispatch_after(timer, dispatch_get_main_queue()) {
+//            self.tableView.reloadData()
+//        }
+        return true
+    }
     
     
     
-    
-    
-    
+
     
     
     
@@ -382,6 +508,14 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             if segue is CustomSegue {
                 (segue as! CustomSegue).animationType = .Push
             }
+        }
+        if segue.identifier == "view_cat"{
+            var vc : CategoryItemsVC = segue.destinationViewController as! CategoryItemsVC
+            vc.category = self.category
+            if self.categoryColor != nil{
+                vc.categoryColor = self.categoryColor
+            }
+            
         }
         
         

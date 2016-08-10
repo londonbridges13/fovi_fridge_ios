@@ -44,6 +44,8 @@ class Food_Quantity_View: UIView {
             current_amount()
             if same_food?.mylist_amount.value == 0{
                 remove_button.setTitle("Cancel", forState: .Normal)
+                add_food_buttom.setTitle("Add \(fooditem.title!)", forState: .Normal)
+                
             }
         }
     }

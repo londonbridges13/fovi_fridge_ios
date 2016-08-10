@@ -9,6 +9,10 @@
 import UIKit
 import RealmSwift
 
+protocol SettingCategory {
+    func set_cat(cat : String, color : UIColor)
+}
+
 class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionViewDelegate {
 
     
@@ -22,7 +26,9 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     //More Color Options
     var purple = UIColor(red: 170/255, green: 99/255, blue: 170/255, alpha: 1)
     
+    var delegate : SettingCategory?
     
+    var catColor : UIColor?
     
     @IBOutlet var collectionView: UICollectionView!
 
@@ -114,18 +120,34 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         if i == 0 {
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(red, forState: .Normal)
+//            catColor = red
         }
         if i == 1{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(blue, forState: .Normal)
+//            catColor = blue
         }
         if i == 2{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(green, forState: .Normal)
+//            catColor = green
+        }
+
+        self.catColor = self.categoryButton.currentTitleColor
+
+    }
+    
+    
+    
+    @IBAction func selectCategory(sender: AnyObject) {
+        if let delegate = self.delegate{
+            delegate.set_cat(self.categoryButton.titleLabel!.text!, color: self.catColor!)
         }
     }
     
     
+    
+   
     
     
     

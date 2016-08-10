@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var food = [1,2,3,4,5,6,7,8,9,0]
+    var food = [FoodItem]()
     
     
     @IBOutlet var tableView: UITableView!
@@ -27,6 +29,9 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.dataSource = self
         tableView.delegate = self
         addToListButton.layer.cornerRadius = 6
+        
+        self.get_errands()
+
 //        tableView.layer.cornerRadius = 9.0
 //        tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
 //        tableView.layer.borderWidth = 0.78
@@ -61,9 +66,23 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : ShoppingCell = tableView.dequeueReusableCellWithIdentifier("ShoppingCell", forIndexPath: indexPath) as! ShoppingCell
 
-//        cell.foodImage.image = UIImage(named: "")
+        var fooditem = self.food[indexPath.row]
+        if fooditem.image != nil{
+            cell.foodImage.image = UIImage(data: fooditem.image!)
+        }
         cell.foodImage.layer.cornerRadius = 4
 
+        cell.foodLabel.text = fooditem.title!
+        
+        if fooditem.shoppingList_amount.value != nil{
+            cell.quantityLabel.text = "\(fooditem.shoppingList_amount.value!)"
+        }else{
+            cell.quantityLabel.text = ""
+        }
+        
+        cell.quantityLabel.layer.cornerRadius = 22
+        cell.quantityLabel.layer.masksToBounds = true
+        
         tableView.rowHeight = 60
         // Configure the cell...
 
@@ -75,6 +94,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let addToFridge = UITableViewRowAction(style: .Normal, title: "Move to Fridge") { action, index in
             print("Move button tapped")
+            self.move_to_fridge(self.food[indexPath.row])
             self.tableView.beginUpdates()
             self.food.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -85,7 +105,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         let remove = UITableViewRowAction(style: .Destructive, title: "Remove") { action, index in
             print("Remove button tapped")
-//            tableView.reloadData()
+            self.remove_item(self.food[indexPath.row])
             self.tableView.beginUpdates()
             self.food.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -117,6 +137,64 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     
+    // Get Shoppinglist
+    func get_errands(){
+        food.removeAll()
+        
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "shoppingList_amount > 0")
+
+        let s_list = realm.objects(FoodItem).filter(predicate)
+        
+        for each in s_list{
+            print(each.title!)
+            print(each)
+            self.food.append(each)
+        }
+        tableView.reloadData()
+    }
+    
+    
+    
+    
+    
+    
+    func remove_item(fooditem : FoodItem){
+        let realm = try! Realm()
+        
+        try! realm.write {
+            print("ShoppingList was = \(fooditem.shoppingList_amount.value)")
+
+            fooditem.shoppingList_amount.value = 0
+            
+            print("ShoppingList now = \(fooditem.shoppingList_amount.value)")
+        }
+        print(fooditem)
+    }
+    
+    func move_to_fridge(fooditem : FoodItem){
+        let realm = try! Realm()
+        
+        
+        try! realm.write {
+            print("Fridge was = \(fooditem.fridge_amount.value)")
+
+            if fooditem.fridge_amount.value != nil{
+                let quantity = fooditem.shoppingList_amount.value! + fooditem.fridge_amount.value!
+                fooditem.fridge_amount.value = quantity
+                print("Fridge now = \(fooditem.fridge_amount.value)")
+            }else{
+                fooditem.fridge_amount.value = fooditem.shoppingList_amount.value
+                print("Fridge now = \(fooditem.fridge_amount.value)")
+            }
+            print("ShoppingList was = \(fooditem.shoppingList_amount.value)")
+
+            fooditem.shoppingList_amount.value = 0
+            print("ShoppingList now = \(fooditem.shoppingList_amount.value)")
+        }
+        print(fooditem)
+    }
+    
     
     // MARK: - Navigation
 
@@ -127,9 +205,38 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let vc: ChooseFoodVC = segue.destinationViewController as! ChooseFoodVC
         vc.segueStick = "shopping"
     }
+    
+    
+    
+    
+    
+    
+    
     @IBAction func unwindToShopList(segue: UIStoryboardSegue){
         print("Unwind to ShoppingListVC")
-        //ReQuery Food
+        // Add mylist groceries to shoppingList, mylist = 0
+        
+        
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "mylist_amount > 0")
+        let all_items = realm.objects(FoodItem).filter(predicate)
+        
+        try! realm.write{
+            for each in all_items{
+                // add value to slist_amount, set mylist = 0
+                print("Adding \(each.mylist_amount.value) \(each.title) to Shopping list")
+                if each.shoppingList_amount.value == nil{
+                    each.shoppingList_amount.value = each.mylist_amount.value
+                }else{
+                    var quantity = each.shoppingList_amount.value! + each.mylist_amount.value!
+                    each.shoppingList_amount.value = quantity
+                }
+                each.mylist_amount.value = 0
+            }
+        }
+        
+        self.get_errands()
+        
         
     }
 

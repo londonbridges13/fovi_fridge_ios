@@ -8,9 +8,9 @@
 
 import UIKit
 import RealmSwift
+import Material
 
-
-class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate  {
+class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate  {
 
     
     
@@ -21,7 +21,6 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     @IBOutlet var doneButton: UIButton!
     @IBOutlet var addFoodButton: UIButton!
     
-    @IBOutlet var searchBar: UISearchBar!
     
     var my_groceries = [FoodItem]()
     
@@ -30,9 +29,15 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     var foodView : Food_Quantity_View?
 //    @IBOutlet var bottomView: UIView!
     
+    var searchable_array = [FoodItem]()
+    var is_searching = false
     
     
-
+    private var containerView: UIView!
+    
+    /// Reference for SearchBar.
+    private var searchBar: SearchBar! = nil
+    
     
     
     override func viewDidLoad() {
@@ -45,6 +50,14 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         self.doneButton.layer.cornerRadius = 2
 
         self.doneButton.addTarget(self, action: "add_food_to_fridge", forControlEvents: .TouchUpInside)
+        
+        prepareView()
+        prepareContainerView()
+        prepareSearchBar()
+        
+        searchBar.textField.delegate = self
+        
+
         
         // Query Objects
         self.get_groceries()
@@ -73,27 +86,52 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return my_groceries.count
+        if is_searching == false{
+            return my_groceries.count
+        }else{
+            return self.searchable_array.count
+        }
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: FoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("boughtItem", forIndexPath: indexPath) as! FoodItemCollectionViewCell
         
-        if self.my_groceries[indexPath.row].image != nil{
-            cell.foodImage.image = UIImage(data: self.my_groceries[indexPath.row].image!)
+        if is_searching == false{
+
+            let cell: FoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("boughtItem", forIndexPath: indexPath) as! FoodItemCollectionViewCell
+            
+            if self.my_groceries[indexPath.row].image != nil{
+                cell.foodImage.image = UIImage(data: self.my_groceries[indexPath.row].image!)
+            }
+            if self.my_groceries[indexPath.row].title != nil{
+                cell.foodLabel.text = self.my_groceries[indexPath.row].title!
+            }
+            
+            cell.layer.cornerRadius = 15
+            return cell
+            
+        }else{
+            let cell: FoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("boughtItem", forIndexPath: indexPath) as! FoodItemCollectionViewCell
+            
+            if self.searchable_array[indexPath.row].image != nil{
+                cell.foodImage.image = UIImage(data: self.searchable_array[indexPath.row].image!)
+            }
+            if self.searchable_array[indexPath.row].title != nil{
+                cell.foodLabel.text = self.searchable_array[indexPath.row].title!
+            }
+            
+            cell.layer.cornerRadius = 15
+            
+            return cell
         }
-        if self.my_groceries[indexPath.row].title != nil{
-            cell.foodLabel.text = self.my_groceries[indexPath.row].title!
-        }
-        
-        cell.layer.cornerRadius = 15
-        
-        return cell
     }
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        show_food_item(my_groceries[indexPath.row])
+        if self.is_searching == false{
+            show_food_item(my_groceries[indexPath.row])
+        }else{
+            show_food_item(self.searchable_array[indexPath.row])
+        }
     }
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -107,6 +145,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     // Get MyGroceries
     func get_groceries(){
         self.my_groceries.removeAll()
+        self.is_searching = false
+        
         print("Querying Groceries")
         let realm = try! Realm()
         let predicate = NSPredicate(format: "mylist_amount > 0")
@@ -161,6 +201,9 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         self.tint!.backgroundColor = UIColor.whiteColor()
         self.tint!.alpha = 0.4
         view.addSubview(self.tint!)
+        if searchBar != nil{
+            self.searchBar.textField.resignFirstResponder()// remove keyboard
+        }
     }
     
     func remove_tint(){
@@ -250,6 +293,96 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             self.doneButton.sendActionsForControlEvents(.TouchUpInside)
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Search Items
+    
+    /// General preparation statements.
+    private func prepareView() {
+        view.backgroundColor = MaterialColor.white
+    }
+    
+    /// Prepares the containerView.
+    private func prepareContainerView() {
+        containerView = UIView()
+//        view.layout(containerView).edges(top: 50, left: 20, right: 20)
+        let wp = self.view.frame.width - 30
+        
+        containerView.frame = CGRect(x: 10, y: 50, width: wp, height: 40)
+        self.view.addSubview(containerView)
+
+    }
+    
+    /// Prepares the toolbar
+    private func prepareSearchBar() {
+        searchBar = SearchBar()
+        searchBar.frame = CGRect(x: 0, y: 0, width: 300, height: 40)
+        searchBar.textField.returnKeyType = .Search
+        containerView.addSubview(searchBar)
+    }
+
+    
+    
+    // Textfield
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        self.searchable_array.removeAll()
+
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+
+            self.searchable_array.removeAll()
+            var already_have = [String]()
+            already_have.removeAll()
+            
+            if textField.text?.characters.count > 0{
+                self.is_searching = true
+                
+                let realm = try! Realm()
+                let predicate = NSPredicate(format: "title CONTAINS[c] %@ AND mylist_amount > 0", textField.text!)
+                var filtered_categories = realm.objects(FoodItem).filter(predicate)
+                print(filtered_categories.count)
+                
+                
+                for each in filtered_categories{
+//                    if already_have.contains(each.title!) == false{
+                        print("We have the Food : \(each.title!)")
+                        self.searchable_array.append(each)
+//                        already_have.append(each.title!)
+//                    }else{
+//                        print("We have this Category")
+//                    }
+                }
+            }else{
+                self.is_searching = false
+                self.collectionView.reloadData()
+            }
+            let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+            dispatch_after(timer, dispatch_get_main_queue()) {
+                self.collectionView.reloadData()
+            }
+        }
+        return true
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+    
+    
+    
+    
+    
     
     
     

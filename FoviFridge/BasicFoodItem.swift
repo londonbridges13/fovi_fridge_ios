@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 
+
+class Searchable{
+    var is_category : Bool?
+    var category = Category()
+    var fooditem = FoodItem()
+}
+
+
+
 class BasicFoodItem{
     
     //Basics
