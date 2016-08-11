@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopList_FoodView" customModule="FoviFridge" customModuleProvider="target">
+            <connections>
+                <outlet property="done_button" destination="NXd-Em-XD6" id="ibG-Bv-rEy"/>
+                <outlet property="food_image" destination="aY0-5B-9Fx" id="7gd-rB-42r"/>
+                <outlet property="food_label" destination="Nyf-Nr-L7j" id="IPt-18-ooH"/>
+                <outlet property="move_food_button" destination="TV0-RG-GRe" id="SAH-1E-ECG"/>
+                <outlet property="remove_button" destination="ckc-EA-cWQ" id="pCT-yM-qnb"/>
+                <outlet property="stepper" destination="a5E-8P-8EP" id="kjC-bU-vWo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5E-8P-8EP" customClass="GMStepper" customModule="GMStepper">
+                    <rect key="frame" x="27" y="191" width="196" height="41"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="SeT-Gf-T6X"/>
+                        <constraint firstAttribute="width" constant="196" id="kdY-mc-WYP"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="value">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minimumValue">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                            <real key="value" value="999994"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="stepValue">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="buttonsBackgroundColor">
+                            <color key="value" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="labelTextColor">
+                            <color key="value" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="labelBackgroundColor">
+                            <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geZ-Xz-6VK">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="63"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grapes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyf-Nr-L7j">
+                            <rect key="frame" x="8" y="15" width="234" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="234" id="A9f-wH-w4C"/>
+                                <constraint firstAttribute="height" constant="34" id="Rkl-gE-4g5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.23894315099999999" green="0.68670050640000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="Nyf-Nr-L7j" firstAttribute="top" secondItem="geZ-Xz-6VK" secondAttribute="top" constant="15" id="MBd-v6-Gl8"/>
+                        <constraint firstItem="Nyf-Nr-L7j" firstAttribute="centerX" secondItem="geZ-Xz-6VK" secondAttribute="centerX" id="YeI-yG-IH4"/>
+                        <constraint firstAttribute="height" constant="63" id="vfP-Pj-Myq"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="grapes" translatesAutoresizingMaskIntoConstraints="NO" id="aY0-5B-9Fx">
+                    <rect key="frame" x="92" y="88" width="66" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="66" id="XfC-hE-uMO"/>
+                        <constraint firstAttribute="height" constant="66" id="neX-so-fQy"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckc-EA-cWQ">
+                    <rect key="frame" x="8" y="301" width="80" height="40"/>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="TFj-ZQ-cZM"/>
+                        <constraint firstAttribute="width" constant="80" id="svN-aP-ze0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Remove">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TV0-RG-GRe">
+                    <rect key="frame" x="101" y="301" width="141" height="40"/>
+                    <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="DpJ-QN-6am"/>
+                        <constraint firstAttribute="width" constant="141" id="Mja-nt-e7E"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Move to Fridge">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXd-Em-XD6">
+                    <rect key="frame" x="21" y="351" width="208" height="38"/>
+                    <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="208" id="AcD-8P-bkY"/>
+                        <constraint firstAttribute="height" constant="38" id="H5Z-3P-iKT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aY0-5B-9Fx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6UV-Bf-7DX"/>
+                <constraint firstItem="NXd-Em-XD6" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="7KR-AZ-H2V"/>
+                <constraint firstItem="geZ-Xz-6VK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LaW-Dv-C4q"/>
+                <constraint firstAttribute="bottom" secondItem="NXd-Em-XD6" secondAttribute="bottom" constant="11" id="NSv-IM-MLs"/>
+                <constraint firstAttribute="trailing" secondItem="TV0-RG-GRe" secondAttribute="trailing" constant="8" id="OGw-Nb-GVR"/>
+                <constraint firstItem="geZ-Xz-6VK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Xj3-Hg-KXB"/>
+                <constraint firstAttribute="trailing" secondItem="geZ-Xz-6VK" secondAttribute="trailing" id="iNd-Vj-KWJ"/>
+                <constraint firstAttribute="bottom" secondItem="TV0-RG-GRe" secondAttribute="bottom" constant="59" id="kYo-Ne-Mwe"/>
+                <constraint firstItem="a5E-8P-8EP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mf9-qn-Om9"/>
+                <constraint firstItem="a5E-8P-8EP" firstAttribute="top" secondItem="aY0-5B-9Fx" secondAttribute="bottom" constant="37" id="o9y-u1-OEx"/>
+                <constraint firstItem="aY0-5B-9Fx" firstAttribute="top" secondItem="geZ-Xz-6VK" secondAttribute="bottom" constant="25" id="oMx-xx-sGx"/>
+                <constraint firstItem="ckc-EA-cWQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="vbG-cL-WFQ"/>
+                <constraint firstAttribute="bottom" secondItem="ckc-EA-cWQ" secondAttribute="bottom" constant="59" id="zwK-Ls-hj0"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="grapes" width="512" height="512"/>
+    </resources>
+</document>

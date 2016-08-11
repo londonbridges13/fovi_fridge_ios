@@ -13,7 +13,9 @@ import RealmSwift
 class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var food = [FoodItem]()
-    
+    var tint : UIView?
+    var slfv : ShopList_FoodView?
+
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var addToListButton: UIButton!
@@ -130,7 +132,9 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
     }
 
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        display_fooditem(self.food[indexPath.row])
+    }
     
     
     
@@ -156,6 +160,59 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     
+    
+    
+    // FoodView
+    func display_fooditem(fooditem : FoodItem){
+        add_tint()
+        slfv = ShopList_FoodView()
+        var xp = self.view.frame.width / 2 - (250 / 2)
+        
+        slfv!.frame = CGRect(x: xp, y: 50, width: 250, height: 400)
+        
+        slfv!.fooditem = fooditem
+        slfv!.food_label.text = fooditem.title!
+
+        let slist_amount = Double(fooditem.shoppingList_amount.value!)
+        slfv!.stepper.value = slist_amount
+        
+        if fooditem.image != nil{
+            slfv!.food_image.image = UIImage(data: fooditem.image!)
+        }
+        slfv!.remove_button.addTarget(self, action: "get_errands", forControlEvents: .TouchUpInside)
+        slfv!.move_food_button.addTarget(self, action: "get_errands", forControlEvents: .TouchUpInside)
+        slfv!.done_button.addTarget(self, action: "get_errands", forControlEvents: .TouchUpInside)
+
+        // Remove tint 
+        slfv!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        slfv!.move_food_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        slfv!.done_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+
+        slfv!.alpha = 0
+        slfv!.fadeIn(duration: 0.3)
+
+        view.addSubview(slfv!)
+    }
+    
+    
+    
+    // Tint
+    func add_tint(){
+        self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.alpha = 0.4
+        view.addSubview(self.tint!)
+    }
+    func remove_tint(){
+        print("Removing Tint")
+        self.tint!.fadeOut()
+        self.tint!.alpha = 0
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.slfv!.removeFromSuperview()
+        }
+    }
     
     
     
