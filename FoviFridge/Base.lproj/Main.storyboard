@@ -813,6 +813,67 @@
             </objects>
             <point key="canvasLocation" x="-438" y="-172"/>
         </scene>
+        <!--Full FoodVC-->
+        <scene sceneID="DWw-fk-5Jl">
+            <objects>
+                <viewController storyboardIdentifier="Full_Food_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kAa-G7-l0X" customClass="Full_Food_VC" customModule="FoviFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fmO-ng-7TX"/>
+                        <viewControllerLayoutGuide type="bottom" id="wCf-5Z-UL7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k1I-of-uHq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="462"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="116" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-Cj-EJu">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="462"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fvcell1" rowHeight="116" id="cha-BC-TIT">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="116"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cha-BC-TIT" id="nY8-xU-js5">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="115"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" red="0.63498323189999994" green="0.85289472700000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Scx-JV-WrD">
+                                <rect key="frame" x="-4" y="427" width="95" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="YZg-Hg-mJN"/>
+                                    <constraint firstAttribute="width" constant="95" id="un1-eP-hyC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wCf-5Z-UL7" firstAttribute="top" secondItem="IqY-Cj-EJu" secondAttribute="bottom" id="7d4-FQ-3aU"/>
+                            <constraint firstItem="Scx-JV-WrD" firstAttribute="leading" secondItem="k1I-of-uHq" secondAttribute="leadingMargin" constant="-20" id="MMM-UI-46j"/>
+                            <constraint firstItem="IqY-Cj-EJu" firstAttribute="top" secondItem="fmO-ng-7TX" secondAttribute="bottom" id="Ytu-H6-Jih"/>
+                            <constraint firstItem="IqY-Cj-EJu" firstAttribute="leading" secondItem="k1I-of-uHq" secondAttribute="leadingMargin" constant="-20" id="esd-Ed-YRH"/>
+                            <constraint firstItem="wCf-5Z-UL7" firstAttribute="top" secondItem="Scx-JV-WrD" secondAttribute="bottom" id="gq3-Va-gH7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IqY-Cj-EJu" secondAttribute="trailing" constant="-20" id="uSg-3X-pNA"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="462"/>
+                    <connections>
+                        <outlet property="doneButton" destination="Scx-JV-WrD" id="17u-4H-DyL"/>
+                        <outlet property="tableView" destination="IqY-Cj-EJu" id="6XI-JC-MWC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWj-XF-IBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-5" y="-232"/>
+        </scene>
         <!--Category ItemsVC-->
         <scene sceneID="jPO-qp-2F5">
             <objects>
@@ -1200,15 +1261,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="61" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kAL-6s-FDu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kAL-6s-FDu">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ccell1" rowHeight="61" id="VtR-Sh-Wgr">
-                                        <rect key="frame" x="0.0" y="28" width="328" height="61"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Image_Cell" rowHeight="97" id="VtR-Sh-Wgr" customClass="Get_Image_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VtR-Sh-Wgr" id="zkg-vO-Z8D">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Title_Cell" id="nO3-sq-J5c" customClass="Get_Title_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="125" width="328" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nO3-sq-J5c" id="IFI-35-asQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Size_Cell" id="3kv-go-Jv4" customClass="Get_Size_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="222" width="328" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3kv-go-Jv4" id="OJF-kF-lHC">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NuY-Xb-A8E" customClass="Get_Expire_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="319" width="328" height="97"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NuY-Xb-A8E" id="RWS-dG-F6j">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1261,6 +1346,122 @@
                 <exit id="Q4d-yF-0Wq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="926" y="-969"/>
+        </scene>
+        <!--Measurement View Controller-->
+        <scene sceneID="4Dn-8o-keu">
+            <objects>
+                <viewController id="sc4-Qr-Lp4" customClass="MeasurementViewController" customModule="FoviFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cgt-7u-e19"/>
+                        <viewControllerLayoutGuide type="bottom" id="aHy-Zh-6Ks"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SPB-yw-oib">
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uTt-h0-ZNn">
+                                <rect key="frame" x="5" y="54" width="240" height="296"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="AjU-tl-WLr"/>
+                                    <constraint firstAttribute="height" constant="296" id="opw-iA-ecb"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="measurecell" id="eta-pn-eaw" customClass="MeasurementsCell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eta-pn-eaw" id="Jad-al-dbQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Milliliters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fno-v4-83h">
+                                                    <rect key="frame" x="66" y="11" width="153" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="153" id="N3t-xd-REK"/>
+                                                        <constraint firstAttribute="height" constant="21" id="kMx-WL-pmt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Tk-qk-cLp" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="23" y="10" width="25" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="AaU-Ym-i45"/>
+                                                        <constraint firstAttribute="width" constant="25" id="EiE-t6-aQl"/>
+                                                    </constraints>
+                                                    <state key="normal" image="circle"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fno-v4-83h" firstAttribute="centerY" secondItem="Jad-al-dbQ" secondAttribute="centerY" id="0Bb-am-IrH"/>
+                                                <constraint firstItem="0Tk-qk-cLp" firstAttribute="leading" secondItem="Jad-al-dbQ" secondAttribute="leadingMargin" constant="15" id="Dwp-Nb-hfV"/>
+                                                <constraint firstItem="0Tk-qk-cLp" firstAttribute="centerY" secondItem="Jad-al-dbQ" secondAttribute="centerY" id="fG8-4i-Sge"/>
+                                                <constraint firstItem="Fno-v4-83h" firstAttribute="leading" secondItem="Jad-al-dbQ" secondAttribute="leadingMargin" constant="58" id="g4f-Dt-eDX"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="circleButton" destination="0Tk-qk-cLp" id="wBN-x0-aMV"/>
+                                            <outlet property="measureLabel" destination="Fno-v4-83h" id="NuO-3C-Gar"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4g-jQ-ALg">
+                                <rect key="frame" x="-4" y="0.0" width="258" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Measurements" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hd5-kJ-i5B">
+                                        <rect key="frame" x="19" y="8" width="220" height="38"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="38" id="R2p-YG-2cI"/>
+                                            <constraint firstAttribute="width" constant="220" id="gaZ-SN-EMB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hd5-kJ-i5B" firstAttribute="centerX" secondItem="J4g-jQ-ALg" secondAttribute="centerX" id="BKT-DO-JbE"/>
+                                    <constraint firstItem="hd5-kJ-i5B" firstAttribute="centerY" secondItem="J4g-jQ-ALg" secondAttribute="centerY" id="bgg-uU-S3z"/>
+                                    <constraint firstAttribute="height" constant="54" id="gat-hZ-2ih"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trn-1N-RCF">
+                                <rect key="frame" x="60" y="358" width="130" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Bz9-If-kzL"/>
+                                    <constraint firstAttribute="width" constant="130" id="gR2-Go-zCo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aHy-Zh-6Ks" firstAttribute="top" secondItem="Trn-1N-RCF" secondAttribute="bottom" constant="8" id="298-xT-Rx2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J4g-jQ-ALg" secondAttribute="trailing" constant="-20" id="3xl-Iw-szk"/>
+                            <constraint firstItem="uTt-h0-ZNn" firstAttribute="centerX" secondItem="SPB-yw-oib" secondAttribute="centerX" id="BgA-or-Wja"/>
+                            <constraint firstItem="uTt-h0-ZNn" firstAttribute="top" secondItem="J4g-jQ-ALg" secondAttribute="bottom" id="KwR-je-Ioi"/>
+                            <constraint firstItem="Trn-1N-RCF" firstAttribute="centerX" secondItem="SPB-yw-oib" secondAttribute="centerX" id="ecv-j0-azA"/>
+                            <constraint firstItem="J4g-jQ-ALg" firstAttribute="leading" secondItem="SPB-yw-oib" secondAttribute="leadingMargin" constant="-20" id="euU-XN-qSm"/>
+                            <constraint firstItem="J4g-jQ-ALg" firstAttribute="top" secondItem="cgt-7u-e19" secondAttribute="bottom" id="vCE-Ew-Lar"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="400"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="Trn-1N-RCF" id="Spx-UP-kU7"/>
+                        <outlet property="tableview" destination="uTt-h0-ZNn" id="lM5-LY-6oi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lq3-g6-bX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1338" y="-936"/>
         </scene>
         <!--My Food MiniCVC-->
         <scene sceneID="n1g-uQ-PkQ">
@@ -2053,6 +2254,7 @@
         <image name="asparagus" width="512" height="512"/>
         <image name="banana" width="512" height="512"/>
         <image name="cabbage" width="512" height="512"/>
+        <image name="circle" width="18" height="18"/>
         <image name="circle.png" width="36" height="36"/>
         <image name="grapes" width="512" height="512"/>
         <image name="groceries" width="512" height="512"/>

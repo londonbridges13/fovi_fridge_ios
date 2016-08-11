@@ -12,6 +12,9 @@ import RealmSwift
 protocol SettingCategory {
     func set_cat(cat : String, color : UIColor)
 }
+protocol DisplayFullFoodView {
+    func show_full_foodview(fooditem : FoodItem)
+}
 
 class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionViewDelegate {
 
@@ -28,6 +31,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     
     var delegate : SettingCategory?
     
+    var fullfoodview_delegate : DisplayFullFoodView?
     var catColor : UIColor?
     
     @IBOutlet var collectionView: UICollectionView!
@@ -84,7 +88,12 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         return cell
     }
 
-    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("Selected cell")
+        if let fullfoodview_delegate = fullfoodview_delegate{
+            fullfoodview_delegate.show_full_foodview(self.food[indexPath.row])
+        }
+    }
     
     
     
@@ -131,6 +140,9 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(green, forState: .Normal)
 //            catColor = green
+        }else{
+            print("This is i : \(i)")
+            self.categoryButton.setTitleColor(red, forState: .Normal)
         }
 
         self.catColor = self.categoryButton.currentTitleColor

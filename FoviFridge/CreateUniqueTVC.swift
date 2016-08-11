@@ -39,31 +39,6 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     
-    //Cell1
-    // Name and Image
-    
-    //Cell2
-
-    
-    //Cell3
-
-    
-    //Cell4
-
-    
-    //Cell5
-
-    
-    //Cell6
-
-    
-    //Cell7
-
-    
-    //Cell8
-
-    
-    
     
     
     
@@ -77,16 +52,39 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 4
     }
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ccell1", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        // Normal Option
+        if indexPath.row == 0{
+            let cell : Get_Image_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Image_Cell", forIndexPath: indexPath) as! Get_Image_Cell
+            
+            // Configure the cell...
+            
+            return cell
+        }else if indexPath.row == 1{
+            let cell : Get_Title_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Title_Cell", forIndexPath: indexPath) as! Get_Title_Cell
+            
+            // Configure the cell...
+            
+            return cell
+        }else if indexPath.row == 2{
+            let cell : Get_Size_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Size_Cell", forIndexPath: indexPath) as! Get_Size_Cell
+            
+            // Configure the cell...
+            
+            return cell
+        }else{
+            let cell : Get_Expire_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Expire_Cell", forIndexPath: indexPath) as! Get_Expire_Cell
+            
+            // Configure the cell...
+            
+            return cell
+        }
+        
+        // Accurate Option, Coming Soon...
     }
     
 

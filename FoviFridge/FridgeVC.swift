@@ -13,11 +13,14 @@ import Material
 import Social
 
 
-class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate, SettingCategory {
+class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate, SettingCategory, DisplayFullFoodView {
 
 
     
     var categories = [String]()//[String]() // Change later
+    var tint : UIView?
+
+    var fullview : Full_Food_VC?
     
     @IBOutlet var fridgeViewTopConstraint: NSLayoutConstraint!
     @IBOutlet var tableView: UITableView!
@@ -149,6 +152,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
                                                                                      forIndexPath: indexPath) as! FridgeFoodsCell
             cell.delegate = self
+            cell.fullfoodview_delegate = self
             cell.food.removeAll()
             cell.get_fooditems(self.categories[indexPath.row])
             cell.design_category_button(indexPath.row)
@@ -261,7 +265,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             self.settingsButton.alpha = 0
             UIView.animateWithDuration(0.3) {
                 self.searchButton.alpha = 0
-                self.cancel_search_button.alpha = 1
+                self.cancel_search_button.fadeIn()
             }
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
             dispatch_after(time, dispatch_get_main_queue()) {
@@ -470,6 +474,47 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     
     
+    
+    // Show Fooditem
+    func show_full_foodview(fooditem : FoodItem){
+        print("Showing \(fooditem.title!)")
+        
+        self.add_tint()
+        self.fullview = storyboard?.instantiateViewControllerWithIdentifier("Full_Food_VC") as! Full_Food_VC
+        var xp = self.view.frame.width / 2 - (320 / 2)
+
+        fullview!.view.frame = CGRect(x: xp, y: 50, width: 320, height: 462)
+        fullview!.fooditem = fooditem
+        fullview!.view.alpha = 0
+        fullview!.doneButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        self.view.addSubview(fullview!.view)
+        self.addChildViewController(fullview!)
+        fullview!.view.fadeIn(duration: 0.3)
+
+        
+    }
+    
+    
+    
+    func add_tint(){
+        self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.alpha = 0.4
+        view.addSubview(self.tint!)
+    }
+    
+    func remove_tint(){
+        print("Removing Tint")
+        self.tint!.fadeOut()
+        self.tint!.alpha = 0
+        self.fullview?.view.fadeOut()
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.fullview?.view.removeFromSuperview()
+        }
+    }
+    
+
     
     
     

@@ -15,6 +15,13 @@
 		3E1439191D5AF649001C9C6B /* EditCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439171D5AF649001C9C6B /* EditCategoryVC.swift */; };
 		3E14392A1D5C07B1001C9C6B /* ShopList_FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439291D5C07B1001C9C6B /* ShopList_FoodView.swift */; };
 		3E14392C1D5C07CF001C9C6B /* ShopList_FoodView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E14392B1D5C07CF001C9C6B /* ShopList_FoodView.xib */; };
+		3E14396D1D5D1A3B001C9C6B /* Full_Food_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E14396C1D5D1A3B001C9C6B /* Full_Food_VC.swift */; };
+		3E1439701D5D3730001C9C6B /* MeasurementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E14396F1D5D372F001C9C6B /* MeasurementViewController.swift */; };
+		3E1439721D5D37EA001C9C6B /* MeasurementsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439711D5D37EA001C9C6B /* MeasurementsCell.swift */; };
+		3E1439741D5D3BDE001C9C6B /* Get_Image_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439731D5D3BDE001C9C6B /* Get_Image_Cell.swift */; };
+		3E1439761D5D3C0C001C9C6B /* Get_Title_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */; };
+		3E1439781D5D3C74001C9C6B /* Get_Size_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */; };
+		3E14397A1D5D3C9B001C9C6B /* Get_Expire_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */; };
 		3E3C29E11D4F05080095A93B /* MyMiniFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */; };
 		3E3C29E31D5113F50095A93B /* FridgeFoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C29E21D5113F50095A93B /* FridgeFoodItemCell.swift */; };
 		3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */; };
@@ -159,6 +166,13 @@
 		3E1439171D5AF649001C9C6B /* EditCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditCategoryVC.swift; sourceTree = "<group>"; };
 		3E1439291D5C07B1001C9C6B /* ShopList_FoodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopList_FoodView.swift; sourceTree = "<group>"; };
 		3E14392B1D5C07CF001C9C6B /* ShopList_FoodView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopList_FoodView.xib; sourceTree = "<group>"; };
+		3E14396C1D5D1A3B001C9C6B /* Full_Food_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Full_Food_VC.swift; sourceTree = "<group>"; };
+		3E14396F1D5D372F001C9C6B /* MeasurementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementViewController.swift; sourceTree = "<group>"; };
+		3E1439711D5D37EA001C9C6B /* MeasurementsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementsCell.swift; sourceTree = "<group>"; };
+		3E1439731D5D3BDE001C9C6B /* Get_Image_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Image_Cell.swift; sourceTree = "<group>"; };
+		3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Title_Cell.swift; sourceTree = "<group>"; };
+		3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Size_Cell.swift; sourceTree = "<group>"; };
+		3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Expire_Cell.swift; sourceTree = "<group>"; };
 		3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMiniFoodCell.swift; sourceTree = "<group>"; };
 		3E3C29E21D5113F50095A93B /* FridgeFoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodItemCell.swift; sourceTree = "<group>"; };
 		3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeVC.swift; sourceTree = "<group>"; };
@@ -324,6 +338,52 @@
 			name = "Edit Category";
 			sourceTree = "<group>";
 		};
+		3E1439691D5D19DB001C9C6B /* Food_Quantity */ = {
+			isa = PBXGroup;
+			children = (
+				3E9E37421D4D62C400A15381 /* Food_Quantity_View.xib */,
+				3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */,
+			);
+			name = Food_Quantity;
+			sourceTree = "<group>";
+		};
+		3E14396A1D5D19EE001C9C6B /* ShopList_FoodView */ = {
+			isa = PBXGroup;
+			children = (
+				3E14392B1D5C07CF001C9C6B /* ShopList_FoodView.xib */,
+				3E1439291D5C07B1001C9C6B /* ShopList_FoodView.swift */,
+			);
+			name = ShopList_FoodView;
+			sourceTree = "<group>";
+		};
+		3E14396B1D5D1A06001C9C6B /* Full Food View */ = {
+			isa = PBXGroup;
+			children = (
+				3E14396C1D5D1A3B001C9C6B /* Full_Food_VC.swift */,
+			);
+			name = "Full Food View";
+			sourceTree = "<group>";
+		};
+		3E14396E1D5D3704001C9C6B /* Measurement View */ = {
+			isa = PBXGroup;
+			children = (
+				3E14396F1D5D372F001C9C6B /* MeasurementViewController.swift */,
+				3E1439711D5D37EA001C9C6B /* MeasurementsCell.swift */,
+			);
+			name = "Measurement View";
+			sourceTree = "<group>";
+		};
+		3E14397B1D5D3D54001C9C6B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3E1439731D5D3BDE001C9C6B /* Get_Image_Cell.swift */,
+				3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */,
+				3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */,
+				3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		3E5FAAD41D39DF7D00E94EA8 /* Survey Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,7 +503,9 @@
 		3E9E373C1D4D613100A15381 /* CreateFoodItem */ = {
 			isa = PBXGroup;
 			children = (
+				3E14396E1D5D3704001C9C6B /* Measurement View */,
 				3E70573B1D554295009E9031 /* Creation Views */,
+				3E14397B1D5D3D54001C9C6B /* Cells */,
 				3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */,
 			);
 			name = CreateFoodItem;
@@ -470,10 +532,9 @@
 		3E9E373F1D4D621C00A15381 /* Food Views */ = {
 			isa = PBXGroup;
 			children = (
-				3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */,
-				3E9E37421D4D62C400A15381 /* Food_Quantity_View.xib */,
-				3E1439291D5C07B1001C9C6B /* ShopList_FoodView.swift */,
-				3E14392B1D5C07CF001C9C6B /* ShopList_FoodView.xib */,
+				3E14396B1D5D1A06001C9C6B /* Full Food View */,
+				3E1439691D5D19DB001C9C6B /* Food_Quantity */,
+				3E14396A1D5D19EE001C9C6B /* ShopList_FoodView */,
 			);
 			name = "Food Views";
 			sourceTree = "<group>";
@@ -987,6 +1048,7 @@
 				3EAF0E691D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				3E3C29E31D5113F50095A93B /* FridgeFoodItemCell.swift in Sources */,
 				3EFE53601D427BA6002EDCD7 /* SurveyQuestion.swift in Sources */,
+				3E1439721D5D37EA001C9C6B /* MeasurementsCell.swift in Sources */,
 				3E9E412C1D1B79E1009C9808 /* ViewController.swift in Sources */,
 				3EE596F61D4C05010088BE69 /* TutorialViewController.swift in Sources */,
 				3E758AB41D54051D005BB3F4 /* FoodItemTableViewCell.swift in Sources */,
@@ -1001,7 +1063,10 @@
 				3E5FAAE51D3AC8DA00E94EA8 /* MultiChoice_Cell.swift in Sources */,
 				3EAF0E681D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				3EAF0E761D40569800A302B0 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
+				3E1439761D5D3C0C001C9C6B /* Get_Title_Cell.swift in Sources */,
 				3EC508991D20491500630E8F /* FoodItemCollectionViewCell.swift in Sources */,
+				3E14396D1D5D1A3B001C9C6B /* Full_Food_VC.swift in Sources */,
+				3E1439701D5D3730001C9C6B /* MeasurementViewController.swift in Sources */,
 				3E1438D71D57F735001C9C6B /* Device.swift in Sources */,
 				3EC508ED1D240D7600630E8F /* Thoughts.swift in Sources */,
 				3E5FAAD81D39E65500E94EA8 /* SurveyVC.swift in Sources */,
@@ -1017,12 +1082,14 @@
 				3EAF0E6B1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				3EC508EB1D22170000630E8F /* FoodItem.swift in Sources */,
 				3E14392A1D5C07B1001C9C6B /* ShopList_FoodView.swift in Sources */,
+				3E1439781D5D3C74001C9C6B /* Get_Size_Cell.swift in Sources */,
 				3EAF0E831D40569800A302B0 /* NVActivityIndicatorView.swift in Sources */,
 				3EAF0E621D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				3EAF0E7B1D40569800A302B0 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
 				3EE596F71D4C05010088BE69 /* TutorialPageViewController.swift in Sources */,
 				3EAF0E711D40569800A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				3E4FF6811D1CED9A005BFFF4 /* MyFoodMiniCVC.swift in Sources */,
+				3E14397A1D5D3C9B001C9C6B /* Get_Expire_Cell.swift in Sources */,
 				3EAF0E791D40569800A302B0 /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				3EE596F91D4C1B3D0088BE69 /* OnboardVC_1.swift in Sources */,
 				3EAF0E821D40569800A302B0 /* NVActivityIndicatorShape.swift in Sources */,
@@ -1035,6 +1102,7 @@
 				3E4FF67D1D1CAAEC005BFFF4 /* ChooseFoodVC.swift in Sources */,
 				3E0B52D61D4361DB007138CE /* SeeYouLater_View.swift in Sources */,
 				3E1438D41D57DF8D001C9C6B /* EmailCell.swift in Sources */,
+				3E1439741D5D3BDE001C9C6B /* Get_Image_Cell.swift in Sources */,
 				3EC757121D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift in Sources */,
 				3EE596FB1D4C33F00088BE69 /* BasicFoodItem.swift in Sources */,
 				3EAF0E7A1D40569800A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,

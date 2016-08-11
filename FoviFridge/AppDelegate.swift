@@ -157,6 +157,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("terminated")
+        let realm = try! Realm()
+        let predicate = NSPredicate(format: "mylist_amount > 0")
+        var all_mylist = realm.objects(FoodItem).filter(predicate)
+        try! realm.write{
+            for each in all_mylist{
+                each.mylist_amount.value = 0
+            }
+        }
     }
 
 
