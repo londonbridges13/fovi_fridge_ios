@@ -1258,49 +1258,224 @@
                         <viewControllerLayoutGuide type="bottom" id="LrJ-Wc-I4K"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="idg-kc-6uF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="868"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kAL-6s-FDu">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kAL-6s-FDu">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="868"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Image_Cell" rowHeight="97" id="VtR-Sh-Wgr" customClass="Get_Image_Cell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="328" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Get_Image_Cell" rowHeight="205" id="VtR-Sh-Wgr" customClass="Get_Image_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="205"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VtR-Sh-Wgr" id="zkg-vO-Z8D">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="205"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Choose Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-dz-Ec2">
+                                                    <rect key="frame" x="8" y="8" width="130" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="6Ws-ni-SpK"/>
+                                                        <constraint firstAttribute="width" constant="130" id="Eaf-mp-A8c"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcc-E6-caR">
+                                                    <rect key="frame" x="151" y="31" width="139" height="30"/>
+                                                    <color key="backgroundColor" red="0.66666666669999997" green="0.38677640680000003" blue="0.66666666669999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="V2z-hv-fkJ"/>
+                                                        <constraint firstAttribute="width" constant="139" id="owX-ZB-KkZ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Open Camera">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDJ-vy-RZJ">
+                                                    <rect key="frame" x="151" y="70" width="139" height="30"/>
+                                                    <color key="backgroundColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="139" id="8uP-NH-xUi"/>
+                                                        <constraint firstAttribute="height" constant="30" id="iNA-TK-HSZ"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Open Library">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFU-LB-jZX">
+                                                    <rect key="frame" x="151" y="108" width="139" height="30"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="5fy-aM-XDL"/>
+                                                        <constraint firstAttribute="width" constant="139" id="q6Z-wP-oKr"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Our Images">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dyq-yZ-GHJ">
+                                                    <rect key="frame" x="29" y="61" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="Uep-KR-xqd"/>
+                                                        <constraint firstAttribute="width" constant="60" id="aSJ-Qv-eP5"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vDJ-vy-RZJ" firstAttribute="top" secondItem="kcc-E6-caR" secondAttribute="bottom" constant="9" id="66V-UW-gpU"/>
+                                                <constraint firstItem="kcc-E6-caR" firstAttribute="top" secondItem="zkg-vO-Z8D" secondAttribute="topMargin" constant="23" id="BMY-LM-kqh"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vDJ-vy-RZJ" secondAttribute="trailing" constant="30" id="FX0-dn-RF1"/>
+                                                <constraint firstItem="Dyq-yZ-GHJ" firstAttribute="top" secondItem="j1Y-dz-Ec2" secondAttribute="bottom" constant="27" id="LBY-Gk-ha5"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="dFU-LB-jZX" secondAttribute="trailing" constant="30" id="Nsi-e5-RW8"/>
+                                                <constraint firstItem="j1Y-dz-Ec2" firstAttribute="leading" secondItem="zkg-vO-Z8D" secondAttribute="leadingMargin" id="Rmh-vi-Qr1"/>
+                                                <constraint firstItem="Dyq-yZ-GHJ" firstAttribute="leading" secondItem="zkg-vO-Z8D" secondAttribute="leadingMargin" constant="21" id="cd4-2i-ztA"/>
+                                                <constraint firstItem="dFU-LB-jZX" firstAttribute="top" secondItem="vDJ-vy-RZJ" secondAttribute="bottom" constant="8" id="e0B-wF-TbF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kcc-E6-caR" secondAttribute="trailing" constant="30" id="eVU-9F-mFp"/>
+                                                <constraint firstItem="j1Y-dz-Ec2" firstAttribute="top" secondItem="zkg-vO-Z8D" secondAttribute="topMargin" id="jvi-Gd-MSA"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="camera_button" destination="kcc-E6-caR" id="Uok-xo-iBo"/>
+                                            <outlet property="food_image" destination="Dyq-yZ-GHJ" id="4pQ-UW-khs"/>
+                                            <outlet property="library_button" destination="vDJ-vy-RZJ" id="vHS-pf-0v0"/>
+                                            <outlet property="ourImages_button" destination="dFU-LB-jZX" id="bWk-JM-X4y"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Title_Cell" id="nO3-sq-J5c" customClass="Get_Title_Cell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="125" width="328" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Get_Title_Cell" rowHeight="130" id="nO3-sq-J5c" customClass="Get_Title_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="233" width="328" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nO3-sq-J5c" id="IFI-35-asQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  What's it Called?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdx-b7-060">
+                                                    <rect key="frame" x="8" y="8" width="160" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="160" id="2qb-aY-pRG"/>
+                                                        <constraint firstAttribute="height" constant="26" id="qVr-es-9RN"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qdx-b7-060" firstAttribute="top" secondItem="IFI-35-asQ" secondAttribute="topMargin" id="g4b-if-QCW"/>
+                                                <constraint firstItem="qdx-b7-060" firstAttribute="leading" secondItem="IFI-35-asQ" secondAttribute="leadingMargin" id="xm2-HH-xTp"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Get_Size_Cell" id="3kv-go-Jv4" customClass="Get_Size_Cell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="222" width="328" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Get_Size_Cell" id="3kv-go-Jv4" customClass="Get_Size_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="363" width="328" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3kv-go-Jv4" id="OJF-kF-lHC">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NuY-Xb-A8E" customClass="Get_Expire_Cell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="319" width="328" height="97"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Get_Expire_Cell" rowHeight="302" id="NuY-Xb-A8E" customClass="Get_Expire_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="460" width="328" height="302"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NuY-Xb-A8E" id="RWS-dG-F6j">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="302"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Expiration?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8k6-G4-M9l">
+                                                    <rect key="frame" x="8" y="8" width="160" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="160" id="Z96-fc-aiO"/>
+                                                        <constraint firstAttribute="height" constant="26" id="p4A-MP-1xq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-Gh-1DD" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="42" y="42" width="132" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="Evl-Jw-Mkh"/>
+                                                        <constraint firstAttribute="width" constant="132" id="K2F-Ej-0Gf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="  Few Days" image="circle">
+                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-Im-EX9" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="42" y="86" width="132" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="Xq2-Wg-bvq"/>
+                                                        <constraint firstAttribute="width" constant="132" id="ab8-h9-Dgb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="  A Week    " image="circle">
+                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEi-w3-plb" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="42" y="130" width="132" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="5uj-Pk-rAf"/>
+                                                        <constraint firstAttribute="width" constant="132" id="CjQ-5J-4jh"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="  Two Weeks" image="circle">
+                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgV-d3-5Rb" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="42" y="174" width="132" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="132" id="CuW-dn-mpY"/>
+                                                        <constraint firstAttribute="height" constant="36" id="iud-yH-UEm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="  A Month" image="circle">
+                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-uK-Pju" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
+                                                    <rect key="frame" x="42" y="218" width="132" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="CVx-KW-kya"/>
+                                                        <constraint firstAttribute="width" constant="132" id="LTR-VV-6vj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="  Long Time" image="circle">
+                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dgV-d3-5Rb" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="2lu-nT-3l7"/>
+                                                <constraint firstItem="PEi-w3-plb" firstAttribute="top" secondItem="YgQ-Im-EX9" secondAttribute="bottom" constant="8" id="996-V0-Ejk"/>
+                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="H5z-hJ-x6I"/>
+                                                <constraint firstItem="8k6-G4-M9l" firstAttribute="top" secondItem="RWS-dG-F6j" secondAttribute="topMargin" id="IfY-7u-8EJ"/>
+                                                <constraint firstItem="YgQ-Im-EX9" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="PfT-FT-U3q"/>
+                                                <constraint firstItem="a6a-uK-Pju" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="TND-5z-lya"/>
+                                                <constraint firstItem="a6a-uK-Pju" firstAttribute="top" secondItem="dgV-d3-5Rb" secondAttribute="bottom" constant="8" id="VJn-t9-CPc"/>
+                                                <constraint firstItem="8k6-G4-M9l" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" id="Vdu-K7-2dw"/>
+                                                <constraint firstItem="YgQ-Im-EX9" firstAttribute="top" secondItem="yG7-Gh-1DD" secondAttribute="bottom" constant="8" id="Zrl-3g-xWs"/>
+                                                <constraint firstItem="dgV-d3-5Rb" firstAttribute="top" secondItem="PEi-w3-plb" secondAttribute="bottom" constant="8" id="blD-YF-2Ym"/>
+                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="top" secondItem="8k6-G4-M9l" secondAttribute="bottom" constant="8" id="cDj-YH-HSw"/>
+                                                <constraint firstItem="PEi-w3-plb" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="f70-Fe-RdF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="few_day_button" destination="yG7-Gh-1DD" id="TuL-kz-Us5"/>
+                                            <outlet property="longTime_button" destination="a6a-uK-Pju" id="Vbb-yh-lft"/>
+                                            <outlet property="month_button" destination="dgV-d3-5Rb" id="Kzd-Nw-jZw"/>
+                                            <outlet property="two_week_button" destination="PEi-w3-plb" id="JN4-Fp-MYN"/>
+                                            <outlet property="week_button" destination="YgQ-Im-EX9" id="Ndo-tA-IIi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P2d-jp-haD">
-                                <rect key="frame" x="-4" y="520" width="120" height="48"/>
+                                <rect key="frame" x="-4" y="820" width="120" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AS-WT-4RW">
                                         <rect key="frame" x="0.0" y="8" width="104" height="40"/>
@@ -1337,7 +1512,8 @@
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="868"/>
                     <connections>
                         <outlet property="tableview" destination="kAL-6s-FDu" id="hmT-f9-WPC"/>
                     </connections>

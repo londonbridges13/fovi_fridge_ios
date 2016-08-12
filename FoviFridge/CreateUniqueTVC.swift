@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
-class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+protocol SettingImage{
+    func displayImage(image : UIImage)
+}
+
+
+class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UseFood, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     
     @IBOutlet var tableview : UITableView!
     
+    var imagePicker: UIImagePickerController!
+
     var food_title : String?
     
+    var set_image_delegate : SettingImage?
+    
+    var new_fooditem = FoodItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +34,6 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableview.delegate = self
         self.tableview.dataSource = self
         
-       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -47,7 +58,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,29 +68,36 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print(indexPath.row)
         // Normal Option
         if indexPath.row == 0{
             let cell : Get_Image_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Image_Cell", forIndexPath: indexPath) as! Get_Image_Cell
-            
+            tableview.rowHeight = 205
             // Configure the cell...
+            cell.delegate = self
+            self.set_image_delegate = cell
             
             return cell
         }else if indexPath.row == 1{
             let cell : Get_Title_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Title_Cell", forIndexPath: indexPath) as! Get_Title_Cell
-            
+            tableview.rowHeight = 130
             // Configure the cell...
+            cell.delegate = self
             
             return cell
         }else if indexPath.row == 2{
             let cell : Get_Size_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Size_Cell", forIndexPath: indexPath) as! Get_Size_Cell
-            
             // Configure the cell...
+            cell.delegate = self
+
             
             return cell
         }else{
             let cell : Get_Expire_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Expire_Cell", forIndexPath: indexPath) as! Get_Expire_Cell
             
             // Configure the cell...
+            cell.delegate = self
+
             
             return cell
         }
@@ -88,27 +106,121 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+    
+    
+    
+    // UseFood Delegate functions
+    func add_Title(title: String){ // This adds the title to a variable in the CreateFoodTVC
+        print("Setting \(title) as the Food.title")
+        
+        self.new_fooditem.title = title
+        print(new_fooditem)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func add_Image(image : UIImage){ // This adds the image to a variable in the CreateFoodTVC
+        print("Adding Image")
+        
+        self.new_fooditem.image = UIImagePNGRepresentation(image)
+        print(new_fooditem)
     }
-    */
+    func add_Expiration(expires : Int){ // This adds the expiration to a variable in the CreateFoodTVC
+        print("Exipires in \(expires) days")
+        
+        self.new_fooditem.usually_expires.value = expires
+        self.new_fooditem.fridge_usually_expires.value = expires
+        
+        //Set date 
+        var ex_date = NSDate()
+        if expires >= 29{
+//            ex_date.month.value() += 1
+        }
+        print(new_fooditem)
+    }
+    func add_Measurement(measurement_type : String, full_amount : Float, current_amount : Float){
+        print("Measurement Type is \(measurement_type).")
+        print("Full Amount is \(full_amount).")
+        print("Current Amount is \(current_amount).")
+        
+        self.new_fooditem.measurement_type = measurement_type
+        self.new_fooditem.current_amount.value = current_amount
+        self.new_fooditem.full_amount.value = full_amount
+        print(new_fooditem)
+    }
+    
+    
+    // Images Delegates
+    func use_Library(){
+        //self.openPhotoLibrary()
+        let image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        // if error change this back to uiimage... sourcetype.photolibrary
+        self.presentViewController(image, animated: true, completion: nil)
+        
+        print("From Photo Library")
+        
+    }
+    
+    
+    func takePic(){
+        
+        imagePicker =  UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
 
 
+    
+    
+    
+    
+    
+    // ImageController Delegates
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        
+        
+        let maniiy = dispatch_get_main_queue()
+        dispatch_async(maniiy) { () -> Void in
+            
+            if image != nil{
+                if let set_image_delegate = self.set_image_delegate{
+                    set_image_delegate.displayImage(image!)
+                    self.add_Image(image!)
+                }
+            }
+        }
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+    
+        let maniiy = dispatch_get_main_queue()
+        dispatch_async(maniiy) { () -> Void in
+            
+            if let set_image_delegate = self.set_image_delegate{
+                set_image_delegate.displayImage(image)
+                self.add_Image(image)
+            }
+        }
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+
+        
+    }
+    
+    
+
+    
+    
+    
     
     
     

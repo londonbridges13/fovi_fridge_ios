@@ -10,6 +10,8 @@ import UIKit
 
 class Get_Size_Cell: UITableViewCell {
 
+    var delegate : UseFood?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -122,7 +122,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         var i = indexPath_row
         
         while i > 3{
-            i -= 3
+            i = i - 3
         }
         
         print("This is i : \(i)")
@@ -130,13 +130,11 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(red, forState: .Normal)
 //            catColor = red
-        }
-        if i == 1{
+        }else if i == 1{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(blue, forState: .Normal)
 //            catColor = blue
-        }
-        if i == 2{
+        }else if i == 2{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(green, forState: .Normal)
 //            catColor = green

@@ -79,7 +79,8 @@ class ShopList_FoodView: UIView {
             print("Fridge was = \(fooditem.fridge_amount.value)")
             
             if fooditem.fridge_amount.value != nil{
-                let quantity = fooditem.shoppingList_amount.value! + fooditem.fridge_amount.value!
+                let value = Int(stepper.value)
+                let quantity = value + fooditem.fridge_amount.value!
                 fooditem.fridge_amount.value = quantity
                 print("Fridge now = \(fooditem.fridge_amount.value)")
             }else{
