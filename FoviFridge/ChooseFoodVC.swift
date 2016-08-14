@@ -37,6 +37,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     @IBOutlet var unwindAddFoodButton: UIButton!
     @IBOutlet var unwindShopListButton: UIButton!
     @IBOutlet var unwindNewCatButton: UIButton!
+    @IBOutlet var unwindEditCatButton: UIButton!
 
     @IBOutlet var uniqueBackground: UIView!
     
@@ -407,6 +408,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             unwindShopListButton.sendActionsForControlEvents(.TouchUpInside)
         }else if segueStick == "NewCategory"{
             self.unwindNewCatButton.sendActionsForControlEvents(.TouchUpInside)
+        }else if segueStick == "EditCategory"{
+            self.unwindEditCatButton.sendActionsForControlEvents(.TouchUpInside)
         }
     }
     

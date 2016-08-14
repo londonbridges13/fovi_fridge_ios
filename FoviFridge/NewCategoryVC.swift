@@ -159,7 +159,8 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
                 // add category to categories
                 each.mylist_amount.value = 0
                 each.category.append(cat)
-                print("Added \(cat.category) to \(each.title!)")
+                print("-Added \(cat.category) to \(each.title!)")
+                print(each)
             }
         }
         

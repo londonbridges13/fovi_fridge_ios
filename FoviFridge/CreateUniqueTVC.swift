@@ -24,6 +24,8 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     var food_title : String?
     
+    var measureVC : MeasurementViewController?
+    
     var set_image_delegate : SettingImage?
     
     var new_fooditem = FoodItem()
@@ -49,6 +51,9 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func unwindToCreateFoodVC(segue: UIStoryboardSegue){
+        
+    }
     
     
     
@@ -63,7 +68,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
 
     
@@ -76,29 +81,35 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             // Configure the cell...
             cell.delegate = self
             self.set_image_delegate = cell
-            
+            cell.ourImages_button.addTarget(self, action: "use_our_images", forControlEvents: .TouchUpInside)
+
             return cell
         }else if indexPath.row == 1{
             let cell : Get_Title_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Title_Cell", forIndexPath: indexPath) as! Get_Title_Cell
-            tableview.rowHeight = 130
+            tableview.rowHeight = 230
             // Configure the cell...
             cell.delegate = self
             
             return cell
         }else if indexPath.row == 2{
             let cell : Get_Size_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Size_Cell", forIndexPath: indexPath) as! Get_Size_Cell
+            tableView.rowHeight = 185
+            // Configure the cell...
+            cell.delegate = self
+            cell.measure_button.addTarget(self, action: "use_measureVC", forControlEvents: .TouchUpInside)
+            
+            return cell
+        }else if indexPath.row == 3{
+            let cell : Get_Expire_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Expire_Cell", forIndexPath: indexPath) as! Get_Expire_Cell
+            tableView.rowHeight = 302
             // Configure the cell...
             cell.delegate = self
 
             
             return cell
         }else{
-            let cell : Get_Expire_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Expire_Cell", forIndexPath: indexPath) as! Get_Expire_Cell
-            
-            // Configure the cell...
-            cell.delegate = self
-
-            
+            let cell = tableView.dequeueReusableCellWithIdentifier("done", forIndexPath: indexPath)
+            tableView.rowHeight = 100
             return cell
         }
         
@@ -109,6 +120,10 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     
     
+    // Perform Segue
+    func use_our_images(){
+        self.performSegueWithIdentifier("choose_image", sender: self)
+    }
     
     // UseFood Delegate functions
     func add_Title(title: String){ // This adds the title to a variable in the CreateFoodTVC
@@ -222,6 +237,23 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     
+    // Show Measurement VC
+    func use_measureVC(){
+        self.measureVC = storyboard?.instantiateViewControllerWithIdentifier("MeasurementViewController") as! MeasurementViewController
+
+        var xp = measureVC!.view.frame.width / 2 - ((240) / 2)
+
+        self.measureVC!.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
+        self.measureVC?.cancelButton.addTarget(self, action: "remove_measureVC", forControlEvents: .TouchUpInside)
+        
+        self.measureVC?.view.layer.cornerRadius = 6
+        self.view.addSubview(measureVC!.view!)
+    }
+    
+    
+    func remove_measureVC(){
+        self.measureVC?.view.fadeOut()
+    }
     
     
     

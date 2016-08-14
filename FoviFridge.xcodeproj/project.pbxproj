@@ -47,11 +47,15 @@
 		3E5FAAEF1D3D998300E94EA8 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAAEE1D3D998300E94EA8 /* circle.png */; };
 		3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */; };
 		3E5FAB2F1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */; };
+		3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */; };
 		3E70573D1D554319009E9031 /* ShowAgain_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E70573C1D554319009E9031 /* ShowAgain_AlertView.swift */; };
 		3E70573F1D5544A2009E9031 /* ShowAgain_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E70573E1D5544A2009E9031 /* ShowAgain_AlertView.xib */; };
 		3E7057411D5556BD009E9031 /* Success_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7057401D5556BD009E9031 /* Success_View.swift */; };
 		3E7057431D5556E5009E9031 /* Success_View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7057421D5556E5009E9031 /* Success_View.xib */; };
 		3E7057471D567DF3009E9031 /* NewCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7057461D567DF3009E9031 /* NewCategoryVC.swift */; };
+		3E715F891D5EE456009B462B /* ChooseImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E715F881D5EE456009B462B /* ChooseImageVC.swift */; };
+		3E715F8C1D5F0B8D009B462B /* edit_cell_1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E715F8B1D5F0B8D009B462B /* edit_cell_1.swift */; };
+		3E715F8E1D5F8577009B462B /* EditFoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E715F8D1D5F8577009B462B /* EditFoodItemCell.swift */; };
 		3E758AB41D54051D005BB3F4 /* FoodItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E758AB31D54051D005BB3F4 /* FoodItemTableViewCell.swift */; };
 		3E9E37371D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E37361D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift */; };
 		3E9E37411D4D62A400A15381 /* Food_Quantity_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */; };
@@ -198,11 +202,15 @@
 		3E5FAAEE1D3D998300E94EA8 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYou_SurveyView.swift; sourceTree = "<group>"; };
 		3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYou_SurveyView.xib; sourceTree = "<group>"; };
+		3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryCell.swift; sourceTree = "<group>"; };
 		3E70573C1D554319009E9031 /* ShowAgain_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAgain_AlertView.swift; sourceTree = "<group>"; };
 		3E70573E1D5544A2009E9031 /* ShowAgain_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowAgain_AlertView.xib; sourceTree = "<group>"; };
 		3E7057401D5556BD009E9031 /* Success_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Success_View.swift; sourceTree = "<group>"; };
 		3E7057421D5556E5009E9031 /* Success_View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Success_View.xib; sourceTree = "<group>"; };
 		3E7057461D567DF3009E9031 /* NewCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryVC.swift; sourceTree = "<group>"; };
+		3E715F881D5EE456009B462B /* ChooseImageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageVC.swift; sourceTree = "<group>"; };
+		3E715F8B1D5F0B8D009B462B /* edit_cell_1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = edit_cell_1.swift; sourceTree = "<group>"; };
+		3E715F8D1D5F8577009B462B /* EditFoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditFoodItemCell.swift; sourceTree = "<group>"; };
 		3E758AB31D54051D005BB3F4 /* FoodItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemTableViewCell.swift; sourceTree = "<group>"; };
 		3E9E37361D4D45EA00A15381 /* ChooseFoodItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseFoodItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		3E9E37401D4D62A400A15381 /* Food_Quantity_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food_Quantity_View.swift; sourceTree = "<group>"; };
@@ -333,6 +341,7 @@
 		3E1439161D5AF607001C9C6B /* Edit Category */ = {
 			isa = PBXGroup;
 			children = (
+				3E715F8A1D5F0B54009B462B /* Cells */,
 				3E1439171D5AF649001C9C6B /* EditCategoryVC.swift */,
 			);
 			name = "Edit Category";
@@ -442,6 +451,15 @@
 			name = "Create New Category";
 			sourceTree = "<group>";
 		};
+		3E715F8A1D5F0B54009B462B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3E715F8B1D5F0B8D009B462B /* edit_cell_1.swift */,
+				3E715F8D1D5F8577009B462B /* EditFoodItemCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		3E90110C1D4BD50E009EF777 /* Onboard Process */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +487,7 @@
 				3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */,
 				3E3C29E21D5113F50095A93B /* FridgeFoodItemCell.swift */,
 				3E758AB31D54051D005BB3F4 /* FoodItemTableViewCell.swift */,
+				3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */,
 			);
 			name = Fridge;
 			sourceTree = "<group>";
@@ -507,6 +526,7 @@
 				3E70573B1D554295009E9031 /* Creation Views */,
 				3E14397B1D5D3D54001C9C6B /* Cells */,
 				3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */,
+				3E715F881D5EE456009B462B /* ChooseImageVC.swift */,
 			);
 			name = CreateFoodItem;
 			sourceTree = "<group>";
@@ -1056,6 +1076,7 @@
 				3E5FAACF1D3643CD00E94EA8 /* SettingsVC.swift in Sources */,
 				3EAF0E6A1D40569800A302B0 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
 				3EAF0E811D40569800A302B0 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
+				3E715F8E1D5F8577009B462B /* EditFoodItemCell.swift in Sources */,
 				3E7057411D5556BD009E9031 /* Success_View.swift in Sources */,
 				3E5FAAD11D38B7B700E94EA8 /* CategoryItemsVC.swift in Sources */,
 				3E9E412A1D1B79E1009C9808 /* AppDelegate.swift in Sources */,
@@ -1069,12 +1090,14 @@
 				3E1439701D5D3730001C9C6B /* MeasurementViewController.swift in Sources */,
 				3E1438D71D57F735001C9C6B /* Device.swift in Sources */,
 				3EC508ED1D240D7600630E8F /* Thoughts.swift in Sources */,
+				3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */,
 				3E5FAAD81D39E65500E94EA8 /* SurveyVC.swift in Sources */,
 				3EAF0E751D40569800A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				3E4FF67F1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift in Sources */,
 				3EAF0E7C1D40569800A302B0 /* NVActivityIndicatorAnimationPacman.swift in Sources */,
 				3E9E37411D4D62A400A15381 /* Food_Quantity_View.swift in Sources */,
 				3EAF0E351D3FF02F00A302B0 /* CVCalendarKitOperators.swift in Sources */,
+				3E715F8C1D5F0B8D009B462B /* edit_cell_1.swift in Sources */,
 				3EAF0E731D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				3E5FAAE11D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift in Sources */,
 				3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */,
@@ -1097,6 +1120,7 @@
 				3E70573D1D554319009E9031 /* ShowAgain_AlertView.swift in Sources */,
 				3EAF0E6F1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				3E1438D11D57C9C6001C9C6B /* CategoryFoodItemCell.swift in Sources */,
+				3E715F891D5EE456009B462B /* ChooseImageVC.swift in Sources */,
 				3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */,
 				3EAF0E331D3FDE8C00A302B0 /* UserDetails.swift in Sources */,
 				3E4FF67D1D1CAAEC005BFFF4 /* ChooseFoodVC.swift in Sources */,

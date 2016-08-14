@@ -23,7 +23,6 @@ class Get_Image_Cell: UITableViewCell, SettingImage {
         // Initialization code
         camera_button.addTarget(self, action: "takePic", forControlEvents: .TouchUpInside)
         library_button.addTarget(self, action: "use_Library", forControlEvents: .TouchUpInside)
-        ourImages_button.addTarget(self, action: "", forControlEvents: .TouchUpInside)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -46,6 +45,8 @@ class Get_Image_Cell: UITableViewCell, SettingImage {
             delegate.takePic()
         }
     }
+
+    
 
     func displayImage(image : UIImage){
         print("Setting Image")

@@ -138,7 +138,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         // Create a Bool for previouslyBought in FoodItem Object
         
         if self.is_searching == false{
-            return categories.count
+            return categories.count + 1
         }else{
             return self.searchable_array.count
         }
@@ -148,15 +148,23 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
                             cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if self.is_searching == false{
+           
+            var indexpathh = indexPath.row - 1
+            var current_category = indexpathh
             
+            if indexPath.row == 0{
+                let cell : NewCategoryCell = tableView.dequeueReusableCellWithIdentifier("NewCategoryCell", forIndexPath: indexPath) as! NewCategoryCell
+                tableView.rowHeight = 45
+                return cell
+            }
             let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
                                                                                      forIndexPath: indexPath) as! FridgeFoodsCell
             cell.delegate = self
             cell.fullfoodview_delegate = self
             cell.food.removeAll()
-            cell.get_fooditems(self.categories[indexPath.row])
+            cell.get_fooditems(self.categories[indexPath.row - 1])
             cell.design_category_button(indexPath.row)
-            cell.categoryButton.setTitle("\(self.categories[indexPath.row])", forState: .Normal)
+            cell.categoryButton.setTitle("\(self.categories[indexPath.row - 1])", forState: .Normal)
             tableView.rowHeight = 148.0
             
             return cell
