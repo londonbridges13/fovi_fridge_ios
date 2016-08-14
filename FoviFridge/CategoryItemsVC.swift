@@ -23,7 +23,10 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet var tableview : UITableView!
     @IBOutlet var editButton : UIButton!
+    @IBOutlet var doneButton : UIButton!
     @IBOutlet var edit_width: NSLayoutConstraint!
+    
+    var dtint : UIView?
     
     var food = [FoodItem]()
     
@@ -59,10 +62,21 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         get_cat_food(self.category!)
         
         
-        
         // Do any additional setup after loading the view.
     }
 
+    func delete_this(){
+        let realm = try! Realm()
+        var thiscat = realm.objects(Category).filter(NSPredicate(format:"category = 'Pantry'"))
+        print("This is P.count \(thiscat.count)")
+        try! realm.write{
+            for each in thiscat{
+                realm.delete(each)
+                print("Deleted")
+            }
+        }
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -73,7 +87,10 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBAction func unwindToCatItems(segue: UIStoryboardSegue){
         print("Back to Category")
-        addFood_from_mylist()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 200 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.addFood_from_mylist()
+        }
     }
 
     
@@ -88,6 +105,9 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func addFood_from_mylist(){
         let realm = try! Realm()
         
+        print("Category before Change Label: \(self.category!)")
+        self.changeTitleLabel()
+        
         var mylist = realm.objects(FoodItem).filter(NSPredicate(format: "mylist_amount > 0"))
         var a_cat = Category()
         a_cat.category = self.category!
@@ -98,6 +118,7 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 print(each)
                 each.mylist_amount.value = 0
             }
+            print("Category After ChangeLabel: \(self.category!)")
             self.get_cat_food(self.category!)
             self.edit_categoryVC?.get_cat_food(self.category!)
         })
@@ -224,6 +245,8 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         edit_categoryVC?.doneButton.addTarget(self, action: "stop_edit", forControlEvents: .TouchUpInside)
         edit_categoryVC?.doneButton.addTarget(self, action: "check_for_others", forControlEvents: .TouchUpInside)
         edit_categoryVC?.segueButton.addTarget(self, action: "add_food_toCat", forControlEvents: .TouchUpInside)
+        edit_categoryVC?.changeTitleButton.addTarget(self, action: "changeTitleLabel", forControlEvents: .TouchUpInside)
+        edit_categoryVC?.unwindToFridgeButton.addTarget(self, action: "unwind_Deleted_Cat", forControlEvents: .TouchUpInside)
         edit_categoryVC?.view.alpha = 0
         self.view.addSubview(self.edit_categoryVC!.view!)
 
@@ -242,11 +265,31 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    
+
+    
+    
+    
+    
     func stop_edit(){
         self.edit_categoryVC!.view.fadeOut()
     }
 
   
+    
+    
+    func changeTitleLabel(){
+//        if edit_categoryVC?.category != nil{
+        self.categoryLabel.text = edit_categoryVC?.category!
+        self.category = edit_categoryVC?.category!
+//        }
+    }
+    
+    func unwind_Deleted_Cat(){
+        self.doneButton.sendActionsForControlEvents(.TouchUpInside)
+    }
+    
+    
     
     
     

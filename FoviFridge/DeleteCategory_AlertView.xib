@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteCategory_AlertView" customModule="FoviFridge" customModuleProvider="target">
+            <connections>
+                <outlet property="noButton" destination="JBK-VI-CKg" id="TQr-9v-f3r"/>
+                <outlet property="yesButton" destination="Vch-g1-eSh" id="K5o-AA-9YX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWL-DG-aI8">
+                    <rect key="frame" x="8" y="8" width="234" height="51"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="51" id="DuO-mu-Q4V"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you really want to delete this category?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdq-EE-P6Y">
+                    <rect key="frame" x="19" y="67" width="213" height="131"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vch-g1-eSh">
+                    <rect key="frame" x="136" y="238" width="96" height="41"/>
+                    <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="2LW-IZ-Efi"/>
+                        <constraint firstAttribute="width" constant="96" id="Fx9-iT-2jJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                    <state key="normal" title="Yes">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBK-VI-CKg">
+                    <rect key="frame" x="19" y="238" width="96" height="41"/>
+                    <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="41" id="7MW-4U-gSK"/>
+                        <constraint firstAttribute="width" constant="96" id="mBU-hb-lVJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                    <state key="normal" title="No">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JBK-VI-CKg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="19" id="9jO-O2-hiz"/>
+                <constraint firstItem="Vch-g1-eSh" firstAttribute="leading" secondItem="JBK-VI-CKg" secondAttribute="trailing" constant="21" id="Fa6-xh-jmM"/>
+                <constraint firstAttribute="trailing" secondItem="kWL-DG-aI8" secondAttribute="trailing" constant="8" id="KCL-QD-zPG"/>
+                <constraint firstAttribute="bottom" secondItem="JBK-VI-CKg" secondAttribute="bottom" constant="21" id="KzA-8W-CIS"/>
+                <constraint firstItem="kWL-DG-aI8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eUl-10-6OJ"/>
+                <constraint firstAttribute="bottom" secondItem="Vch-g1-eSh" secondAttribute="bottom" constant="21" id="xg6-Ci-AD4"/>
+                <constraint firstItem="kWL-DG-aI8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="yfs-KC-6YO"/>
+                <constraint firstAttribute="trailing" secondItem="Vch-g1-eSh" secondAttribute="trailing" constant="18" id="zYj-c2-WIJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

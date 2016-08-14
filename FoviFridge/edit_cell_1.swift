@@ -8,13 +8,21 @@
 
 import UIKit
 import Material
+import RealmSwift
 
+protocol ChangeTitleCategory {
+    func change_cat_title(newCategory : String)
+}
 class edit_cell_1: UITableViewCell, UITextFieldDelegate {
 
     
     var categoryField : TextField?
 
     @IBOutlet var addFood_Button : UIButton!
+    
+    var category : String?
+    
+    var delegate : ChangeTitleCategory?
     
     
     override func awakeFromNib() {
@@ -57,10 +65,73 @@ class edit_cell_1: UITableViewCell, UITextFieldDelegate {
         categoryField!.detailColor = MaterialColor.amber.darken4
         
         self.addSubview(categoryField!)
-        
-
     }
     
+    
+    
+    
+    
+    func check_availibilty(categoryTX : String){
+        var move_on = true
+        
+        let realm = try! Realm()
+        let all_categories = realm.objects(Category)
+        for each in all_categories{
+            if each.category != categoryTX{
+                // Do nothing
+            }else{
+                // Tell user, it already exists
+                print("Already have \(each.category)")
+//                self.categoryField?.detail = "Error, this Category already exists."
+//                self.categoryField?.detailLabel.fadeIn()
+                move_on = false
+            }
+        }
+        print("Done Checking")
+            if move_on == true{
+                // Continue with Change
+                if let delegate = self.delegate{
+                    delegate.change_cat_title(self.category!)
+                }
+            }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    // TextField
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        
+        while self.categoryField?.text!.characters.last == " "{
+            print("remove")
+            print("/\(self.categoryField!.text)/")
+            var toko = self.categoryField!.text!.substringToIndex(self.categoryField!.text!.endIndex.predecessor())
+            self.categoryField!.text = toko
+            print("/\(self.categoryField!.text)/")
+        }
+        while self.categoryField?.text!.characters.first == " "{
+            print("remove")
+            print("/\(self.categoryField!.text)/")
+            self.categoryField?.text?.removeAtIndex(self.categoryField!.text!.startIndex)
+
+            print("/\(self.categoryField!.text)/")
+        }
+        self.category = self.categoryField!.text
+        
+        if category?.characters.count >= 1{
+            check_availibilty(self.category!)
+        }else{
+            self.categoryField?.detail = "Type Something!"
+            self.categoryField?.detailLabel.fadeIn()
+        }
+        
+        return true
+    }
     
     
     

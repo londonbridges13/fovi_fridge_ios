@@ -1056,6 +1056,7 @@
                     <connections>
                         <outlet property="categoryLabel" destination="oKc-YV-TWD" id="wsI-ne-NDL"/>
                         <outlet property="createCatButton" destination="ycs-tL-R2Q" id="a6F-H2-nWe"/>
+                        <outlet property="doneButton" destination="WOE-n3-eB6" id="X5o-YI-rOj"/>
                         <outlet property="editButton" destination="stG-dg-blh" id="erZ-6h-DHf"/>
                         <outlet property="edit_width" destination="Ogb-Ro-jr1" id="b3c-as-9Ce"/>
                         <outlet property="tableview" destination="YHz-8h-sEM" id="LOg-Di-vb1"/>
@@ -2806,11 +2807,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="catLabel" destination="5vs-t1-DuO" id="21o-xL-ALh"/>
+                        <outlet property="changeTitleButton" destination="PNc-f9-AdP" id="QoE-Th-IXX"/>
                         <outlet property="deleteButton" destination="2h0-fm-UaG" id="Dgx-Sz-QHM"/>
                         <outlet property="doneButton" destination="X29-42-fZf" id="FnN-qv-68K"/>
                         <outlet property="doneView" destination="uRd-xE-dkO" id="GJe-kY-Zci"/>
                         <outlet property="segueButton" destination="1kq-bU-Fng" id="NxL-6B-j7D"/>
                         <outlet property="tableview" destination="TVw-I9-dLc" id="m2O-WG-0PR"/>
+                        <outlet property="unwindToFridgeButton" destination="vZf-p3-BC9" id="2ma-Ma-E93"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4E-eQ-vgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2818,6 +2821,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="segueButton"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PNc-f9-AdP">
+                    <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="changeTitleButton"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vZf-p3-BC9">
+                    <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="UnwindToFridgeButton"/>
                 </button>
             </objects>
             <point key="canvasLocation" x="434" y="398"/>

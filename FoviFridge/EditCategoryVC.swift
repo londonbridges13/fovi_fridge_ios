@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, RemoveFoodItem {
+class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelegate, RemoveFoodItem, UITextFieldDelegate, ChangeTitleCategory {
 
     
     @IBOutlet var tableview : UITableView!
@@ -19,7 +19,11 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var catLabel : UILabel! 
     
     @IBOutlet var segueButton : UIButton!
+    @IBOutlet var changeTitleButton : UIButton!
+    @IBOutlet var unwindToFridgeButton : UIButton!
 
+    
+    var dtint : UIView?
     
     var cells = [1,2,3,4,5]
     
@@ -37,6 +41,7 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         tableview.delegate = self
         tableview.dataSource = self
         
+        self.deleteButton.addTarget(self, action: "delete_whole_category", forControlEvents: .TouchUpInside)
 
     }
 
@@ -67,6 +72,7 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
             if self.category != nil{
                 cell.categoryField!.text = self.category!
             }
+            cell.delegate = self
             tableView.rowHeight = 246
             
             return cell
@@ -127,7 +133,6 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         for each in all_cat_food{
             print("\(each.title!)")
             self.food.append(each)
-            
         }
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -153,16 +158,120 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         try! realm.write {
             print("Removed \(it!.category)")
             print(fooditem.category.indexOf(it!))
+            
+            var op1 = indexRow - 1
+            var op2 = indexRow
+            print("OPTION 1 : \(food[op1])")
+//            print("OPTION 2 : \(food[op2])")
+            
+            self.food.removeAtIndex(op1)
             fooditem.category.removeAtIndex(fooditem.category.indexOf(it!)!)
-            self.food.removeAtIndex(indexRow - 1)
             
             let index = NSIndexPath(forRow: indexRow, inSection: 0)
             tableview.deleteRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Fade)
 
+            tableview.reloadData()
         }
 
         
     }
+    
+    
+    
+    
+    
+    // Delete Category
+    func delete_whole_category(){
+        print("Presenting AlertView")
+        add_darktint()
+        
+        var alert = DeleteCategory_AlertView()
+        let xp = self.view.frame.width / 2 - (250 / 2)
+        alert.frame = CGRect(x: xp, y: 75, width: 250, height: 300)
+        alert.yesButton.addTarget(self, action: "yes_delete_whole_category", forControlEvents: .TouchUpInside)
+//        alert.yesButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        alert.noButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.3)
+    }
+    
+    
+    func yes_delete_whole_category(){
+        print("Deleting Category")
+        
+        self.view.fadeOut(duration: 0.4)
+        
+        actually_delete_category()
+        
+    }
+    
+    
+    func actually_delete_category(){
+        let realm = try! Realm()
+        var all_gone = realm.objects(Category).filter(NSPredicate(format:"category = '\(self.category!)'"))
+        print("This is all food labeled with this : \(all_gone.count)")
+        
+        try! realm.write({ 
+            for each in all_gone{
+                print("Deleting \(each.category)")
+                realm.delete(each)
+            }
+        })
+        self.unwindToFridgeButton.sendActionsForControlEvents(.TouchUpInside)
+    }
+    
+    
+    func add_darktint(){
+        dtint = UIView()
+        
+        if dtint?.alpha != 0.3{
+            dtint?.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.height)
+            dtint?.backgroundColor = UIColor.blackColor()
+            dtint?.alpha = 0.3
+            self.view.addSubview(dtint!)
+        }else{
+            dtint?.fadeOut()
+        }
+    }
+    
+    func remove_darktint(){
+        dtint?.fadeOut(duration: 0.2)
+    }
+    
+    // ChangeCategoryTilte Delegate
+    
+    func change_cat_title(newCategory : String){
+        // relabel fooditems
+        
+        let realm = try! Realm()
+        var all_cat_food = realm.objects(Category).filter(NSPredicate(format: "category = '\(self.category!)'"))
+        print("WE FOUND \(all_cat_food.count) OBJECTS")
+        
+        try! realm.write{
+//            var new_cat = Category()
+//            new_cat.category = newCategory
+            for each in all_cat_food{
+                print("Before: \(each.category)")
+                each.category = newCategory
+                print("After: \(each.category)")
+            }
+        }
+        
+        self.category = newCategory
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 100 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            // Change CategoryVC label
+            self.changeTitleButton.sendActionsForControlEvents(.TouchUpInside)
+            
+        }
+    }
+    
+
+    
+    
     
     
     
