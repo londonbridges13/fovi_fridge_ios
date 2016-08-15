@@ -12,11 +12,11 @@ class Get_Expire_Cell: UITableViewCell {
 
     var delegate : UseFood?
 
-    @IBOutlet var few_day_button : DOFavoriteButton!
-    @IBOutlet var week_button : DOFavoriteButton!
-    @IBOutlet var two_week_button : DOFavoriteButton!
-    @IBOutlet var month_button : DOFavoriteButton!
-    @IBOutlet var longTime_button : DOFavoriteButton!
+    @IBOutlet var few_day_button : UIButton!
+    @IBOutlet var week_button : UIButton!
+    @IBOutlet var two_week_button : UIButton!
+    @IBOutlet var month_button : UIButton!
+    @IBOutlet var longTime_button : UIButton!
 
     var expires : Int?
     

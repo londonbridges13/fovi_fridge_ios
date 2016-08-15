@@ -8,15 +8,19 @@
 
 import UIKit
 
+protocol MeasureToCellDelegate {
+    func set_measure_type(measureType: String)
+}
+
 class MeasurementViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var tableview: UITableView!
     
     @IBOutlet var cancelButton : UIButton!
     
+    var delegate : MeasureToCellDelegate?
     
-    
-    var measures = ["Milliliters", "Grams"]
+    var measures = ["Milliliters", "Grams", "Of Them", "Ounces"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +52,13 @@ class MeasurementViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let measurementType = self.measures[indexPath.row]
         
+        if let delegate = delegate{
+            print("Running MeasureToCell Delegate")
+            delegate.set_measure_type(measurementType)
+        }
+        self.view.fadeOut(duration: 0.3)
     }
     
     

@@ -549,7 +549,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NewCategoryCell" rowHeight="45" id="Aby-1n-8LZ" customClass="NewCategoryCell" customModule="FoviFridge" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewCategoryCell" rowHeight="45" id="Aby-1n-8LZ" customClass="NewCategoryCell" customModule="FoviFridge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="308" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aby-1n-8LZ" id="1bF-7d-lI1">
@@ -700,7 +700,7 @@
                                             <outlet property="collectionView" destination="6tk-zm-J1W" id="Txs-aL-BZ5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodItemTableViewCell" rowHeight="65" id="jPG-NF-3qn" customClass="FoodItemTableViewCell" customModule="FoviFridge" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodItemTableViewCell" rowHeight="65" id="jPG-NF-3qn" customClass="FoodItemTableViewCell" customModule="FoviFridge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="221" width="308" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jPG-NF-3qn" id="9tg-7q-qkW">
@@ -869,7 +869,7 @@
                                 <rect key="frame" x="-4" y="0.0" width="328" height="462"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fvcell1" rowHeight="116" id="cha-BC-TIT">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="fvcell1" rowHeight="116" id="cha-BC-TIT">
                                         <rect key="frame" x="0.0" y="28" width="328" height="116"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cha-BC-TIT" id="nY8-xU-js5">
@@ -1000,7 +1000,7 @@
                                 <rect key="frame" x="-4" y="90" width="328" height="478"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryFoodItemCell" rowHeight="65" id="Rfd-H1-5il" customClass="CategoryFoodItemCell" customModule="FoviFridge" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CategoryFoodItemCell" rowHeight="65" id="Rfd-H1-5il" customClass="CategoryFoodItemCell" customModule="FoviFridge" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="328" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rfd-H1-5il" id="br2-H4-yn3">
@@ -1406,10 +1406,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="185"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Measurements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH0-EU-P3l">
-                                                    <rect key="frame" x="8" y="8" width="160" height="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Amount + Measurement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH0-EU-P3l">
+                                                    <rect key="frame" x="8" y="8" width="260" height="26"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="160" id="Wlf-ac-q9E"/>
+                                                        <constraint firstAttribute="width" constant="260" id="Wlf-ac-q9E"/>
                                                         <constraint firstAttribute="height" constant="26" id="ohw-gi-xVx"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -1417,24 +1417,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zt4-0d-oJW">
-                                                    <rect key="frame" x="95" y="74" width="139" height="37"/>
+                                                    <rect key="frame" x="70" y="74" width="189" height="37"/>
                                                     <subviews>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="21" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-fq-Thg">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n2A-fq-Thg">
                                                             <rect key="frame" x="0.0" y="4" width="62" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="62" id="uaC-Lr-EIU"/>
                                                             </constraints>
                                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
                                                         </textField>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88M-CP-dnK">
-                                                            <rect key="frame" x="70" y="0.0" width="69" height="37"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                            <state key="normal" title="milliliters">
-                                                                <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
-                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yMq-C4-dSJ">
                                                             <rect key="frame" x="58" y="6" width="1" height="25"/>
                                                             <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1442,6 +1435,13 @@
                                                                 <constraint firstAttribute="width" constant="1" id="Fil-ed-rxU"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="88M-CP-dnK">
+                                                            <rect key="frame" x="70" y="0.0" width="119" height="37"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                                            <state key="normal" title="Ounces">
+                                                                <color key="titleColor" red="0.35486171409557193" green="0.60698224169741699" blue="0.6994493773062731" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="37" id="6xG-zb-3U4"/>
@@ -1450,7 +1450,7 @@
                                                         <constraint firstItem="88M-CP-dnK" firstAttribute="leading" secondItem="n2A-fq-Thg" secondAttribute="trailing" constant="8" id="T9F-E0-WRk"/>
                                                         <constraint firstAttribute="bottom" secondItem="88M-CP-dnK" secondAttribute="bottom" id="cxk-XJ-O7v"/>
                                                         <constraint firstItem="88M-CP-dnK" firstAttribute="top" secondItem="Zt4-0d-oJW" secondAttribute="top" id="evh-7q-h5b"/>
-                                                        <constraint firstAttribute="width" constant="139" id="fXb-Uj-pb0"/>
+                                                        <constraint firstAttribute="width" constant="189" id="fXb-Uj-pb0"/>
                                                         <constraint firstItem="n2A-fq-Thg" firstAttribute="top" secondItem="Zt4-0d-oJW" secondAttribute="top" constant="4" id="hEQ-KE-zFz"/>
                                                         <constraint firstItem="88M-CP-dnK" firstAttribute="leading" secondItem="yMq-C4-dSJ" secondAttribute="trailing" constant="11" id="qwz-hy-vQO"/>
                                                         <constraint firstAttribute="trailing" secondItem="88M-CP-dnK" secondAttribute="trailing" id="rUO-wL-YjK"/>
@@ -1488,14 +1488,14 @@
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-Gh-1DD" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="42" width="132" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yG7-Gh-1DD">
+                                                    <rect key="frame" x="73" y="52" width="182" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="Evl-Jw-Mkh"/>
-                                                        <constraint firstAttribute="width" constant="132" id="K2F-Ej-0Gf"/>
+                                                        <constraint firstAttribute="width" constant="182" id="K2F-Ej-0Gf"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <state key="normal" title="  Few Days" image="circle">
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="• Few Days •">
                                                         <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
@@ -1504,64 +1504,64 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-Im-EX9" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="86" width="132" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgQ-Im-EX9">
+                                                    <rect key="frame" x="73" y="96" width="182" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="Xq2-Wg-bvq"/>
-                                                        <constraint firstAttribute="width" constant="132" id="ab8-h9-Dgb"/>
+                                                        <constraint firstAttribute="width" constant="182" id="ab8-h9-Dgb"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <state key="normal" title="  A Week    " image="circle">
-                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="• A Week •">
+                                                        <color key="titleColor" red="1" green="0.72034997693726932" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEi-w3-plb" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="130" width="132" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEi-w3-plb">
+                                                    <rect key="frame" x="73" y="140" width="182" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="5uj-Pk-rAf"/>
-                                                        <constraint firstAttribute="width" constant="132" id="CjQ-5J-4jh"/>
+                                                        <constraint firstAttribute="width" constant="182" id="CjQ-5J-4jh"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <state key="normal" title="  Two Weeks" image="circle">
-                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="• Two Weeks •">
+                                                        <color key="titleColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgV-d3-5Rb" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="174" width="132" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgV-d3-5Rb">
+                                                    <rect key="frame" x="73" y="184" width="182" height="36"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="132" id="CuW-dn-mpY"/>
+                                                        <constraint firstAttribute="width" constant="182" id="CuW-dn-mpY"/>
                                                         <constraint firstAttribute="height" constant="36" id="iud-yH-UEm"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <state key="normal" title="  A Month" image="circle">
-                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="• A Month •">
+                                                        <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-uK-Pju" customClass="DOFavoriteButton" customModule="FoviFridge" customModuleProvider="target">
-                                                    <rect key="frame" x="42" y="218" width="132" height="36"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-uK-Pju">
+                                                    <rect key="frame" x="73" y="228" width="182" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="CVx-KW-kya"/>
-                                                        <constraint firstAttribute="width" constant="132" id="LTR-VV-6vj"/>
+                                                        <constraint firstAttribute="width" constant="182" id="LTR-VV-6vj"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                    <state key="normal" title="  Long Time" image="circle">
-                                                        <color key="titleColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                    <state key="normal" title="• Long Time •">
+                                                        <color key="titleColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dgV-d3-5Rb" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="2lu-nT-3l7"/>
                                                 <constraint firstItem="PEi-w3-plb" firstAttribute="top" secondItem="YgQ-Im-EX9" secondAttribute="bottom" constant="8" id="996-V0-Ejk"/>
-                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="H5z-hJ-x6I"/>
                                                 <constraint firstItem="8k6-G4-M9l" firstAttribute="top" secondItem="RWS-dG-F6j" secondAttribute="topMargin" id="IfY-7u-8EJ"/>
-                                                <constraint firstItem="YgQ-Im-EX9" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="PfT-FT-U3q"/>
-                                                <constraint firstItem="a6a-uK-Pju" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="TND-5z-lya"/>
+                                                <constraint firstItem="dgV-d3-5Rb" firstAttribute="centerX" secondItem="RWS-dG-F6j" secondAttribute="centerX" id="LbA-UB-KQS"/>
+                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="centerX" secondItem="RWS-dG-F6j" secondAttribute="centerX" id="Lz9-NP-EDt"/>
                                                 <constraint firstItem="a6a-uK-Pju" firstAttribute="top" secondItem="dgV-d3-5Rb" secondAttribute="bottom" constant="8" id="VJn-t9-CPc"/>
                                                 <constraint firstItem="8k6-G4-M9l" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" id="Vdu-K7-2dw"/>
+                                                <constraint firstItem="YgQ-Im-EX9" firstAttribute="centerX" secondItem="RWS-dG-F6j" secondAttribute="centerX" id="VxC-oo-da4"/>
+                                                <constraint firstItem="PEi-w3-plb" firstAttribute="centerX" secondItem="RWS-dG-F6j" secondAttribute="centerX" id="Yn5-Sv-b8Y"/>
                                                 <constraint firstItem="YgQ-Im-EX9" firstAttribute="top" secondItem="yG7-Gh-1DD" secondAttribute="bottom" constant="8" id="Zrl-3g-xWs"/>
                                                 <constraint firstItem="dgV-d3-5Rb" firstAttribute="top" secondItem="PEi-w3-plb" secondAttribute="bottom" constant="8" id="blD-YF-2Ym"/>
-                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="top" secondItem="8k6-G4-M9l" secondAttribute="bottom" constant="8" id="cDj-YH-HSw"/>
-                                                <constraint firstItem="PEi-w3-plb" firstAttribute="leading" secondItem="RWS-dG-F6j" secondAttribute="leadingMargin" constant="34" id="f70-Fe-RdF"/>
+                                                <constraint firstItem="yG7-Gh-1DD" firstAttribute="top" secondItem="8k6-G4-M9l" secondAttribute="bottom" constant="18" id="cDj-YH-HSw"/>
+                                                <constraint firstItem="a6a-uK-Pju" firstAttribute="centerX" secondItem="RWS-dG-F6j" secondAttribute="centerX" id="gxk-Gn-9ko"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -2857,8 +2857,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Fnb-jY-0tJ"/>
-        <segue reference="esI-8Z-gfl"/>
-        <segue reference="aBf-74-dto"/>
+        <segue reference="0fB-E1-XLq"/>
         <segue reference="Xg7-cM-Kna"/>
+        <segue reference="m5C-ui-zAX"/>
     </inferredMetricsTieBreakers>
 </document>

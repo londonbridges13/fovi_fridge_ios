@@ -36,6 +36,13 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableview.delegate = self
         self.tableview.dataSource = self
         
+        // Setting Default Values for New_Fooditem
+        self.new_fooditem.measurement_type = "Ounces"
+        self.new_fooditem.mylist_amount.value = 1
+        self.new_fooditem.full_amount.value = 5
+        self.new_fooditem.current_amount.value = 5
+        self.new_fooditem.is_basic = false
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -161,6 +168,11 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.new_fooditem.full_amount.value = full_amount
         print(new_fooditem)
     }
+    func add_MyListAmount(amount : Int){
+        self.new_fooditem.mylist_amount.value = amount
+        print(new_fooditem)
+        print("New_Foodtiem.mylist_amount was set to : \(self.new_fooditem.mylist_amount.value!)")
+    }
     
     
     // Images Delegates
@@ -246,6 +258,12 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.measureVC!.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
         self.measureVC?.cancelButton.addTarget(self, action: "remove_measureVC", forControlEvents: .TouchUpInside)
         
+        //To connect measureVC Delegate to Get_Size_Cell
+        let index = NSIndexPath(forRow: 2, inSection: 0)
+        var size_cell : Get_Size_Cell = tableview.cellForRowAtIndexPath(index) as! Get_Size_Cell
+        self.measureVC?.delegate = size_cell
+        
+        //Load View
         self.measureVC?.view.layer.cornerRadius = 6
         self.view.addSubview(measureVC!.view!)
     }

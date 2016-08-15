@@ -16,6 +16,7 @@ protocol UseFood {
     func add_Image(image : UIImage) // This adds the image to a variable in the CreateFoodTVC
     func add_Expiration(expires : Int) // This adds the expiration to a variable in the CreateFoodTVC
     func add_Measurement(measurement_type : String, full_amount : Float, current_amount : Float) // This adds the measurement to a variable in the CreateFoodTVC
+    func add_MyListAmount(amount : Int)
     func use_Library()
     func takePic()
 }
@@ -117,7 +118,6 @@ class Get_Title_Cell: UITableViewCell, UITextFieldDelegate {
         let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 600 * Int64(NSEC_PER_MSEC))
         dispatch_after(timer, dispatch_get_main_queue()) {
             if move_on == false{
-                // Continue with Segue
                 
                 self.titleField?.becomeFirstResponder()
             }else{

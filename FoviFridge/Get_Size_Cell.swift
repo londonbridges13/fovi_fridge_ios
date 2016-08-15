@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Get_Size_Cell: UITableViewCell, UITextFieldDelegate {
+class Get_Size_Cell: UITableViewCell, UITextFieldDelegate, MeasureToCellDelegate {
 
     var delegate : UseFood?
     
@@ -19,6 +19,7 @@ class Get_Size_Cell: UITableViewCell, UITextFieldDelegate {
         super.awakeFromNib()
         // Initialization code
         amountTX.delegate = self
+        addDoneButtonOnNumpad(self.amountTX)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -34,8 +35,54 @@ class Get_Size_Cell: UITableViewCell, UITextFieldDelegate {
     
     func textFieldDidEndEditing(textField: UITextField) {
         // Add to new_fooditem
+        print("Using \(measure_button.titleLabel!.text!) for MeasureType")
+        self.set_measure_type(measure_button.titleLabel!.text!)
+        
+
+    }
+    
+    
+    
+    
+    func addDoneButtonOnNumpad(textField: UITextField) {
+        
+        let keypadToolbar: UIToolbar = UIToolbar()
+        
+        // add a done button to the numberpad
+        keypadToolbar.items=[
+            UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: textField, action: #selector(UITextField.resignFirstResponder)),
+            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+        ]
+        keypadToolbar.sizeToFit()
+        // add a toolbar with a done button above the number pad
+        textField.inputAccessoryView = keypadToolbar
+    }
+    
+    
+    
+    
+    // MeasureToCellDelegate
+    func set_measure_type(measureType: String)
+    {
+        self.measure_button.setTitle(measureType, forState: .Normal)
+        print("About to run UseFood Delegate")
+        // transfer to CreateUniqueVC
+        
         if let delegate = delegate{
-            delegate.add_Measurement(measure_button.titleLabel!.text!, full_amount: Float(amountTX.text!)!, current_amount: Float(amountTX.text!)!)
+            print("Running UseFood Delegate")
+            
+            if measureType != "Of Them"{
+                delegate.add_Measurement(measureType, full_amount: Float(self.amountTX.text!)!, current_amount: Float(self.amountTX.text!)!)
+                delegate.add_MyListAmount(1)
+
+            }else{
+                // set the textfield to mylist, in new delegate func
+                // also add measurementType, set Value = 1 for full and current amounts
+                
+                delegate.add_Measurement(measureType, full_amount: 1, current_amount: 1)
+                delegate.add_MyListAmount(Int(self.amountTX.text!)!)
+                
+            }
         }
     }
     
