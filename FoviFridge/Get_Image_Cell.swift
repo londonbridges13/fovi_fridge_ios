@@ -12,6 +12,7 @@ class Get_Image_Cell: UITableViewCell, SettingImage {
 
     var delegate : UseFood?
 
+    @IBOutlet var cellLabel : UILabel!
     
     @IBOutlet var camera_button : UIButton!
     @IBOutlet var library_button : UIButton!
@@ -21,6 +22,13 @@ class Get_Image_Cell: UITableViewCell, SettingImage {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.cellLabel.roundCorners([.TopLeft, .BottomLeft], radius: 6)
+        
+        camera_button.layer.cornerRadius = 4
+        library_button.layer.cornerRadius = 4
+        ourImages_button.layer.cornerRadius = 4
+        
         camera_button.addTarget(self, action: "takePic", forControlEvents: .TouchUpInside)
         library_button.addTarget(self, action: "use_Library", forControlEvents: .TouchUpInside)
     }

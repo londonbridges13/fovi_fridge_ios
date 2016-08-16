@@ -18,12 +18,17 @@ class MeasurementViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet var cancelButton : UIButton!
     
+    @IBOutlet var topview : UIView!
+
     var delegate : MeasureToCellDelegate?
     
     var measures = ["Milliliters", "Grams", "Of Them", "Ounces"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.topview.roundCorners([.TopLeft, .TopRight], radius: 6)
+
         
         tableview.delegate = self
         tableview.dataSource = self
@@ -57,6 +62,7 @@ class MeasurementViewController: UIViewController, UITableViewDelegate, UITableV
         if let delegate = delegate{
             print("Running MeasureToCell Delegate")
             delegate.set_measure_type(measurementType)
+            self.cancelButton.sendActionsForControlEvents(.TouchUpInside)
         }
         self.view.fadeOut(duration: 0.3)
     }

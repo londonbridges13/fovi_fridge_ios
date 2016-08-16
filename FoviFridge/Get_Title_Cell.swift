@@ -28,12 +28,15 @@ class Get_Title_Cell: UITableViewCell, UITextFieldDelegate {
     
     private var titleField : TextField?
 
-    
+    @IBOutlet var cellLabel : UILabel!
+
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.cellLabel.roundCorners([.TopRight, .BottomRight], radius: 6)
+
         prepareTitleField()
     }
 
@@ -46,7 +49,7 @@ class Get_Title_Cell: UITableViewCell, UITextFieldDelegate {
     private func prepareTitleField() {
         var xp = self.frame.width / 2 - ((self.bounds.width - 20) / 2)
         titleField = TextField()
-        titleField!.frame =  CGRect(x: xp, y: 75, width: self.bounds.width - 20, height: 32)
+        titleField!.frame =  CGRect(x: xp, y: 125, width: self.bounds.width - 20, height: 32)
         titleField!.placeholder = "Enter Food"
         titleField!.detail = ""//"Error, this title already exists."
         self.titleField?.detailLabel.alpha = 0

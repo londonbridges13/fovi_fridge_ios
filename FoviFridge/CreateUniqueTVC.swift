@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-
+import Alamofire
 
 protocol SettingImage{
     func displayImage(image : UIImage)
@@ -24,7 +24,10 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     var food_title : String?
     
+    var dtint : UIView?
+    
     var measureVC : MeasurementViewController?
+    var categoryVC : ChooseCategoryVC?
     
     var set_image_delegate : SettingImage?
     
@@ -85,7 +88,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Normal Option
         if indexPath.row == 0{
             let cell : Get_Image_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Image_Cell", forIndexPath: indexPath) as! Get_Image_Cell
-            tableview.rowHeight = 205
+            tableview.rowHeight = 255
             // Configure the cell...
             cell.delegate = self
             self.set_image_delegate = cell
@@ -97,14 +100,14 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return cell
         }else if indexPath.row == 1{
             let cell : Get_Title_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Title_Cell", forIndexPath: indexPath) as! Get_Title_Cell
-            tableview.rowHeight = 230
+            tableview.rowHeight = 300
             // Configure the cell...
             cell.delegate = self
             
             return cell
         }else if indexPath.row == 2{
             let cell : Get_Size_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Size_Cell", forIndexPath: indexPath) as! Get_Size_Cell
-            tableView.rowHeight = 185
+            tableView.rowHeight = 225
             // Configure the cell...
             cell.delegate = self
             cell.measure_button.addTarget(self, action: "use_measureVC", forControlEvents: .TouchUpInside)
@@ -112,7 +115,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             return cell
         }else if indexPath.row == 3{
             let cell : Get_Expire_Cell = tableView.dequeueReusableCellWithIdentifier("Get_Expire_Cell", forIndexPath: indexPath) as! Get_Expire_Cell
-            tableView.rowHeight = 302
+            tableView.rowHeight = 312
             // Configure the cell...
             cell.delegate = self
 
@@ -272,13 +275,14 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         self.measureVC!.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
         self.measureVC?.cancelButton.addTarget(self, action: "remove_measureVC", forControlEvents: .TouchUpInside)
-        
+        self.measureVC?.cancelButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
         //To connect measureVC Delegate to Get_Size_Cell
         let index = NSIndexPath(forRow: 2, inSection: 0)
         var size_cell : Get_Size_Cell = tableview.cellForRowAtIndexPath(index) as! Get_Size_Cell
         self.measureVC?.delegate = size_cell
         
         //Load View
+        self.add_darktint()
         self.measureVC?.view.layer.cornerRadius = 6
         self.view.addSubview(measureVC!.view!)
     }
@@ -295,15 +299,22 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func show_chooseCategory(){
         print("Showing Category")
         
-        var categoryVC = storyboard?.instantiateViewControllerWithIdentifier("ChooseCategoryVC") as! ChooseCategoryVC
+        categoryVC = storyboard?.instantiateViewControllerWithIdentifier("ChooseCategoryVC") as! ChooseCategoryVC
 
-        var xp = categoryVC.view.frame.width / 2 - ((240) / 2)
+        var xp = categoryVC!.view.frame.width / 2 - ((240) / 2)
 
-        categoryVC.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
-        categoryVC.delegate = self
+        categoryVC!.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
+        categoryVC!.delegate = self
         
-        categoryVC.view.layer.cornerRadius = 6
-        self.view.addSubview(categoryVC.view)
+        self.add_darktint()
+        
+        categoryVC?.cancelButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        categoryVC?.doneButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        categoryVC?.doneButton.addTarget(self, action: "create_new_item", forControlEvents: .TouchUpInside)
+        categoryVC?.doneButton.addTarget(self, action: "suggest_it", forControlEvents: .TouchUpInside)
+        
+        categoryVC!.view.layer.cornerRadius = 6
+        self.view.addSubview(categoryVC!.view)
     }
     
 
@@ -375,8 +386,50 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     
     
+    // Finished 
+    func create_new_item(){
+        let realm = try! Realm()
+        
+        try! realm.write({ 
+            realm.add(new_fooditem)
+            print(new_fooditem)
+            print("Succussfully Created \(new_fooditem.title!)")
+        })
+    }
     
     
+    // Send Suggestion
+    func suggest_it(){
+        print("Posting...")
+        let title = "\(self.new_fooditem.title!)"
+        let m_type = "\(new_fooditem.measurement_type!)"
+        let full_amount = new_fooditem.full_amount.value!
+        let expires = new_fooditem.usually_expires.value!
+        
+        let parameters : [ String : AnyObject] = [
+            "title": title,
+            "is_basic": false,
+            "measurement_type": m_type,
+            "full_amount": full_amount,
+            "usually_expires": expires
+//            "categories": ["Fruits","On CounterTop", "Healthy", "Red"]
+            
+        ]
+        
+        Alamofire.request(.POST, "https://rocky-fjord-88249.herokuapp.com/api/v1/suggested_food_items", parameters: parameters, encoding: .JSON).response(completionHandler: {
+            (request, response, data, error) in
+            print("")
+            print(request)
+            print(response)
+            print(data)
+            print(error)
+        })
+        
+        print("Posted \(self.new_fooditem.title!) to SFI...")
+        
+    }
+    
+
     
     func show_Success(){
         var undesr = Success_View()
@@ -393,6 +446,30 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         undesr.alpha = 0
         self.view.addSubview(undesr)
     }
+    
+    
+    
+    
+    
+    func add_darktint(){
+        dtint = UIView()
+        
+        if dtint?.alpha != 0.3{
+            dtint?.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.frame.height)
+            dtint?.backgroundColor = UIColor.blackColor()
+            dtint?.alpha = 0.3
+            self.view.addSubview(dtint!)
+        }else{
+            dtint?.fadeOut()
+        }
+    }
+    
+    func remove_darktint(){
+        dtint?.fadeOut(duration: 0.2)
+    }
+
+    
+    
     
     
     

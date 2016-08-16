@@ -82,7 +82,9 @@ class Food_Quantity_View: UIView {
                     print("This is the Category: \(same_food!.food_category)")
                     // Making sure that the fooditem saved has this new food_category
                     let food_category = Category() //fooditem.food_category
-                    food_category.category = fooditem.food_category!
+                    if fooditem.food_category != nil{
+                        food_category.category = fooditem.food_category!
+                    }
                     var i = false
                     for cat in same_food!.category{
                         if cat.category == food_category.category{

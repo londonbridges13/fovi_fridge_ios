@@ -17,6 +17,7 @@ class Get_Expire_Cell: UITableViewCell {
     @IBOutlet var two_week_button : UIButton!
     @IBOutlet var month_button : UIButton!
     @IBOutlet var longTime_button : UIButton!
+    @IBOutlet var cellLabel : UILabel!
 
     var expires : Int?
     
@@ -30,6 +31,8 @@ class Get_Expire_Cell: UITableViewCell {
         longTime_button.addTarget(self, action: "longTime", forControlEvents: .TouchUpInside)
         
         remove_all_tints()
+        
+        self.cellLabel.roundCorners([.TopRight, .BottomRight], radius: 6)
 
     }
 

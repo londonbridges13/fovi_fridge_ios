@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol ChooseCategoryDelegate {
     func choose_categories(category : String)
@@ -20,6 +21,8 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     @IBOutlet var cancelButton : UIButton!
     @IBOutlet var doneButton : UIButton!
     
+    @IBOutlet var topview : UIView!
+
     var delegate : ChooseCategoryDelegate?
     
     var categories = [String]()
@@ -33,8 +36,14 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         tableview.dataSource = self
         self.tableview.allowsMultipleSelection = true
         
+        self.topview.roundCorners([.TopLeft, .TopRight], radius: 6)
+        
+        self.doneButton.userInteractionEnabled = false
+        
         self.doneButton.addTarget(self, action: "pressedDone", forControlEvents: .TouchUpInside)
         self.cancelButton.addTarget(self, action: "remove_categoryVC", forControlEvents: .TouchUpInside)
+        
+        self.get_all_categories()
         
     }
     
@@ -57,10 +66,19 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         return cell
     }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.Checkmark
         
+        print("Added \(self.categories[indexPath.row])")
         addCategories.append(self.categories[indexPath.row])
+        
+        if addCategories.count > 0{
+            self.doneButton.userInteractionEnabled = true
+        }else{
+            self.doneButton.userInteractionEnabled = false
+        }
+
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -73,11 +91,17 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
             print("Removed")
         }
         
+        if addCategories.count > 0{
+            self.doneButton.userInteractionEnabled = true
+        }else{
+            self.doneButton.userInteractionEnabled = false
+        }
     }
 
 
     
     func pressedDone(){
+        print("Pressed Done")
         
         if self.addCategories.count > 0{
             if let delegate = delegate{
@@ -97,6 +121,34 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     func remove_categoryVC(){
         self.view.fadeOut(duration: 0.2)
     }
+    
+    
+    
+    
+    
+    
+    // Categories Query   /    Run this in viewWillLoad
+    func get_all_categories(){
+        self.categories.removeAll()
+        //Create an Array of all Categories
+        print("Getting All Categories")
+        let realm = try! Realm()
+        let all_categories = realm.objects(Category)
+        for each in all_categories{
+            if self.categories.contains(each.category) == false{
+                self.categories.append(each.category)
+                print("Appended : \(each.category)")
+                self.tableview.reloadData()
+            }else{
+                print("self.categories Already Contains : \(each.category)")
+            }
+        }
+    }
+    
+
+    
+    
+    
     
     
     /*

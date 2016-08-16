@@ -14,10 +14,13 @@ class Get_Size_Cell: UITableViewCell, UITextFieldDelegate, MeasureToCellDelegate
     
     @IBOutlet var measure_button : UIButton!
     @IBOutlet var amountTX : UITextField!
+    @IBOutlet var cellLabel : UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.cellLabel.roundCorners([.TopLeft, .BottomLeft], radius: 6)
+
         amountTX.delegate = self
         addDoneButtonOnNumpad(self.amountTX)
     }
