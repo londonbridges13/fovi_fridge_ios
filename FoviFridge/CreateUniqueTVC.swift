@@ -90,6 +90,9 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             cell.delegate = self
             self.set_image_delegate = cell
             cell.ourImages_button.addTarget(self, action: "use_our_images", forControlEvents: .TouchUpInside)
+            if self.new_fooditem.image != nil{
+                cell.food_image.image = UIImage(data: self.new_fooditem.image!)
+            }
 
             return cell
         }else if indexPath.row == 1{
@@ -120,7 +123,8 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             tableView.rowHeight = 100
             
             cell.doneButton.addTarget(self, action: "check_everything", forControlEvents: .TouchUpInside)
-
+            cell.selectionStyle = .None
+            
             return cell
         }
         
@@ -148,9 +152,11 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.new_fooditem.image = UIImagePNGRepresentation(image)
         
         // For ChooseImageVC
-        let index = NSIndexPath(forRow: 0, inSection: 0)
-        var image_cell : Get_Image_Cell = tableview.cellForRowAtIndexPath(index) as! Get_Image_Cell
-        image_cell.food_image.image = image
+//        let index = NSIndexPath(forRow: 0, inSection: 0)
+//        var image_cell : Get_Image_Cell = tableview.cellForRowAtIndexPath(index) as! Get_Image_Cell
+//        image_cell.food_image.image = image
+        
+        tableview.reloadData()
         
         print(new_fooditem)
     }
@@ -289,14 +295,14 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func show_chooseCategory(){
         print("Showing Category")
         
-        var categoryVC = ChooseCategoryVC()
-        
-        var xp = measureVC!.view.frame.width / 2 - ((240) / 2)
+        var categoryVC = storyboard?.instantiateViewControllerWithIdentifier("ChooseCategoryVC") as! ChooseCategoryVC
+
+        var xp = categoryVC.view.frame.width / 2 - ((240) / 2)
 
         categoryVC.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
         categoryVC.delegate = self
         
-        self.measureVC?.view.layer.cornerRadius = 6
+        categoryVC.view.layer.cornerRadius = 6
         self.view.addSubview(categoryVC.view)
     }
     
@@ -337,7 +343,6 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }else{
             // Problem here, scroll to this cell
             let index = NSIndexPath(forRow: 2, inSection: 0)
-//            tableview.reloadData()
             tableview.scrollToRowAtIndexPath(index, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
         }
     }
