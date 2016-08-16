@@ -112,6 +112,9 @@
 		3EAF0E821D40569800A302B0 /* NVActivityIndicatorShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5C1D40569800A302B0 /* NVActivityIndicatorShape.swift */; };
 		3EAF0E831D40569800A302B0 /* NVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5E1D40569800A302B0 /* NVActivityIndicatorView.swift */; };
 		3EAF0E841D40569800A302B0 /* NVActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAF0E5F1D40569800A302B0 /* NVActivityIndicatorViewable.swift */; };
+		3EB582571D62B9C100AF27B0 /* ChooseCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB582561D62B9C000AF27B0 /* ChooseCategoryVC.swift */; };
+		3EB582591D62BA0600AF27B0 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB582581D62BA0600AF27B0 /* CategoryCell.swift */; };
+		3EB5825B1D62CADE00AF27B0 /* DoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB5825A1D62CADE00AF27B0 /* DoneCell.swift */; };
 		3EC508991D20491500630E8F /* FoodItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC508981D20491500630E8F /* FoodItemCollectionViewCell.swift */; };
 		3EC508E41D2213DC00630E8F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508DF1D2212B400630E8F /* Realm.framework */; };
 		3EC508E51D2213DC00630E8F /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC508DF1D2212B400630E8F /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -278,6 +281,9 @@
 		3EAF0E5D1D40569800A302B0 /* NVActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NVActivityIndicatorView.h; sourceTree = "<group>"; };
 		3EAF0E5E1D40569800A302B0 /* NVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorView.swift; sourceTree = "<group>"; };
 		3EAF0E5F1D40569800A302B0 /* NVActivityIndicatorViewable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorViewable.swift; sourceTree = "<group>"; };
+		3EB582561D62B9C000AF27B0 /* ChooseCategoryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCategoryVC.swift; sourceTree = "<group>"; };
+		3EB582581D62BA0600AF27B0 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		3EB5825A1D62CADE00AF27B0 /* DoneCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoneCell.swift; sourceTree = "<group>"; };
 		3EC508981D20491500630E8F /* FoodItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		3EC508DF1D2212B400630E8F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		3EC508E01D2212B400630E8F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
@@ -396,6 +402,7 @@
 				3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */,
 				3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */,
 				3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */,
+				3EB5825A1D62CADE00AF27B0 /* DoneCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -555,6 +562,7 @@
 		3E9E373C1D4D613100A15381 /* CreateFoodItem */ = {
 			isa = PBXGroup;
 			children = (
+				3EB582551D62B96800AF27B0 /* Choose Category */,
 				3E14396E1D5D3704001C9C6B /* Measurement View */,
 				3E70573B1D554295009E9031 /* Creation Views */,
 				3E14397B1D5D3D54001C9C6B /* Cells */,
@@ -733,6 +741,15 @@
 				3EAF0E591D40569700A302B0 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		3EB582551D62B96800AF27B0 /* Choose Category */ = {
+			isa = PBXGroup;
+			children = (
+				3EB582561D62B9C000AF27B0 /* ChooseCategoryVC.swift */,
+				3EB582581D62BA0600AF27B0 /* CategoryCell.swift */,
+			);
+			name = "Choose Category";
 			sourceTree = "<group>";
 		};
 		3EC508E31D2212D600630E8F /* Realm */ = {
@@ -1131,6 +1148,7 @@
 				3E4FF67F1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift in Sources */,
 				3EAF0E7C1D40569800A302B0 /* NVActivityIndicatorAnimationPacman.swift in Sources */,
 				3E9E37411D4D62A400A15381 /* Food_Quantity_View.swift in Sources */,
+				3EB582571D62B9C100AF27B0 /* ChooseCategoryVC.swift in Sources */,
 				3EAF0E351D3FF02F00A302B0 /* CVCalendarKitOperators.swift in Sources */,
 				3E715F8C1D5F0B8D009B462B /* edit_cell_1.swift in Sources */,
 				3EAF0E731D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
@@ -1146,6 +1164,7 @@
 				3EAF0E621D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				3EAF0E7B1D40569800A302B0 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
 				3EE596F71D4C05010088BE69 /* TutorialPageViewController.swift in Sources */,
+				3EB582591D62BA0600AF27B0 /* CategoryCell.swift in Sources */,
 				3EAF0E711D40569800A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				3E4FF6811D1CED9A005BFFF4 /* MyFoodMiniCVC.swift in Sources */,
 				3E14397A1D5D3C9B001C9C6B /* Get_Expire_Cell.swift in Sources */,
@@ -1161,6 +1180,7 @@
 				3EAF0E331D3FDE8C00A302B0 /* UserDetails.swift in Sources */,
 				3E4FF67D1D1CAAEC005BFFF4 /* ChooseFoodVC.swift in Sources */,
 				3E0B52D61D4361DB007138CE /* SeeYouLater_View.swift in Sources */,
+				3EB5825B1D62CADE00AF27B0 /* DoneCell.swift in Sources */,
 				3E1438D41D57DF8D001C9C6B /* EmailCell.swift in Sources */,
 				3E1439741D5D3BDE001C9C6B /* Get_Image_Cell.swift in Sources */,
 				3EC757121D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift in Sources */,

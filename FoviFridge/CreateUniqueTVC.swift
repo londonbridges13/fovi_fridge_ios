@@ -15,7 +15,7 @@ protocol SettingImage{
 }
 
 
-class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UseFood, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UseFood, UINavigationControllerDelegate, UIImagePickerControllerDelegate, ChooseCategoryDelegate {
 
     
     @IBOutlet var tableview : UITableView!
@@ -35,6 +35,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         self.tableview.delegate = self
         self.tableview.dataSource = self
+        
         
         // Setting Default Values for New_Fooditem
         self.new_fooditem.measurement_type = "Ounces"
@@ -115,8 +116,11 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("done", forIndexPath: indexPath)
+            let cell : DoneCell = tableView.dequeueReusableCellWithIdentifier("done", forIndexPath: indexPath) as! DoneCell
             tableView.rowHeight = 100
+            
+            cell.doneButton.addTarget(self, action: "check_everything", forControlEvents: .TouchUpInside)
+
             return cell
         }
         
@@ -277,6 +281,94 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func remove_measureVC(){
         self.measureVC?.view.fadeOut()
     }
+    
+    
+    
+    
+    // Show ChooseCategoryVC
+    func show_chooseCategory(){
+        print("Showing Category")
+        
+        var categoryVC = ChooseCategoryVC()
+        
+        var xp = measureVC!.view.frame.width / 2 - ((240) / 2)
+
+        categoryVC.view.frame = CGRect(x: xp, y: 72, width: 240, height: 400)
+        categoryVC.delegate = self
+        
+        self.measureVC?.view.layer.cornerRadius = 6
+        self.view.addSubview(categoryVC.view)
+    }
+    
+
+    
+    // ChooseCategory Delegates
+    func choose_categories(category : String){
+        var cat = Category()
+        cat.category = category
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            self.new_fooditem.category.append(cat)
+            print(self.new_fooditem)
+            print("Appended \(cat.category) to NewFooditem")
+            print("Number of Categories = \(self.new_fooditem.category.count)")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    // Begin Checking
+    
+    func check_everything(){
+        check_title()
+    }
+    
+    func check_title(){
+        print("Checking Title")
+        if new_fooditem.title?.characters.count >= 1{
+            // Good to go, continue checking
+            check_expiration()
+        }else{
+            // Problem here, scroll to this cell
+            let index = NSIndexPath(forRow: 2, inSection: 0)
+//            tableview.reloadData()
+            tableview.scrollToRowAtIndexPath(index, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
+        }
+    }
+    
+    
+    func check_expiration(){
+        print("Checking Expiration")
+        if new_fooditem.usually_expires.value != nil{
+            // Good to go, continue checking
+            check_image()
+        }else{
+            // Problem here, scroll to this cell
+            var index = NSIndexPath(forRow: 3, inSection: 0)
+            tableview.scrollToRowAtIndexPath(index, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+        }
+    }
+
+    func check_image(){
+        print("Checking Image")
+        if self.new_fooditem.image != nil{
+            // Good to go, display choose categoryVC
+            
+            self.show_chooseCategory()
+        }else{
+            // Problem here, display chooseimageVC
+            self.performSegueWithIdentifier("choose_image", sender: self)
+            
+        }
+    }
+
+    
     
     
     
