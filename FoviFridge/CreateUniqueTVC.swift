@@ -141,8 +141,13 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func add_Image(image : UIImage){ // This adds the image to a variable in the CreateFoodTVC
         print("Adding Image")
-        
         self.new_fooditem.image = UIImagePNGRepresentation(image)
+        
+        // For ChooseImageVC
+        let index = NSIndexPath(forRow: 0, inSection: 0)
+        var image_cell : Get_Image_Cell = tableview.cellForRowAtIndexPath(index) as! Get_Image_Cell
+        image_cell.food_image.image = image
+        
         print(new_fooditem)
     }
     func add_Expiration(expires : Int){ // This adds the expiration to a variable in the CreateFoodTVC

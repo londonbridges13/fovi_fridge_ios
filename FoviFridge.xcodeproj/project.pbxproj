@@ -50,6 +50,7 @@
 		3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */; };
 		3E671DF91D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */; };
 		3E671DFB1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */; };
+		3E671DFF1D62662300CCE1BF /* ChooseImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DFE1D62662300CCE1BF /* ChooseImageCell.swift */; };
 		3E70573D1D554319009E9031 /* ShowAgain_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E70573C1D554319009E9031 /* ShowAgain_AlertView.swift */; };
 		3E70573F1D5544A2009E9031 /* ShowAgain_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E70573E1D5544A2009E9031 /* ShowAgain_AlertView.xib */; };
 		3E7057411D5556BD009E9031 /* Success_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7057401D5556BD009E9031 /* Success_View.swift */; };
@@ -207,6 +208,7 @@
 		3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryCell.swift; sourceTree = "<group>"; };
 		3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCategory_AlertView.swift; sourceTree = "<group>"; };
 		3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteCategory_AlertView.xib; sourceTree = "<group>"; };
+		3E671DFE1D62662300CCE1BF /* ChooseImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseImageCell.swift; sourceTree = "<group>"; };
 		3E70573C1D554319009E9031 /* ShowAgain_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAgain_AlertView.swift; sourceTree = "<group>"; };
 		3E70573E1D5544A2009E9031 /* ShowAgain_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowAgain_AlertView.xib; sourceTree = "<group>"; };
 		3E7057401D5556BD009E9031 /* Success_View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Success_View.swift; sourceTree = "<group>"; };
@@ -435,6 +437,23 @@
 			name = Alert;
 			sourceTree = "<group>";
 		};
+		3E671DFC1D6265E700CCE1BF /* ChooseImageVC */ = {
+			isa = PBXGroup;
+			children = (
+				3E671DFD1D62660000CCE1BF /* Cells */,
+				3E715F881D5EE456009B462B /* ChooseImageVC.swift */,
+			);
+			name = ChooseImageVC;
+			sourceTree = "<group>";
+		};
+		3E671DFD1D62660000CCE1BF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3E671DFE1D62662300CCE1BF /* ChooseImageCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		3E70573B1D554295009E9031 /* Creation Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -540,7 +559,7 @@
 				3E70573B1D554295009E9031 /* Creation Views */,
 				3E14397B1D5D3D54001C9C6B /* Cells */,
 				3E4FF67E1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift */,
-				3E715F881D5EE456009B462B /* ChooseImageVC.swift */,
+				3E671DFC1D6265E700CCE1BF /* ChooseImageVC */,
 			);
 			name = CreateFoodItem;
 			sourceTree = "<group>";
@@ -1063,6 +1082,7 @@
 				3E5FAAE81D3D898400E94EA8 /* MultiChoice-Other_Cell.swift in Sources */,
 				3EAF0E841D40569800A302B0 /* NVActivityIndicatorViewable.swift in Sources */,
 				3EAF0E721D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
+				3E671DFF1D62662300CCE1BF /* ChooseImageCell.swift in Sources */,
 				3EAF0E661D40569800A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				3EAF0E371D3FF09D00A302B0 /* CVCalendarKitExtensions.swift in Sources */,
 				3E5FAAEC1D3D956D00E94EA8 /* DOFavoriteButton.swift in Sources */,
