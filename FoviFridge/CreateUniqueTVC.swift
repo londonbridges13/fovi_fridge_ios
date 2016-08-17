@@ -20,6 +20,10 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     @IBOutlet var tableview : UITableView!
     
+    @IBOutlet var cancelbutton : UIButton!
+    
+    var actIndi : NVActivityIndicatorView?
+
     var imagePicker: UIImagePickerController!
 
     var food_title : String?
@@ -152,7 +156,8 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     func add_Image(image : UIImage){ // This adds the image to a variable in the CreateFoodTVC
         print("Adding Image")
-        self.new_fooditem.image = UIImagePNGRepresentation(image)
+        let image_data = image.mediumQualityJPEGNSData
+        self.new_fooditem.image = image_data//UIImagePNGRepresentation(image)
         
         // For ChooseImageVC
 //        let index = NSIndexPath(forRow: 0, inSection: 0)
@@ -310,6 +315,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         categoryVC?.cancelButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
         categoryVC?.doneButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        categoryVC?.doneButton.addTarget(self, action: "loading", forControlEvents: .TouchUpInside)
         categoryVC?.doneButton.addTarget(self, action: "create_new_item", forControlEvents: .TouchUpInside)
         categoryVC?.doneButton.addTarget(self, action: "suggest_it", forControlEvents: .TouchUpInside)
         
@@ -366,7 +372,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             check_image()
         }else{
             // Problem here, scroll to this cell
-            var index = NSIndexPath(forRow: 3, inSection: 0)
+            let index = NSIndexPath(forRow: 3, inSection: 0)
             tableview.scrollToRowAtIndexPath(index, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
         }
     }
@@ -384,7 +390,46 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
 
+    func loading(){
+        // show loading indicator
+        var xp = view.frame.width / 2 - ((100) / 2)
+        var yp = view.frame.height / 2 - ((100) / 2)
+
+        var loadview = UIView(frame: CGRect(x: xp, y: yp, width: 100, height: 100))
+        
+        let bluecolor = UIColor(red: 0, green: 153/255, blue: 241/255, alpha: 1)
+        loadview.backgroundColor = bluecolor
+        loadview.layer.cornerRadius = 9
+        
+        self.view.addSubview(loadview)
+        
+        let vdelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(vdelayTime, dispatch_get_main_queue()) {
+
+            var size : CGFloat = 37
+            var xxp = loadview.frame.width / 2 - (size / 2)
+            var hp = loadview.frame.height / 2 - (size / 2)
+            let frame = CGRect(x: xxp, y: hp, width: size, height: size)
+            
+            self.actIndi = NVActivityIndicatorView(frame: frame, type: .LineScale, color: UIColor.whiteColor(), padding: 3)
+            self.actIndi?.startAnimation()
+            self.actIndi?.alpha = 1
+            
+            loadview.addSubview(self.actIndi!)
+            
+//            self.actIndi?.fadeIn()
+        }
+
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.unwind()
+        }
+    }
     
+    func unwind(){
+        self.cancelbutton.sendActionsForControlEvents(.TouchUpInside)
+    }
     
     // Finished 
     func create_new_item(){
@@ -399,24 +444,36 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     // Send Suggestion
-    func suggest_it(){
-        print("Posting...")
+    
+    func pre_send(){
         let title = "\(self.new_fooditem.title!)"
         let m_type = "\(new_fooditem.measurement_type!)"
         let full_amount = new_fooditem.full_amount.value!
         let expires = new_fooditem.usually_expires.value!
         
-        let parameters : [ String : AnyObject] = [
+
+    }
+    func suggest_it(){//(title : String, m_type : String, full_amount : Float, expires : Int){
+        print("Posting...")
+        
+        let title = "\(self.new_fooditem.title!)"
+        let m_type = "\(new_fooditem.measurement_type!)"
+        let full_amount = new_fooditem.full_amount.value!
+        let expires = new_fooditem.usually_expires.value!
+        
+
+        
+        let parameters = [
             "title": title,
             "is_basic": false,
             "measurement_type": m_type,
             "full_amount": full_amount,
-            "usually_expires": expires
-//            "categories": ["Fruits","On CounterTop", "Healthy", "Red"]
+            "usually_expires": expires,
+            "categories": ["Fruits","On CounterTop", "Healthy", "Red"]
             
         ]
         
-        Alamofire.request(.POST, "https://rocky-fjord-88249.herokuapp.com/api/v1/suggested_food_items", parameters: parameters, encoding: .JSON).response(completionHandler: {
+        Alamofire.request(.POST, "https://rocky-fjord-88249.herokuapp.com/api/v1/suggested_food_items", parameters: parameters as! [String : AnyObject], encoding: .JSON).response(completionHandler: {
             (request, response, data, error) in
             print("")
             print(request)
@@ -483,4 +540,14 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     */
 
+}
+
+
+extension UIImage {
+    var uncompressedPNGData: NSData      { return UIImagePNGRepresentation(self)!        }
+    var highestQualityJPEGNSData: NSData { return UIImageJPEGRepresentation(self, 1.0)!  }
+    var highQualityJPEGNSData: NSData    { return UIImageJPEGRepresentation(self, 0.75)! }
+    var mediumQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.6)!  }
+    var lowQualityJPEGNSData: NSData     { return UIImageJPEGRepresentation(self, 0.25)! }
+    var lowestQualityJPEGNSData:NSData   { return UIImageJPEGRepresentation(self, 0.0)!  }
 }

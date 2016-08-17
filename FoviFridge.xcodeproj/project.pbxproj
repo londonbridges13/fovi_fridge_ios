@@ -47,6 +47,9 @@
 		3E5FAAEF1D3D998300E94EA8 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAAEE1D3D998300E94EA8 /* circle.png */; };
 		3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */; };
 		3E5FAB2F1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */; };
+		3E63D6EA1D64C006001063F8 /* FullFoodCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6E91D64C006001063F8 /* FullFoodCell1.swift */; };
+		3E63D6EC1D64C03A001063F8 /* FullFoodFridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6EB1D64C03A001063F8 /* FullFoodFridgeCell.swift */; };
+		3E63D6EE1D64C053001063F8 /* FullFoodShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6ED1D64C053001063F8 /* FullFoodShoppingCell.swift */; };
 		3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */; };
 		3E671DF91D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */; };
 		3E671DFB1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */; };
@@ -208,6 +211,9 @@
 		3E5FAAEE1D3D998300E94EA8 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		3E5FAB2C1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThankYou_SurveyView.swift; sourceTree = "<group>"; };
 		3E5FAB2E1D3DB0EA00E94EA8 /* ThankYou_SurveyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThankYou_SurveyView.xib; sourceTree = "<group>"; };
+		3E63D6E91D64C006001063F8 /* FullFoodCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodCell1.swift; sourceTree = "<group>"; };
+		3E63D6EB1D64C03A001063F8 /* FullFoodFridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodFridgeCell.swift; sourceTree = "<group>"; };
+		3E63D6ED1D64C053001063F8 /* FullFoodShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodShoppingCell.swift; sourceTree = "<group>"; };
 		3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryCell.swift; sourceTree = "<group>"; };
 		3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCategory_AlertView.swift; sourceTree = "<group>"; };
 		3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteCategory_AlertView.xib; sourceTree = "<group>"; };
@@ -382,6 +388,9 @@
 			isa = PBXGroup;
 			children = (
 				3E14396C1D5D1A3B001C9C6B /* Full_Food_VC.swift */,
+				3E63D6E91D64C006001063F8 /* FullFoodCell1.swift */,
+				3E63D6EB1D64C03A001063F8 /* FullFoodFridgeCell.swift */,
+				3E63D6ED1D64C053001063F8 /* FullFoodShoppingCell.swift */,
 			);
 			name = "Full Food View";
 			sourceTree = "<group>";
@@ -1101,6 +1110,7 @@
 				3EAF0E721D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				3E671DFF1D62662300CCE1BF /* ChooseImageCell.swift in Sources */,
 				3EAF0E661D40569800A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
+				3E63D6EE1D64C053001063F8 /* FullFoodShoppingCell.swift in Sources */,
 				3EAF0E371D3FF09D00A302B0 /* CVCalendarKitExtensions.swift in Sources */,
 				3E5FAAEC1D3D956D00E94EA8 /* DOFavoriteButton.swift in Sources */,
 				3EAF0E311D3F3B0F00A302B0 /* LongAnswer_SurveyQ.swift in Sources */,
@@ -1118,6 +1128,7 @@
 				3E4FF62D1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift in Sources */,
 				3EAF0E611D40569800A302B0 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				3EAF0E691D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
+				3E63D6EC1D64C03A001063F8 /* FullFoodFridgeCell.swift in Sources */,
 				3E3C29E31D5113F50095A93B /* FridgeFoodItemCell.swift in Sources */,
 				3EFE53601D427BA6002EDCD7 /* SurveyQuestion.swift in Sources */,
 				3E1439721D5D37EA001C9C6B /* MeasurementsCell.swift in Sources */,
@@ -1153,6 +1164,7 @@
 				3E715F8C1D5F0B8D009B462B /* edit_cell_1.swift in Sources */,
 				3EAF0E731D40569800A302B0 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				3E5FAAE11D3AC66600E94EA8 /* MultiChoice_SurveyQ.swift in Sources */,
+				3E63D6EA1D64C006001063F8 /* FullFoodCell1.swift in Sources */,
 				3E5FAB2D1D3DB0C100E94EA8 /* ThankYou_SurveyView.swift in Sources */,
 				3E4FF6771D1C6478005BFFF4 /* ShoppingListTVC.swift in Sources */,
 				3E671DF91D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift in Sources */,

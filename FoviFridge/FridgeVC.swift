@@ -53,6 +53,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         checkSurvey()
 //        createDummyUser()
         
+        self.view.alpha = 0
+        self.view.fadeIn(duration: 0.45)
 
         // TableView
         self.tableView.delegate = self
@@ -203,6 +205,12 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        searchBar?.textField.endEditing(true)
+        
+        let fooditem = self.searchable_array[indexPath.row].fooditem
+        self.show_full_foodview(fooditem)
+    }
     
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -457,7 +465,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     
     
-    
     // Categories Query   /    Run this in viewWillLoad
     func get_all_categories(){
         self.categories.removeAll()
@@ -466,7 +473,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         let realm = try! Realm()
         let all_categories = realm.objects(Category)
         for each in all_categories{
-            if self.categories.contains(each.category) == false{
+            if self.categories.contains(each.category) == false && each.category != ""{
                 self.categories.append(each.category)
                 print("Appended : \(each.category)")
                 self.tableView.reloadData()
@@ -489,11 +496,16 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
         self.add_tint()
         self.fullview = storyboard?.instantiateViewControllerWithIdentifier("Full_Food_VC") as! Full_Food_VC
-        var xp = self.view.frame.width / 2 - (320 / 2)
+        
+        let xp = self.view.frame.width / 2 - (320 / 2)
 
-        fullview!.view.frame = CGRect(x: xp, y: 50, width: 320, height: 462)
+        fullview!.view.frame = CGRect(x: xp, y: 0, width: 320, height: 512)
         fullview!.fooditem = fooditem
         fullview!.view.alpha = 0
+        fullview!.doneButton.layer.cornerRadius = 6
+//        fullview!.tableView.layer.cornerRadius = 12
+//        fullview!.doneView.roundCorners([.BottomRight, .BottomLeft], radius: 21)
+        fullview!.doneView.layer.masksToBounds = true
         fullview!.doneButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         self.view.addSubview(fullview!.view)
         self.addChildViewController(fullview!)

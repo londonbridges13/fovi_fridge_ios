@@ -21,6 +21,11 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var edit_categoryVC : EditCategoryVC?
     
+    var tint : UIView?
+    
+    var fullview : Full_Food_VC?
+
+    
     @IBOutlet var tableview : UITableView!
     @IBOutlet var editButton : UIButton!
     @IBOutlet var doneButton : UIButton!
@@ -173,7 +178,8 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        let fooditem = self.food[indexPath.row]
+        self.show_full_foodview(fooditem)
     }
   
     
@@ -290,6 +296,56 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    
+    
+    
+    
+    // Show Fooditem
+    func show_full_foodview(fooditem : FoodItem){
+        print("Showing \(fooditem.title!)")
+        
+        self.add_tint()
+        self.fullview = storyboard?.instantiateViewControllerWithIdentifier("Full_Food_VC") as! Full_Food_VC
+        
+        let xp = self.view.frame.width / 2 - (320 / 2)
+        
+        fullview!.view.frame = CGRect(x: xp, y: 0, width: 320, height: 512)
+        fullview!.fooditem = fooditem
+        fullview!.view.alpha = 0
+        fullview!.doneButton.layer.cornerRadius = 6
+        //        fullview!.tableView.layer.cornerRadius = 12
+        //        fullview!.doneView.roundCorners([.BottomRight, .BottomLeft], radius: 21)
+        fullview!.doneView.layer.masksToBounds = true
+        fullview!.doneButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        self.view.addSubview(fullview!.view)
+        self.addChildViewController(fullview!)
+        fullview!.view.fadeIn(duration: 0.3)
+        
+        
+    }
+    
+
+    
+    func add_tint(){
+        self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.alpha = 0.4
+        view.addSubview(self.tint!)
+    }
+    
+    func remove_tint(){
+        print("Removing Tint")
+        self.tint!.fadeOut()
+        self.tint!.alpha = 0
+        self.fullview?.view.fadeOut()
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.fullview?.view.removeFromSuperview()
+        }
+    }
+    
+    
+
     
     
     
