@@ -37,7 +37,7 @@ class Food_Quantity_View: UIView {
     func pre_query(){
         let realm = try! Realm()
         print("Searching Realm for \(fooditem.title!)")
-        let predicate = NSPredicate(format: "title = '\(fooditem.title!)'")
+        let predicate = NSPredicate(format: "title = '\(fooditem.title!)' AND is_basic = \(fooditem.is_basic)")
         self.same_food = realm.objects(FoodItem).filter(predicate).first
         print("We have this item \(same_food?.title)")
         if same_food != nil{
@@ -165,6 +165,10 @@ class Food_Quantity_View: UIView {
             self.add_food_buttom.setTitle("Done", forState: .Normal)
         }else{
             // Do nothing, stepper = 0
+            print("Stepper value = nil!!!")
+//            same_food!.mylist_amount.value = 0
+//            self.stepper_displays_current = true
+
         }
     }
     

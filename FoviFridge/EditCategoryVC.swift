@@ -186,6 +186,7 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         add_darktint()
         
         var alert = DeleteCategory_AlertView()
+        
         let xp = self.view.frame.width / 2 - (250 / 2)
         alert.frame = CGRect(x: xp, y: 75, width: 250, height: 300)
         alert.yesButton.addTarget(self, action: "yes_delete_whole_category", forControlEvents: .TouchUpInside)
@@ -195,6 +196,8 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.view.addSubview(alert)
         alert.fadeIn(duration: 0.3)
+        
+        
     }
     
     

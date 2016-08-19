@@ -26,6 +26,12 @@ class DeleteCategory_AlertView: UIView {
     
     func fadeAway(){
         view.fadeOut(duration: 0.3)
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.view.alpha = 0
+            self.removeFromSuperview()
+            self.view.removeFromSuperview()
+        }
     }
     
     

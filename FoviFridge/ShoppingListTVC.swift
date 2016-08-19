@@ -28,11 +28,9 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.dataSource = self
-        tableView.delegate = self
+
         addToListButton.layer.cornerRadius = 6
         
-        self.get_errands()
 
 //        tableView.layer.cornerRadius = 9.0
 //        tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -43,6 +41,15 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        self.get_errands()
+
     }
     override func prefersStatusBarHidden() -> Bool {
         return true

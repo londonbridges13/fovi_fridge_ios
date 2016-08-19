@@ -75,8 +75,22 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: FridgeFoodItemCell = collectionView.dequeueReusableCellWithReuseIdentifier("FridgeFoodItem", forIndexPath: indexPath) as! FridgeFoodItemCell
-//        cell.layer.cornerRadius = 12
+        cell.layer.cornerRadius = 12
+        cell.layer.masksToBounds = true
 
+//        cell.quantityLabel.alpha = 0
+        cell.quantityLabel.layer.cornerRadius = 11
+        cell.quantityLabel.layer.masksToBounds = true
+
+//        let lred = UIColor(red: 255/255, green: 235/255, blue: 242/255, alpha: 1)
+        
+        if self.food[indexPath.row].fridge_amount.value != nil{
+            cell.quantityLabel.text = "\(self.food[indexPath.row].fridge_amount.value!)"
+        }else{
+            cell.quantityLabel.text = "0"
+        }
+        
+        
         if self.food[indexPath.row].image != nil{
             cell.foodImage.image = UIImage(data: self.food[indexPath.row].image!)
         }

@@ -413,11 +413,11 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             
             self.actIndi = NVActivityIndicatorView(frame: frame, type: .LineScale, color: UIColor.whiteColor(), padding: 3)
             self.actIndi?.startAnimation()
-            self.actIndi?.alpha = 1
+            self.actIndi?.alpha = 0
             
             loadview.addSubview(self.actIndi!)
             
-//            self.actIndi?.fadeIn()
+            self.actIndi?.fadeIn(duration: 0.2)
         }
 
         

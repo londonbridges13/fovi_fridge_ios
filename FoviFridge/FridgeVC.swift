@@ -169,6 +169,9 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             cell.categoryButton.setTitle("\(self.categories[indexPath.row - 1])", forState: .Normal)
             tableView.rowHeight = 148.0
             
+            cell.alpha = 0
+            cell.fadeIn()
+            
             return cell
         }else{
             // display searched items and categories
@@ -206,10 +209,15 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        searchBar?.textField.endEditing(true)
+
         
-        let fooditem = self.searchable_array[indexPath.row].fooditem
-        self.show_full_foodview(fooditem)
+        if is_searching == true{
+            let fooditem = self.searchable_array[indexPath.row].fooditem
+            searchBar?.textField.endEditing(true)
+            self.show_full_foodview(fooditem)
+
+        }
+        
     }
     
     
@@ -507,6 +515,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 //        fullview!.doneView.roundCorners([.BottomRight, .BottomLeft], radius: 21)
         fullview!.doneView.layer.masksToBounds = true
         fullview!.doneButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        fullview!.doneButton.addTarget(self, action: "get_all_categories", forControlEvents: .TouchUpInside)
         self.view.addSubview(fullview!.view)
         self.addChildViewController(fullview!)
         fullview!.view.fadeIn(duration: 0.3)

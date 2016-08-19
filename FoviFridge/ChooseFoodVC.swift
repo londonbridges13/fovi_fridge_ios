@@ -10,9 +10,9 @@ import UIKit
 import Alamofire
 import RealmSwift
 import Kingfisher
+import Material
 
-
-class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, MiniDelegate {
+class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, MiniDelegate {
 
     @IBOutlet weak var collViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var collViewTopConstraint: NSLayoutConstraint!
@@ -21,13 +21,13 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     var i = 0
     
-    var all_basicfooditems = [BasicFoodItem]()
+    var all_fooditems = [FoodItem]()
     
+    var actIndi : NVActivityIndicatorView?
+
     var segueStick: String?
 
-    
-    @IBOutlet var searchBar: UISearchBar!
-    
+        
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var uniqueButton: UIButton!
     @IBOutlet var finishedButton: UIButton!
@@ -46,6 +46,15 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     var mini : MyFoodMiniCVC?
 
+    var is_searching = false
+    
+    var searchable_array = [FoodItem]()
+    
+    private var containerView: UIView!
+    /// Reference for SearchBar.
+    private var searchBar: SearchBar! = nil
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +72,17 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             print("segueStick = nil")
         }
 
+        //Search Bar
+        prepareContainerView()
+        prepareSearchBar()
+
+        
         // MiniDelegate
         self.mini = childViewControllers.first as! MyFoodMiniCVC
         mini!.delegate = self
         
         // Run Query for BFI
-        requestit()
+        query_local_food_items()
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -91,21 +105,44 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return all_basicfooditems.count
+        
+        if is_searching == false{
+            return all_fooditems.count
+        }else{
+            return self.searchable_array.count
+        }
+
+        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        if self.is_searching == false{
         let cell: ChooseFoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! ChooseFoodItemCollectionViewCell
 
         cell.layer.cornerRadius = 12
-        if all_basicfooditems[indexPath.row].title != nil{
-            cell.foodLabel.text = all_basicfooditems[indexPath.row].title!
+        if all_fooditems[indexPath.row].title != nil{
+            cell.foodLabel.text = all_fooditems[indexPath.row].title!
         }
-        if all_basicfooditems[indexPath.row].image != nil{
-            cell.foodImage.image = all_basicfooditems[indexPath.row].image!
+        if all_fooditems[indexPath.row].image != nil{
+            cell.foodImage.image = UIImage(data: all_fooditems[indexPath.row].image!)
         }
         
         return cell
+            
+        }else{
+            let cell: ChooseFoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! ChooseFoodItemCollectionViewCell
+            
+            cell.layer.cornerRadius = 12
+            if all_fooditems[indexPath.row].title != nil{
+                cell.foodLabel.text = searchable_array[indexPath.row].title!
+            }
+            if all_fooditems[indexPath.row].image != nil{
+                cell.foodImage.image = UIImage(data: searchable_array[indexPath.row].image!)
+            }
+            
+            return cell
+        }
     }
     
     
@@ -115,8 +152,33 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
 //        let cell: ChooseFoodItemCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier("ChoosenItemCell", forIndexPath: indexPath) as! ChooseFoodItemCollectionViewCell
         
         print("Selected")
-        self.show_food_item(all_basicfooditems[indexPath.row])
         
+        if self.segueStick == "EditCategory"{
+            print("Adding to Category")
+            
+            if self.is_searching == false{
+                var fooditem = all_fooditems[indexPath.row]
+                let realm = try! Realm()
+                try! realm.write({ 
+                    fooditem.mylist_amount.value = 1
+                })
+                mini?.get_groceries()
+            }else{
+                var fooditem = searchable_array[indexPath.row]
+                let realm = try! Realm()
+                try! realm.write({
+                    fooditem.mylist_amount.value = 1
+                })
+                mini?.get_groceries()
+            }
+
+        }else{
+            if self.is_searching == false{
+                self.show_food_item(all_fooditems[indexPath.row])
+            }else{
+                self.show_food_item(searchable_array[indexPath.row])
+            }
+        }
     }
     
     
@@ -150,7 +212,6 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                     }, completion: nil)
                 UIView.animateWithDuration(0.6, delay: 0.0, options: [], animations: {
                     //
-//                    self.searchBar.alpha = 1
                     
                     }, completion: nil)
                 self.i = 1
@@ -183,11 +244,9 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                     self.collViewConstraint.constant = 139 //Bottom Constraint
                     self.view.layoutIfNeeded()
 
-//                    self.searchBar.endEditing(true)
                     }, completion: nil)
                 UIView.animateWithDuration(0.2, delay: 0.0, options: [], animations: {
                     //
-//                    self.searchBar.alpha = 0
                     
                     }, completion: nil)
                 self.i = 0
@@ -199,8 +258,114 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
 
     
     
+    // Search Bar 
+    
+    /// Prepares the containerView.
+    private func prepareContainerView() {
+        containerView = UIView()
+        //        view.layout(containerView).edges(top: 50, left: 20, right: 20)
+        let wp = self.view.frame.width - 60
+        
+        containerView.frame = CGRect(x: 10, y: 50, width: wp, height: 30)
+        self.view.addSubview(containerView)
+        
+    }
+    
+    /// Prepares the toolbar
+    private func prepareSearchBar() {
+        searchBar = SearchBar()
+        let wp = self.view.frame.width - 60
 
-    // Query BFI
+        searchBar.frame = CGRect(x: 0, y: 0, width: wp, height: 30)
+        searchBar.textField.returnKeyType = .Search
+        searchBar.textField.delegate = self
+        searchBar.textField.returnKeyType = .Search
+        containerView.addSubview(searchBar)
+    }
+    
+
+    // TextField
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        self.searchable_array.removeAll()
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            
+            self.searchable_array.removeAll()
+            var already_have = [String]()
+            already_have.removeAll()
+            
+            if textField.text?.characters.count > 0{
+                self.is_searching = true
+                
+//                let realm = try! Realm()
+//                let predicate = NSPredicate(format: "title CONTAINS[c] %@", textField.text!)
+//                var filtered_categories = self.all_fooditems.filter(predicate)
+                
+                let filtered_categories = self.all_fooditems.filter {
+                    $0.title!.rangeOfString(textField.text!, options: .CaseInsensitiveSearch) != nil
+                }
+                
+                print(filtered_categories.count)
+                
+                
+                for each in filtered_categories{
+                    //                    if already_have.contains(each.title!) == false{
+                    print("We have the Food : \(each.title!)")
+                    self.searchable_array.append(each)
+                    //                        already_have.append(each.title!)
+                    //                    }else{
+                    //                        print("We have this Category")
+                    //                    }
+                }
+            }else{
+                self.is_searching = false
+                self.collectionView.reloadData()
+            }
+            let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+            dispatch_after(timer, dispatch_get_main_queue()) {
+                self.collectionView.reloadData()
+            }
+        }
+
+        
+        return true
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+
+
+    
+    
+    // Query Local Food Items
+    func query_local_food_items(){
+        loading()
+        
+        self.all_fooditems.removeAll()
+        collectionView.reloadData()
+        
+        let realm = try! Realm()
+        
+        let predicate = NSPredicate(format: "is_basic = \(false)")
+        let local_items = realm.objects(FoodItem).filter(predicate)
+        print(local_items.count)
+        
+        for each in local_items{
+            self.all_fooditems.append(each)
+            print("Appended \(each.title)")
+        }
+        
+        self.requestit()
+
+        
+    }
+    
+    
+    
+    // Query Basic Food Items
     //me
     func requestit() {
         Alamofire.request(.GET, "https://rocky-fjord-88249.herokuapp.com/api/v1/basic_food_items").responseJSON { (response) in
@@ -210,7 +375,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                 print("P1")
                 for each in usersArray{
                     if let user = each as? NSDictionary{
-                        var bfi = BasicFoodItem()
+                        var bfi = FoodItem()
                         let name = user["title"] as? String
                         print(name)
                         if name != nil{
@@ -224,8 +389,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                         let full_amount = user["full_amount"] as? Float
                         print(full_amount)
                         if full_amount != nil{
-                            bfi.full_amount = full_amount!
-                            bfi.current_amount = full_amount! // user just bought
+                            bfi.full_amount.value = full_amount!
+                            bfi.current_amount.value = full_amount! // user just bought
                         }
                         
 //                        let current_amount = user["current_amount"] as? Float
@@ -256,14 +421,15 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                         let usually_expires = user["usually_expires"] as? Int
                         print(usually_expires)
                         if usually_expires != nil{
-                            bfi.usually_expires = usually_expires!
+                            bfi.usually_expires.value = usually_expires!
                         }
                         let fridge_usually_expires = user["fridge_usually_expires"] as? Int
                         print(fridge_usually_expires)
                         if fridge_usually_expires != nil{
-                            bfi.fridge_usually_expires = fridge_usually_expires!
+                            bfi.fridge_usually_expires.value = fridge_usually_expires!
                         }
 
+                        bfi.is_basic = true
 //                        let image_url = user["image_url"] as? String
                         
                         var imageu = user["image"] as? String
@@ -278,11 +444,11 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                             
                             print("This is the url : https\(sub_url)")
                             var url = NSURL(string: "https\(sub_url)")
-                            bfi.image_url = url!
+//                            bfi.image_url = url!  // Dont have image_url in realm db
                             KingfisherManager.sharedManager.retrieveImageWithURL(url!, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
                                 print(image)
-                                bfi.image = image
-                                self.all_basicfooditems.append(bfi)
+                                bfi.image = UIImagePNGRepresentation(image!)
+                                self.all_fooditems.append(bfi)
                                 
                                 self.collectionView.reloadData()
                             })
@@ -311,7 +477,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     //Display FoodView
-    func show_food_item(fooditem : BasicFoodItem){
+    func show_food_item(fooditem : FoodItem){
         add_tint()
         
         // Display see you tomorrow view with ok button, push ok to segue to fridge vc
@@ -323,18 +489,19 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         foodView!.alpha = 0
         foodView!.fooditem.title = fooditem.title
         foodView!.fooditem.is_basic = fooditem.is_basic
-        if fooditem.image != nil{
-            foodView!.fooditem.image = UIImagePNGRepresentation(fooditem.image!)
-        }
-        foodView!.fooditem.fridge_usually_expires.value = fooditem.fridge_usually_expires
-        foodView!.fooditem.usually_expires.value = fooditem.usually_expires
-        foodView!.fooditem.measurement_type = fooditem.measurement_type
-        foodView!.fooditem.food_category = fooditem.food_category
-        foodView!.fooditem.full_amount.value = fooditem.full_amount
+        foodView!.fooditem = fooditem
+//        if fooditem.image != nil{
+//            foodView!.fooditem.image = UIImagePNGRepresentation(fooditem.image!)
+//        }
+//        foodView!.fooditem.fridge_usually_expires.value = fooditem.fridge_usually_expires
+//        foodView!.fooditem.usually_expires.value = fooditem.usually_expires
+//        foodView!.fooditem.measurement_type = fooditem.measurement_type
+//        foodView!.fooditem.food_category = fooditem.food_category
+//        foodView!.fooditem.full_amount.value = fooditem.full_amount
         foodView!.food_label.text = fooditem.title!
         foodView!.add_food_buttom.setTitle("Add \(fooditem.title!)", forState: .Normal)
         if fooditem.image != nil{
-            foodView!.food_image.image = fooditem.image
+            foodView!.food_image.image = UIImage(data: fooditem.image!)
         }
         foodView!.fadeIn(duration: 0.3)
         foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
@@ -397,6 +564,68 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    func loading(){
+        // show loading indicator
+//        var xp = view.frame.width / 2 - ((100) / 2)
+        var yp = view.frame.height / 2 - ((view.bounds.width) / 2) - 50
+        
+        var loadview = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+        
+        let bluecolor = UIColor(red: 0, green: 153/255, blue: 241/255, alpha: 1)
+        loadview.backgroundColor = bluecolor
+        loadview.layer.cornerRadius = 9
+        
+        self.view.addSubview(loadview)
+        
+        let vdelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(vdelayTime, dispatch_get_main_queue()) {
+            
+            var size : CGFloat = 37
+            var xxp = loadview.frame.width / 2 - (size / 2)
+            var hp = loadview.frame.height / 2 - (size / 2)
+            let frame = CGRect(x: xxp, y: hp, width: size, height: size)
+            
+            self.actIndi = NVActivityIndicatorView(frame: frame, type: .LineScale, color: UIColor.whiteColor(), padding: 3)
+            self.actIndi?.startAnimation()
+            self.actIndi?.alpha = 0
+            
+            loadview.addSubview(self.actIndi!)
+            
+            self.actIndi?.fadeIn(duration: 0.2)
+        }
+        
+        let ldelayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(2350 * Double(NSEC_PER_MSEC)))
+        dispatch_after(ldelayTime, dispatch_get_main_queue()) {
+            loadview.fadeOut(duration: 0.6)
+            
+        }
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //Segue Back to AddFoodVC
     @IBAction func pressedFinished(sender: AnyObject) {
         //Save Data to realm, unwind segue
@@ -423,7 +652,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     @IBAction func unwindToChooseVC(segue: UIStoryboardSegue){
         print("Unwind to ChooseFoodVC")
         //ReQuery Food
-        
+        self.query_local_food_items()
+        self.mini?.get_groceries()
     }
 
 
