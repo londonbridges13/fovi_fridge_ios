@@ -50,8 +50,28 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkSurvey()
+//        checkSurvey()
 //        createDummyUser()
+        
+        //Version 1
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).count
+        if user > 0 {
+            
+        }else{
+            // Create a user
+            print("Creating New User")
+            createDummyUser()
+            
+            
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.checkSurvey()
+            }
+
+        }
+        
+        
         
         self.view.alpha = 0
         self.view.fadeIn(duration: 0.45)

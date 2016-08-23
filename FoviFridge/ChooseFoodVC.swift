@@ -177,6 +177,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                 self.show_food_item(all_fooditems[indexPath.row])
             }else{
                 self.show_food_item(searchable_array[indexPath.row])
+                searchBar.textField.endEditing(true)
             }
         }
     }
@@ -192,6 +193,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                 let down = CGAffineTransformMakeTranslation(0, 40)
                 let minidown = CGAffineTransformMakeTranslation(0, 52)
                 let up = CGAffineTransformMakeTranslation(0, -50)
+                let search_up = CGAffineTransformMakeTranslation(0, -40)
                 
                 UIView.animateWithDuration(0.3, delay: 0.0, options: [], animations: {
                     // Add the transformation in this block
@@ -200,9 +202,12 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                     self.myFoodColl.transform = minidown
                     self.uniqueButton.transform = up
                     self.uniqueBackground.transform = up
-                    
+//                    self.searchBar.transform = search_up
+                    self.containerView.transform = search_up
                     self.collViewTopConstraint.constant = 50 // Top Constraint
                     self.collViewConstraint.constant = 89 //Bottom Constraint
+                    
+                    self.searchBar.height = 36
                     
                     // Collection View Insects
                     let flow = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -232,6 +237,9 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
                     self.myFoodColl.transform = back
                     self.uniqueButton.transform = back
                     self.uniqueBackground.transform = back
+                    self.searchBar.transform = back
+                    self.containerView.transform = back
+                    self.searchBar.height = 30
 
                     self.view.layoutIfNeeded()
 

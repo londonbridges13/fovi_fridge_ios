@@ -48,7 +48,7 @@ class LongAnswer_SurveyQ: UIViewController, UITextViewDelegate {
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             print("Pressed Return")
-            if answerTX.text.characters.count >= 5{
+            if answerTX.text.characters.count >= 2{
                 textView.resignFirstResponder()
                 sendActionsButton.sendActionsForControlEvents(.TouchUpInside)
                 sendAnswer(answerTX.text!, question: questionLabel.text!, question_id: question_id!)

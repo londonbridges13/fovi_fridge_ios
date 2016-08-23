@@ -98,6 +98,10 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         return cell
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        CellAnimator.animateCell(cell, withTransform: CellAnimator.TransformWave, andDuration: 0.21)
+    }
 
 // Swipe Funtionality
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

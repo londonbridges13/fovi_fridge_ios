@@ -50,6 +50,11 @@
 		3E63D6EA1D64C006001063F8 /* FullFoodCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6E91D64C006001063F8 /* FullFoodCell1.swift */; };
 		3E63D6EC1D64C03A001063F8 /* FullFoodFridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6EB1D64C03A001063F8 /* FullFoodFridgeCell.swift */; };
 		3E63D6EE1D64C053001063F8 /* FullFoodShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6ED1D64C053001063F8 /* FullFoodShoppingCell.swift */; };
+		3E63D6F01D6B454C001063F8 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6EF1D6B454C001063F8 /* CellAnimator.swift */; };
+		3E63D6F41D6CBE98001063F8 /* EmptyFridge2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6F31D6CBE97001063F8 /* EmptyFridge2.swift */; };
+		3E63D6F61D6CBECC001063F8 /* EmptyFridge2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E63D6F51D6CBECC001063F8 /* EmptyFridge2.xib */; };
+		3E63D6F91D6CC241001063F8 /* EmptyFridge1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E63D6F81D6CC241001063F8 /* EmptyFridge1.swift */; };
+		3E63D6FB1D6CC25B001063F8 /* EmptyFridge1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E63D6FA1D6CC25B001063F8 /* EmptyFridge1.xib */; };
 		3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */; };
 		3E671DF91D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */; };
 		3E671DFB1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */; };
@@ -214,6 +219,11 @@
 		3E63D6E91D64C006001063F8 /* FullFoodCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodCell1.swift; sourceTree = "<group>"; };
 		3E63D6EB1D64C03A001063F8 /* FullFoodFridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodFridgeCell.swift; sourceTree = "<group>"; };
 		3E63D6ED1D64C053001063F8 /* FullFoodShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullFoodShoppingCell.swift; sourceTree = "<group>"; };
+		3E63D6EF1D6B454C001063F8 /* CellAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
+		3E63D6F31D6CBE97001063F8 /* EmptyFridge2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFridge2.swift; sourceTree = "<group>"; };
+		3E63D6F51D6CBECC001063F8 /* EmptyFridge2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyFridge2.xib; sourceTree = "<group>"; };
+		3E63D6F81D6CC241001063F8 /* EmptyFridge1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyFridge1.swift; sourceTree = "<group>"; };
+		3E63D6FA1D6CC25B001063F8 /* EmptyFridge1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyFridge1.xib; sourceTree = "<group>"; };
 		3E671DF51D6010D000CCE1BF /* NewCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCategoryCell.swift; sourceTree = "<group>"; };
 		3E671DF81D60E2EA00CCE1BF /* DeleteCategory_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteCategory_AlertView.swift; sourceTree = "<group>"; };
 		3E671DFA1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteCategory_AlertView.xib; sourceTree = "<group>"; };
@@ -444,6 +454,33 @@
 			name = DOFavoriteButton;
 			sourceTree = "<group>";
 		};
+		3E63D6F11D6B4559001063F8 /* Cell Animator */ = {
+			isa = PBXGroup;
+			children = (
+				3E63D6EF1D6B454C001063F8 /* CellAnimator.swift */,
+			);
+			name = "Cell Animator";
+			sourceTree = "<group>";
+		};
+		3E63D6F21D6CBE28001063F8 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				3E63D6F71D6CC1F4001063F8 /* EmptyFridge */,
+			);
+			name = Walkthrough;
+			sourceTree = "<group>";
+		};
+		3E63D6F71D6CC1F4001063F8 /* EmptyFridge */ = {
+			isa = PBXGroup;
+			children = (
+				3E63D6F81D6CC241001063F8 /* EmptyFridge1.swift */,
+				3E63D6FA1D6CC25B001063F8 /* EmptyFridge1.xib */,
+				3E63D6F51D6CBECC001063F8 /* EmptyFridge2.xib */,
+				3E63D6F31D6CBE97001063F8 /* EmptyFridge2.swift */,
+			);
+			name = EmptyFridge;
+			sourceTree = "<group>";
+		};
 		3E671DF71D60E2A900CCE1BF /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -612,6 +649,7 @@
 		3E9E37441D4D687B00A15381 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E63D6F11D6B4559001063F8 /* Cell Animator */,
 				3E1438D51D57F70F001C9C6B /* DeviceType */,
 				3E9E37841D4EA5E000A15381 /* Fluent */,
 				3EAF0E381D40569700A302B0 /* NVActivityIndicatorView */,
@@ -673,6 +711,7 @@
 				3E9E373B1D4D610C00A15381 /* GroceryBag */,
 				3E9E373C1D4D613100A15381 /* CreateFoodItem */,
 				3E9E37391D4D60E200A15381 /* ShoppingList */,
+				3E63D6F21D6CBE28001063F8 /* Walkthrough */,
 				3E4FF67A1D1C9B83005BFFF4 /* CustomSegue.swift */,
 				3E5FAAEE1D3D998300E94EA8 /* circle.png */,
 				3EC508E31D2212D600630E8F /* Realm */,
@@ -922,6 +961,7 @@
 			files = (
 				3E671DFB1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib in Resources */,
 				3E0B52D41D435FBC007138CE /* SeeYouLater_View.xib in Resources */,
+				3E63D6FB1D6CC25B001063F8 /* EmptyFridge1.xib in Resources */,
 				3EAF0E801D40569800A302B0 /* Info.plist in Resources */,
 				3E9E41341D1B79E2009C9808 /* LaunchScreen.storyboard in Resources */,
 				3E5FAADA1D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib in Resources */,
@@ -934,6 +974,7 @@
 				3E70573F1D5544A2009E9031 /* ShowAgain_AlertView.xib in Resources */,
 				3E9E412F1D1B79E1009C9808 /* Main.storyboard in Resources */,
 				3E14392C1D5C07CF001C9C6B /* ShopList_FoodView.xib in Resources */,
+				3E63D6F61D6CBECC001063F8 /* EmptyFridge2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1197,7 @@
 				3E671DF61D6010D000CCE1BF /* NewCategoryCell.swift in Sources */,
 				3E5FAAD81D39E65500E94EA8 /* SurveyVC.swift in Sources */,
 				3EAF0E751D40569800A302B0 /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
+				3E63D6F91D6CC241001063F8 /* EmptyFridge1.swift in Sources */,
 				3E4FF67F1D1CEA8C005BFFF4 /* CreateUniqueTVC.swift in Sources */,
 				3EAF0E7C1D40569800A302B0 /* NVActivityIndicatorAnimationPacman.swift in Sources */,
 				3E9E37411D4D62A400A15381 /* Food_Quantity_View.swift in Sources */,
@@ -1176,6 +1218,7 @@
 				3EAF0E621D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				3EAF0E7B1D40569800A302B0 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
 				3EE596F71D4C05010088BE69 /* TutorialPageViewController.swift in Sources */,
+				3E63D6F01D6B454C001063F8 /* CellAnimator.swift in Sources */,
 				3EB582591D62BA0600AF27B0 /* CategoryCell.swift in Sources */,
 				3EAF0E711D40569800A302B0 /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				3E4FF6811D1CED9A005BFFF4 /* MyFoodMiniCVC.swift in Sources */,
@@ -1196,6 +1239,7 @@
 				3E1438D41D57DF8D001C9C6B /* EmailCell.swift in Sources */,
 				3E1439741D5D3BDE001C9C6B /* Get_Image_Cell.swift in Sources */,
 				3EC757121D28BB9C00F3BEEF /* B68UIFloatLabelTextField.swift in Sources */,
+				3E63D6F41D6CBE98001063F8 /* EmptyFridge2.swift in Sources */,
 				3EE596FB1D4C33F00088BE69 /* BasicFoodItem.swift in Sources */,
 				3EAF0E7A1D40569800A302B0 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
 			);
