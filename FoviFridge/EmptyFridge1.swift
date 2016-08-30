@@ -41,7 +41,7 @@ class EmptyFridge1: UIView {
         
         yesbutton.addTarget(self, action: "fadeAway", forControlEvents: .TouchUpInside)
         
-        yesbutton.layer.cornerRadius = 6
+        yesbutton.layer.cornerRadius = 3
         
         // use bounds not frame or it'll be offset
         view.frame = bounds

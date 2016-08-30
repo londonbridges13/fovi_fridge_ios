@@ -26,7 +26,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Chi-XK-Ani">
-                    <rect key="frame" x="42" y="162" width="122" height="30"/>
+                    <rect key="frame" x="42" y="158" width="122" height="30"/>
                     <color key="backgroundColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="122" id="LSf-He-DTD"/>
@@ -40,7 +40,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Chi-XK-Ani" secondAttribute="bottom" constant="8" id="7yM-MC-yZ3"/>
+                <constraint firstAttribute="bottom" secondItem="Chi-XK-Ani" secondAttribute="bottom" constant="12" id="7yM-MC-yZ3"/>
                 <constraint firstItem="Chi-XK-Ani" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Qf0-cA-hNP"/>
                 <constraint firstItem="nIT-By-QRT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="fbe-i8-ZaJ"/>
                 <constraint firstItem="nIT-By-QRT" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="kat-qy-n3t"/>

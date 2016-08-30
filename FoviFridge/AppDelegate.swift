@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             )
             
             tabBarController.tabBarView.tabBarColor = UIColor(
-                red: 81.0/255.0,
-                green: 183.0/255.0,
-                blue: 228.0/255.0,
+                red: 90.0/255.0, //81
+                green: 155.0/255.0, //183
+                blue: 178.0/255.0, //228
                 alpha: 1
             )
             
@@ -80,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 6,
+            schemaVersion: 10,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -110,6 +110,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if oldSchemaVersion < 5{
                         var last_checked : NSDate? = nil
                         newObject!["last_checked"] = last_checked
+                    }
+                    if oldSchemaVersion < 7{
+                        var empty_fridge_walkthrough = false
+                        newObject!["empty_fridge_walkthrough"] = empty_fridge_walkthrough
+                    }
+                    if oldSchemaVersion < 8{
+                        var visit_shopping_list_walkthrough = false
+                        newObject!["visit_shopping_list_walkthrough"] = visit_shopping_list_walkthrough
+                    }
+                    if oldSchemaVersion < 9{
+                        var grocery_bag_walkthrough = false
+                        newObject!["grocery_bag_walkthrough"] = grocery_bag_walkthrough
+                    }
+                    if oldSchemaVersion < 10{
+                        var grocery_store_walkthrough = false
+                        newObject!["grocery_store_walkthrough"] = grocery_store_walkthrough
                     }
                 }
                 //FoodItem

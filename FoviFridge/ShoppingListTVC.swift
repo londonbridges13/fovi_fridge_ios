@@ -16,6 +16,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     var tint : UIView?
     var slfv : ShopList_FoodView?
 
+    var cUser = UserDetails()
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var addToListButton: UIButton!
@@ -29,7 +30,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         super.viewDidLoad()
 
 
-        addToListButton.layer.cornerRadius = 6
+        addToListButton.layer.cornerRadius = 3
         
 
 //        tableView.layer.cornerRadius = 9.0
@@ -49,6 +50,18 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         tableView.delegate = self
         
         self.get_errands()
+        
+        let realm = try! Realm()
+        let user = realm.objects(UserDetails).first
+        
+        self.cUser = user!
+        
+        if user?.visit_shopping_list_walkthrough == false{
+            // Run Visit Shopping List Walkthrough
+            self.shopping_list_walkthrough()
+        }else{
+            print("Already Ran Walkthrough")
+        }
 
     }
     override func prefersStatusBarHidden() -> Bool {
@@ -217,11 +230,13 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func remove_tint(){
         print("Removing Tint")
         self.tint!.fadeOut()
-        self.tint!.alpha = 0
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
-            self.slfv!.removeFromSuperview()
+            self.tint!.alpha = 0
+            if self.slfv?.alpha == 1{
+                self.slfv!.removeFromSuperview()
+            }
         }
     }
     
@@ -262,6 +277,66 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
         print(fooditem)
     }
+    
+    
+    
+    
+    
+    // Walkthrough
+    func shopping_list_walkthrough(){
+        // Display Alert 1 with Grocery Bag_ Alert1
+        
+        self.add_tint()
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+        
+        var alert = GroceryBagWalk_1()
+        alert.bodyLabel.text = "Here you can: \n • Review your Shopping List \n •  Add/Remove food items from your list \n • And Move food items to your Fridge "
+        alert.headLabel.text = "Welcome to your Shopping List"
+        let xpp = self.view.frame.width / 2 - (200 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 200, height: 250)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+    }
+
+    
+    func walkthrough_part2(){
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+        // Display Alert 2
+        var alert = GroceryStore_Alert4()
+        alert.justLabel.alpha = 0
+        alert.bodyLabel.text = "To Add Food to your shopping list, Tap:"
+        alert.finishButton.alpha = 0
+        alert.createButton.alpha = 0
+        let xpp = self.view.frame.width / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: 100, width: 300, height: 200)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.groceriesButton.alpha = 1
+        alert.groceriesButton.layer.cornerRadius = 3
+        alert.fadeIn(duration: 0.3)
+        alert.okayButton.addTarget(self, action: "done_walkthrough", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+    }
+    
+    
+    func done_walkthrough(){
+        print("Done with Visit Shopping List Walkthrough")
+        
+        let realm = try! Realm()
+        try! realm.write({ 
+            self.cUser.visit_shopping_list_walkthrough = true
+        })
+    }
+    
+    
+    
+    
     
     
     // MARK: - Navigation

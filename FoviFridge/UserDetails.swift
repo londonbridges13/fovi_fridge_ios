@@ -44,6 +44,14 @@ class UserDetails: Object {
     
     
     
+    // Walkthrough
+    dynamic var empty_fridge_walkthrough = false
+    dynamic var visit_shopping_list_walkthrough = false
+    dynamic var grocery_bag_walkthrough = false
+    dynamic var grocery_store_walkthrough = false
+    
+    
+    
     
     // dont use
     dynamic var last_answered = NSDate()

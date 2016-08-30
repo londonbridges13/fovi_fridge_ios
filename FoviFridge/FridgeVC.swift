@@ -46,6 +46,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     var today = NSDate()
     
+    var cUser = UserDetails()
+    
     var i = 0
     
     override func viewDidLoad() {
@@ -53,25 +55,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 //        checkSurvey()
 //        createDummyUser()
         
-        //Version 1
-        let realm = try! Realm()
-        var user = realm.objects(UserDetails).count
-        if user > 0 {
-            
-        }else{
-            // Create a user
-            print("Creating New User")
-            createDummyUser()
-            
-            
-            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
-            dispatch_after(time, dispatch_get_main_queue()) {
-                self.checkSurvey()
-            }
-
-        }
-        
-        
+//        self.start()
         
         self.view.alpha = 0
         self.view.fadeIn(duration: 0.45)
@@ -98,9 +82,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        checkSurvey()
+        check_walkthrough()
         get_all_categories()
-        
+        self.start()
 
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -555,10 +541,10 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     func remove_tint(){
         print("Removing Tint")
         self.tint!.fadeOut()
-        self.tint!.alpha = 0
         self.fullview?.view.fadeOut()
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.tint!.alpha = 0
             self.fullview?.view.removeFromSuperview()
         }
     }
@@ -566,6 +552,177 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 
     
     
+    // Starting Point
+    func start(){
+        
+        //Version 1
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil {
+            
+            cUser = user!
+            
+            if user!.empty_fridge_walkthrough == false{
+                // Run Walkthrough Alerts
+                print("Running Walkthrough Alerts")
+                
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1500 * Int64(NSEC_PER_MSEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.run_empty_fridge_walkthrough()
+                }
+                
+            }else{
+                // Check Visit ShoppingList Walkthrough Alerts
+                print("Checking Visit ShoppingList Walkthrough Alerts")
+                if user!.visit_shopping_list_walkthrough == false{
+                    // Run Visit Shopping List Walkthrough Alerts
+                    print("Running Visit ShoppingList Walkthrough Alerts")
+                    let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
+                    dispatch_after(time, dispatch_get_main_queue()) {
+                        self.visit_shopping_list()
+                    }
+                }else{
+                    print("All Walkthroughs are Done")
+                    // Check Surveys
+                    
+                    // Run fridge and shopping list walkthrough before surveys
+                    self.checkSurvey()
+                }
+            }
+            
+        }else{
+            // Create a user
+            print("Creating New User")
+            createDummyUser()
+            
+            
+        }
+        
+
+    }
+    
+    
+    
+    // CheckPoint
+    func check_walkthrough(){
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        
+        if user?.visit_shopping_list_walkthrough == true{
+            if self.tint?.alpha > 0{
+                self.remove_tint()
+            }
+        }
+    }
+    
+    
+    // Walkthroughs
+    
+    // Empty Fridge Walkthroughs
+    func run_empty_fridge_walkthrough(){
+        // Display Alerts
+        // Display EmptyFridge1
+        
+        print("Display Alert")
+        
+        var alert = EmptyFridge1()
+        
+        let xp = self.view.frame.width / 2 - (206 / 2)
+
+        alert.frame = CGRect(x: xp, y: 90, width: 206, height: 200)
+        alert.yesbutton.addTarget(self, action: "empty_fridge_alert2", forControlEvents: .TouchUpInside)
+        
+        alert.alpha = 0
+        self.add_tint()
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+        self.view.addSubview(alert)
+        
+        alert.fadeIn()
+        
+    }
+    
+    
+    func empty_fridge_alert2(){
+        // Display EmptyFridge2
+        print("Display EmptyFridge2")
+        
+        var alert = EmptyFridge2()
+        
+        let xp = self.view.frame.width / 2 - (207 / 2)
+        
+        alert.frame = CGRect(x: xp, y: 90, width: 207, height: 245)
+        alert.g_button1.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
+        alert.g_button2.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
+        
+        alert.alpha = 0
+        
+        self.view.addSubview(alert)
+        
+        alert.fadeIn(duration: 0.3)
+        
+    }
+    
+    func go_to_groceries(){
+        self.groceryBagButton.sendActionsForControlEvents(.TouchUpInside)
+        
+        self.tint?.fadeOut(duration: 0.3)
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.tint?.removeFromSuperview()
+        }
+    }
+    
+    func visit_shopping_list(){
+        // Display Alert 1 with Grocery Bag_ Alert1 
+        print("Showing Visit Walkthrough Alerts")
+        self.add_tint()
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+
+        var alert = GroceryBagWalk_1()
+        alert.bodyLabel.text = "Your Fridge is looking pretty good!"
+        alert.headLabel.text = "Successfully added Groceries"
+        let xpp = self.view.frame.width / 2 - (200 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 200, height: 250)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+        //        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+    }
+    
+    func walkthrough_part2(){
+        // Display ShoppingList Alert2 (184)
+        
+        var alert = ShoppingList_Alert2()
+        let xpp = self.view.frame.width / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 184)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part3", forControlEvents: .TouchUpInside)
+
+    }
+    
+    func walkthrough_part3(){
+        // Display Shopping Alert3 (150)
+        var alert = ShoppingList_Alert3()
+        let xpp = self.view.frame.width / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 150)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "changeTint", forControlEvents: .TouchUpInside)
+
+    }
+    func changeTint(){
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.whiteColor()
+        }
+    }
     
     
 
@@ -627,10 +784,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         print("Checking")
         
         let realm = try! Realm()
-        let cUser = realm.objects(UserDetails).first
-        if cUser != nil{
-            if cUser!.last_checked != nil{
-                if getDayFromDate(cUser!.last_checked!) != getDayFromDate(today){
+//        let cUser = realm.objects(UserDetails).first
+        if cUser != "nil"{
+            print("shouldn't")
+            if cUser.last_checked != nil{
+                if getDayFromDate(cUser.last_checked!) != getDayFromDate(today){
                     //   last_checked is date when last checked here
                     print("Segue to SurveyVC")
                     let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
@@ -709,6 +867,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             realm.add(dummy)
             print("Created User")
         }
+        self.run_empty_fridge_walkthrough()
     }
 
 }

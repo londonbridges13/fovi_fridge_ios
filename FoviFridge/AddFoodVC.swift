@@ -24,6 +24,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     var my_groceries = [FoodItem]()
     
+    var cUser = UserDetails()
+    
     var tint : UIView?
     
     var foodView : Food_Quantity_View?
@@ -50,6 +52,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         self.doneButton.layer.cornerRadius = 2
 
         self.doneButton.addTarget(self, action: "add_food_to_fridge", forControlEvents: .TouchUpInside)
+        self.addFoodButton.addTarget(self, action: "done_grocerybag_walkthrough", forControlEvents: .TouchUpInside)
         
         prepareView()
         prepareContainerView()
@@ -58,6 +61,18 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         searchBar.textField.delegate = self
         
 
+        
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        
+        if user != nil{
+            self.cUser = user!
+            if user!.grocery_bag_walkthrough == false{
+                // Run GroceryBag Walkthrough
+                print("Run GroceryBag Walkthrough")
+                groceryBag_walkthrough()
+            }
+        }
         
         // Query Objects
         self.get_groceries()
@@ -377,6 +392,53 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.endEditing(true)
         return true
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Walkthroughs
+    func groceryBag_walkthrough(){
+        // Display Alert
+        add_tint()
+        self.tint?.backgroundColor = UIColor.blackColor()
+        
+        var alert = GroceryBagWalk_1()
+        let xpp = self.view.frame.width / 2 - (200 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 200, height: 300)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+    }
+    
+    func walkthrough_part2(){
+        //Display GroceryBag_2
+        var alert = GroceryBagWalk_2()
+        let xpp = self.view.frame.width / 2 - (209 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 209, height: 281)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+    }
+    
+    
+    //Set Walkthrough to true
+    func done_grocerybag_walkthrough(){
+        let realm = try! Realm()
+        
+        try! realm.write {
+            self.cUser.grocery_bag_walkthrough = true
+            print("Set grocery_bag_walkthrough = \(self.cUser.grocery_bag_walkthrough)")
+        }
     }
     
     

@@ -48,6 +48,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
 
     var is_searching = false
     
+    var cUser = UserDetails()
+    
     var searchable_array = [FoodItem]()
     
     private var containerView: UIView!
@@ -80,6 +82,20 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         // MiniDelegate
         self.mini = childViewControllers.first as! MyFoodMiniCVC
         mini!.delegate = self
+        
+        //Check Walkthrough
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        
+        if user != nil{
+            self.cUser = user!
+            if user!.grocery_store_walkthrough == false{
+                // Run GroceryStore Walkthrough
+                print("Run Grocery Store Walkthrough")
+                groceryStore_walkthrough()
+            }
+        }
+
         
         // Run Query for BFI
         query_local_food_items()
@@ -625,12 +641,90 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     
+    // Walkthrough
+    func groceryStore_walkthrough(){
+        // Display Alert 1
+        add_tint()
+        self.tint?.backgroundColor = UIColor.blackColor()
+        
+        var alert = GroceryBagWalk_1()
+        alert.bodyLabel.text = "Here you can add food to your Grocery Bag"
+        alert.headLabel.text = "This is the Grocery Store"
+        let xpp = self.view.frame.width / 2 - (200 / 2)
+        alert.frame = CGRect(x: xpp, y: 80, width: 200, height: 250)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+//        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+    }
+    
+    func walkthrough_part2(){
+        UIView.animateWithDuration(0.3) { 
+            self.tint?.backgroundColor = UIColor.clearColor()
+        }
+        var alert = GroceryStore_Alert2()
+        alert.bodyLabel.text = "Select from the items up here..."
+        let xpp = self.view.frame.width / 2 - (310 / 2)
+        alert.frame = CGRect(x: xpp, y: 0, width: 310, height: 107)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part3", forControlEvents: .TouchUpInside)
+    }
+    
+    func walkthrough_part3(){
+        
+        var alert = GroceryStore_Alert2()
+        let xpp = self.view.frame.width / 2 - (310 / 2)
+        let ypp = self.view.frame.height - 115
+        alert.frame = CGRect(x: xpp, y: ypp, width: 310, height: 107)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn()
+        alert.okayButton.addTarget(self, action: "walkthrough_part4", forControlEvents: .TouchUpInside)
+    }
+    func walkthrough_part4(){
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+        // Display Alert 4
+        var alert = GroceryStore_Alert4()
+        alert.justLabel.alpha = 0
+        alert.finishButton.alpha = 0
+        let xpp = self.view.frame.width / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: 100, width: 300, height: 200)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.3)
+        alert.okayButton.addTarget(self, action: "walkthrough_part5", forControlEvents: .TouchUpInside)
+    }
+    
+    func walkthrough_part5(){
+
+        // Display Alert 5
+        var alert = GroceryStore_Alert4()
+        alert.bodyLabel.text = "And finally when you're finished..."
+        alert.createButton.alpha = 0
+        let xpp = self.view.frame.width / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: 100, width: 300, height: 200)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.3)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "done_walkthrough", forControlEvents: .TouchUpInside)
+    }
     
     
-    
-    
-    
-    
+    func done_walkthrough(){
+        let realm = try! Realm()
+        
+        try! realm.write({ 
+            self.cUser.grocery_bag_walkthrough = true
+            self.cUser.empty_fridge_walkthrough = true
+            self.cUser.grocery_store_walkthrough = true
+        })
+    }
     
     
     

@@ -42,8 +42,8 @@ class EmptyFridge2: UIView {
         g_button1.addTarget(self, action: "fadeAway", forControlEvents: .TouchUpInside)
         g_button2.addTarget(self, action: "fadeAway", forControlEvents: .TouchUpInside)
         
-        g_button1.layer.cornerRadius = 6
-        g_button2.layer.cornerRadius = 6
+        g_button1.layer.cornerRadius = 20
+        g_button2.layer.cornerRadius = 20
         
         // use bounds not frame or it'll be offset
         view.frame = bounds
