@@ -135,7 +135,7 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         let realm = try! Realm()
         let all_categories = realm.objects(Category)
         for each in all_categories{
-            if self.categories.contains(each.category) == false{
+            if self.categories.contains(each.category) == false && each.category != ""{
                 self.categories.append(each.category)
                 print("Appended : \(each.category)")
                 self.tableview.reloadData()
