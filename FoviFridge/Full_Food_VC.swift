@@ -131,6 +131,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let realm = try! Realm()
         try! realm.write{
             self.fooditem.fridge_amount.value = amount
+//            self.fooditem.previously_purchased = true
         }
     }
     

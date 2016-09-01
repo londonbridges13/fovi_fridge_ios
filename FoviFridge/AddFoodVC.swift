@@ -267,7 +267,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                     }
                     same_food?.mylist_amount.value = 0
                     print("Saved, Fridge Amount = \(same_food?.fridge_amount.value)")
-                    
+                    same_food?.previously_purchased = true
                     // Run Clear All mylist_amount value
                     self.double_clear()
                 })
@@ -277,6 +277,7 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
                 try! realm.write({
                     each.fridge_amount.value = each.mylist_amount.value
                     each.mylist_amount.value = 0
+                    each.previously_purchased = true
                     print("Saved New Item, Fridge Amount = \(each.fridge_amount.value)")
                     realm.add(each)
                     

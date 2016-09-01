@@ -83,7 +83,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         super.viewWillAppear(animated)
 //        checkSurvey()
         check_walkthrough()
-        get_all_categories()
+        pre_get_all_categories()
+//        get_all_categories()
         self.start()
 
         
@@ -170,7 +171,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             cell.delegate = self
             cell.fullfoodview_delegate = self
             cell.food.removeAll()
-            cell.get_fooditems(self.categories[indexPath.row - 1])
+            if self.categories[indexPath.row - 1] == "Missing"{
+                cell.get_missing_food()
+            }else{
+                cell.get_fooditems(self.categories[indexPath.row - 1])
+            }
             cell.design_category_button(indexPath.row)
             cell.categoryButton.setTitle("\(self.categories[indexPath.row - 1])", forState: .Normal)
             tableView.rowHeight = 148.0
@@ -476,12 +481,32 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
 
     
+    // Before Get Categories, Check for Missing/Expiring Fooditems
+    func pre_get_all_categories(){
+        print("PREPREPREPREPREPREPRE")
+        
+        self.categories.removeAll()
+        
+        let realm = try! Realm()
+        var foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0")
+        
+        if foods.count > 0{
+            var missing  = "Missing"
+            self.categories.append(missing)
+            // Get the other categories
+            self.get_all_categories()
+        }else{
+            print("No misising items here")
+            // Get the other categories
+            self.get_all_categories()
+        }
+    }
     
     
     
     // Categories Query   /    Run this in viewWillLoad
     func get_all_categories(){
-        self.categories.removeAll()
+//        self.categories.removeAll()
         //Create an Array of all Categories
         print("Getting All Categories")
         let realm = try! Realm()
@@ -521,7 +546,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 //        fullview!.doneView.roundCorners([.BottomRight, .BottomLeft], radius: 21)
         fullview!.doneView.layer.masksToBounds = true
         fullview!.doneButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
-        fullview!.doneButton.addTarget(self, action: "get_all_categories", forControlEvents: .TouchUpInside)
+        fullview!.doneButton.addTarget(self, action: "pre_get_all_categories", forControlEvents: .TouchUpInside)
         self.view.addSubview(fullview!.view)
         self.addChildViewController(fullview!)
         fullview!.view.fadeIn(duration: 0.3)

@@ -11,6 +11,7 @@ target 'FoviFridge' do
     	pod 'Alamofire', '~> 3.4'
 	pod 'Material', '~> 1.0'
 	pod "GMStepper"
+	pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift2.3'
 
 
 

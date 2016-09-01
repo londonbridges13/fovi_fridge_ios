@@ -9,6 +9,7 @@
 import UIKit
 import FoldingTabBar
 import RealmSwift
+import Siren
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+//        window?.makeKeyAndVisible()
         window?.layer.cornerRadius = 9
         window?.layer.masksToBounds = true
+        
+        setupSiren()
+        
         // TabBar
         if let tabBarController = window?.rootViewController as? YALFoldingTabBarController {
             
@@ -80,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 10,
+            schemaVersion: 11,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -134,6 +139,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var is_basic = false
                         newObject!["is_basic"] = is_basic
                     }
+                    if oldSchemaVersion < 11{
+                        var previously_purchased = false
+                        newObject!["previously_purchased"] = previously_purchased
+                    }
                 }
             }
             
@@ -152,6 +161,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -165,10 +176,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        Siren.sharedInstance.checkVersion(.Immediately)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        Siren.sharedInstance.checkVersion(.Daily)
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -185,5 +198,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
+    
+    
+    
+    
+    //Siren
+    func setupSiren() {
+        
+        let siren = Siren.sharedInstance
+        
+        // Optional
+        siren.delegate = self
+        
+        // Optional
+        siren.debugEnabled = true
+        
+        // Optional - Defaults to .Option
+        //        siren.alertType = .Option // or .Force, .Skip, .None
+        
+        // Optional - Can set differentiated Alerts for Major, Minor, Patch, and Revision Updates (Must be called AFTER siren.alertType, if you are using siren.alertType)
+        siren.majorUpdateAlertType = .Option
+        siren.minorUpdateAlertType = .Option
+        siren.patchUpdateAlertType = .Option
+        siren.revisionUpdateAlertType = .Option
+        
+        // Optional - Sets all messages to appear in Spanish. Siren supports many other languages, not just English and Spanish.
+        //        siren.forceLanguageLocalization = .Russian
+        
+        // Required
+        siren.checkVersion(.Immediately)
+    }
+    
+
+}
+
+extension AppDelegate: SirenDelegate
+{
+    func sirenDidShowUpdateDialog(alertType: SirenAlertType) {
+        print(#function, alertType)
+    }
+    
+    func sirenUserDidCancel() {
+        print(#function)
+    }
+    
+    func sirenUserDidSkipVersion() {
+        print(#function)
+    }
+    
+    func sirenUserDidLaunchAppStore() {
+        print(#function)
+    }
+    
+    func sirenDidFailVersionCheck(error: NSError) {
+        print(#function, error)
+    }
+    
+    /**
+     This delegate method is only hit when alertType is initialized to .None
+     */
+    func sirenDidDetectNewVersionWithoutAlert(message: String) {
+        print(#function, "\(message)")
+    }
 }
 

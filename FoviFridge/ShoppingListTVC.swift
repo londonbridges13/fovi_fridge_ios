@@ -262,6 +262,8 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         try! realm.write {
             print("Fridge was = \(fooditem.fridge_amount.value)")
 
+            fooditem.previously_purchased = true
+            
             if fooditem.fridge_amount.value != nil{
                 let quantity = fooditem.shoppingList_amount.value! + fooditem.fridge_amount.value!
                 fooditem.fridge_amount.value = quantity

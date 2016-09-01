@@ -118,7 +118,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     func get_fooditems(category : String){
         let realm = try! Realm()
 //        let predicate = NSPredicate(format: "category CONTAINS '\(category)'")
-        var foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)'")
+        var foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)' AND previously_purchased = \(true)")
 
         if foods.count != 0{
             print("Found Some FoodItems")
@@ -130,6 +130,18 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         }
     }
     
+    
+    // Find MISSING Fooditems
+    func get_missing_food(){
+        let realm = try! Realm()
+        var foods = realm.objects(FoodItem).filter(" previously_purchased = \(true) AND fridge_amount = 0")
+        
+        for each in foods{
+            self.food.append(each)
+            self.collectionView.reloadData()
+            print("Appended MISSING ITEM: \(each.title)")
+        }
+    }
     
     
     

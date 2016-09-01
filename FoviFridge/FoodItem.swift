@@ -23,6 +23,7 @@ class FoodItem: Object {
     dynamic var image : NSData? = nil
     dynamic var image_url : String? = nil
     dynamic var is_basic = false   // false by default
+    dynamic var previously_purchased = false
     
     //Measurements
     dynamic var measurement_type : String? = nil

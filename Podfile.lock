@@ -4,6 +4,7 @@ PODS:
   - GMStepper (1.2.0)
   - Kingfisher (2.4.1)
   - Material (1.42.6)
+  - Siren (0.9.5)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
@@ -11,6 +12,17 @@ DEPENDENCIES:
   - GMStepper
   - Kingfisher (~> 2.4)
   - Material (~> 1.0)
+  - Siren (from `https://github.com/ArtSabintsev/Siren.git`, branch `swift2.3`)
+
+EXTERNAL SOURCES:
+  Siren:
+    :branch: swift2.3
+    :git: https://github.com/ArtSabintsev/Siren.git
+
+CHECKOUT OPTIONS:
+  Siren:
+    :commit: 5dcb270c1b7552a1b76215e073bf6fbc062e5d7e
+    :git: https://github.com/ArtSabintsev/Siren.git
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
@@ -18,7 +30,8 @@ SPEC CHECKSUMS:
   GMStepper: e743b5648ae5fe877e33d3b51b5aa2df432f179d
   Kingfisher: 41aed5b6c1ed8fa98cf6d75283ce89cf7890f517
   Material: 76dc9b14ad8b3a2ad673b77ad73dd66ed1eee68c
+  Siren: a536a4fed41def10e540a9804b2a63a4b3634f6b
 
-PODFILE CHECKSUM: 5edb44de7e68ed2ed04710e51a0c8d2b5a5417b2
+PODFILE CHECKSUM: be27c5f2203419ed968efef794bf31927609cddc
 
 COCOAPODS: 1.0.1

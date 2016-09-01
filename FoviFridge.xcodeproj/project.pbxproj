@@ -339,9 +339,12 @@
 		4B173ED43EE14787C9127D83 /* Pods_FoviFridgeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoviFridgeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		538FA4B6F891D976EACA21D2 /* Pods-FoviFridgeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		86155966566E60AFF578E21C /* Pods-FoviFridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridge.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge.release.xcconfig"; sourceTree = "<group>"; };
+		93F76E6F0457C1C08E712FFA /* Pods-FoviFridgeUITests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeUITests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests.distribution.xcconfig"; sourceTree = "<group>"; };
 		AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeUITests/Pods-FoviFridgeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C284019CCACFE40E7B0E9EC9 /* Pods-FoviFridge.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridge.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridge/Pods-FoviFridge.distribution.xcconfig"; sourceTree = "<group>"; };
 		CA920F867649DB2218CB3B94 /* Pods-FoviFridgeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CB0667121A58887515599A52 /* Pods_FoviFridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoviFridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6483600D31EB804CB62AB0B /* Pods-FoviFridgeTests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoviFridgeTests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-FoviFridgeTests/Pods-FoviFridgeTests.distribution.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -900,6 +903,9 @@
 				400B8CA5F8E2CB6BC171D660 /* Pods-FoviFridgeTests.release.xcconfig */,
 				538FA4B6F891D976EACA21D2 /* Pods-FoviFridgeUITests.debug.xcconfig */,
 				AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */,
+				C284019CCACFE40E7B0E9EC9 /* Pods-FoviFridge.distribution.xcconfig */,
+				F6483600D31EB804CB62AB0B /* Pods-FoviFridgeTests.distribution.xcconfig */,
+				93F76E6F0457C1C08E712FFA /* Pods-FoviFridgeUITests.distribution.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1411,7 +1417,7 @@
 		};
 		3E1EC8C71D726A6800090824 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86155966566E60AFF578E21C /* Pods-FoviFridge.release.xcconfig */;
+			baseConfigurationReference = C284019CCACFE40E7B0E9EC9 /* Pods-FoviFridge.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
@@ -1431,20 +1437,21 @@
 		};
 		3E1EC8C81D726A6800090824 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 400B8CA5F8E2CB6BC171D660 /* Pods-FoviFridgeTests.release.xcconfig */;
+			baseConfigurationReference = F6483600D31EB804CB62AB0B /* Pods-FoviFridgeTests.distribution.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = FoviFridgeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridgeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "00d51f72-87b6-4679-9833-9ed4fab5c349";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoviFridge.app/FoviFridge";
 			};
 			name = Distribution;
 		};
 		3E1EC8C91D726A6800090824 /* Distribution */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA113FA34478B3E2299DC102 /* Pods-FoviFridgeUITests.release.xcconfig */;
+			baseConfigurationReference = 93F76E6F0457C1C08E712FFA /* Pods-FoviFridgeUITests.distribution.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = FoviFridgeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1472,8 +1479,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patricia McKay (247YX7FWG7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patricia McKay (247YX7FWG7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -1496,7 +1503,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "00d51f72-87b6-4679-9833-9ed4fab5c349";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1537,7 +1544,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "00d51f72-87b6-4679-9833-9ed4fab5c349";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1548,7 +1555,7 @@
 			baseConfigurationReference = 2E98CCFB7CFC2B3173404227 /* Pods-FoviFridge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lyndon McKay (MP76YT95VQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Patricia McKay (247YX7FWG7)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1559,7 +1566,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00d51f72-87b6-4679-9833-9ed4fab5c349";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1579,7 +1586,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lyndonsamualmckay.FoviFridge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "00d51f72-87b6-4679-9833-9ed4fab5c349";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
