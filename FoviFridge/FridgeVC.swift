@@ -11,9 +11,10 @@ import FoldingTabBar
 import RealmSwift
 import Material
 import Social
+import MessageUI
 
 
-class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate, SettingCategory, DisplayFullFoodView {
+class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YALTabBarDelegate, UITextFieldDelegate, MaterialDelegate, SettingCategory, DisplayFullFoodView, MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate {
 
 
     
@@ -57,6 +58,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
 //        self.start()
         
+        
         self.view.alpha = 0
         self.view.fadeIn(duration: 0.45)
 
@@ -76,6 +78,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         cancel_search_button.layer.cornerRadius = 6
         cancel_search_button.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
         
+//        invite_alert()
     }
     
 
@@ -863,20 +866,109 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     }
     
     
+    
+    func invite_alert(){
+        add_tint()
+       
+        var alert = Invite_View()
+        let xpp = self.view.frame.width / 2 - (200 / 2)
+        let ypp = self.view.frame.height / 2 - (300 / 2)
+        alert.frame = CGRect(x: xpp, y: ypp, width: 200, height: 300)
+        alert.fbButton.addTarget(self, action: "inviteFriend_facebook", forControlEvents: .TouchUpInside)
+        alert.textButton.addTarget(self, action: "sendMessage", forControlEvents: .TouchUpInside)
+        alert.emailButton.addTarget(self, action: "sendEmail", forControlEvents: .TouchUpInside)
+        alert.otherButton.addTarget(self, action: "inviteFriend_other", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.6)
+        
+        changeTint()
+    }
+    
     func inviteFriend_facebook(){
+        remove_tint()
         print("inviting...")
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
 
             let vc = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-            vc.setInitialText("Hey Barbara, this app helps you know what's in your fridge, isn't that amazing!")
+            vc.setInitialText("Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing!")
 //            vc.addImage(UIImage(named: "myImage.jpg")!) // Icon
-            vc.addURL(NSURL(string: "https://www.google.com"))
+            vc.addURL(NSURL(string: "https://itunes.apple.com/us/app/fovi-fridge/id1148349113?ls=1&mt=8"))
             self.presentViewController(vc, animated: true, completion: nil)
             
         }
     }
     
+    func inviteFriend_other(){
+        remove_tint()
+        let textToShare = "Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing!"
+        
+        if let myWebsite = NSURL(string: "https://itunes.apple.com/us/app/fovi-fridge/id1148349113?ls=1&mt=8") {
+            let objectsToShare = [textToShare, myWebsite]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            //New Excluded Activities Code
+            activityVC.excludedActivityTypes = [UIActivityTypeAirDrop, UIActivityTypeAddToReadingList]
+            //
+            
+            activityVC.popoverPresentationController?.sourceView = self.view
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    
+    
+    // Send Message
+    func sendMessage(){
+        remove_tint()
+        let messageVC = MFMessageComposeViewController()
+        messageVC.body = "Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing! \n\n https://appsto.re/us/5QMCeb.i"
+        messageVC.recipients = [] // Optionally Add Cell Phone Numbers
+        messageVC.messageComposeDelegate = self
+        
+        presentViewController(messageVC, animated: true, completion: nil)
+    }
+    // Delegate Method
+    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
+        switch result.rawValue {
+        case MessageComposeResultCancelled.rawValue:
+            print("Cancelled Message")
+        case MessageComposeResultFailed.rawValue:
+            print("Failed to send Message!")
+        case MessageComposeResultSent.rawValue:
+            print("Message Sent!")
+        default:
+            break;
+        }
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    //Email
+    func sendEmail(){
+        remove_tint()
+        if( MFMailComposeViewController.canSendMail() ) {
+            print("Can send email.")
+            
+            let mailComposer = MFMailComposeViewController()
+            mailComposer.mailComposeDelegate = self
+            
+            //Set the subject and message of the email
+            mailComposer.setSubject("Fovi Feedback")
+            mailComposer.setMessageBody("Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing! \n\n Check out Fovi: \n https://itunes.apple.com/us/app/fovi-fridge/id1148349113?ls=1&mt=8", isHTML: false)
+            mailComposer.setToRecipients([])
+            
+            self.presentViewController(mailComposer, animated: true, completion: nil)
+        }
+    }
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+
     
     
     
