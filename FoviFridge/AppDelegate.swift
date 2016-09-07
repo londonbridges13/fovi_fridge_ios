@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 11,
+            schemaVersion: 12,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -132,6 +132,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var grocery_store_walkthrough = false
                         newObject!["grocery_store_walkthrough"] = grocery_store_walkthrough
                     }
+                    if oldSchemaVersion < 12{
+                        var launch_count = 0
+                        newObject!["launch_count"] = launch_count
+                        var user_invited = false
+                        newObject!["user_invited"] = user_invited
+                    }
                 }
                 //FoodItem
                 migration.enumerate(FoodItem.className()) { oldObject, newObject in
@@ -156,8 +162,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let realm = try! Realm()
 
         //End Realm
-
         
+        update_launch_count()
+
         return true
     }
     
@@ -199,7 +206,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     
-    
+    func update_launch_count(){
+        let realm = try! Realm()
+        var cUser = realm.objects(UserDetails).first
+        if cUser != nil{
+            try! realm.write({
+                print("Launch Count was \(cUser!.launch_count)")
+                cUser!.launch_count += 1
+                print("Launch Count is now \(cUser!.launch_count)")
+            })
+        }
+    }
     
     
     

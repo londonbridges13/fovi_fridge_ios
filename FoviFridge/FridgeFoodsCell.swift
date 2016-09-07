@@ -118,7 +118,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     func get_fooditems(category : String){
         let realm = try! Realm()
 //        let predicate = NSPredicate(format: "category CONTAINS '\(category)'")
-        var foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)' AND previously_purchased = \(true)")
+        var foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)'")// AND previously_purchased = \(true)")
 
         if foods.count != 0{
             print("Found Some FoodItems")

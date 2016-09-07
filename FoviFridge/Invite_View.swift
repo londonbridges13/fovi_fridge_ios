@@ -17,6 +17,7 @@ class Invite_View: UIView {
     @IBOutlet var textButton: UIButton!
     @IBOutlet var emailButton: UIButton!
     @IBOutlet var otherButton: UIButton!
+    @IBOutlet var laterButton: UIButton!
     
 
     
@@ -51,7 +52,7 @@ class Invite_View: UIView {
         textButton.addTarget(self, action: "fadeaway", forControlEvents: .TouchUpInside)
         emailButton.addTarget(self, action: "fadeaway", forControlEvents: .TouchUpInside)
         otherButton.addTarget(self, action: "fadeaway", forControlEvents: .TouchUpInside)
-        
+        laterButton.addTarget(self, action: "fadeaway", forControlEvents: .TouchUpInside)
         
         //        alerter.helloLabel.text = "Bye"
         //        yesButton.layer.cornerRadius = 5

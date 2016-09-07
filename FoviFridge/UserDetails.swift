@@ -24,6 +24,8 @@ class UserDetails: Object {
     dynamic var name: String?
     dynamic var email: String?
     dynamic var password: String?
+    dynamic var launch_count = 0
+    dynamic var user_invited = false
     
     // Allergies
     let allergies = List<Allergy>()

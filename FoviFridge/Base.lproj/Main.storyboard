@@ -1317,7 +1317,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-79-Mmt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-79-Mmt">
                                 <rect key="frame" x="-4" y="70" width="328" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1325,7 +1325,7 @@
                                         <rect key="frame" x="0.0" y="28" width="328" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZf-89-vpt" id="bNc-gP-RPP">
-                                            <rect key="frame" x="0.0" y="0.0" width="295" height="64"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="295" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make Suggestion / Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJF-LE-kug">
@@ -1334,7 +1334,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="YbN-fL-QYe"/>
                                                         <constraint firstAttribute="width" constant="281" id="bTa-xW-ioH"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1344,6 +1344,9 @@
                                                 <constraint firstItem="OJF-LE-kug" firstAttribute="centerY" secondItem="bNc-gP-RPP" secondAttribute="centerY" id="eTp-5h-X5f"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="settingLabel" destination="OJF-LE-kug" id="sx5-9G-3LT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

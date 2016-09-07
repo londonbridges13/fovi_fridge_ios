@@ -20,7 +20,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     var categories = [String]()//[String]() // Change later
     var tint : UIView?
-
+    var dtint : UIView?
     var fullview : Full_Food_VC?
     
     @IBOutlet var fridgeViewTopConstraint: NSLayoutConstraint!
@@ -78,7 +78,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         cancel_search_button.layer.cornerRadius = 6
         cancel_search_button.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
         
-//        invite_alert()
+        count_launch()
     }
     
 
@@ -184,7 +184,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             tableView.rowHeight = 148.0
             
             cell.alpha = 0
-            cell.fadeIn()
+            cell.fadeIn(duration: 0.6)
             
             return cell
         }else{
@@ -577,6 +577,17 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         }
     }
     
+    
+    func remove_dark_tint(){
+        print("Removing Tint")
+        self.dtint!.fadeOut()
+        self.fullview?.view.fadeOut()
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.dtint!.alpha = 0
+            self.fullview?.view.removeFromSuperview()
+        }
+    }
 
     
     
@@ -867,26 +878,74 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     
     
+    func count_launch(){
+        var x_array = [Int]()
+        var y_array = [Int]()
+        var n = 1
+        
+        while n < 1000{
+            let x = n * 20
+            let y = n * 60
+            print(x)
+            print(y)
+            x_array.append(x)
+            y_array.append(y)
+            n+=1
+        }
+        
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            print("There is a User")
+            print("Checking Launch Count ... \(user!.launch_count)")
+            print("User_Invited = \(user!.user_invited)")
+            if x_array.contains(user!.launch_count) && user!.user_invited == false{
+                // Display Invite Alert
+                invite_friends()
+            }
+            if y_array.contains(user!.launch_count) == true && user!.user_invited == true{
+                // Display Invite Alert
+                invite_friends()
+            }
+        }else{
+            print("There is no User")
+        }
+    }
+    
+    
+    func invite_friends(){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.invite_alert()
+        }
+    }
     func invite_alert(){
-        add_tint()
        
-        var alert = Invite_View()
-        let xpp = self.view.frame.width / 2 - (200 / 2)
-        let ypp = self.view.frame.height / 2 - (300 / 2)
-        alert.frame = CGRect(x: xpp, y: ypp, width: 200, height: 300)
+        let alert = Invite_View()
+        let a_height : CGFloat = 330
+        let a_width : CGFloat = 200
+        let xpp = self.view.frame.width / 2 - (a_width / 2)
+        let ypp = self.view.frame.height / 2 - (a_height / 2)
+        alert.frame = CGRect(x: xpp, y: ypp, width: a_width, height: a_height)
         alert.fbButton.addTarget(self, action: "inviteFriend_facebook", forControlEvents: .TouchUpInside)
         alert.textButton.addTarget(self, action: "sendMessage", forControlEvents: .TouchUpInside)
         alert.emailButton.addTarget(self, action: "sendEmail", forControlEvents: .TouchUpInside)
         alert.otherButton.addTarget(self, action: "inviteFriend_other", forControlEvents: .TouchUpInside)
+        alert.laterButton.addTarget(self, action: "remove_dark_tint", forControlEvents: .TouchUpInside)
         alert.alpha = 0
         self.view.addSubview(alert)
         alert.fadeIn(duration: 0.6)
         
-        changeTint()
     }
     
     func inviteFriend_facebook(){
-        remove_tint()
+        remove_dark_tint()
         print("inviting...")
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 500 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -898,10 +957,15 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             self.presentViewController(vc, animated: true, completion: nil)
             
         }
+        let realm = try! Realm()
+        let user = realm.objects(UserDetails).first
+        try! realm.write({ 
+            user!.user_invited = true
+        })
     }
     
     func inviteFriend_other(){
-        remove_tint()
+        remove_dark_tint()
         let textToShare = "Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing!"
         
         if let myWebsite = NSURL(string: "https://itunes.apple.com/us/app/fovi-fridge/id1148349113?ls=1&mt=8") {
@@ -915,13 +979,19 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             activityVC.popoverPresentationController?.sourceView = self.view
             self.presentViewController(activityVC, animated: true, completion: nil)
         }
+        
+        let realm = try! Realm()
+        let user = realm.objects(UserDetails).first
+        try! realm.write({
+            user!.user_invited = true
+        })
     }
     
     
     
     // Send Message
     func sendMessage(){
-        remove_tint()
+        remove_dark_tint()
         let messageVC = MFMessageComposeViewController()
         messageVC.body = "Hey Barbara, this app puts your fridge in your pocket! Isn't that amazing! \n\n https://appsto.re/us/5QMCeb.i"
         messageVC.recipients = [] // Optionally Add Cell Phone Numbers
@@ -938,6 +1008,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             print("Failed to send Message!")
         case MessageComposeResultSent.rawValue:
             print("Message Sent!")
+            let realm = try! Realm()
+            let user = realm.objects(UserDetails).first
+            try! realm.write({
+                user!.user_invited = true
+            })
         default:
             break;
         }
@@ -947,7 +1022,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     //Email
     func sendEmail(){
-        remove_tint()
+        remove_dark_tint()
         if( MFMailComposeViewController.canSendMail() ) {
             print("Can send email.")
             
@@ -960,6 +1035,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             mailComposer.setToRecipients([])
             
             self.presentViewController(mailComposer, animated: true, completion: nil)
+            let realm = try! Realm()
+            let user = realm.objects(UserDetails).first
+            try! realm.write({
+                user!.user_invited = true
+            })
         }
     }
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
