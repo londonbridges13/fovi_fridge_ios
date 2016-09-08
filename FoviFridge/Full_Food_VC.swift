@@ -185,7 +185,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.color_array.append(color_9)
         self.color_array.append(color_10)
         self.color_array.append(color_11)
-        self.color_array.append(color_12)
+        self.color_array.append(color_12) 
         self.color_array.append(color_13)
         
         
