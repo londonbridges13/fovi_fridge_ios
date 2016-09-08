@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8E9-hG-Ksa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8E9-hG-Ksa">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -3106,6 +3106,124 @@
                 </button>
             </objects>
             <point key="canvasLocation" x="434" y="398"/>
+        </scene>
+        <!--Set Expiration Alert-->
+        <scene sceneID="0IL-6N-B11">
+            <objects>
+                <viewController storyboardIdentifier="Set_Expiration_AlertVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="28j-xK-u6a" customClass="Set_Expiration_Alert" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gxS-Lf-2Il"/>
+                        <viewControllerLayoutGuide type="bottom" id="q2l-Qm-21S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fNY-3X-Fu8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mdc-47-lXP">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="250"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="u34-Er-gob">
+                                    <size key="itemSize" width="160" height="213"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="12" minY="13" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expire_optioncell" id="X3A-a6-FZT" customClass="Set_Expiration_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="13" width="160" height="213"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="213"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="od7-DV-Xcb">
+                                                    <rect key="frame" x="34" y="175" width="92" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="92" id="2y4-Cz-LX9"/>
+                                                        <constraint firstAttribute="height" constant="30" id="sEe-Do-SAJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <state key="normal" title="Select">
+                                                        <color key="titleColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hUZ-WZ-wui">
+                                                    <rect key="frame" x="8" y="8" width="144" height="159"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Freezer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybQ-Ks-Y7O">
+                                                            <rect key="frame" x="17" y="8" width="111" height="26"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="111" id="DyB-rh-6Fz"/>
+                                                                <constraint firstAttribute="height" constant="26" id="oeC-MQ-mDW"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
+                                                            <color key="textColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="groceries" translatesAutoresizingMaskIntoConstraints="NO" id="5lX-vZ-HkP">
+                                                            <rect key="frame" x="17" y="36" width="111" height="61"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="61" id="7YR-oF-Y63"/>
+                                                                <constraint firstAttribute="width" constant="111" id="IHj-AS-7K5"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you put Oranges in the freezer, they should last 90 days." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="m5l-xR-snk">
+                                                            <rect key="frame" x="8" y="97" width="128" height="62"/>
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                            <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="ybQ-Ks-Y7O" firstAttribute="top" secondItem="hUZ-WZ-wui" secondAttribute="top" constant="8" id="8Kh-AL-VgE"/>
+                                                        <constraint firstItem="ybQ-Ks-Y7O" firstAttribute="centerX" secondItem="hUZ-WZ-wui" secondAttribute="centerX" id="FMo-d6-9Qx"/>
+                                                        <constraint firstItem="5lX-vZ-HkP" firstAttribute="centerX" secondItem="hUZ-WZ-wui" secondAttribute="centerX" id="Loi-Mt-HXD"/>
+                                                        <constraint firstItem="m5l-xR-snk" firstAttribute="top" secondItem="5lX-vZ-HkP" secondAttribute="bottom" id="NOA-Kk-GV9"/>
+                                                        <constraint firstItem="5lX-vZ-HkP" firstAttribute="top" secondItem="ybQ-Ks-Y7O" secondAttribute="bottom" constant="2" id="hXT-Ne-LVr"/>
+                                                        <constraint firstItem="m5l-xR-snk" firstAttribute="leading" secondItem="hUZ-WZ-wui" secondAttribute="leading" constant="8" id="hdB-3U-2Ac"/>
+                                                        <constraint firstAttribute="trailing" secondItem="m5l-xR-snk" secondAttribute="trailing" constant="8" id="hqt-BD-Jme"/>
+                                                        <constraint firstAttribute="bottom" secondItem="m5l-xR-snk" secondAttribute="bottom" id="sNN-I2-hsr"/>
+                                                        <constraint firstAttribute="height" constant="159" id="tHj-Es-vdW"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="od7-DV-Xcb" firstAttribute="bottom" secondItem="X3A-a6-FZT" secondAttribute="bottomMargin" id="08M-9m-LWD"/>
+                                            <constraint firstItem="hUZ-WZ-wui" firstAttribute="trailing" secondItem="X3A-a6-FZT" secondAttribute="trailingMargin" id="Bb3-cE-OXo"/>
+                                            <constraint firstItem="od7-DV-Xcb" firstAttribute="centerX" secondItem="X3A-a6-FZT" secondAttribute="centerX" id="FNZ-a6-SuZ"/>
+                                            <constraint firstItem="hUZ-WZ-wui" firstAttribute="leading" secondItem="X3A-a6-FZT" secondAttribute="leadingMargin" id="XMO-7e-pYU"/>
+                                            <constraint firstItem="hUZ-WZ-wui" firstAttribute="top" secondItem="X3A-a6-FZT" secondAttribute="topMargin" id="fHx-mc-QuD"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="backView" destination="hUZ-WZ-wui" id="SSg-F5-eau"/>
+                                            <outlet property="descLabel" destination="m5l-xR-snk" id="GMb-7T-tBA"/>
+                                            <outlet property="selectButton" destination="od7-DV-Xcb" id="gkZ-x2-GM8"/>
+                                            <outlet property="setImageView" destination="5lX-vZ-HkP" id="OS7-IB-xzV"/>
+                                            <outlet property="setLabel" destination="ybQ-Ks-Y7O" id="u3T-ZK-rjq"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mdc-47-lXP" firstAttribute="top" secondItem="gxS-Lf-2Il" secondAttribute="bottom" id="DFA-44-7zG"/>
+                            <constraint firstItem="Mdc-47-lXP" firstAttribute="leading" secondItem="fNY-3X-Fu8" secondAttribute="leadingMargin" constant="-20" id="QsD-qe-Dy4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mdc-47-lXP" secondAttribute="trailing" constant="-20" id="V7x-7W-09j"/>
+                            <constraint firstItem="q2l-Qm-21S" firstAttribute="top" secondItem="Mdc-47-lXP" secondAttribute="bottom" id="sI7-Ba-sXB"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="250"/>
+                    <connections>
+                        <outlet property="collectionView" destination="Mdc-47-lXP" id="Rzu-Wo-iXr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZY-E6-LGH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="417" y="1116"/>
         </scene>
         <!--Measurement View Controller-->
         <scene sceneID="zhI-CF-0X7">

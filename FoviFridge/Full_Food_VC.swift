@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeFoodValue {
+class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeFoodValue, SetExpirationDelegate {
 
     
     var fooditem = FoodItem()
@@ -21,6 +21,8 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet var doneView: UIView!
     
     var cells = [1,2,3]
+    var dtint : UIView?
+    var set_expire_view : Set_Expiration_Alert?
     
     
     // Color Options
@@ -40,6 +42,11 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.dataSource = self
 
         self.random_Color()
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.display_set_expiration()
+        }
 
     }
     
@@ -196,7 +203,48 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    
+    
+    // SET EXPIRATION ALERT
+    func display_set_expiration(){
+        self.set_expire_view = storyboard?.instantiateViewControllerWithIdentifier("Set_Expiration_AlertVC") as! Set_Expiration_Alert
+        
+        let yp = self.view.frame.height / 2 - (250 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        set_expire_view!.view.alpha = 0
+        self.view.addSubview(set_expire_view!.view)
+        
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
 
+        set_expire_view!.view.fadeIn(duration: 0.5)
+    }
+    
+    
+    func remove_dtint(){
+        self.dtint?.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.dtint?.removeFromSuperview()
+        }
+    }
+
+    // Delegate
+    func remove_set_Expiration_Alert(){
+        print("Delegate in Action")
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        self.remove_dtint()
+        
+    }
     /*
     // MARK: - Navigation
 
