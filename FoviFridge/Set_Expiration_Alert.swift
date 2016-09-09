@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 protocol SetExpirationDelegate {
     func remove_set_Expiration_Alert()
+    func displayEnterInputAlert()
 }
 
-class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, SetExpireCellDelegate {
 
     @IBOutlet var collectionView : UICollectionView!
     
@@ -48,28 +51,56 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
         
         cell.setLabel.text = self.options[indexPath.row].title
         cell.descLabel.text = self.options[indexPath.row].description
+        cell.setDays = self.options[indexPath.row].set_Days
         
         if self.options[indexPath.row].image != nil{
             cell.setImageView.image = self.options[indexPath.row].image
         }
-        
+        cell.delegate = self
         cell.selectButton.layer.cornerRadius = 4
         var that_color = UIColor(red: 90/255, green: 155/255, blue: 178/255, alpha: 1)
-        cell.selectButton.layer.borderColor = that_color.CGColor
-        cell.selectButton.layer.borderWidth = 1
+//        cell.selectButton.layer.borderColor = that_color.CGColor
+//        cell.selectButton.layer.borderWidth = 1
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 3{
+            // Custom Input, Display Alert
+            print("Display Custom Alert")
+            selectedCustomInput()
+        }else{
+            self.selectedCell(self.options[indexPath.row].set_Days!)
+        }
+    }
+    
+    func selectedCell(setDays : Int){
+        let realm = try! Realm()
+        try! realm.write({
+            print("\(fooditem.title!).set_expiration was : \(fooditem.set_expiration.value)")
+            self.fooditem.set_expiration.value = setDays
+            print("\(fooditem.title!).set_expiration is now : \(fooditem.set_expiration.value)")
+        })
+        
         if let delegate = self.delegate{
             print("Running Delegate (to remove alert view)")
             delegate.remove_set_Expiration_Alert()
         }
+        
     }
     
     
-    
+    func selectedCustomInput(){
+        // Display EnterInput Alert through Delegate with FullFoodView
+        // Comeback Here
+        
+        if let delegate = self.delegate{
+            print("Running Delegate (to remove alert view)")
+//            delegate.remove_set_Expiration_Alert()
+            delegate.displayEnterInputAlert()
+        }
+    }
     
     
     
@@ -113,25 +144,25 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
         var longtime = ExpirationOption()
         longtime.title = "Long Time"
         longtime.set_Days = 120
-        longtime.description = "Set the \(fooditem.title!) to last about \(longtime.set_Days) days."
+        longtime.description = "Set the \(fooditem.title!) to last about \(longtime.set_Days!) days."
 //        longtime.image = UIImage(named: "")
         
         var month = ExpirationOption()
         month.title = "A Month"
         month.set_Days = 30
-        month.description = "Set the \(fooditem.title!) to last about \(month.set_Days) days."
+        month.description = "Set the \(fooditem.title!) to last about \(month.set_Days!) days."
         //        month.image = UIImage(named: "")
 
         var twoweeks = ExpirationOption()
         twoweeks.title = "Two Weeks"
         twoweeks.set_Days = 14
-        twoweeks.description = "Set the \(fooditem.title!) to last about \(twoweeks.set_Days) days."
+        twoweeks.description = "Set the \(fooditem.title!) to last about \(twoweeks.set_Days!) days."
         //        twoweeks.image = UIImage(named: "")
 
         var aweek = ExpirationOption()
         aweek.title = "A Week"
         aweek.set_Days = 7
-        aweek.description = "Set the \(fooditem.title!) to last about \(aweek.set_Days) days."
+        aweek.description = "Set the \(fooditem.title!) to last about \(aweek.set_Days!) days."
         //        aweek.image = UIImage(named: "")
 
         

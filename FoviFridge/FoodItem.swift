@@ -44,6 +44,7 @@ class FoodItem: Object {
     let fridge_usually_expires = RealmOptional<Int>()  // Number of days until expiration //DAYS
     dynamic var expiration_date : NSDate? = nil
     dynamic var modified_date : NSDate? = nil
+    let set_expiration = RealmOptional<Int>()
     
     // Nutrition
     dynamic var food_desc : String? = nil

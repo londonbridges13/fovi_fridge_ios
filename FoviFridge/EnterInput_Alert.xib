@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EnterInput_Alert" customModule="FoviFridge" customModuleProvider="target">
+            <connections>
+                <outlet property="daysTX" destination="uZF-fb-KTl" id="5Ey-ye-fvd"/>
+                <outlet property="doneButton" destination="Cvb-hH-LrX" id="pUS-AD-OET"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="261"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Expiration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcT-vQ-0Ev">
+                    <rect key="frame" x="8" y="8" width="137" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="Fs0-A0-3gl"/>
+                        <constraint firstAttribute="width" constant="137" id="NIX-Hw-haW"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="until this food item is no longer edible" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OiX-7i-DZn">
+                    <rect key="frame" x="20" y="99" width="147" height="84"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="84" id="0B8-PY-RnR"/>
+                        <constraint firstAttribute="width" constant="147" id="KXp-3d-2IS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cvb-hH-LrX">
+                    <rect key="frame" x="51" y="218" width="85" height="30"/>
+                    <color key="backgroundColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="85" id="9bj-A1-0AU"/>
+                        <constraint firstAttribute="height" constant="30" id="TFN-0f-vGb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuE-tf-sxa">
+                    <rect key="frame" x="122" y="65" width="51" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="51" id="Glo-vt-oR9"/>
+                        <constraint firstAttribute="height" constant="26" id="Rxt-bc-Bph"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZF-fb-KTl">
+                    <rect key="frame" x="42" y="56" width="69" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Gcw-sf-bWu"/>
+                        <constraint firstAttribute="width" constant="69" id="jfA-WH-UMu"/>
+                    </constraints>
+                    <color key="textColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="27"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="70h-3k-bZV">
+                    <rect key="frame" x="42" y="85" width="69" height="1"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="2wo-aR-p1J"/>
+                        <constraint firstAttribute="width" constant="69" id="y0y-Tz-VZK"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uZF-fb-KTl" firstAttribute="top" secondItem="xcT-vQ-0Ev" secondAttribute="bottom" constant="17" id="9A1-BX-pwf"/>
+                <constraint firstItem="70h-3k-bZV" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="9gt-Hc-BqM"/>
+                <constraint firstItem="OiX-7i-DZn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ChM-fR-a8N"/>
+                <constraint firstItem="uZF-fb-KTl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="IcI-t0-hKh"/>
+                <constraint firstAttribute="trailing" secondItem="kuE-tf-sxa" secondAttribute="trailing" constant="14" id="LUW-MS-JEZ"/>
+                <constraint firstItem="Cvb-hH-LrX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NEr-XV-pAe"/>
+                <constraint firstItem="xcT-vQ-0Ev" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Qio-fZ-0bQ"/>
+                <constraint firstAttribute="bottom" secondItem="Cvb-hH-LrX" secondAttribute="bottom" constant="13" id="QoB-jf-dIs"/>
+                <constraint firstItem="kuE-tf-sxa" firstAttribute="top" secondItem="xcT-vQ-0Ev" secondAttribute="bottom" constant="26" id="UbH-sj-NpJ"/>
+                <constraint firstItem="Cvb-hH-LrX" firstAttribute="top" secondItem="OiX-7i-DZn" secondAttribute="bottom" constant="35" id="ckc-fO-HHe"/>
+                <constraint firstItem="70h-3k-bZV" firstAttribute="top" secondItem="xcT-vQ-0Ev" secondAttribute="bottom" constant="46" id="hUc-s1-Bfr"/>
+                <constraint firstItem="xcT-vQ-0Ev" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="xGT-FW-NZf"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="482.5" y="246.5"/>
+        </view>
+    </objects>
+</document>
