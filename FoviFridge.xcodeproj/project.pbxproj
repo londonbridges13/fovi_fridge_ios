@@ -29,6 +29,8 @@
 		3E3FECA81D81B43E0061106C /* ExpirationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FECA71D81B43E0061106C /* ExpirationOption.swift */; };
 		3E3FECAB1D831B220061106C /* EnterInput_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FECAA1D831B220061106C /* EnterInput_Alert.swift */; };
 		3E3FECAD1D831BC10061106C /* EnterInput_Alert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FECAC1D831BC10061106C /* EnterInput_Alert.xib */; };
+		3E3FECB01D8640C40061106C /* DaysLeft_Alert.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FECAF1D8640C40061106C /* DaysLeft_Alert.xib */; };
+		3E3FECB21D86410E0061106C /* DaysLeft_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FECB11D86410E0061106C /* DaysLeft_Alert.swift */; };
 		3E4FF62B1D1B9688005BFFF4 /* FridgeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */; };
 		3E4FF62D1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */; };
 		3E4FF6751D1C63C6005BFFF4 /* AddFoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */; };
@@ -217,6 +219,8 @@
 		3E3FECA71D81B43E0061106C /* ExpirationOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpirationOption.swift; sourceTree = "<group>"; };
 		3E3FECAA1D831B220061106C /* EnterInput_Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterInput_Alert.swift; sourceTree = "<group>"; };
 		3E3FECAC1D831BC10061106C /* EnterInput_Alert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterInput_Alert.xib; sourceTree = "<group>"; };
+		3E3FECAF1D8640C40061106C /* DaysLeft_Alert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaysLeft_Alert.xib; sourceTree = "<group>"; };
+		3E3FECB11D86410E0061106C /* DaysLeft_Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysLeft_Alert.swift; sourceTree = "<group>"; };
 		3E4FF62A1D1B9688005BFFF4 /* FridgeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeVC.swift; sourceTree = "<group>"; };
 		3E4FF62C1D1B9AB3005BFFF4 /* FridgeFoodsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodsCell.swift; sourceTree = "<group>"; };
 		3E4FF6741D1C63C6005BFFF4 /* AddFoodVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFoodVC.swift; sourceTree = "<group>"; };
@@ -493,6 +497,15 @@
 			name = EnterInput_Alert;
 			sourceTree = "<group>";
 		};
+		3E3FECAE1D8640960061106C /* DaysLeft_Alert */ = {
+			isa = PBXGroup;
+			children = (
+				3E3FECAF1D8640C40061106C /* DaysLeft_Alert.xib */,
+				3E3FECB11D86410E0061106C /* DaysLeft_Alert.swift */,
+			);
+			name = DaysLeft_Alert;
+			sourceTree = "<group>";
+		};
 		3E5FAAD41D39DF7D00E94EA8 /* Survey Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -752,6 +765,7 @@
 		3E9E373F1D4D621C00A15381 /* Food Views */ = {
 			isa = PBXGroup;
 			children = (
+				3E3FECAE1D8640960061106C /* DaysLeft_Alert */,
 				3E3FECA91D831ACA0061106C /* EnterInput_Alert */,
 				3E3FEC9D1D81AFE30061106C /* Set_Expiration Alert */,
 				3E14396B1D5D1A06001C9C6B /* Full Food View */,
@@ -1079,6 +1093,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E71D51F1D6FA3E80049A99B /* GroceryStore_Alert2.xib in Resources */,
+				3E3FECB01D8640C40061106C /* DaysLeft_Alert.xib in Resources */,
 				3E71D5181D6F92410049A99B /* GroceryBagWalk_1.xib in Resources */,
 				3E71D52C1D71FC290049A99B /* ShoppingList_Alert3.xib in Resources */,
 				3E671DFB1D60E2FB00CCE1BF /* DeleteCategory_AlertView.xib in Resources */,
@@ -1282,6 +1297,7 @@
 				3EAF0E661D40569800A302B0 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				3E63D6EE1D64C053001063F8 /* FullFoodShoppingCell.swift in Sources */,
 				3EAF0E371D3FF09D00A302B0 /* CVCalendarKitExtensions.swift in Sources */,
+				3E3FECB21D86410E0061106C /* DaysLeft_Alert.swift in Sources */,
 				3E5FAAEC1D3D956D00E94EA8 /* DOFavoriteButton.swift in Sources */,
 				3EAF0E311D3F3B0F00A302B0 /* LongAnswer_SurveyQ.swift in Sources */,
 				3EAF0E641D40569800A302B0 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,

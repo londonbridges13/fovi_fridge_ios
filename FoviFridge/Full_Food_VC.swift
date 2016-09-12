@@ -4,10 +4,11 @@
 //
 //  Created by Lyndon Samual McKay on 8/11/16.
 //  Copyright © 2016 Lyndon Samual McKay. All rights reserved.
-//
 
 import UIKit
 import RealmSwift
+import Foundation
+
 
 class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource, ChangeFoodValue, SetExpirationDelegate {
 
@@ -45,7 +46,8 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
-            self.display_set_expiration()
+//            self.display_set_expiration()
+            self.display_daysleft()
         }
 
     }
@@ -272,6 +274,44 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         
     }
+    
+    
+    
+    // Days Left Alert
+    //   DISPLAY WHEN CELL IS SELECTED
+    func display_daysleft(){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        
+
+        let alert = DaysLeft_Alert()
+        let yp = self.view.frame.height / 2 - (185 / 2) - 30
+        let xp = self.view.frame.width / 2 - (250 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 250, height: 185)
+        alert.fooditem = self.fooditem
+        if fooditem.expiration_date != nil{
+            print("Expiration Date is not nil")
+            let today = NSDate()
+            let daysleft = fooditem.expiration_date!.timeIntervalSinceDate(today)
+            print(daysleft)
+            
+            var daycount = (daysleft / 86400)
+            daycount = round(daycount)
+            alert.stepper.value = Double(daycount)
+            
+        }
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+
+        
+    }
+    
     /*
     // MARK: - Navigation
 
