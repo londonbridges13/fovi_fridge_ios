@@ -12,7 +12,7 @@ import RealmSwift
 import Kingfisher
 import Material
 
-class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, MiniDelegate {
+class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, MiniDelegate, SetExpirationDelegate {
 
     @IBOutlet weak var collViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var collViewTopConstraint: NSLayoutConstraint!
@@ -25,9 +25,15 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     var actIndi : NVActivityIndicatorView?
 
+    var dtint : UIView?
+    
     var segueStick: String?
 
-        
+    var selected_fooditem = FoodItem()
+    
+    var set_expire_view : Set_Expiration_Alert?
+
+    
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var uniqueButton: UIButton!
     @IBOutlet var finishedButton: UIButton!
@@ -504,6 +510,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     func show_food_item(fooditem : FoodItem){
         add_tint()
         
+        self.selected_fooditem = fooditem
+        
         // Display see you tomorrow view with ok button, push ok to segue to fridge vc
         print("Displaying \(fooditem.title!)")
         
@@ -533,13 +541,15 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         foodView?.add_food_buttom.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
         foodView?.remove_button.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
         
+        foodView!.add_food_buttom.addTarget(self, action: "pre_set_food_expiration", forControlEvents: .TouchUpInside)
+
         view.addSubview(foodView!)
     }
     
     
     func add_tint(){
         self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.backgroundColor = UIColor.blackColor()
         self.tint!.alpha = 0.4
         view.addSubview(self.tint!)
     }
@@ -555,6 +565,30 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    func pre_set_food_expiration(){
+        var fooditem = self.selected_fooditem
+        if fooditem.mylist_amount.value > 0{
+            set_food_expiration(fooditem)
+        }
+    }
+    func set_food_expiration(fooditem : FoodItem){
+        //display set_expiration Alert
+        //send fooditem over
+        
+        let realm = try! Realm()
+        print("Searching Realm for \(fooditem.title!)")
+        let predicate = NSPredicate(format: "title = '\(fooditem.title!)' AND is_basic = \(fooditem.is_basic)")
+        var same_food = realm.objects(FoodItem).filter(predicate).first
+        print("We have this item \(same_food?.title)")
+
+        if same_food?.set_expiration.value == nil{
+            // No fooditem, display set ex_alert
+            
+            display_set_expiration(same_food!)
+        }else if same_food == nil{
+            display_set_expiration(fooditem)
+        }
+    }
 
     // MiniDelegate
     //Display FoodView
@@ -725,6 +759,85 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
             self.cUser.grocery_store_walkthrough = true
         })
     }
+    
+    
+    
+    
+    
+    // SET EXPIRATION ALERT
+    func display_set_expiration(fooditem : FoodItem){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        self.set_expire_view = storyboard?.instantiateViewControllerWithIdentifier("Set_Expiration_Alert") as! Set_Expiration_Alert
+        
+        set_expire_view!.fooditem = fooditem
+        set_expire_view!.delegate = self
+        
+        let yp = self.view.frame.height / 2 - (250 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        set_expire_view!.view.alpha = 0
+        self.view.addSubview(set_expire_view!.view)
+        
+        set_expire_view!.view.fadeIn(duration: 0.5)
+    }
+    
+    
+    func remove_dtint(){
+        self.dtint?.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.dtint?.removeFromSuperview()
+        }
+    }
+    
+    // Delegate
+    func remove_set_Expiration_Alert(){
+        print("Delegate in Action")
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        self.remove_dtint()
+        
+    }
+    
+    func displayEnterInputAlert(){
+        var fooditem = self.selected_fooditem
+
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        
+        
+        let alert = EnterInput_Alert()
+        let yp = self.view.frame.height / 2 - (261 / 2) - 30
+        let xp = self.view.frame.width / 2 - (187 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 187, height: 261)
+        alert.fooditem = fooditem
+        if fooditem.set_expiration.value != nil{
+            alert.daysTX.text = "\(fooditem.set_expiration.value!)"
+        }
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+        
+        
+    }
+    
+
+    
+    
+    
     
     
     

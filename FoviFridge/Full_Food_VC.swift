@@ -48,6 +48,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         dispatch_after(time, dispatch_get_main_queue()) {
 //            self.display_set_expiration()
             self.display_daysleft()
+//            self.display_expiration_walkthrough()
         }
 
     }
@@ -286,7 +287,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         dtint!.alpha = 0.4
         view.addSubview(self.dtint!)
         
-        
+        print(fooditem)
 
         let alert = DaysLeft_Alert()
         let yp = self.view.frame.height / 2 - (185 / 2) - 30
@@ -311,6 +312,85 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         
     }
+    
+    
+    
+    
+    
+    // Expiration Walkthrough
+    
+    func display_expiration_walkthrough(){
+        // dtint
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+
+        
+        var alert = Food_Expiration_Walk_Alert()
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        let xp = self.view.frame.width / 2 - (230 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 230, height: 320)
+        
+        alert.doneButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+
+        
+        
+    }
+    
+    
+    func walkthrough_part2(){
+        var alert = Expiration_Settings_Walk_Alert()
+        let yp = self.view.frame.height / 2 - (250 / 2) - 30
+        let xp = self.view.frame.width / 2 - (200 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 200, height: 250)
+        
+//        alert.imageview.image =
+
+        alert.doneButton.addTarget(self, action: "walkthrough_part3", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.5)
+
+    }
+    
+    
+    
+    func walkthrough_part3(){
+        // dtint
+        
+        var alert = Food_Expiration_Walk_Alert()
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        let xp = self.view.frame.width / 2 - (230 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 230, height: 320)
+        
+        alert.detailLabel.text = "We would like to notify you of expiring food when you're not using the app."
+        alert.topLabel.text = "Last Thing"
+//        alert.imageview.image = 
+        
+        alert.doneButton.addTarget(self, action: "ask_notification_permission", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.56)
+        
+    }
+
+    
+    func ask_notification_permission(){
+        remove_dtint()
+        
+        let notiTypes : UIUserNotificationType = [UIUserNotificationType.Alert , UIUserNotificationType.Badge , UIUserNotificationType.Sound]
+        
+        let notiSettings : UIUserNotificationSettings = UIUserNotificationSettings(forTypes: notiTypes, categories: nil)
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(notiSettings)
+        
+    }
+    
     
     /*
     // MARK: - Navigation

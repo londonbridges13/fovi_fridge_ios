@@ -41,7 +41,12 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
                 fooditem.set_expiration.value = Int(self.daysTX.text!)
                 print("\(fooditem.title!).set_expiration is now : \(fooditem.set_expiration.value)")
             }
-            self.doneButton.sendActionsForControlEvents(.TouchUpInside)
+            update_fooditem_expiration_date()
+            let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 50 * Int64(NSEC_PER_MSEC))
+            dispatch_after(timer, dispatch_get_main_queue()) {
+                
+                self.doneButton.sendActionsForControlEvents(.TouchUpInside)
+            }
         }else{
             print("Type something buddy")
             
@@ -51,6 +56,22 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
             }
         }
     }
+    
+    
+    func update_fooditem_expiration_date(){
+        print("running update expiration")
+        var today = NSDate()
+        var setvalue = Double(fooditem.set_expiration.value!)
+        let added_days = setvalue * 86400
+        let new_date = today.dateByAddingTimeInterval(added_days)
+        print("\(fooditem.title!) expiration date was updated from \(fooditem.expiration_date)")
+        print("to \(new_date)")
+        let realm = try! Realm()
+        try! realm.write({
+            fooditem.expiration_date = new_date
+        })
+    }
+
     
     
     

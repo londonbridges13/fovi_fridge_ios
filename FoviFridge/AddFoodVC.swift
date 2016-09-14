@@ -258,7 +258,22 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             if same_food != nil && each.is_basic == same_food?.is_basic{
                 // User has this item
                 print("SAME FOODITEM")
+                self.check_oldnew_fooditem_date(each)
                 try! realm.write({
+                    
+                    if each.fridge_usually_expires.value != nil{
+                        same_food?.fridge_usually_expires.value = each.fridge_usually_expires.value!
+                    }
+                    if each.usually_expires.value != nil{
+                        same_food?.usually_expires.value = each.usually_expires.value!
+                    }
+                    
+//                    if same_food?.set_expiration.value != nil{
+//                        self.check_oldnew_fooditem_date(each)
+//                    }else{
+//                        print("NO SET Expiration")
+//                        self.check_oldnew_fooditem_date(each)
+//                    }
                     if same_food?.fridge_amount.value == nil{
                         same_food?.fridge_amount.value = each.mylist_amount.value
                     }else{
@@ -274,7 +289,13 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             }else{
                 //New FooDitem
                 print("NEW FOODITEM")
+                self.check_oldnew_fooditem_date(each)
                 try! realm.write({
+//                    if each.set_expiration.value != nil{
+//                    }else{
+//                        print("NO SET Expiration")
+//                        self.check_oldnew_fooditem_date(each)
+//                    }
                     each.fridge_amount.value = each.mylist_amount.value
                     each.mylist_amount.value = 0
                     each.previously_purchased = true
@@ -313,7 +334,46 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     
     
+    func update_fooditem_expiration_date(each : FoodItem){
+        print("running update expiration")
+        var today = NSDate()
+        var setvalue = Double(each.set_expiration.value!)
+        let added_days = setvalue * 86400
+        let new_date = today.dateByAddingTimeInterval(added_days)
+        print("\(each.title!) expiration date was updated from \(each.expiration_date)")
+        print("to \(new_date)")
+        let realm = try! Realm()
+        try! realm.write({ 
+            each.expiration_date = new_date
+        })
+        
+    }
     
+    // run the other update out of this one, should be smooth
+    func check_oldnew_fooditem_date(each : FoodItem){
+        let realm = try! Realm()
+        try! realm.write({
+            if each.set_expiration.value == nil{
+                print("nil set expiration")
+                // not set days left set = fridge usual days
+                if each.fridge_usually_expires.value != nil{
+                    each.set_expiration.value = each.fridge_usually_expires.value
+                }else if each.usually_expires.value != nil{
+                    each.set_expiration.value = each.usually_expires.value
+                }else{
+                    each.set_expiration.value = 12
+                }
+//                if each.set_expiration.value != nil{
+//                    update_fooditem_expiration_date(each)
+//                }
+            }else{
+                // just run other update
+                print("not nil set expiration")
+            }
+        })
+        update_fooditem_expiration_date(each)
+
+    }
     
     
     

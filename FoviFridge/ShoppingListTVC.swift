@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 
-class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSource, SetExpirationDelegate {
 
     var food = [FoodItem]()
     var tint : UIView?
@@ -18,12 +18,17 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
 
     var cUser = UserDetails()
     
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var addToListButton: UIButton!
     
     
+    var selected_fooditem = FoodItem()
     
+    var set_expire_view : Set_Expiration_Alert?
     
+    var dtint : UIView?
+
     
     
     override func viewDidLoad() {
@@ -189,6 +194,9 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // FoodView
     func display_fooditem(fooditem : FoodItem){
         add_tint()
+        
+        self.selected_fooditem = fooditem
+        
         slfv = ShopList_FoodView()
         var xp = self.view.frame.width / 2 - (250 / 2)
         
@@ -211,7 +219,9 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         slfv!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         slfv!.move_food_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         slfv!.done_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        slfv!.move_food_button.addTarget(self, action: "pre_set_food_expiration", forControlEvents: .TouchUpInside)
 
+        
         slfv!.alpha = 0
         slfv!.fadeIn(duration: 0.3)
 
@@ -223,7 +233,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     // Tint
     func add_tint(){
         self.tint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        self.tint!.backgroundColor = UIColor.whiteColor()
+        self.tint!.backgroundColor = UIColor.blackColor()
         self.tint!.alpha = 0.4
         view.addSubview(self.tint!)
     }
@@ -258,6 +268,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func move_to_fridge(fooditem : FoodItem){
         let realm = try! Realm()
         
+        self.selected_fooditem = fooditem
         
         try! realm.write {
             print("Fridge was = \(fooditem.fridge_amount.value)")
@@ -278,6 +289,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             print("ShoppingList now = \(fooditem.shoppingList_amount.value)")
         }
         print(fooditem)
+        check_oldnew_fooditem_date(fooditem)
     }
     
     
@@ -336,6 +348,154 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         })
     }
     
+    
+    
+    
+    // Updating Fooditem Expiration
+    
+    func update_fooditem_expiration_date(each : FoodItem){
+        print("running update expiration")
+        var today = NSDate()
+        var setvalue = Double(each.set_expiration.value!)
+        let added_days = setvalue * 86400
+        let new_date = today.dateByAddingTimeInterval(added_days)
+        print("\(each.title!) expiration date was updated from \(each.expiration_date)")
+        print("to \(new_date)")
+        let realm = try! Realm()
+        try! realm.write({
+            each.expiration_date = new_date
+        })
+    }
+    
+    // run the other update out of this one, should be smooth
+    func check_oldnew_fooditem_date(each : FoodItem){
+        let realm = try! Realm()
+        try! realm.write({
+            if each.set_expiration.value == nil{
+                print("nil set expiration")
+                self.set_food_expiration(each)
+            }else{
+                // just run other update
+                print("not nil set expiration")
+            }
+        })
+        //update_fooditem_expiration_date(each)
+    }
+    
+
+    
+    
+    // Set Expiration Alert
+    
+    func pre_set_food_expiration(){
+        var fooditem = self.selected_fooditem
+        if fooditem.set_expiration.value == nil{
+            set_food_expiration(fooditem)
+        }else{
+            update_fooditem_expiration_date(fooditem)
+        }
+    }
+    func set_food_expiration(fooditem : FoodItem){
+        //display set_expiration Alert
+        //send fooditem over
+        
+        let realm = try! Realm()
+        print("Searching Realm for \(fooditem.title!)")
+        let predicate = NSPredicate(format: "title = '\(fooditem.title!)' AND is_basic = \(fooditem.is_basic)")
+        var same_food = realm.objects(FoodItem).filter(predicate).first
+        print("We have this item \(same_food?.title)")
+        
+        if same_food?.set_expiration.value == nil{
+            // No fooditem, display set ex_alert
+            
+            display_set_expiration(same_food!)
+        }else if same_food == nil{
+            display_set_expiration(fooditem)
+        }else{
+            update_fooditem_expiration_date(fooditem)
+        }
+    }
+
+    
+    
+    // SET EXPIRATION ALERT
+    func display_set_expiration(fooditem : FoodItem){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        self.set_expire_view = storyboard?.instantiateViewControllerWithIdentifier("Set_Expiration_Alert") as! Set_Expiration_Alert
+        
+        set_expire_view!.fooditem = fooditem
+        set_expire_view!.delegate = self
+        
+        let yp = self.view.frame.height / 2 - (250 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        set_expire_view!.view.alpha = 0
+        self.view.addSubview(set_expire_view!.view)
+        
+        set_expire_view!.view.fadeIn(duration: 0.5)
+    }
+    
+    
+    func remove_dtint(){
+
+        self.dtint?.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.dtint?.removeFromSuperview()
+//            let realm = try! Realm()
+//            let predicate = NSPredicate(format: "title = '\(self.selected_fooditem.title!)' AND is_basic = \(self.selected_fooditem.is_basic)")
+//            var same_food = realm.objects(FoodItem).filter(predicate).first
+//            self.update_fooditem_expiration_date(same_food!)
+        }
+    }
+    
+    // Delegate
+    func remove_set_Expiration_Alert(){
+//        print("Delegate in Action")
+//        self.set_expire_view?.view.fadeOut(duration: 0.3)
+//        
+//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+//        dispatch_after(time, dispatch_get_main_queue()) {
+//            self.set_expire_view?.view.removeFromSuperview()
+//        }
+//        self.remove_dtint()
+//        
+    }
+    
+    func displayEnterInputAlert(){
+        var fooditem = self.selected_fooditem
+        
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        
+        
+        let alert = EnterInput_Alert()
+        let yp = self.view.frame.height / 2 - (261 / 2) - 30
+        let xp = self.view.frame.width / 2 - (187 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 187, height: 261)
+        alert.fooditem = fooditem
+        if fooditem.set_expiration.value != nil{
+            alert.daysTX.text = "\(fooditem.set_expiration.value!)"
+        }
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+        
+        
+    }
+    
+    
+    
+
     
     
     

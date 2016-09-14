@@ -116,6 +116,7 @@ class ShopList_FoodView: UIView {
         
         move_food_button.layer.cornerRadius = 6
         remove_button.layer.cornerRadius = 6
+        done_button.layer.cornerRadius = 4
         
         
         view.layer.cornerRadius = 9
