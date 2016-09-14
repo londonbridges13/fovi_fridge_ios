@@ -120,6 +120,10 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
         
         addDoneButtonOnNumpad(self.daysTX)
         
+        let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(timer, dispatch_get_main_queue()) {
+            self.daysTX.becomeFirstResponder()
+        }
         
         // use bounds not frame or it'll be offset
         view.frame = bounds

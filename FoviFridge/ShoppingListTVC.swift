@@ -220,7 +220,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         slfv!.move_food_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         slfv!.done_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         slfv!.move_food_button.addTarget(self, action: "pre_set_food_expiration", forControlEvents: .TouchUpInside)
-
+        slfv!.expireButton.addTarget(self, action: "pre_display_set_expiration", forControlEvents: .TouchUpInside)
         
         slfv!.alpha = 0
         slfv!.fadeIn(duration: 0.3)
@@ -419,6 +419,10 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     // SET EXPIRATION ALERT
+    func pre_display_set_expiration(){
+        // For the expireButton in the ShopList_FoodView
+        display_set_expiration(self.selected_fooditem)
+    }
     func display_set_expiration(fooditem : FoodItem){
         self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         dtint!.backgroundColor = UIColor.blackColor()

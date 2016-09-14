@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Material
 
-class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate  {
+class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate, SetExpirationDelegate  {
 
     
     
@@ -24,6 +24,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     var my_groceries = [FoodItem]()
     
+    var selected_fooditem = FoodItem()
+    
     var cUser = UserDetails()
     
     var tint : UIView?
@@ -33,6 +35,11 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     var searchable_array = [FoodItem]()
     var is_searching = false
+    
+    var set_expire_view : Set_Expiration_Alert?
+    
+    var dtint : UIView?
+
     
     
     private var containerView: UIView!
@@ -187,6 +194,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     //Display FoodView
     func show_food_item(fooditem : FoodItem){
         add_tint()
+        
+        selected_fooditem = fooditem
         
         // Display see you tomorrow view with ok button, push ok to segue to fridge vc
         print("Displaying \(fooditem.title!)")
@@ -501,6 +510,99 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             print("Set grocery_bag_walkthrough = \(self.cUser.grocery_bag_walkthrough)")
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Set Expiration
+    func pre_display_set_expiration(){
+        // For the expireButton in the FoodQuantity_View
+        display_set_expiration(self.selected_fooditem)
+    }
+    
+    
+    func display_set_expiration(fooditem : FoodItem){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        self.set_expire_view = storyboard?.instantiateViewControllerWithIdentifier("Set_Expiration_Alert") as! Set_Expiration_Alert
+        
+        set_expire_view!.fooditem = fooditem
+        set_expire_view!.delegate = self
+        
+        let yp = self.view.frame.height / 2 - (250 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        set_expire_view!.view.alpha = 0
+        self.view.addSubview(set_expire_view!.view)
+        
+        set_expire_view!.view.fadeIn(duration: 0.5)
+    }
+    
+    
+    func remove_dtint(){
+        self.dtint?.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.dtint?.removeFromSuperview()
+        }
+    }
+    
+    // Delegate
+    func remove_set_Expiration_Alert(){
+        print("Delegate in Action")
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        self.remove_dtint()
+        
+    }
+    
+    func displayEnterInputAlert(){
+        var fooditem = self.selected_fooditem
+        
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        
+        
+        let alert = EnterInput_Alert()
+        let yp = self.view.frame.height / 2 - (261 / 2) - 30
+        let xp = self.view.frame.width / 2 - (187 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 187, height: 261)
+        alert.fooditem = fooditem
+        if fooditem.set_expiration.value != nil{
+            alert.daysTX.text = "\(fooditem.set_expiration.value!)"
+        }
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+        
+        
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
     
     
     

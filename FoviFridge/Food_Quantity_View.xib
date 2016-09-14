@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Food_Quantity_View" customModule="FoviFridge" customModuleProvider="target">
             <connections>
                 <outlet property="add_food_buttom" destination="EZv-iv-EZB" id="dcp-zl-iIQ"/>
+                <outlet property="expireButton" destination="5Vb-jB-iUh" id="vkj-nx-YU3"/>
                 <outlet property="food_image" destination="8LX-tM-TD0" id="k2x-ol-XeM"/>
                 <outlet property="food_label" destination="Mx6-hO-F6S" id="GVh-6i-X17"/>
                 <outlet property="remove_button" destination="fcc-GT-Rdw" id="rTc-hV-vGg"/>
@@ -110,9 +111,18 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vb-jB-iUh">
+                    <rect key="frame" x="209" y="71" width="33" height="33"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="33" id="2Pm-I1-XBk"/>
+                        <constraint firstAttribute="height" constant="33" id="NHV-Dt-kOo"/>
+                    </constraints>
+                    <state key="normal" image="expire_icon"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="5Vb-jB-iUh" firstAttribute="top" secondItem="9Y1-Ye-EN1" secondAttribute="bottom" constant="8" id="6vL-f1-KZ5"/>
                 <constraint firstItem="9Y1-Ye-EN1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Zu-6V-FeG"/>
                 <constraint firstItem="8LX-tM-TD0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ah4-23-r2r"/>
                 <constraint firstAttribute="bottom" secondItem="EZv-iv-EZB" secondAttribute="bottom" constant="18" id="EZd-LY-Pi5"/>
@@ -123,6 +133,7 @@
                 <constraint firstAttribute="trailing" secondItem="EZv-iv-EZB" secondAttribute="trailing" constant="8" id="VoJ-Ci-vT4"/>
                 <constraint firstAttribute="trailing" secondItem="9Y1-Ye-EN1" secondAttribute="trailing" id="ZQv-8c-Fu3"/>
                 <constraint firstItem="z3f-rt-5hd" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Za7-7r-HSE"/>
+                <constraint firstAttribute="trailing" secondItem="5Vb-jB-iUh" secondAttribute="trailing" constant="8" id="fcl-oI-0aO"/>
                 <constraint firstAttribute="bottom" secondItem="fcc-GT-Rdw" secondAttribute="bottom" constant="18" id="ftE-qA-5a5"/>
                 <constraint firstAttribute="bottom" secondItem="z3f-rt-5hd" secondAttribute="bottom" constant="144" id="sz7-NL-QHr"/>
             </constraints>
@@ -131,6 +142,7 @@
         </view>
     </objects>
     <resources>
+        <image name="expire_icon" width="61" height="62"/>
         <image name="grapes" width="512" height="512"/>
     </resources>
 </document>

@@ -79,6 +79,8 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.foodBackGroungView.layer.shadowOpacity = 0.7
             cell.foodBackGroungView.layer.shadowOffset = CGSize(width: 0, height: 2)
             
+            cell.expireButton.addTarget(self, action: "display_set_expiration", forControlEvents: .TouchUpInside)
+            
             if self.use_color != nil{
                 cell.backgroundColor = use_color!
                 cell.setBackGroundColor(use_color!)

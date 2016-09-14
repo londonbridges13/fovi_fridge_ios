@@ -24,7 +24,8 @@ class Food_Quantity_View: UIView {
     
     @IBOutlet var add_food_buttom: UIButton!
     
-    
+    @IBOutlet var expireButton : UIButton!
+
     @IBOutlet var remove_button: UIButton!
     
     

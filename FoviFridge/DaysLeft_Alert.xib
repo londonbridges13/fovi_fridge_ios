@@ -52,6 +52,9 @@
                         <userDefinedRuntimeAttribute type="color" keyPath="labelBackgroundColor">
                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                            <real key="value" value="600000"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rbd-6B-uef">

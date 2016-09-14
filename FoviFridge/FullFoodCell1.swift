@@ -13,6 +13,8 @@ class FullFoodCell1: UITableViewCell {
     @IBOutlet var foodImageView : UIImageView!
     @IBOutlet var foodBackGroungView : UIView!
     @IBOutlet var foodLabel : UILabel!
+    @IBOutlet var expireButton : UIButton!
+    
     
     var food_image : UIImage?
     var food_title : String?

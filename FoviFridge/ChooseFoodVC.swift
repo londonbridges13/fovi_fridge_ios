@@ -24,14 +24,14 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     var all_fooditems = [FoodItem]()
     
     var actIndi : NVActivityIndicatorView?
-
-    var dtint : UIView?
     
     var segueStick: String?
 
     var selected_fooditem = FoodItem()
     
     var set_expire_view : Set_Expiration_Alert?
+
+    var dtint : UIView?
 
     
     @IBOutlet var collectionView: UICollectionView!
@@ -542,7 +542,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         foodView?.remove_button.addTarget(mini, action: "get_groceries", forControlEvents: .TouchUpInside)
         
         foodView!.add_food_buttom.addTarget(self, action: "pre_set_food_expiration", forControlEvents: .TouchUpInside)
-
+        foodView!.expireButton.addTarget(self, action: "pre_display_set_expiration", forControlEvents: .TouchUpInside)
         view.addSubview(foodView!)
     }
     
@@ -596,6 +596,9 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         
         add_tint()
         
+        self.selected_fooditem = fooditem
+
+        
         // Display see you tomorrow view with ok button, push ok to segue to fridge vc
         print("Displaying \(fooditem.title!)")
         
@@ -615,6 +618,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         }
         foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        foodView!.expireButton.addTarget(self, action: "pre_display_set_expiration", forControlEvents: .TouchUpInside)
+
         view.addSubview(foodView!)
     }
     
@@ -764,7 +769,31 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     
     
     
+    
     // SET EXPIRATION ALERT
+    func pre_display_set_expiration(){
+        // For the expireButton in the FoodQuantity_View
+        
+        let realm = try! Realm()
+        print("Searching Realm for \(selected_fooditem.title!)")
+        let predicate = NSPredicate(format: "title = '\(selected_fooditem.title!)' AND is_basic = \(selected_fooditem.is_basic)")
+        var same_food = realm.objects(FoodItem).filter(predicate).first
+
+        if same_food != nil{
+            selected_fooditem = same_food!
+        }
+        
+        let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 100 * Int64(NSEC_PER_MSEC))
+        dispatch_after(timer, dispatch_get_main_queue()) {
+
+            if same_food != nil{
+                self.display_set_expiration(same_food!)
+            }else{
+                self.display_set_expiration(self.selected_fooditem)
+            }
+        }
+    }
+
     func display_set_expiration(fooditem : FoodItem){
         self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         dtint!.backgroundColor = UIColor.blackColor()

@@ -863,7 +863,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="662"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="186" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-Cj-EJu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="186" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IqY-Cj-EJu">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="662"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -871,23 +871,23 @@
                                         <rect key="frame" x="0.0" y="28" width="328" height="186"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cha-BC-TIT" id="nY8-xU-js5">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="185"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="186"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oval 1" translatesAutoresizingMaskIntoConstraints="NO" id="bfg-hz-GrS">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Oval 1" translatesAutoresizingMaskIntoConstraints="NO" id="bfg-hz-GrS">
                                                     <rect key="frame" x="-10" y="109" width="348" height="76"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="76" id="YcT-hg-4Pc"/>
                                                     </constraints>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZ2-oQ-LfR">
-                                                    <rect key="frame" x="0.0" y="145" width="328" height="40"/>
+                                                    <rect key="frame" x="0.0" y="146" width="328" height="40"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="TyC-4f-fUN"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzp-0s-dR6">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pzp-0s-dR6">
                                                     <rect key="frame" x="127" y="72" width="75" height="75"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cabbage" translatesAutoresizingMaskIntoConstraints="NO" id="wkr-9W-1xR">
@@ -916,15 +916,25 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5JY-uR-srk">
+                                                    <rect key="frame" x="269" y="142" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="SeS-tS-nW0"/>
+                                                        <constraint firstAttribute="width" constant="36" id="UpV-8d-RrB"/>
+                                                    </constraints>
+                                                    <state key="normal" image="expire_icon"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.80908383302583031" green="0.75442516143911442" blue="0.94988180350553397" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5JY-uR-srk" secondAttribute="trailing" constant="15" id="D0E-a8-3DQ"/>
                                                 <constraint firstItem="KP3-ze-F7O" firstAttribute="top" secondItem="nY8-xU-js5" secondAttribute="topMargin" constant="6" id="J2G-G3-gRx"/>
                                                 <constraint firstItem="bfg-hz-GrS" firstAttribute="leading" secondItem="nY8-xU-js5" secondAttribute="leadingMargin" constant="-18" id="PCj-Cu-mE7"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="bfg-hz-GrS" secondAttribute="bottom" constant="-8" id="Tjc-NH-tSU"/>
                                                 <constraint firstItem="pzp-0s-dR6" firstAttribute="centerX" secondItem="nY8-xU-js5" secondAttribute="centerX" id="Vnv-Vd-8uf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="eZ2-oQ-LfR" secondAttribute="trailing" constant="-8" id="dBY-lw-ZuM"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="pzp-0s-dR6" secondAttribute="bottom" constant="30" id="hUA-Z8-E90"/>
+                                                <constraint firstItem="5JY-uR-srk" firstAttribute="bottom" secondItem="nY8-xU-js5" secondAttribute="bottomMargin" id="hpl-5X-uum"/>
                                                 <constraint firstItem="eZ2-oQ-LfR" firstAttribute="leading" secondItem="nY8-xU-js5" secondAttribute="leadingMargin" constant="-8" id="m8H-bN-12U"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bfg-hz-GrS" secondAttribute="trailing" constant="-18" id="qox-o7-RZL"/>
                                                 <constraint firstItem="KP3-ze-F7O" firstAttribute="centerX" secondItem="nY8-xU-js5" secondAttribute="centerX" id="wd9-fX-ctU"/>
@@ -932,6 +942,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="expireButton" destination="5JY-uR-srk" id="MIa-S0-dOJ"/>
                                             <outlet property="foodBackGroungView" destination="pzp-0s-dR6" id="JwN-IP-NDg"/>
                                             <outlet property="foodImageView" destination="wkr-9W-1xR" id="Vd9-0a-HCA"/>
                                             <outlet property="foodLabel" destination="KP3-ze-F7O" id="fXT-aQ-I7F"/>
@@ -941,7 +952,7 @@
                                         <rect key="frame" x="0.0" y="214" width="328" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRm-nS-Mvp" id="DL1-AB-sCx">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="173"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Fridge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ham-4q-lnN">
@@ -1002,7 +1013,7 @@
                                         <rect key="frame" x="0.0" y="388" width="328" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iab-cs-ri8" id="Eg1-KS-MmH">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="173"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="174"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Shopping List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEn-Oh-Ywi">
@@ -3375,6 +3386,7 @@
         <image name="cabbage" width="512" height="512"/>
         <image name="circle" width="18" height="18"/>
         <image name="circle.png" width="36" height="36"/>
+        <image name="expire_icon" width="61" height="62"/>
         <image name="grapes" width="512" height="512"/>
         <image name="groceries" width="512" height="512"/>
         <image name="grocery_icon" width="21" height="27"/>

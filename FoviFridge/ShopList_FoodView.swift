@@ -22,6 +22,7 @@ class ShopList_FoodView: UIView {
     
     @IBOutlet var stepper: GMStepper!
     
+    @IBOutlet var expireButton : UIButton!
     
     @IBOutlet var move_food_button: UIButton!
     
