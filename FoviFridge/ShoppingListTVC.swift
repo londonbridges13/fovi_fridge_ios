@@ -126,6 +126,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let addToFridge = UITableViewRowAction(style: .Normal, title: "Move to Fridge") { action, index in
             print("Move button tapped")
             self.move_to_fridge(self.food[indexPath.row])
+            self.update_fooditem_expiration_date(self.food[indexPath.row])
             self.tableView.beginUpdates()
             self.food.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

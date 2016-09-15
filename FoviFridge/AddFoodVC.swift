@@ -216,7 +216,9 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         }
         foodView!.add_food_buttom.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        foodView!.expireButton.addTarget(self, action: "pre_display_set_expiration", forControlEvents: .TouchUpInside)
         view.addSubview(foodView!)
+        
     }
     
     
@@ -510,6 +512,9 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
             print("Set grocery_bag_walkthrough = \(self.cUser.grocery_bag_walkthrough)")
         }
     }
+    
+    
+    
     
     
     

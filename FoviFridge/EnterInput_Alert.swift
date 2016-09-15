@@ -41,7 +41,10 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
                 fooditem.set_expiration.value = Int(self.daysTX.text!)
                 print("\(fooditem.title!).set_expiration is now : \(fooditem.set_expiration.value)")
             }
-            update_fooditem_expiration_date()
+            if fooditem.set_expiration.value == nil{
+                // Do want to update exdate everytime we change the expiration, if anything ask user
+                update_fooditem_expiration_date()
+            }
             let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 50 * Int64(NSEC_PER_MSEC))
             dispatch_after(timer, dispatch_get_main_queue()) {
                 
