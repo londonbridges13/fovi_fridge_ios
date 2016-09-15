@@ -53,7 +53,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        checkSurvey()
 //        createDummyUser()
         
 //        self.start()
@@ -84,7 +83,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        checkSurvey()
         check_walkthrough()
         pre_get_all_categories()
 //        get_all_categories()
@@ -625,7 +623,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
                     // Check Surveys
                     
                     // Run fridge and shopping list walkthrough before surveys
-                    self.checkSurvey()
+                    // RUN THIS WHEN YOU ARE READY TO LEARN MORE ABOUT THE USER
+//                    self.checkSurvey()  // Removing this is only temporary
                 }
             }
             

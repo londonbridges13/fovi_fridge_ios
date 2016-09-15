@@ -21,7 +21,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     @IBOutlet var doneButton: UIButton!
     @IBOutlet var doneView: UIView!
     
-    var cells = [1,2,3]
+    var cells = [1,2,3,4]
     var dtint : UIView?
     var set_expire_view : Set_Expiration_Alert?
     
@@ -47,7 +47,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
 //            self.display_set_expiration()
-            self.display_daysleft()
+//            self.display_daysleft()
 //            self.display_expiration_walkthrough()
         }
 
@@ -102,6 +102,35 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             return cell
         }else if indexPath.row == 1{
+            //DaysLeft_Cell
+            let cell : DaysLeft_Cell = tableView.dequeueReusableCellWithIdentifier("DaysLeft_Cell", forIndexPath: indexPath) as! DaysLeft_Cell
+            
+            tableView.rowHeight = 225.0
+            
+            if fooditem.expiration_date != nil{
+                print("Expiration Date is not nil")
+                let today = NSDate()
+                let daysleft = fooditem.expiration_date!.timeIntervalSinceDate(today)
+                print(daysleft)
+                
+                var daycount = (daysleft / 86400)
+                daycount = round(daycount)
+                let displaycount = Int(daycount)
+                
+                cell.daysleftLabel.text = "\(displaycount)"
+                
+                if Double(daycount) < 2 && Double(daycount) > 0{
+                    cell.detailLabel.text = "Day Left"
+                }else{
+                    cell.detailLabel.text = "Days Left"
+                }
+            }
+            
+            cell.daysleftLabel.textColor = self.use_color!
+            cell.detailLabel.textColor = self.use_color!
+            
+            return cell
+        }else if indexPath.row == 2{
             let cell : FullFoodFridgeCell = tableView.dequeueReusableCellWithIdentifier("FullFoodFridgeCell", forIndexPath: indexPath) as! FullFoodFridgeCell
             
             cell.delegate = self
@@ -129,6 +158,9 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // Depends on the cell
+        if indexPath.row == 1{
+            display_daysleft()
+        }
     }
     
     
@@ -233,6 +265,8 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     func remove_dtint(){
+        self.tableView.reloadData()
+        
         self.dtint?.fadeOut(duration: 0.3)
         
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))

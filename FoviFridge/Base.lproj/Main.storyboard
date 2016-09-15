@@ -948,8 +948,50 @@
                                             <outlet property="foodLabel" destination="KP3-ze-F7O" id="fXT-aQ-I7F"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DaysLeft_Cell" rowHeight="225" id="cI8-IK-SHt" customClass="DaysLeft_Cell" customModule="FoviFridge" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="214" width="328" height="225"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cI8-IK-SHt" id="xOv-M7-dg5">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="225"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atw-PI-iwY">
+                                                    <rect key="frame" x="91" y="8" width="146" height="126"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="126" id="S1d-F4-fLX"/>
+                                                        <constraint firstAttribute="width" constant="146" id="piD-VL-kNa"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="72"/>
+                                                    <color key="textColor" red="0.80908383299999997" green="0.75442516140000004" blue="0.94988180349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Days Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PN-PM-tDc">
+                                                    <rect key="frame" x="91" y="149" width="146" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="46" id="VCP-DO-Whx"/>
+                                                        <constraint firstAttribute="width" constant="146" id="nFU-lF-h33"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                                    <color key="textColor" red="0.80908383299999997" green="0.75442516140000004" blue="0.94988180349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="2" height="1"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Atw-PI-iwY" firstAttribute="top" secondItem="xOv-M7-dg5" secondAttribute="topMargin" id="bdD-Rv-Kxh"/>
+                                                <constraint firstItem="2PN-PM-tDc" firstAttribute="centerX" secondItem="xOv-M7-dg5" secondAttribute="centerX" id="ea1-RQ-8LK"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2PN-PM-tDc" secondAttribute="bottom" constant="22" id="gEE-RY-vpW"/>
+                                                <constraint firstItem="Atw-PI-iwY" firstAttribute="centerX" secondItem="xOv-M7-dg5" secondAttribute="centerX" id="lXO-BA-ag5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="daysleftLabel" destination="Atw-PI-iwY" id="TzT-zt-lj5"/>
+                                            <outlet property="detailLabel" destination="2PN-PM-tDc" id="HAR-yL-taj"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FullFoodFridgeCell" rowHeight="174" id="yRm-nS-Mvp" customClass="FullFoodFridgeCell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="214" width="328" height="174"/>
+                                        <rect key="frame" x="0.0" y="439" width="328" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRm-nS-Mvp" id="DL1-AB-sCx">
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="174"/>
@@ -1010,7 +1052,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FullFoodShoppingCell" rowHeight="174" id="iab-cs-ri8" customClass="FullFoodShoppingCell" customModule="FoviFridge" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="388" width="328" height="174"/>
+                                        <rect key="frame" x="0.0" y="613" width="328" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iab-cs-ri8" id="Eg1-KS-MmH">
                                             <rect key="frame" x="0.0" y="0.0" width="328" height="174"/>
