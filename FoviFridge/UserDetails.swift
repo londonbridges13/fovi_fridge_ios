@@ -26,6 +26,11 @@ class UserDetails: Object {
     dynamic var password: String?
     dynamic var launch_count = 0
     dynamic var user_invited = false
+    dynamic var expiration_warning = 6 // when the user wants to be notified of expiring food. # of days before expiration
+    
+    // Feedback
+    dynamic var rated_version = ""
+
     
     // Allergies
     let allergies = List<Allergy>()

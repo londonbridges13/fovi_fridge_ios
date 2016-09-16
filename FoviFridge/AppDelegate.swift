@@ -15,7 +15,7 @@ import Siren
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
+    var expiration_warning : Int?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 13,
+            schemaVersion: 16,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -138,6 +138,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var user_invited = false
                         newObject!["user_invited"] = user_invited
                     }
+                    if oldSchemaVersion < 15{
+                        var expiration_warning = 6
+                        newObject!["expiration_warning"] = expiration_warning
+                    }
+                    if oldSchemaVersion < 16{
+                        var rated_version = ""
+                        newObject!["rated_version"] = rated_version
+                    }
                 }
                 //FoodItem
                 migration.enumerate(FoodItem.className()) { oldObject, newObject in
@@ -152,6 +160,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     if oldSchemaVersion < 13{
                         let set_expiration = RealmOptional<Int>()
                         newObject!["set_expiration"] = set_expiration
+                    }
+                    if oldSchemaVersion < 14{
+                        var expiration_warning = 6
+                        newObject!["expiration_warning"] = expiration_warning
                     }
                 }
             }
@@ -210,6 +222,102 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     
+    
+    
+    
+    func expiring_food_notifications(){
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        let realm = try! Realm()
+        var foods = realm.objects(FoodItem)
+        for each in foods{
+            if each.expiration_date != nil{
+                quirkie_Notification(each)
+            }
+        }
+    }
+    
+    func quirkie_Notification(each : FoodItem){
+        var usable_array = [String]()
+        let vowels = ["a","e","i","o","u","A","E","I","O","U"]
+        let bread = "Bread"
+        
+        // Arrays for Phrases
+        let ends_with_es_array = ["Your \(each.title!) are close to expiration."]
+        let doesnt_end_with_es_array = ["Your \(each.title!) is close to expiration."]
+        let starts_with_vowel_array = [""]
+        let contains_bread_array = ["Your \(each.title!) is starting to go stale."]
+        
+        //starts with a vowel
+        let vowel : String = "\(each.title!.characters.first)"
+        if vowels.contains(vowel){
+            for phrase in starts_with_vowel_array{
+                usable_array.append(phrase)
+            }
+        }
+        //contains the word bread
+        if each.title!.containsString(bread){
+            for phrase in contains_bread_array{
+                usable_array.append(phrase)
+            }
+        }
+        //ends with es
+        if each.title!.hasSuffix("es"){
+            for phrase in ends_with_es_array{
+                usable_array.append(phrase)
+            }
+        }else{
+            // doesn't end with es
+            for phrase in doesnt_end_with_es_array{
+                usable_array.append(phrase)
+            }
+        }
+        
+        
+        // Randomly choose a Phrase
+        let randomPhrase = usable_array[Int(arc4random_uniform(UInt32(usable_array.count)) + 0)]
+        // Set Notification
+        set_notification(randomPhrase, expiration: each.expiration_date!)
+    }
+    
+    
+    func set_notification(message: String, expiration: NSDate){
+        
+        //
+        
+        if self.expiration_warning != nil{
+            // Go ahead, set the date
+            let adjusted_time = Double(self.expiration_warning!) * 86400
+            let warning_date = expiration.dateByAddingTimeInterval(-1 * adjusted_time)
+            fire_local_notification(warning_date, message: message)
+        }else{
+            // Get UserDetails.expiration_warning, set it to self
+            let realm = try! Realm()
+            var user = realm.objects(UserDetails).first
+            if user != nil {
+                self.expiration_warning = user?.expiration_warning
+                let adjusted_time = Double(self.expiration_warning!) * 86400
+                let warning_date = expiration.dateByAddingTimeInterval(-1 * adjusted_time)
+                fire_local_notification(warning_date, message: message)
+            }
+        }
+    }
+    
+    
+    func fire_local_notification(fire_date: NSDate, message: String){
+        
+        var notification : UILocalNotification = UILocalNotification()
+        notification.alertBody = message
+        notification.fireDate = fire_date
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    
+    
+    
+    
+    
     func update_launch_count(){
         let realm = try! Realm()
         var cUser = realm.objects(UserDetails).first
@@ -221,8 +329,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
     }
-    
-    
     
     //Siren
     func setupSiren() {

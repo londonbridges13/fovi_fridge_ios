@@ -78,6 +78,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         cancel_search_button.addTarget(self, action: "displayIcons", forControlEvents: .TouchUpInside)
         
         count_launch()
+        rate_fovi()
     }
     
 
@@ -633,11 +634,75 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             print("Creating New User")
             createDummyUser()
             
-            
         }
         
 
     }
+    
+    func rate_fovi(){
+        // if conditions are well then display alert
+        
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            print("There is a User")
+            print("Checking Launch Count ... \(user!.launch_count)")
+            print(user)
+            
+            var x_array = [Int]()
+            var y_array = [Int]()
+            var n = 1
+            
+            while n < 1000{
+                let x = n * 23
+//                let y = n * 300 // if extremely active then i dont want to annoy them with adds
+                print(x)
+//                print(y)
+//                y_array.append(y)
+                x_array.append(x)
+                n+=1
+            }
+
+            if let current_app_version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+                print(current_app_version)
+                if x_array.contains(user!.launch_count) && user!.rated_version != current_app_version{
+                    // You didn't rate the current version of the app
+                    display_rate_alert()
+                }
+            }
+        }
+    }
+    func display_rate_alert(){
+        
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+
+        
+        var alert = RateApp_AlertView()
+        
+        let width : CGFloat = 200
+        let height : CGFloat = 250
+        
+        let xp = self.view.frame.width / 2 - (width / 2)
+        let yp = self.view.frame.height / 2 - (height / 2) - 30
+        
+        alert.frame = CGRect(x: xp, y: yp, width: width, height: height)
+        alert.cancelButton.addTarget(self, action: "remove_dark_tint", forControlEvents: .TouchUpInside)
+        alert.rateButton.addTarget(self, action: "remove_dark_tint", forControlEvents: .TouchUpInside)
+        
+        alert.alpha = 0
+        self.add_tint()
+        UIView.animateWithDuration(0.3) {
+            self.tint?.backgroundColor = UIColor.blackColor()
+        }
+        self.view.addSubview(alert)
+        
+        alert.fadeIn(duration: 0.5)
+    }
+    
     
     
     
@@ -665,9 +730,13 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
         var alert = EmptyFridge1()
         
-        let xp = self.view.frame.width / 2 - (206 / 2)
+        let width : CGFloat = 206
+        let height : CGFloat = 200
+        
+        let xp = self.view.frame.width / 2 - (width / 2)
+        let yp = self.view.frame.height / 2 - (height / 2) - 30
 
-        alert.frame = CGRect(x: xp, y: 90, width: 206, height: 200)
+        alert.frame = CGRect(x: xp, y: yp, width: width, height: height)
         alert.yesbutton.addTarget(self, action: "empty_fridge_alert2", forControlEvents: .TouchUpInside)
         
         alert.alpha = 0
@@ -677,7 +746,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         }
         self.view.addSubview(alert)
         
-        alert.fadeIn()
+        alert.fadeIn(duration: 0.45)
         
     }
     
@@ -883,8 +952,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         var n = 1
         
         while n < 1000{
-            let x = n * 20
-            let y = n * 60
+            let x = n * 30
+            let y = n * 90
             print(x)
             print(y)
             x_array.append(x)

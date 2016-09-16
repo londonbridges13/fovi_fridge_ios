@@ -46,6 +46,14 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
+            let realm = try! Realm()
+            var useer = realm.objects(UserDetails).first
+            print(useer)
+            var today = NSDate()
+            var exipartion = Double(useer!.expiration_warning) * 86400
+            var warning_date = today.dateByAddingTimeInterval(-1 * exipartion)
+            print(warning_date)
+            
 //            self.display_set_expiration()
 //            self.display_daysleft()
 //            self.display_expiration_walkthrough()

@@ -23,6 +23,8 @@
 		3E1439781D5D3C74001C9C6B /* Get_Size_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */; };
 		3E14397A1D5D3C9B001C9C6B /* Get_Expire_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */; };
 		3E3AB6331D8B15BD00C41F6D /* DaysLeft_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3AB6321D8B15BD00C41F6D /* DaysLeft_Cell.swift */; };
+		3E3AB6391D8C4C5C00C41F6D /* RateApp_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3AB6381D8C4C5C00C41F6D /* RateApp_AlertView.swift */; };
+		3E3AB63B1D8C4DF000C41F6D /* RateApp_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3AB63A1D8C4DF000C41F6D /* RateApp_AlertView.xib */; };
 		3E3C29E11D4F05080095A93B /* MyMiniFoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */; };
 		3E3C29E31D5113F50095A93B /* FridgeFoodItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C29E21D5113F50095A93B /* FridgeFoodItemCell.swift */; };
 		3E3FECA31D81B0950061106C /* Set_Expiration_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FECA21D81B0950061106C /* Set_Expiration_Alert.swift */; };
@@ -218,6 +220,8 @@
 		3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Size_Cell.swift; sourceTree = "<group>"; };
 		3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Expire_Cell.swift; sourceTree = "<group>"; };
 		3E3AB6321D8B15BD00C41F6D /* DaysLeft_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysLeft_Cell.swift; sourceTree = "<group>"; };
+		3E3AB6381D8C4C5C00C41F6D /* RateApp_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateApp_AlertView.swift; sourceTree = "<group>"; };
+		3E3AB63A1D8C4DF000C41F6D /* RateApp_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RateApp_AlertView.xib; sourceTree = "<group>"; };
 		3E3C29E01D4F05080095A93B /* MyMiniFoodCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyMiniFoodCell.swift; sourceTree = "<group>"; };
 		3E3C29E21D5113F50095A93B /* FridgeFoodItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeFoodItemCell.swift; sourceTree = "<group>"; };
 		3E3FECA21D81B0950061106C /* Set_Expiration_Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set_Expiration_Alert.swift; sourceTree = "<group>"; };
@@ -482,6 +486,15 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		3E3AB6371D8C4C0F00C41F6D /* Rate Fovi */ = {
+			isa = PBXGroup;
+			children = (
+				3E3AB6381D8C4C5C00C41F6D /* RateApp_AlertView.swift */,
+				3E3AB63A1D8C4DF000C41F6D /* RateApp_AlertView.xib */,
+			);
+			name = "Rate Fovi";
+			sourceTree = "<group>";
+		};
 		3E3FEC9D1D81AFE30061106C /* Set_Expiration Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +751,7 @@
 		3E9E373A1D4D60FC00A15381 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				3E3AB6371D8C4C0F00C41F6D /* Rate Fovi */,
 				3E5FAACE1D3643CD00E94EA8 /* SettingsVC.swift */,
 				3E1438D21D57DF3D001C9C6B /* Setting Cells */,
 				3E8F88531D7A439800845394 /* Invite View */,
@@ -1124,6 +1138,7 @@
 				3E0B52D41D435FBC007138CE /* SeeYouLater_View.xib in Resources */,
 				3E63D6FB1D6CC25B001063F8 /* EmptyFridge1.xib in Resources */,
 				3EAF0E801D40569800A302B0 /* Info.plist in Resources */,
+				3E3AB63B1D8C4DF000C41F6D /* RateApp_AlertView.xib in Resources */,
 				3E9E41341D1B79E2009C9808 /* LaunchScreen.storyboard in Resources */,
 				3E71D5231D6FB07E0049A99B /* GroceryStore_Alert4.xib in Resources */,
 				3E5FAADA1D39F0A300E94EA8 /* YesNoPic_SurveyQ.xib in Resources */,
@@ -1362,6 +1377,7 @@
 				3E5FAADC1D39F1EC00E94EA8 /* YesNoPic_SurveyQ.swift in Sources */,
 				3E71D5211D6FB0590049A99B /* GroceryStore_Alert4.swift in Sources */,
 				3E5FAAE51D3AC8DA00E94EA8 /* MultiChoice_Cell.swift in Sources */,
+				3E3AB6391D8C4C5C00C41F6D /* RateApp_AlertView.swift in Sources */,
 				3EAF0E681D40569800A302B0 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				3EAF0E761D40569800A302B0 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				3E1439761D5D3C0C001C9C6B /* Get_Title_Cell.swift in Sources */,

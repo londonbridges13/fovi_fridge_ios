@@ -46,6 +46,8 @@ class FoodItem: Object {
     dynamic var modified_date : NSDate? = nil
     let set_expiration = RealmOptional<Int>()
     
+    dynamic var expiration_warning = 6 // Don't use supposed to be in the UserDetails
+    
     // Nutrition
     dynamic var food_desc : String? = nil
     
