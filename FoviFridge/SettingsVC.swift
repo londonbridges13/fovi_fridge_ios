@@ -14,7 +14,7 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate,M
 
     @IBOutlet var tableview : UITableView!
     
-    var options = [1,2] // the number of cells to display in tableview
+    var options = [1,2,3] // the number of cells to display in tableview
     var dtint : UIView?
     
     override func viewDidLoad() {
@@ -48,12 +48,17 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate,M
             tableview.rowHeight = 65
             
             return cell
-        }else{
+        }else if indexPath.row == 1{
             let cell : EmailCell  = tableview.dequeueReusableCellWithIdentifier("scell1", forIndexPath: indexPath) as! EmailCell
             tableview.rowHeight = 65
             cell.settingLabel.text = "Invite Friends"
             return cell
 
+        }else{
+            let cell : EmailCell  = tableview.dequeueReusableCellWithIdentifier("scell1", forIndexPath: indexPath) as! EmailCell
+            tableview.rowHeight = 65
+            cell.settingLabel.text = "Expiration"
+            return cell
         }
         
     
@@ -63,8 +68,10 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate,M
         if indexPath.row == 0{
             // Send Email
             self.sendEmail()
-        }else{
+        }else if indexPath.row == 1{
             self.invite_friends()
+        }else if indexPath.row == 2{
+            expiration_warning()
         }
     }
     
@@ -232,6 +239,28 @@ class SettingsVC: UIViewController, UITableViewDataSource, UITableViewDelegate,M
     }
 
 
+    
+    
+    // Expiration Warning
+    // Set the user's exipration warning, so the user knows days before expiration
+    func expiration_warning(){
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+
+        
+        let alert = Expiration_Warning_Alert()
+        let yp = self.view.frame.height / 2 - (261 / 2) - 30
+        let xp = self.view.frame.width / 2 - (187 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 187, height: 261)
+        alert.doneButton.addTarget(self, action: "remove_dark_tint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+        
+    }
     
     
     /*

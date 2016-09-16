@@ -175,6 +175,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             cell.food.removeAll()
             if self.categories[indexPath.row - 1] == "Missing"{
                 cell.get_missing_food()
+            }else if self.categories[indexPath.row - 1] == "Expiring Soon"{
+                cell.get_expiring_foods()
             }else{
                 cell.get_fooditems(self.categories[indexPath.row - 1])
             }
@@ -490,17 +492,38 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         self.categories.removeAll()
         
         let realm = try! Realm()
-        var foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0")
+        var user = realm.objects(UserDetails).first
+        var missing_foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0")
         
-        if foods.count > 0{
+        if missing_foods.count > 0{
             var missing  = "Missing"
             self.categories.append(missing)
             // Get the other categories
-            self.get_all_categories()
+//            self.get_all_categories()
         }else{
-            print("No misising items here")
+            print("No missing items here")
             // Get the other categories
-            self.get_all_categories()
+//            self.get_all_categories()
+        }
+        
+        if user != nil{
+            // Expiring Soon
+            var today = NSDate()
+            var adjusted_days = Double(user!.expiration_warning) * 86400
+            var warning_date = today.dateByAddingTimeInterval(adjusted_days)
+            print("This is expiring warning date: \(warning_date)")
+            var expiring_foods = realm.objects(FoodItem).filter("expiration_date <= %@", warning_date).filter("expiration_date >= %@", today).filter("fridge_amount > 0")
+            
+            if expiring_foods.count > 0{
+                var expiring = "Expiring Soon"
+                self.categories.append(expiring)
+                self.get_all_categories()
+            }else{
+                print("No expiring items here")
+                // Get the other categories
+                self.get_all_categories()
+                
+            }
         }
     }
     
