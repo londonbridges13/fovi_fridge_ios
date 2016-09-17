@@ -143,7 +143,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         }
     }
     
-    // Fing Expiring Soon
+    // Find Expiring Soon
     func get_expiring_foods(){
         let realm = try! Realm()
         var user = realm.objects(UserDetails).first
@@ -160,6 +160,27 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
             }
         }
     }
+    
+    
+    //Find Expired Foods
+    func get_expired_foods(){
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            var today = NSDate()
+            var adjusted_days = Double(user!.expiration_warning) * 86400
+            var warning_date = today.dateByAddingTimeInterval(adjusted_days)
+            var expired_foods = realm.objects(FoodItem).filter("expiration_date <= %@", today).filter("fridge_amount > 0")
+            
+            for each in expired_foods{
+                self.food.append(each)
+                self.collectionView.reloadData()
+                print("Appended EXPIRED ITEM: \(each.title)")
+            }
+        }
+    }
+
+    
     
     func design_category_button(indexPath_row : Int){
         var i = indexPath_row

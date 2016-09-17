@@ -85,7 +85,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let config =     Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 16,
+            schemaVersion: 17,
             
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
@@ -146,6 +146,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         var rated_version = ""
                         newObject!["rated_version"] = rated_version
                     }
+                    if oldSchemaVersion < 17{
+                        var expiration_walkthrough = false
+                        newObject!["expiration_walkthrough"] = expiration_walkthrough
+                    }
                 }
                 //FoodItem
                 migration.enumerate(FoodItem.className()) { oldObject, newObject in
@@ -180,7 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //End Realm
         
         update_launch_count()
-
+        
         return true
     }
     
@@ -188,6 +192,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func applicationWillResignActive(application: UIApplication) {
+        expiring_food_notifications()
+        
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
@@ -226,13 +232,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func expiring_food_notifications(){
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        print("Removing all Local Notifications")
         
         let realm = try! Realm()
-        var foods = realm.objects(FoodItem)
-        for each in foods{
-            if each.expiration_date != nil{
-                quirkie_Notification(each)
+        var today = NSDate()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            var adjusted_days = Double(user!.expiration_warning) * 86400
+            var warning_date = today.dateByAddingTimeInterval(adjusted_days)
+            print("This is expiring warning date: \(warning_date)")
+            
+            var foods = realm.objects(FoodItem).filter("expiration_date >= %@", warning_date).filter("fridge_amount > 0")
+            for each in foods{
+                if each.expiration_date != nil{
+                    quirkie_Notification(each)
+                }
             }
         }
     }
@@ -243,27 +258,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let bread = "Bread"
         
         // Arrays for Phrases
-        let ends_with_es_array = ["Your \(each.title!) are close to expiration."]
-        let doesnt_end_with_es_array = ["Your \(each.title!) is close to expiration."]
+        let ends_with_es_array = ["Your \(each.title!) are close to expiration.", "Don't \(each.title!) sound good right about now? Hope so, they won't be good for much longer"]
+        let doesnt_end_with_es_array = ["Your \(each.title!) is close to expiration.", "Doesn't \(each.title!) sound good right about now? Hope so, they won't be good for much longer.","How is your \(each.title!) looking?"]
+        let ends_with_only_s_array = ["How are your \(each.title!) looking?"]
         let starts_with_vowel_array = [""]
         let contains_bread_array = ["Your \(each.title!) is starting to go stale."]
+        let apple_array = ["Apple for your thoughts. Think fast, these apples are going bad."]
+        let peach_array = ["Your Peaches aren't looking so Peachy. Use em' before ya lose em'"]
+        let all_array = [""]
+        
+        // all foods
+//        for phrase in all_array{
+//            usable_array.append(phrase)
+//        }
         
         //starts with a vowel
-        let vowel : String = "\(each.title!.characters.first)"
-        if vowels.contains(vowel){
-            for phrase in starts_with_vowel_array{
-                usable_array.append(phrase)
-            }
-        }
+//        let vowel : String = "\(each.title!.characters.first)"
+//        if vowels.contains(vowel){
+//            for phrase in starts_with_vowel_array{
+//                usable_array.append(phrase)
+//            }
+//        }
+        
         //contains the word bread
         if each.title!.containsString(bread){
             for phrase in contains_bread_array{
                 usable_array.append(phrase)
             }
         }
+        
+        // Apple phrases
+        if each.title == "Apples"{
+            for phrase in apple_array{
+                usable_array.append(phrase)
+            }
+        }
+        
+        // Peach phrases
+        if each.title == "Peaches"{
+            for phrase in peach_array{
+                usable_array.append(phrase)
+            }
+        }
+        
+        
         //ends with es
         if each.title!.hasSuffix("es"){
             for phrase in ends_with_es_array{
+                usable_array.append(phrase)
+            }
+        }else if each.title!.hasSuffix("s"){
+            for phrase in ends_with_only_s_array{
                 usable_array.append(phrase)
             }
         }else{
@@ -308,9 +353,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var notification : UILocalNotification = UILocalNotification()
         notification.alertBody = message
-        notification.fireDate = fire_date
+        
+        var today = NSDate()
+        var comp_date = NSDateComponents()
+        comp_date.second = 15
+        
+        var cal = NSCalendar.currentCalendar()
+        var firedate : NSDate = cal.dateByAddingComponents(comp_date, toDate: fire_date, options: NSCalendarOptions.MatchFirst)!
+
+        
+        notification.fireDate = firedate//fire_date
         
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        print("\(fire_date) | \(firedate) --- \(message)")
     }
     
     

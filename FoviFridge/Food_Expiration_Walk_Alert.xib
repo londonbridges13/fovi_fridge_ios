@@ -37,7 +37,7 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rHO-h3-Jm8">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exp_img" translatesAutoresizingMaskIntoConstraints="NO" id="rHO-h3-Jm8">
                     <rect key="frame" x="0.0" y="162" width="230" height="99"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="99" id="5Ot-Rj-thY"/>
@@ -73,4 +73,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
+    <resources>
+        <image name="exp_img" width="640" height="262"/>
+    </resources>
 </document>

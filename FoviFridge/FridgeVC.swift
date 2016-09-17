@@ -177,6 +177,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
                 cell.get_missing_food()
             }else if self.categories[indexPath.row - 1] == "Expiring Soon"{
                 cell.get_expiring_foods()
+            }else if self.categories[indexPath.row - 1] == "Expired Food"{
+                cell.get_expired_foods()
             }else{
                 cell.get_fooditems(self.categories[indexPath.row - 1])
             }
@@ -493,7 +495,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         
         let realm = try! Realm()
         var user = realm.objects(UserDetails).first
-        var missing_foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0")
+        var missing_foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0 AND shoppingList_amount = 0")
         
         if missing_foods.count > 0{
             var missing  = "Missing"
@@ -502,16 +504,25 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 //            self.get_all_categories()
         }else{
             print("No missing items here")
-            // Get the other categories
-//            self.get_all_categories()
         }
         
         if user != nil{
-            // Expiring Soon
             var today = NSDate()
             var adjusted_days = Double(user!.expiration_warning) * 86400
             var warning_date = today.dateByAddingTimeInterval(adjusted_days)
             print("This is expiring warning date: \(warning_date)")
+
+            // Expired 
+            var expired_foods = realm.objects(FoodItem).filter("expiration_date <= %@", today).filter("fridge_amount > 0")
+            if expired_foods.count > 0{
+                var expired = "Expired Food"
+                self.categories.append(expired)
+            }else{
+                print("No expired items here")
+            }
+            
+            
+            // Expiring Soon
             var expiring_foods = realm.objects(FoodItem).filter("expiration_date <= %@", warning_date).filter("expiration_date >= %@", today).filter("fridge_amount > 0")
             
             if expiring_foods.count > 0{
@@ -845,7 +856,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         alert.alpha = 0
         self.view.addSubview(alert)
         alert.fadeIn()
-        alert.okayButton.addTarget(self, action: "changeTint", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
 
     }
     func changeTint(){

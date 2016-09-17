@@ -56,7 +56,7 @@ class UserDetails: Object {
     dynamic var visit_shopping_list_walkthrough = false
     dynamic var grocery_bag_walkthrough = false
     dynamic var grocery_store_walkthrough = false
-    
+    dynamic var expiration_walkthrough = false
     
     
     

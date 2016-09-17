@@ -64,8 +64,15 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.tableview.delegate = self
         self.tableview.dataSource = self
 
-        get_cat_food(self.category!)
-        
+        if self.category == "Missing"{
+            get_missing_food()
+        }else if self.category == "Expiring Soon"{
+            get_expiring_food()
+        }else if self.category == "Expired Food"{
+            get_expired_food()
+        }else{
+            get_cat_food(self.category!)
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -209,6 +216,58 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }
     }
     
+    
+    func get_missing_food(){
+        self.editButton.alpha = 0
+        let realm = try! Realm()
+        var missing_foods = realm.objects(FoodItem).filter(" previously_purchased = \(true) AND fridge_amount = 0")
+        for each in missing_foods{
+            print("\(each.title!)")
+            self.food.append(each)
+            
+        }
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.tableview.reloadData()
+        }
+    }
+    
+    func get_expiring_food(){
+        self.editButton.alpha = 0
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            var today = NSDate()
+            var adjusted_days = Double(user!.expiration_warning) * 86400
+            var warning_date = today.dateByAddingTimeInterval(adjusted_days)
+            var expiring_foods = realm.objects(FoodItem).filter("expiration_date <= %@", warning_date).filter("expiration_date >= %@", today).filter("fridge_amount > 0")
+            for each in expiring_foods{
+                print("\(each.title!)")
+                self.food.append(each)
+                
+            }
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.tableview.reloadData()
+            }
+        }
+    }
+    
+    func get_expired_food(){
+        self.editButton.alpha = 0
+        let realm = try! Realm()
+        var today = NSDate()
+        var expired_foods = realm.objects(FoodItem).filter("expiration_date <= %@", today).filter("fridge_amount > 0")
+        for each in expired_foods{
+            print("\(each.title!)")
+            self.food.append(each)
+            
+        }
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.tableview.reloadData()
+        }
+    }
     
     
     

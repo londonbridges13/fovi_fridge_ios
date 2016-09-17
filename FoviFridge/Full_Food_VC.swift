@@ -44,16 +44,18 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
 
         self.random_Color()
         
+        check_for_walkthrough()
+        
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
         dispatch_after(time, dispatch_get_main_queue()) {
-            let realm = try! Realm()
-            var useer = realm.objects(UserDetails).first
-            print(useer)
-            var today = NSDate()
-            var exipartion = Double(useer!.expiration_warning) * 86400
-            var warning_date = today.dateByAddingTimeInterval(-1 * exipartion)
-            print(warning_date)
-            
+//            let realm = try! Realm()
+//            var useer = realm.objects(UserDetails).first
+//            print(useer)
+//            var today = NSDate()
+//            var exipartion = Double(useer!.expiration_warning) * 86400
+//            var warning_date = today.dateByAddingTimeInterval(-1 * exipartion)
+//            print(warning_date)
+//            
 //            self.display_set_expiration()
 //            self.display_daysleft()
 //            self.display_expiration_walkthrough()
@@ -353,15 +355,24 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         alert.alpha = 0
         self.view.addSubview(alert)
         alert.fadeIn(duration: 0.45)
-
-        
     }
     
     
     
-    
-    
     // Expiration Walkthrough
+    func check_for_walkthrough(){
+        let realm = try! Realm()
+        var user = realm.objects(UserDetails).first
+        if user != nil{
+            if user!.expiration_walkthrough != true{
+                display_expiration_walkthrough()
+                try! realm.write({
+                    user!.expiration_walkthrough = true
+                })
+            }
+        }
+    }
+    
     
     func display_expiration_walkthrough(){
         // dtint
@@ -414,6 +425,7 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         alert.detailLabel.text = "We would like to notify you of expiring food when you're not using the app."
         alert.topLabel.text = "Last Thing"
+        alert.imageview.image = UIImage(named: "noti_img-1")
 //        alert.imageview.image = 
         
         alert.doneButton.addTarget(self, action: "ask_notification_permission", forControlEvents: .TouchUpInside)
