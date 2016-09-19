@@ -232,7 +232,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func expiring_food_notifications(){
-//        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         print("Removing all Local Notifications")
         
         let realm = try! Realm()
@@ -244,6 +244,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("This is expiring warning date: \(warning_date)")
             
             var foods = realm.objects(FoodItem).filter("expiration_date >= %@", warning_date).filter("fridge_amount > 0")
+            // setting a notification for all foods in fridge
             for each in foods{
                 if each.expiration_date != nil{
                     quirkie_Notification(each)
@@ -355,17 +356,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification.alertBody = message
         
         var today = NSDate()
-        var comp_date = NSDateComponents()
-        comp_date.second = 15
         
-        var cal = NSCalendar.currentCalendar()
-        var firedate : NSDate = cal.dateByAddingComponents(comp_date, toDate: fire_date, options: NSCalendarOptions.MatchFirst)!
+
+//        var cal = NSCalendar.currentCalendar()
+//        let components = NSDateComponents()
+//        components.second = 0
+//        
+//        var firedate : NSDate = cal.dateByAddingComponents(components, toDate: fire_date, options: NSCalendarOptions.MatchFirst)!
 
         
-        notification.fireDate = firedate//fire_date
-        
+        notification.fireDate = fire_date//firedate//fire_date
+        notification.timeZone = NSTimeZone.localTimeZone()
+
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        print("\(fire_date) | \(firedate) --- \(message)")
+        print("\(fire_date) \n \(message) \n\n")
     }
     
     

@@ -126,7 +126,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let addToFridge = UITableViewRowAction(style: .Normal, title: "Move to Fridge") { action, index in
             print("Move button tapped")
             self.move_to_fridge(self.food[indexPath.row])
-            self.update_fooditem_expiration_date(self.food[indexPath.row])
+//            self.update_fooditem_expiration_date(self.food[indexPath.row])
             self.tableView.beginUpdates()
             self.food.removeAtIndex(indexPath.row)
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
@@ -378,6 +378,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
             }else{
                 // just run other update
                 print("not nil set expiration")
+                self.update_fooditem_expiration_date(each)
             }
         })
         //update_fooditem_expiration_date(each)
@@ -413,6 +414,13 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }else if same_food == nil{
             display_set_expiration(fooditem)
         }else{
+            update_fooditem_expiration_date(fooditem)
+        }
+        
+        if same_food?.expiration_date == nil && same_food?.set_expiration.value != nil{
+            update_fooditem_expiration_date(same_food!)
+        }
+        if fooditem.expiration_date == nil && fooditem.set_expiration.value != nil{
             update_fooditem_expiration_date(fooditem)
         }
     }
@@ -461,15 +469,15 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // Delegate
     func remove_set_Expiration_Alert(){
-//        print("Delegate in Action")
-//        self.set_expire_view?.view.fadeOut(duration: 0.3)
-//        
-//        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
-//        dispatch_after(time, dispatch_get_main_queue()) {
-//            self.set_expire_view?.view.removeFromSuperview()
-//        }
-//        self.remove_dtint()
-//        
+        print("Delegate in Action")
+        self.set_expire_view?.view.fadeOut(duration: 0.3)
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.set_expire_view?.view.removeFromSuperview()
+        }
+        self.remove_dtint()
+        
     }
     
     func displayEnterInputAlert(){
