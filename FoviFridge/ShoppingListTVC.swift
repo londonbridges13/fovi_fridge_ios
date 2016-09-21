@@ -370,8 +370,8 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     // run the other update out of this one, should be smooth
     func check_oldnew_fooditem_date(each : FoodItem){
-        let realm = try! Realm()
-        try! realm.write({
+//        let realm = try! Realm()
+//        try! realm.write({
             if each.set_expiration.value == nil{
                 print("nil set expiration")
                 self.set_food_expiration(each)
@@ -380,7 +380,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                 print("not nil set expiration")
                 self.update_fooditem_expiration_date(each)
             }
-        })
+//        })
         //update_fooditem_expiration_date(each)
     }
     
@@ -391,11 +391,13 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     func pre_set_food_expiration(){
         var fooditem = self.selected_fooditem
-        if fooditem.set_expiration.value == nil{
-            set_food_expiration(fooditem)
-        }else{
-            update_fooditem_expiration_date(fooditem)
-        }
+        check_oldnew_fooditem_date(fooditem)
+        // This function was basically a copy of the check_oldnew_fooditem_date func
+//        if fooditem.set_expiration.value == nil{
+//            set_food_expiration(fooditem)
+//        }else{
+//            update_fooditem_expiration_date(fooditem)
+//        }
     }
     func set_food_expiration(fooditem : FoodItem){
         //display set_expiration Alert

@@ -94,9 +94,30 @@ class ShopList_FoodView: UIView {
             print("ShoppingList now = \(fooditem.shoppingList_amount.value)")
         }
         print(fooditem)
-
+//        check_oldnew_fooditem_date(self.fooditem)
+        // NOTE: This check_oldnew_fooditem_date function is ran through an addTarget in the ShoppingListTVC, so you dont need to run it again.
+        
         fadeAway()
     }
+    
+    
+    
+//    func check_oldnew_fooditem_date(each : FoodItem){
+//        //        let realm = try! Realm()
+//        //        try! realm.write({
+//        if each.set_expiration.value == nil{
+//            print("nil set expiration")
+//            self.set_food_expiration(each)
+//        }else{
+//            // just run other update
+//            print("not nil set expiration")
+//            self.update_fooditem_expiration_date(each)
+//        }
+//        //        })
+//        //update_fooditem_expiration_date(each)
+//    }
+
+    
     
     
     

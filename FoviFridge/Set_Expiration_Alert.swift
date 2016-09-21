@@ -25,6 +25,8 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
     
     var delegate : SetExpirationDelegate?
     
+    var update_exdate = false // use this to see whether you should update the expiration
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +88,19 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
         if let delegate = self.delegate{
             print("Running Delegate (to remove alert view)")
             delegate.remove_set_Expiration_Alert()
+        }
+        
+        // check to update/set the expiration date in the food
+        if self.fooditem.fridge_amount.value > 0 && fooditem.set_expiration.value != nil && fooditem.expiration_date == nil{
+            // This means that there is no expiration date, this is a fooditem from the previous version
+            // Test this out, by adding a fooditem with no set expiration date to the fridge from the shopping list. This alert should appear and then this function should be exucuted once this this day is set.
+            
+            // I'm adding a timer to give Realm a second to set the fooditem.set_expiration to a value.
+            let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(250 * Double(NSEC_PER_MSEC)))
+            dispatch_after(delayTime, dispatch_get_main_queue()) {
+                self.update_fooditem_expiration_date(self.fooditem)
+            }
+            
         }
         
     }
@@ -179,6 +194,22 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
     }
     
 
+    func update_fooditem_expiration_date(each : FoodItem){
+        print("running update expiration")
+        var today = NSDate()
+        var setvalue = Double(each.set_expiration.value!)
+        let added_days = setvalue * 86400
+        let new_date = today.dateByAddingTimeInterval(added_days)
+        print("\(each.title!) expiration date was updated from \(each.expiration_date)")
+        print("to \(new_date)")
+        let realm = try! Realm()
+        try! realm.write({
+            each.expiration_date = new_date
+        })
+    }
+
+    
+    
     /*
     // MARK: - Navigation
 
