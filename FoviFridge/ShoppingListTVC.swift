@@ -410,19 +410,23 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         print("We have this item \(same_food?.title)")
         
         if same_food?.set_expiration.value == nil{
-            // No fooditem, display set ex_alert
+            // No set_expiration in the fooditem, set that before running update_fooditem_expiration_date(), display alert to set the fooditem.set_expiration
             
             display_set_expiration(same_food!)
         }else if same_food == nil{
+            // I Believe this is unnessasary because the same_food (which is a fooditem that exists somewhere in the datatbase) would have to exist, because it appears here in the shoppinglist (which querys from the database). I will leave it, for now.
             display_set_expiration(fooditem)
         }else{
+            // New Fooditem in which there should already be a set_expiration for this fooditem
             update_fooditem_expiration_date(fooditem)
         }
         
         if same_food?.expiration_date == nil && same_food?.set_expiration.value != nil{
+            // This is for old fooditems that have just be added to the shoppinglist, and that have no expiration_date
             update_fooditem_expiration_date(same_food!)
         }
         if fooditem.expiration_date == nil && fooditem.set_expiration.value != nil{
+            // This is for new fooditems that have just be added to the shoppinglist, and that have no expiration_date
             update_fooditem_expiration_date(fooditem)
         }
     }

@@ -274,8 +274,16 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    func get_fooditem(fooditem : FoodItem){
+        // This is to refresh the fooditem when you update it's values from another ViewController
+        let realm = try! Realm()
+        
+    }
+    
+    
     func remove_dtint(){
         self.tableView.reloadData()
+        // We need to Grab the fooditem's new expiration_date because the fooditem may have changed (from the Set_Expiration_Alert), query for new fooditem and then set it for old one (self.fooditem).
         
         self.dtint?.fadeOut(duration: 0.3)
         
