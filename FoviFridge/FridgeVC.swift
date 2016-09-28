@@ -187,7 +187,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             tableView.rowHeight = 148.0
             
             cell.alpha = 0
-            cell.fadeIn(duration: 0.6)
+//            var liltint = 
+            cell.fadeIn(duration: 0.3)
             
             return cell
         }else{

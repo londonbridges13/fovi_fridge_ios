@@ -400,7 +400,7 @@
                                             <constraint firstAttribute="height" constant="31" id="xdL-6Q-zI8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="Create Unique Item ">
+                                        <state key="normal" title="Create Food Item ">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -740,10 +740,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFD-pe-2K9">
                                 <rect key="frame" x="-4" y="0.0" width="328" height="90"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fridge" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0V3-xi-MxF">
-                                        <rect key="frame" x="18" y="8" width="133" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fridge" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0V3-xi-MxF">
+                                        <rect key="frame" x="73" y="8" width="183" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="133" id="Vmk-LN-Jt0"/>
+                                            <constraint firstAttribute="width" constant="183" id="Vmk-LN-Jt0"/>
                                             <constraint firstAttribute="height" constant="30" id="nk8-nY-D5x"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
@@ -789,6 +789,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="0V3-xi-MxF" firstAttribute="centerX" secondItem="QFD-pe-2K9" secondAttribute="centerX" id="05h-V0-NAT"/>
                                     <constraint firstItem="hVT-rf-GsH" firstAttribute="leading" secondItem="QFD-pe-2K9" secondAttribute="leading" constant="41" id="AM0-GV-xdN"/>
                                     <constraint firstItem="Ppt-50-IUa" firstAttribute="centerX" secondItem="QFD-pe-2K9" secondAttribute="centerX" id="Atm-vU-PQs"/>
                                     <constraint firstAttribute="bottom" secondItem="hVT-rf-GsH" secondAttribute="bottom" constant="6" id="K3K-qK-yPO"/>
@@ -798,6 +799,11 @@
                                     <constraint firstItem="0V3-xi-MxF" firstAttribute="leading" secondItem="QFD-pe-2K9" secondAttribute="leading" constant="18" id="eF4-dD-1Fe"/>
                                     <constraint firstAttribute="trailing" secondItem="Wcr-qa-TtQ" secondAttribute="trailing" constant="41" id="jQW-Ro-rgz"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eF4-dD-1Fe"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-2m-54W">
                                 <rect key="frame" x="51" y="524" width="219" height="41"/>

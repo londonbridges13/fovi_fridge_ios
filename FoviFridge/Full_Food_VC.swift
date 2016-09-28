@@ -134,6 +134,10 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 }else{
                     cell.detailLabel.text = "Days Left"
                 }
+            }else{
+                // There is no date set for this fooditem's expiration date. To show that there is no date set, display "N/A" in the text.
+                
+                cell.daysleftLabel.text = "N/A"
             }
             
             cell.daysleftLabel.textColor = self.use_color!

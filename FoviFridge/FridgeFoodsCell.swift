@@ -104,6 +104,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("Selected cell")
+        print(self.food[indexPath.row])
         
         if let fullfoodview_delegate = fullfoodview_delegate{
             fullfoodview_delegate.show_full_foodview(self.food[indexPath.row])

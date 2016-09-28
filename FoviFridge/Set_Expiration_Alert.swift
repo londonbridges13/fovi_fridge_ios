@@ -92,7 +92,7 @@ class Set_Expiration_Alert: UIViewController, UICollectionViewDelegate, UICollec
         
         // check to update/set the expiration date in the food
         if self.fooditem.fridge_amount.value > 0 && fooditem.set_expiration.value != nil && fooditem.expiration_date == nil{
-            // This means that there is no expiration date, this is a fooditem from the previous version
+            // This means that there is no expiration date, this is a fooditem from the previous version(1.10.0)
             // Test this out, by adding a fooditem with no set expiration date to the fridge from the shopping list. This alert should appear and then this function should be exucuted once this this day is set.
             
             // I'm adding a timer to give Realm a second to set the fooditem.set_expiration to a value.

@@ -175,7 +175,23 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         
         print("Selected")
         
-        if self.segueStick == "EditCategory"{
+        if self.segueStick == "NewCategory"{
+            print("Adding it to Category")
+            // Search for same_fooditem
+            var fooditem = self.all_fooditems[indexPath.row]
+            let realm = try! Realm()
+            print("Searching Realm for \(fooditem.title!)")
+            let predicate = NSPredicate(format: "title = '\(fooditem.title!)' AND is_basic = \(fooditem.is_basic)")
+            var same_food = realm.objects(FoodItem).filter(predicate).first
+            print("We have this item \(same_food?.title)")
+            
+            if same_food != nil{
+                add_to_category(same_food!)
+            }else{
+                add_new_fooditem_category(fooditem)
+            }
+
+        }else if self.segueStick == "EditCategory"{
             print("Adding to Category")
             
             if self.is_searching == false{
@@ -368,6 +384,32 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     }
 
 
+    
+    // New Category
+    func add_to_category(fooditem : FoodItem){
+        let realm = try! Realm()
+        try! realm.write({ 
+            fooditem.mylist_amount.value = 1
+        })
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 200 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.mini?.get_groceries()
+        }
+    }
+    
+    
+    func add_new_fooditem_category(fooditem : FoodItem){
+        // This is for when the user adds a new fooditem to the category . We have to do this because this fooditem doesin't exist in the db, so we can't just tweak it like we did in the function above.
+        let realm = try! Realm()
+        try! realm.write({ 
+            fooditem.mylist_amount.value = 1
+            realm.add(fooditem)
+        })
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 200 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.mini?.get_groceries()
+        }
+    }
     
     
     // Query Local Food Items
@@ -566,9 +608,22 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
     }
     
     func pre_set_food_expiration(){
+        // setting selected_fooditem to fooditem for easier use
         var fooditem = self.selected_fooditem
-        if fooditem.mylist_amount.value > 0{
-            set_food_expiration(fooditem)
+        // Must get updated fooditem from get_fooditem func. This wasn't working before because the mylist is default set to nil, get.
+        self.get_fooditem(self.selected_fooditem)
+        // a checkpoint
+        print("HHH")
+        // giving realm a second to set selected_fooditem to updated_fooditem
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 250 * Int64(NSEC_PER_MSEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            // should be a newer fooditem
+            if self.selected_fooditem.mylist_amount.value > 0{
+                // second checkpoint
+                print("HHH")
+                // the case, run it
+                self.set_food_expiration(fooditem)
+            }
         }
     }
     func set_food_expiration(fooditem : FoodItem){
@@ -590,6 +645,25 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         }
     }
 
+    
+    
+    
+    func get_fooditem(oldfooditem : FoodItem){
+        // This is to refresh the fooditem when you update it's values from another ViewController
+        let realm = try! Realm()
+        var new_fooditem = realm.objects(FoodItem).filter("title = '\(oldfooditem.title!)' AND is_basic == \(true)").first
+        if new_fooditem != nil{
+            print("Found your new \(new_fooditem?.title)")
+            self.selected_fooditem = new_fooditem!
+        }
+    }
+    
+
+    
+    
+    
+    
+    
     // MiniDelegate
     //Display FoodView
     func show_grocery_item(fooditem : FoodItem){
@@ -602,9 +676,20 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         // Display see you tomorrow view with ok button, push ok to segue to fridge vc
         print("Displaying \(fooditem.title!)")
         
-        var xp = self.view.frame.width / 2 - (250 / 2)
+    
+        if self.segueStick == "NewCategory"{
+            var yp = self.view.frame.height / 2 - (221 / 2)
+            var xp = self.view.frame.width / 2 - (250 / 2)
+            self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: yp, width: 250, height: 221))
+            foodView!.stepper.alpha = 0
+            foodView!.expireButton.alpha = 0
+        }else{
+            // Regular
+            var xp = self.view.frame.width / 2 - (250 / 2)
+            var yp = self.view.frame.height / 2 - (400 / 2)
+            self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
+        }
         
-        self.foodView = Food_Quantity_View(frame: CGRect(x: xp, y: 50, width: 250, height: 400))
         foodView!.alpha = 0
         foodView!.fadeIn(duration: 0.3)
         foodView?.fooditem = fooditem
@@ -620,6 +705,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         foodView!.remove_button.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         foodView!.expireButton.addTarget(self, action: "pre_display_set_expiration", forControlEvents: .TouchUpInside)
 
+       
+        
         view.addSubview(foodView!)
     }
     

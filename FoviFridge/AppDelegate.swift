@@ -10,6 +10,7 @@ import UIKit
 import FoldingTabBar
 import RealmSwift
 import Siren
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.layer.masksToBounds = true
         
         setupSiren()
+        wake_up_server()
         
         // TabBar
         if let tabBarController = window?.rootViewController as? YALFoldingTabBarController {
@@ -357,20 +359,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         var today = NSDate()
         
-
-//        var cal = NSCalendar.currentCalendar()
-//        let components = NSDateComponents()
-//        components.second = 0
-//        
-//        var firedate : NSDate = cal.dateByAddingComponents(components, toDate: fire_date, options: NSCalendarOptions.MatchFirst)!
-
-        
         notification.fireDate = fire_date//firedate//fire_date
         notification.timeZone = NSTimeZone.localTimeZone()
 
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         print("\(fire_date) \n \(message) \n\n")
     }
+    
+    
+    
+    
+    
+    
+    func wake_up_server() {//https://beautiful-grand-canyon-88320.herokuapp.com/api/v1/users
+        var queue = NSOperationQueue()
+        
+        queue.addOperationWithBlock { () -> Void in
+            // Background Here
+            
+            Alamofire.request(.GET, "https://rocky-fjord-88249.herokuapp.com/api/v1/basic_food_items").responseJSON { (response) in
+                print("Waking Up Server")
+                print(response.result.value)
+            }
+        }
+    }
+    
+    
     
     
     

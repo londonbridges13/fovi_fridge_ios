@@ -169,16 +169,24 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         print(new_fooditem)
     }
     func add_Expiration(expires : Int){ // This adds the expiration to a variable in the CreateFoodTVC
-        print("Exipires in \(expires) days")
+        print("Expires in \(expires) days")
         
         self.new_fooditem.usually_expires.value = expires
         self.new_fooditem.fridge_usually_expires.value = expires
+        self.new_fooditem.set_expiration.value = expires
         
-        //Set date 
-        var ex_date = NSDate()
-        if expires >= 29{
-//            ex_date.month.value() += 1
-        }
+        // Set Expiration Date
+        // NOTICE: We can set the set_expiration value here but we don't update/set the expiration here, because the user might not add this food item to their grocerybag. Setting the set_expiration is what's important.
+        
+//        var today = NSDate()
+//        var setvalue = Double(expires)
+//        let added_days = setvalue * 86400
+//        let new_date = today.dateByAddingTimeInterval(added_days)
+//        print("\(self.new_fooditem.title!) expiration date was updated from \(self.new_fooditem.expiration_date)")
+//        print("to \(new_date)")
+//        
+//        self.new_fooditem.expiration_date = new_date
+        
         print(new_fooditem)
     }
     func add_Measurement(measurement_type : String, full_amount : Float, current_amount : Float){

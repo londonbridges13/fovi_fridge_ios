@@ -41,9 +41,13 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
                 fooditem.set_expiration.value = Int(self.daysTX.text!)
                 print("\(fooditem.title!).set_expiration is now : \(fooditem.set_expiration.value)")
             }
-            if fooditem.set_expiration.value == nil{
-                // Do want to update exdate everytime we change the expiration, if anything ask user
-                update_fooditem_expiration_date()
+            
+            if fooditem.set_expiration.value != nil{
+                // Do want to update exdate everytime we change the expiration, if anything ask user.
+                // Fuck That (Above) before it was (if fooditem.set_expiration.value == nil{)
+                // Now We should find the newly updated fooditem and then update the exdate based off of that fooditem.set_expiration
+                get_fooditem(self.fooditem)
+                // I put the update func in the get_fooditem function
             }
             let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 50 * Int64(NSEC_PER_MSEC))
             dispatch_after(timer, dispatch_get_main_queue()) {
@@ -74,6 +78,22 @@ class EnterInput_Alert: UIView, UITextFieldDelegate {
             fooditem.expiration_date = new_date
         })
     }
+
+    
+    func get_fooditem(oldfooditem : FoodItem){
+        // This is to refresh the fooditem when you update it's values from another ViewController
+        let realm = try! Realm()
+        var new_fooditem = realm.objects(FoodItem).filter("title = '\(oldfooditem.title!)' AND is_basic == \(true)").first
+        if new_fooditem != nil{
+            print("Found your new \(new_fooditem?.title)")
+            self.fooditem = new_fooditem!
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 150 * Int64(NSEC_PER_MSEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.update_fooditem_expiration_date()
+            }
+        }
+    }
+    
 
     
     
