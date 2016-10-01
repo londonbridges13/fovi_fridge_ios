@@ -22,6 +22,7 @@
 		3E1439761D5D3C0C001C9C6B /* Get_Title_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */; };
 		3E1439781D5D3C74001C9C6B /* Get_Size_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */; };
 		3E14397A1D5D3C9B001C9C6B /* Get_Expire_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */; };
+		3E1C84FD1D9F6E7D00439B06 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C84FC1D9F6E7D00439B06 /* Popover.swift */; };
 		3E3AB6331D8B15BD00C41F6D /* DaysLeft_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3AB6321D8B15BD00C41F6D /* DaysLeft_Cell.swift */; };
 		3E3AB6391D8C4C5C00C41F6D /* RateApp_AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3AB6381D8C4C5C00C41F6D /* RateApp_AlertView.swift */; };
 		3E3AB63B1D8C4DF000C41F6D /* RateApp_AlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3AB63A1D8C4DF000C41F6D /* RateApp_AlertView.xib */; };
@@ -221,6 +222,7 @@
 		3E1439751D5D3C0C001C9C6B /* Get_Title_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Title_Cell.swift; sourceTree = "<group>"; };
 		3E1439771D5D3C74001C9C6B /* Get_Size_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Size_Cell.swift; sourceTree = "<group>"; };
 		3E1439791D5D3C9B001C9C6B /* Get_Expire_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Get_Expire_Cell.swift; sourceTree = "<group>"; };
+		3E1C84FC1D9F6E7D00439B06 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		3E3AB6321D8B15BD00C41F6D /* DaysLeft_Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaysLeft_Cell.swift; sourceTree = "<group>"; };
 		3E3AB6381D8C4C5C00C41F6D /* RateApp_AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateApp_AlertView.swift; sourceTree = "<group>"; };
 		3E3AB63A1D8C4DF000C41F6D /* RateApp_AlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RateApp_AlertView.xib; sourceTree = "<group>"; };
@@ -490,6 +492,14 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		3E1C84FB1D9F6E5800439B06 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				3E1C84FC1D9F6E7D00439B06 /* Popover.swift */,
+			);
+			name = Popover;
+			sourceTree = "<group>";
+		};
 		3E3AB6371D8C4C0F00C41F6D /* Rate Fovi */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,7 +600,7 @@
 			name = "Cell Animator";
 			sourceTree = "<group>";
 		};
-		3E63D6F21D6CBE28001063F8 /* Walkthrough */ = {
+		3E63D6F21D6CBE28001063F8 /* Walkthroughs */ = {
 			isa = PBXGroup;
 			children = (
 				3E3FECED1D87646E0061106C /* Food Expiration */,
@@ -599,7 +609,7 @@
 				3E71D5121D6F917E0049A99B /* GroceryBag */,
 				3E63D6F71D6CC1F4001063F8 /* EmptyFridge */,
 			);
-			name = Walkthrough;
+			name = Walkthroughs;
 			sourceTree = "<group>";
 		};
 		3E63D6F71D6CC1F4001063F8 /* EmptyFridge */ = {
@@ -829,6 +839,7 @@
 		3E9E37441D4D687B00A15381 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E1C84FB1D9F6E5800439B06 /* Popover */,
 				3E63D6F11D6B4559001063F8 /* Cell Animator */,
 				3E1438D51D57F70F001C9C6B /* DeviceType */,
 				3E9E37841D4EA5E000A15381 /* Fluent */,
@@ -891,7 +902,7 @@
 				3E9E373B1D4D610C00A15381 /* GroceryBag */,
 				3E9E373C1D4D613100A15381 /* CreateFoodItem */,
 				3E9E37391D4D60E200A15381 /* ShoppingList */,
-				3E63D6F21D6CBE28001063F8 /* Walkthrough */,
+				3E63D6F21D6CBE28001063F8 /* Walkthroughs */,
 				3E4FF67A1D1C9B83005BFFF4 /* CustomSegue.swift */,
 				3E5FAAEE1D3D998300E94EA8 /* circle.png */,
 				3EC508E31D2212D600630E8F /* Realm */,
@@ -1364,6 +1375,7 @@
 				3E3FECAB1D831B220061106C /* EnterInput_Alert.swift in Sources */,
 				3E5FAAD31D39DF5A00E94EA8 /* YesNo_SurveyQ.swift in Sources */,
 				3EAF0E771D40569800A302B0 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				3E1C84FD1D9F6E7D00439B06 /* Popover.swift in Sources */,
 				3E3C29E11D4F05080095A93B /* MyMiniFoodCell.swift in Sources */,
 				3EAF0E6E1D40569800A302B0 /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				3E4FF6831D1E28DD005BFFF4 /* ShoppingCell.swift in Sources */,

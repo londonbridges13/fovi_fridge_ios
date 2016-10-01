@@ -187,7 +187,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             tableView.rowHeight = 148.0
             
             cell.alpha = 0
-//            var liltint = 
             cell.fadeIn(duration: 0.3)
             
             return cell
@@ -761,50 +760,108 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         // Display Alerts
         // Display EmptyFridge1
         
-        print("Display Alert")
-        
-        var alert = EmptyFridge1()
-        
-        let width : CGFloat = 206
-        let height : CGFloat = 200
-        
-        let xp = self.view.frame.width / 2 - (width / 2)
-        let yp = self.view.frame.height / 2 - (height / 2) - 30
-
-        alert.frame = CGRect(x: xp, y: yp, width: width, height: height)
-        alert.yesbutton.addTarget(self, action: "empty_fridge_alert2", forControlEvents: .TouchUpInside)
-        
-        alert.alpha = 0
-        self.add_tint()
-        UIView.animateWithDuration(0.3) {
-            self.tint?.backgroundColor = UIColor.blackColor()
+        func empty_fridge_popover(){
+            print("Displaying Tap Add Groceries Popover")
+            
+            var secondPopoverOptions: [PopoverOption] = [
+                .Type(.Down),
+                .AnimationIn(0.3),
+                //            .AnimationOut(0.3),
+                .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.0))
+            ]
+            
+            let startPoint = CGPoint(x: (self.view.frame.width / 2), y: self.view.frame.height / 2 - 30)
+            let aView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 60))
+            aView.layer.borderColor = UIColor.orangeColor().CGColor
+            aView.layer.borderWidth = 1.25
+            var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+            label.numberOfLines = 0
+            label.text = "Your fridge looks a little empty"
+            label.font = UIFont(name: "Helvetica", size: 18)
+            label.textColor = UIColor.grayColor()
+            label.textAlignment = .Center
+            aView.addSubview(label)
+            
+            let popover = Popover(options: secondPopoverOptions, showHandler: nil, dismissHandler: tap_add_groceries_button_popover)
+            popover.show(aView, point: startPoint, inView: self.view)
         }
-        self.view.addSubview(alert)
+        // RUNNING ABOVE FUNC
+        empty_fridge_popover()
         
-        alert.fadeIn(duration: 0.45)
+        // ALERT FOR WALKTHROUGH
+//        print("Display Alert")
+//        
+//        var alert = EmptyFridge1()
+//        
+//        let width : CGFloat = 206
+//        let height : CGFloat = 200
+//        
+//        let xp = self.view.frame.width / 2 - (width / 2)
+//        let yp = self.view.frame.height / 2 - (height / 2) - 30
+//
+//        alert.frame = CGRect(x: xp, y: yp, width: width, height: height)
+//        alert.yesbutton.addTarget(self, action: "empty_fridge_alert2", forControlEvents: .TouchUpInside)
+//        
+//        alert.alpha = 0
+//        self.add_tint()
+//        UIView.animateWithDuration(0.3) {
+//            self.tint?.backgroundColor = UIColor.blackColor()
+//        }
+//        self.view.addSubview(alert)
+//        
+//        alert.fadeIn(duration: 0.45)
         
     }
     
-    
-    func empty_fridge_alert2(){
-        // Display EmptyFridge2
-        print("Display EmptyFridge2")
+    func tap_add_groceries_button_popover(){
+        print("Displaying Tap Add Groceries Popover")
         
-        var alert = EmptyFridge2()
+        var secondPopoverOptions: [PopoverOption] = [
+            .Type(.Down),
+            .AnimationIn(0.3),
+            //            .AnimationOut(0.3),
+            .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+        ]
         
-        let xp = self.view.frame.width / 2 - (207 / 2)
+        let startPoint = CGPoint(x: 56, y: 85)
+        let aView = UIView(frame: CGRect(x: 0, y: 0, width: 210, height: 60))
+        var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+        label.numberOfLines = 0
+        label.text = "Add Groceries\nby tapping this Icon"
+        label.font = UIFont(name: "Helvetica", size: 18)
+        label.textColor = UIColor.grayColor()
+        aView.addSubview(label)
+        // peach 🍋
+        var peach = UILabel(frame: CGRect(x: aView.frame.width - 27, y: 5, width: 30, height: 20))
+        peach.text = "🍇"
+        aView.addSubview(peach)
         
-        alert.frame = CGRect(x: xp, y: 90, width: 207, height: 245)
-        alert.g_button1.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
-        alert.g_button2.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
-        
-        alert.alpha = 0
-        
-        self.view.addSubview(alert)
-        
-        alert.fadeIn(duration: 0.3)
+        let popover = Popover(options: secondPopoverOptions, showHandler: nil, dismissHandler: nil)
+        popover.show(aView, point: startPoint, inView: self.view)
         
     }
+
+    
+    // ALERT FOR WALKTHROUGH
+//    func empty_fridge_alert2(){
+//        // Display EmptyFridge2
+//        print("Display EmptyFridge2")
+//        
+//        var alert = EmptyFridge2()
+//        
+//        let xp = self.view.frame.width / 2 - (207 / 2)
+//        
+//        alert.frame = CGRect(x: xp, y: 90, width: 207, height: 245)
+//        alert.g_button1.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
+//        alert.g_button2.addTarget(self, action: "go_to_groceries", forControlEvents: .TouchUpInside)
+//        
+//        alert.alpha = 0
+//        
+//        self.view.addSubview(alert)
+//        
+//        alert.fadeIn(duration: 0.3)
+//        
+//    }
     
     func go_to_groceries(){
         self.groceryBagButton.sendActionsForControlEvents(.TouchUpInside)
@@ -825,7 +882,7 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         }
 
         var alert = GroceryBagWalk_1()
-        alert.bodyLabel.text = "Your Fridge is looking pretty good!"
+        alert.bodyLabel.text = "Your Fridge looks pretty good!"
         alert.headLabel.text = "Successfully added Groceries"
         let xpp = self.view.frame.width / 2 - (200 / 2)
         alert.frame = CGRect(x: xpp, y: 80, width: 200, height: 250)
@@ -833,33 +890,72 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         self.view.addSubview(alert)
         alert.fadeIn()
         alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
         //        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
     }
     
     func walkthrough_part2(){
-        // Display ShoppingList Alert2 (184)
         
-        var alert = ShoppingList_Alert2()
-        let xpp = self.view.frame.width / 2 - (300 / 2)
-        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 184)
-        alert.alpha = 0
-        self.view.addSubview(alert)
-        alert.fadeIn()
-        alert.okayButton.addTarget(self, action: "walkthrough_part3", forControlEvents: .TouchUpInside)
+        
+        func visit_shoplist_popover(){
+            print("Displaying Visit Shoppinglist Popover")
+            
+            let startPoint = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 75)
+            var aView = UIView(frame: CGRect(x: 0, y: 0, width: 213, height: 105))
+            
+            var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height - 20))
+            label.numberOfLines = 0
+            label.text = "Visit Your Shopping List\n\t Here:"
+            label.font = UIFont(name: "Helvetica", size: 20)
+            label.textColor = UIColor.grayColor()
+            aView.addSubview(label)
+            
+            //tab button
+            var tabbutton = UIButton(frame: CGRect(x: aView.frame.width - 65, y: aView.frame.height - 55, width: 59, height: 47))
+            var thatcolor = UIColor(red: 90/255, green: 155/255, blue: 178/255, alpha: 1)
+            tabbutton.backgroundColor = thatcolor
+            tabbutton.setTitle("", forState: .Normal)
+            tabbutton.setImage(UIImage(named: "Ingredients List-52"), forState: .Normal)
+            tabbutton.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 0)
+            tabbutton.roundCorners([.TopRight, .BottomRight], radius: 15)
+            aView.addSubview(tabbutton)
+            
+            var popoverOptions: [PopoverOption] = [
+                .Type(.Up),
+                .AnimationIn(0.3),
+                .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+            ]
+            let popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
+            popover.show(aView, point: startPoint, inView: self.view)
+            
+        }
+        visit_shoplist_popover()
+        
+
+        // ALERT FOR WALKTHROUGH
+        // Display ShoppingList Alert2 (184)
+//        var alert = ShoppingList_Alert2()
+//        let xpp = self.view.frame.width / 2 - (300 / 2)
+//        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 184)
+//        alert.alpha = 0
+//        self.view.addSubview(alert)
+//        alert.fadeIn()
+//        alert.okayButton.addTarget(self, action: "walkthrough_part3", forControlEvents: .TouchUpInside)
 
     }
     
-    func walkthrough_part3(){
-        // Display Shopping Alert3 (150)
-        var alert = ShoppingList_Alert3()
-        let xpp = self.view.frame.width / 2 - (300 / 2)
-        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 150)
-        alert.alpha = 0
-        self.view.addSubview(alert)
-        alert.fadeIn()
-        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
-
-    }
+//    func walkthrough_part3(){
+//        // Display Shopping Alert3 (150)
+//        var alert = ShoppingList_Alert3()
+//        let xpp = self.view.frame.width / 2 - (300 / 2)
+//        alert.frame = CGRect(x: xpp, y: 80, width: 300, height: 150)
+//        alert.alpha = 0
+//        self.view.addSubview(alert)
+//        alert.fadeIn()
+//        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+//
+//    }
+    
     func changeTint(){
         UIView.animateWithDuration(0.3) {
             self.tint?.backgroundColor = UIColor.whiteColor()

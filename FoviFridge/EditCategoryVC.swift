@@ -130,13 +130,28 @@ class EditCategoryVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let realm = try! Realm()
         let predicate = NSPredicate(format: "ANY category.category CONTAINS[c] %@", cat)
         var all_cat_food = realm.objects(FoodItem).filter(predicate)
-        for each in all_cat_food{
-            print("\(each.title!)")
-            self.food.append(each)
-        }
-        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
-        dispatch_after(time, dispatch_get_main_queue()) {
-            self.tableview.reloadData()
+        if all_cat_food.count > 0{
+            for each in all_cat_food{
+                
+                var list = [String]()
+                for a_cat in each.category{
+                    print("\(category) ||| ")
+                    list.append(a_cat.category)
+                }
+                if list.contains(cat){
+                    self.food.append(each) //Fooditem
+                }else{
+                    print("THIS LIST CONTAINS NO SUCH CATEGORY")
+                }
+                
+            }
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.tableview.reloadData()
+            }
+        }else{
+            self.food.removeAll()
+            self.food = []
         }
     }
     

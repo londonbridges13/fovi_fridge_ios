@@ -67,7 +67,7 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
 
     @IBAction func unwindToCreateFoodVC(segue: UIStoryboardSegue){
-        
+        reload_ChooseCategoryVC()
     }
     
     
@@ -322,11 +322,11 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.add_darktint()
         
         categoryVC?.cancelButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
-        categoryVC?.doneButton.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
-        categoryVC?.doneButton.addTarget(self, action: "loading", forControlEvents: .TouchUpInside)
-        categoryVC?.doneButton.addTarget(self, action: "create_new_item", forControlEvents: .TouchUpInside)
-        categoryVC?.doneButton.addTarget(self, action: "suggest_it", forControlEvents: .TouchUpInside)
-        
+        categoryVC?.delegate_done_Button.addTarget(self, action: "remove_darktint", forControlEvents: .TouchUpInside)
+        categoryVC?.delegate_done_Button.addTarget(self, action: "loading", forControlEvents: .TouchUpInside)
+        categoryVC?.delegate_done_Button.addTarget(self, action: "create_new_item", forControlEvents: .TouchUpInside)
+        categoryVC?.delegate_done_Button.addTarget(self, action: "suggest_it", forControlEvents: .TouchUpInside)
+        categoryVC?.createCategoryButton.addTarget(self, action: "segue_to_create_category", forControlEvents: .TouchUpInside)
         categoryVC!.view.layer.cornerRadius = 6
         self.view.addSubview(categoryVC!.view)
     }
@@ -349,9 +349,19 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
+    // Create Category(Segue to VC)
+    func segue_to_create_category(){
+        performSegueWithIdentifier("Create Food Item", sender: self)
+    }
     
-    
-    
+    func reload_ChooseCategoryVC(){
+        print("Reloading Category")
+        // run this when you unwind from the CreateCategoryVC in order to get the newly created category
+        if self.categoryVC != nil{
+            print("Reloading Category")
+            categoryVC!.get_all_categories()
+        }
+    }
     
     
     // Begin Checking
@@ -538,15 +548,19 @@ class CreateUniqueTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "Create Food Item"{
+            let vc : NewCategoryVC = segue.destinationViewController as! NewCategoryVC
+            vc.segueStick = "Create Food Item"
+        }
     }
-    */
+    
 
 }
 

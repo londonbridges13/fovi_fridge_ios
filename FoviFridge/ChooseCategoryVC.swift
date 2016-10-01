@@ -20,6 +20,8 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @IBOutlet var cancelButton : UIButton!
     @IBOutlet var doneButton : UIButton!
+    @IBOutlet var createCategoryButton : UIButton!
+    @IBOutlet var delegate_done_Button : UIButton!
     
     @IBOutlet var topview : UIView!
 
@@ -38,7 +40,7 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         self.topview.roundCorners([.TopLeft, .TopRight], radius: 6)
         
-        self.doneButton.userInteractionEnabled = false
+//        self.doneButton.userInteractionEnabled = false
         
         self.doneButton.addTarget(self, action: "pressedDone", forControlEvents: .TouchUpInside)
         self.cancelButton.addTarget(self, action: "remove_categoryVC", forControlEvents: .TouchUpInside)
@@ -74,9 +76,9 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         addCategories.append(self.categories[indexPath.row])
         
         if addCategories.count > 0{
-            self.doneButton.userInteractionEnabled = true
+//            self.doneButton.userInteractionEnabled = true
         }else{
-            self.doneButton.userInteractionEnabled = false
+//            self.doneButton.userInteractionEnabled = false
         }
 
     }
@@ -92,9 +94,9 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         
         if addCategories.count > 0{
-            self.doneButton.userInteractionEnabled = true
+//            self.doneButton.userInteractionEnabled = true
         }else{
-            self.doneButton.userInteractionEnabled = false
+//            self.doneButton.userInteractionEnabled = false
         }
     }
 
@@ -104,18 +106,25 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         print("Pressed Done")
         
         if self.addCategories.count > 0{
+            // user has selected categories continue like normal
             if let delegate = delegate{
                 for each in self.addCategories{
                     print("Running Delegate")
                     delegate.choose_categories(each)
                     remove_categoryVC()
                 }
+                self.delegate_done_Button.sendActionsForControlEvents(.TouchUpInside)
+                // this delegate_done_Button will execute actions in the CreateUniqueTVC, see in the show_chooseCategory function
             }
+        }else{
+            // user has not selected any category, Display popover to inform user
+            choose_a_category_popover()
         }
         
     }
     
 
+    
     
     
     func remove_categoryVC(){
@@ -147,6 +156,33 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
     
 
     
+    // when user selects done without first selecting a category
+    func choose_a_category_popover(){
+        print("Displaying Choose / Create Category Popover")
+        
+        let startPoint = CGPoint(x: self.view.frame.width / 2, y: 95)
+        var aView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 80))
+        
+        var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+        label.numberOfLines = 0
+        label.text = "Select or Create a Category to put this food in"
+        label.font = UIFont(name: "Helvetica", size: 17)
+        label.textColor = UIColor.grayColor()
+        aView.addSubview(label)
+        //lemon
+        var lemon = UILabel(frame: CGRect(x: aView.frame.width - 27, y: 5, width: 30, height: 20))
+        lemon.text = "🍎"
+        aView.addSubview(lemon)
+        
+        var popoverOptions: [PopoverOption] = [
+            .Type(.Down),
+            .AnimationIn(0.3),
+            .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+        ]
+        let popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
+        popover.show(aView, point: startPoint, inView: self.view)
+        
+    }
     
     
     

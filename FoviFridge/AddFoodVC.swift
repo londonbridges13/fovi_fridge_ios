@@ -69,17 +69,22 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         
 
         
-        let realm = try! Realm()
-        var user = realm.objects(UserDetails).first
-        
-        if user != nil{
-            self.cUser = user!
-            if user!.grocery_bag_walkthrough == false{
-                // Run GroceryBag Walkthrough
-                print("Run GroceryBag Walkthrough")
-                groceryBag_walkthrough()
-            }
-        }
+//        let realm = try! Realm()
+//        var user = realm.objects(UserDetails).first
+//        
+//        if user != nil{
+//            self.cUser = user!
+//            if user!.grocery_bag_walkthrough == false{
+//                // Run GroceryBag Walkthrough
+//                print("Run GroceryBag Walkthrough")
+//                groceryBag_walkthrough()
+//            }else{ //user.grocery_bag_walkthrough == true
+//                if user!.visit_shopping_list_walkthrough != true{
+//                    // Display ready to update popover
+//                    add_to_fridge_button_popover()
+//                }
+//            }
+//        }
         
         // Query Objects
         self.get_groceries()
@@ -94,7 +99,30 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         return true
     }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(450 * Double(NSEC_PER_MSEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            let realm = try! Realm()
+            var user = realm.objects(UserDetails).first
+            if user != nil{
+                self.cUser = user!
+                if user!.grocery_bag_walkthrough == false{
+                    // Run GroceryBag Walkthrough
+                    print("Run GroceryBag Walkthrough")
+                    self.groceryBag_walkthrough()
+                }else{ //user.grocery_bag_walkthrough == true
+                    if user!.visit_shopping_list_walkthrough != true{
+                        // Display ready to update popover
+                        self.add_to_fridge_button_popover()
+                    }
+                }
+            }
+        }
+        
+    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -489,17 +517,48 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         self.view.addSubview(alert)
         alert.fadeIn()
         alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
     }
     
     func walkthrough_part2(){
         //Display GroceryBag_2
-        var alert = GroceryBagWalk_2()
-        let xpp = self.view.frame.width / 2 - (209 / 2)
-        alert.frame = CGRect(x: xpp, y: 80, width: 209, height: 281)
-        alert.alpha = 0
-        self.view.addSubview(alert)
-        alert.fadeIn()
-        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        
+        func add_food_button_popover(){
+            print("Displaying Add Food Button Popover")
+            
+            let startPoint = CGPoint(x: 65, y: self.view.frame.height - 35)
+            var aView = UIView(frame: CGRect(x: 0, y: 0, width: 203, height: 80))
+            
+            var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+            label.numberOfLines = 0
+            label.text = "Tap Here\nto add food to your Grocery Bag"
+            label.font = UIFont(name: "Helvetica", size: 17)
+            label.textColor = UIColor.grayColor()
+            aView.addSubview(label)
+            //lemon
+            var lemon = UILabel(frame: CGRect(x: aView.frame.width - 27, y: 5, width: 30, height: 20))
+            lemon.text = "🍐"
+            aView.addSubview(lemon)
+            
+            var popoverOptions: [PopoverOption] = [
+                .Type(.Up),
+                .AnimationIn(0.3),
+                .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+            ]
+            let popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
+            popover.show(aView, point: startPoint, inView: self.view)
+            
+        }
+        add_food_button_popover()
+
+        // ALERT FOR WALKTHROUGH
+//        var alert = GroceryBagWalk_2()
+//        let xpp = self.view.frame.width / 2 - (209 / 2)
+//        alert.frame = CGRect(x: xpp, y: 80, width: 209, height: 281)
+//        alert.alpha = 0
+//        self.view.addSubview(alert)
+//        alert.fadeIn()
+//        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
     }
     
     
@@ -515,6 +574,36 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
     
     
     
+    // Ready to Update Fridge
+    
+    func add_to_fridge_button_popover(){
+        print("Displaying Add Too Fridge Button Popover")
+        
+        let startPoint = CGPoint(x: self.view.frame.width - 65, y: self.view.frame.height - 36)
+        var aView = UIView(frame: CGRect(x: 0, y: 0, width: 263, height: 60))
+        
+        var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+        label.numberOfLines = 0
+        label.text = "Ready to update your fridge?\nTap Here"
+        label.font = UIFont(name: "Helvetica", size: 18)
+        label.textColor = UIColor.grayColor()
+        aView.addSubview(label)
+        //lemon
+        var lemon = UILabel(frame: CGRect(x: aView.frame.width - 27, y: 33, width: 30, height: 20))
+        lemon.text = "🍊"
+        aView.addSubview(lemon)
+        
+        var popoverOptions: [PopoverOption] = [
+            .Type(.Up),
+            .AnimationIn(0.3),
+            .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+        ]
+        let popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: nil)
+        popover.show(aView, point: startPoint, inView: self.view)
+        
+    }
+    
+
     
     
     

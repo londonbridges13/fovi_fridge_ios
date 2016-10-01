@@ -46,6 +46,8 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -119,15 +121,30 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     func get_fooditems(category : String){
         let realm = try! Realm()
 //        let predicate = NSPredicate(format: "category CONTAINS '\(category)'")
-        var foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)'")// AND previously_purchased = \(true)")
+        let foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)'")// AND previously_purchased = \(true)")
 
-        if foods.count != 0{
+        if foods.count > 0{
             print("Found Some FoodItems")
             for each in foods{
-                self.food.append(each)
-                self.collectionView.reloadData()
+                var list = [String]()
+                for cat in each.category{
+                    print("\(category) ||| ")
+                    list.append(cat.category)
+                }
+                if list.contains(category){
+                    self.food.append(each) //Fooditem
+                }else{
+                    print("THIS LIST CONTAINS NO SUCH CATEGORY")
+                }
+//                self.collectionView.reloadData()
                 print("Appended \(each.title)")
+                print("\(each.title) is apart of ... \(category)")
             }
+            self.collectionView.reloadData() // should have same effect
+        }else{
+            self.food.removeAll()
+            self.food = []
+            self.collectionView.reloadData() // should have same effect
         }
     }
     

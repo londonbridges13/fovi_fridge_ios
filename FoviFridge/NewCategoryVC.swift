@@ -16,16 +16,23 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
     var category : String?
     var already_have = [String]()
 
+    var segueStick : String? // to determine where the user is coming from
+    
     private var categoryField : TextField?
     
     @IBOutlet var nextButton : UIButton!
     @IBOutlet var cancelButton : UIButton!
     
+    @IBOutlet var unwind_to_fridge_Button : UIButton!
+    @IBOutlet var unwind_to_CreateFoodItem_Button : UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareCatField()
-        
         nextButton.layer.cornerRadius = 3
+        
+        self.cancelButton.addTarget(self, action: "pressed_cancel", forControlEvents: .TouchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +47,6 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
         print("Back to New Category")
         self.labeling_food()
     }
-    
     
     
     
@@ -62,16 +68,27 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
 
         }
         print("Done Checking")
-        let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 600 * Int64(NSEC_PER_MSEC))
-        dispatch_after(timer, dispatch_get_main_queue()) {
-            if move_on == true{
-                // Continue with Segue
-                self.performSegueWithIdentifier("catfood", sender: self)
+        
+        if segueStick != nil{
+            // this is for when the user creates the category and wants to go back to creating their fooditem
+            if segueStick == "Create Food Item"{
+                // create category
+                only_create_category()
+            }
+        }else{
+            // this is for when user creates the category and then wishes to add food to that category
+            let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 600 * Int64(NSEC_PER_MSEC))
+            dispatch_after(timer, dispatch_get_main_queue()) {
+                if move_on == true{
+                    // Continue with Segue
+                    print("Getting the Category's Food")
+                    self.performSegueWithIdentifier("catfood", sender: self)
+                }
             }
         }
 
-        
     }
+    
     
     
     
@@ -123,8 +140,6 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
             print("remove")
             print("/\(self.categoryField!.text)/")
             self.categoryField?.text?.removeAtIndex(self.categoryField!.text!.startIndex)
-//            var toko = self.categoryField!.text!.substringToIndex(self.categoryField!.text!.characters.startIndex.predecessor())
-//            self.categoryField!.text = toko
             print("/\(self.categoryField!.text)/")
         }
         self.category = self.categoryField!.text
@@ -155,6 +170,9 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
         cat.category = self.category!
         
         try! realm.write {
+            // just to save the category, incase user didn't add food to it
+            realm.add(cat)
+            
             for each in cat_food{
                 // add category to categories
                 each.mylist_amount.value = 0
@@ -174,10 +192,39 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
     
     
     
+    func pressed_cancel(){
+        // when the user presses cancel :0
+        if segueStick != nil{
+            if segueStick == "Create Food Item"{
+                // unwind to the CreateFoodItemTVC, reload the chooseCategoryVC in the prepare for segue
+                self.unwind_to_CreateFoodItem_Button.sendActionsForControlEvents(.TouchUpInside)
+            }
+        }else{
+            // unwind to the FridgeVC
+            self.unwind_to_fridge_Button.sendActionsForControlEvents(.TouchUpInside)
+        }
+    }
     
     
-    
-    
+    // this is for when the user creates the category and wants to go back to creating their fooditem
+    func only_create_category(){
+        let realm = try! Realm()
+        var cat = Category()
+        cat.category = self.category!
+        try! realm.write {
+            realm.add(cat)
+            
+            // unwind back to createfooditemTVC
+            if self.segueStick == "Create Food Item"{
+                let timer = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 600 * Int64(NSEC_PER_MSEC))
+                dispatch_after(timer, dispatch_get_main_queue()) {
+                    // unwind back to CreateFoodItemVC
+                    self.unwind_to_CreateFoodItem_Button.sendActionsForControlEvents(.TouchUpInside)
+                }
+            }
+            
+        }
+    }
     
     
     
@@ -194,6 +241,9 @@ class NewCategoryVC: UIViewController, UITextFieldDelegate {
                 var vc : CategoryItemsVC = segue.destinationViewController as! CategoryItemsVC
                 vc.category = "\(self.category!)"
                 
+            }else if segue.identifier == "Create Food Item"{
+                // unwind segue back to CreateUniqueTVC
+                let vc : CreateUniqueTVC = segue.destinationViewController as! CreateUniqueTVC
             }else{
                 //            var vc : CategoryItemsVC = segue.destinationViewController as! CategoryItemsVC
                 //            vc.categoryLabel.text = "\(self.category!)"

@@ -77,6 +77,7 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         // Do any additional setup after loading the view.
     }
 
+    // Only for testing the CategoryVC
     func delete_this(){
         let realm = try! Realm()
         var thiscat = realm.objects(Category).filter(NSPredicate(format:"category = 'Pantry'"))
@@ -138,33 +139,33 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     }
     
     
-    func check_for_others(){
-        // check for more food, if none then delete category
-        let realm = try! Realm()
-        let predicate = NSPredicate(format: "ANY category.category CONTAINS[c] %@", self.category!)
-        var check = realm.objects(FoodItem).filter(predicate)
-        
-        if check.count == 0{
-            // Delete the Category
-            delete_none()
-        }
-    }
-    
-    
-    func delete_none(){
-        let realm = try! Realm()
-        
-        let predicate = NSPredicate(format: "category = '\(self.category!)'")
-        var it = realm.objects(Category).filter(predicate)
-        for each in it{
-            try! realm.write{
-                print(each.category)
-                realm.delete(each)
-                print("GoneDeleted")
-            }
-        }
-    }
-    
+//    func check_for_others(){
+//        // check for more food, if none then delete category
+//        let realm = try! Realm()
+//        let predicate = NSPredicate(format: "ANY category.category CONTAINS[c] %@", self.category!)
+//        var check = realm.objects(FoodItem).filter(predicate)
+//        
+//        if check.count == 0{
+//            // Delete the Category
+//            delete_none()
+//        }
+//    }
+//    
+//    
+//    func delete_none(){
+//        let realm = try! Realm()
+//        
+//        let predicate = NSPredicate(format: "category = '\(self.category!)'")
+//        var it = realm.objects(Category).filter(predicate)
+//        for each in it{
+//            try! realm.write{
+//                print(each.category)
+//                realm.delete(each)
+//                print("GoneDeleted")
+//            }
+//        }
+//    }
+//    
     
     
     
@@ -187,6 +188,7 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let fooditem = self.food[indexPath.row]
         self.show_full_foodview(fooditem)
+        print(fooditem)
     }
   
     
@@ -205,14 +207,28 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         let realm = try! Realm()
         let predicate = NSPredicate(format: "ANY category.category CONTAINS[c] %@", cat)
         var all_cat_food = realm.objects(FoodItem).filter(predicate)
-        for each in all_cat_food{
-            print("\(each.title!)")
-            self.food.append(each)
-            
-        }
-        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
-        dispatch_after(time, dispatch_get_main_queue()) {
-            self.tableview.reloadData()
+        if all_cat_food.count > 0{
+            for each in all_cat_food{
+
+                var list = [String]()
+                for a_cat in each.category{
+                    print("\(category) ||| ")
+                    list.append(a_cat.category)
+                }
+                if list.contains(cat){
+                    self.food.append(each) //Fooditem
+                }else{
+                    print("THIS LIST CONTAINS NO SUCH CATEGORY")
+                }
+
+            }
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 300 * Int64(NSEC_PER_MSEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.tableview.reloadData()
+            }
+        }else{
+            self.food.removeAll()
+            self.food = []
         }
     }
     
@@ -308,7 +324,6 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         edit_categoryVC?.get_cat_food(self.category!)
         edit_categoryVC?.doneButton.addTarget(self, action: "done_edit", forControlEvents: .TouchUpInside)
         edit_categoryVC?.doneButton.addTarget(self, action: "stop_edit", forControlEvents: .TouchUpInside)
-        edit_categoryVC?.doneButton.addTarget(self, action: "check_for_others", forControlEvents: .TouchUpInside)
         edit_categoryVC?.segueButton.addTarget(self, action: "add_food_toCat", forControlEvents: .TouchUpInside)
         edit_categoryVC?.changeTitleButton.addTarget(self, action: "changeTitleLabel", forControlEvents: .TouchUpInside)
         edit_categoryVC?.unwindToFridgeButton.addTarget(self, action: "unwind_Deleted_Cat", forControlEvents: .TouchUpInside)

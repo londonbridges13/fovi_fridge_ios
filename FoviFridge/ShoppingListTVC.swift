@@ -315,28 +315,59 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         self.view.addSubview(alert)
         alert.fadeIn()
         alert.okayButton.addTarget(self, action: "walkthrough_part2", forControlEvents: .TouchUpInside)
+        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
     }
 
     
     func walkthrough_part2(){
-        UIView.animateWithDuration(0.3) {
-            self.tint?.backgroundColor = UIColor.blackColor()
+        
+        func add_groceries_button_popover(){
+            print("Displaying Add Groceries Button Popover")
+            
+            let startPoint = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height - 120)
+            var aView = UIView(frame: CGRect(x: 0, y: 0, width: 192, height: 80))
+            
+            var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
+            label.numberOfLines = 0
+            label.text = "Tap Here\nto add food to your Shopping List"
+            label.font = UIFont(name: "Helvetica", size: 17)
+            label.textColor = UIColor.grayColor()
+            aView.addSubview(label)
+            //lemon
+            var lemon = UILabel(frame: CGRect(x: aView.frame.width - 27, y: 5, width: 30, height: 20))
+            lemon.text = "🍓"
+            aView.addSubview(lemon)
+            
+            var popoverOptions: [PopoverOption] = [
+                .Type(.Up),
+                .AnimationIn(0.3),
+                .BlackOverlayColor(UIColor(white: 0.0, alpha: 0.1))
+            ]
+            let popover = Popover(options: popoverOptions, showHandler: nil, dismissHandler: done_walkthrough)
+            popover.show(aView, point: startPoint, inView: self.view)
+            
         }
-        // Display Alert 2
-        var alert = GroceryStore_Alert4()
-        alert.justLabel.alpha = 0
-        alert.bodyLabel.text = "To Add Food to your shopping list, Tap:"
-        alert.finishButton.alpha = 0
-        alert.createButton.alpha = 0
-        let xpp = self.view.frame.width / 2 - (300 / 2)
-        alert.frame = CGRect(x: xpp, y: 100, width: 300, height: 200)
-        alert.alpha = 0
-        self.view.addSubview(alert)
-        alert.groceriesButton.alpha = 1
-        alert.groceriesButton.layer.cornerRadius = 3
-        alert.fadeIn(duration: 0.3)
-        alert.okayButton.addTarget(self, action: "done_walkthrough", forControlEvents: .TouchUpInside)
-        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
+        add_groceries_button_popover()
+        
+        //ALERT FOR WALKTHROUGH
+//        UIView.animateWithDuration(0.3) {
+//            self.tint?.backgroundColor = UIColor.blackColor()
+//        }
+//        // Display Alert 2
+//        var alert = GroceryStore_Alert4()
+//        alert.justLabel.alpha = 0
+//        alert.bodyLabel.text = "To Add Food to your shopping list, Tap:"
+//        alert.finishButton.alpha = 0
+//        alert.createButton.alpha = 0
+//        let xpp = self.view.frame.width / 2 - (300 / 2)
+//        alert.frame = CGRect(x: xpp, y: 100, width: 300, height: 200)
+//        alert.alpha = 0
+//        self.view.addSubview(alert)
+//        alert.groceriesButton.alpha = 1
+//        alert.groceriesButton.layer.cornerRadius = 3
+//        alert.fadeIn(duration: 0.3)
+//        alert.okayButton.addTarget(self, action: "done_walkthrough", forControlEvents: .TouchUpInside)
+//        alert.okayButton.addTarget(self, action: "remove_tint", forControlEvents: .TouchUpInside)
     }
     
     
