@@ -22,7 +22,7 @@ class MeasurementViewController: UIViewController, UITableViewDelegate, UITableV
 
     var delegate : MeasureToCellDelegate?
     
-    var measures = ["Milliliters", "Grams", "Of Them", "Ounces"]
+    var measures = ["Milliliters", "Grams", "Of Them", "Ounces", "Pounds", "Kilograms", "Liters", "Pints", "Floor Ounces", "Gallon", "Slices", "Pieces"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

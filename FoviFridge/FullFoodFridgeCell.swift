@@ -15,16 +15,18 @@ protocol ChangeFoodValue {
 }
 class FullFoodFridgeCell: UITableViewCell, UITextFieldDelegate {
 
-    @IBOutlet var amountTX : UITextField!
+    @IBOutlet var amountleftLabel : UILabel!
+    
+//    @IBOutlet var amountTX : UITextField!
     
     var delegate : ChangeFoodValue?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        amountTX.delegate = self
-        
-        addDoneButtonOnNumpad(amountTX)
+//        amountTX.delegate = self
+//        
+//        addDoneButtonOnNumpad(amountTX)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -35,33 +37,33 @@ class FullFoodFridgeCell: UITableViewCell, UITextFieldDelegate {
     
     
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        print("Done Editing")
-        if amountTX.text?.characters.count > 0{
-            // Run Delegate
-            if let delegate = delegate{
-                print("Running Delegate")
-                let fridge_amount = Int(self.amountTX.text!)
-                
-                delegate.change_Fridge_Amount(fridge_amount!)
-            }
-        }
-    }
-
-    
-    func addDoneButtonOnNumpad(textField: UITextField) {
-        
-        let keypadToolbar: UIToolbar = UIToolbar()
-        
-        // add a done button to the numberpad
-        keypadToolbar.items=[
-            UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: textField, action: #selector(UITextField.resignFirstResponder)),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-        ]
-        keypadToolbar.sizeToFit()
-        // add a toolbar with a done button above the number pad
-        textField.inputAccessoryView = keypadToolbar
-    }
+//    func textFieldDidEndEditing(textField: UITextField) {
+//        print("Done Editing")
+//        if amountTX.text?.characters.count > 0{
+//            // Run Delegate
+//            if let delegate = delegate{
+//                print("Running Delegate")
+//                let fridge_amount = Int(self.amountTX.text!)
+//                
+//                delegate.change_Fridge_Amount(fridge_amount!)
+//            }
+//        }
+//    }
+//
+//    
+//    func addDoneButtonOnNumpad(textField: UITextField) {
+//        
+//        let keypadToolbar: UIToolbar = UIToolbar()
+//        
+//        // add a done button to the numberpad
+//        keypadToolbar.items=[
+//            UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: textField, action: #selector(UITextField.resignFirstResponder)),
+//            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+//        ]
+//        keypadToolbar.sizeToFit()
+//        // add a toolbar with a done button above the number pad
+//        textField.inputAccessoryView = keypadToolbar
+//    }
     
 
 }

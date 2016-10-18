@@ -14,7 +14,7 @@ class ShoppingCell: UITableViewCell {
     @IBOutlet var foodImage: UIImageView!
     @IBOutlet var foodLabel: UILabel!
     @IBOutlet var quantityLabel: UILabel!
-    
+    @IBOutlet var whiteView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

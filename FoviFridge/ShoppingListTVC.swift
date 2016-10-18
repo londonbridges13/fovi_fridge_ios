@@ -106,11 +106,14 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         }else{
             cell.quantityLabel.text = ""
         }
+//        cell.whiteView.layer.cornerRadius = 6
+//        cell.whiteView.layer.shadowOpacity = 0.4
+//        cell.whiteView.layer.shadowOffset = CGSize(width: 2, height: 2)
         
-        cell.quantityLabel.layer.cornerRadius = 22
+        cell.quantityLabel.layer.cornerRadius = 9
         cell.quantityLabel.layer.masksToBounds = true
         
-        tableView.rowHeight = 60
+        tableView.rowHeight = 70
         // Configure the cell...
 
         return cell
@@ -147,7 +150,7 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         remove.backgroundColor = UIColor.redColor()
 
         
-        return [remove, addToFridge]
+        return [addToFridge]//, remove]
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -481,8 +484,8 @@ class ShoppingListTVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         set_expire_view!.fooditem = fooditem
         set_expire_view!.delegate = self
         
-        let yp = self.view.frame.height / 2 - (250 / 2) - 30
-        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 320)
         set_expire_view!.view.alpha = 0
         self.view.addSubview(set_expire_view!.view)
         

@@ -42,7 +42,9 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         tableView.dataSource = self
 
-        self.random_Color()
+//        self.random_Color()
+        
+        set_cloud_color()
         
         check_for_walkthrough()
         
@@ -128,7 +130,10 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 let displaycount = Int(daycount)
                 
                 cell.daysleftLabel.text = "\(displaycount)"
+                cell.daysleftLabel.textColor = cloud_color(daycount)//self.use_color!
+                cell.detailLabel.textColor = cloud_color(daycount)//self.use_color!
                 
+
                 if Double(daycount) < 2 && Double(daycount) > 0{
                     cell.detailLabel.text = "Day Left"
                 }else{
@@ -138,19 +143,24 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 // There is no date set for this fooditem's expiration date. To show that there is no date set, display "N/A" in the text.
                 
                 cell.daysleftLabel.text = "N/A"
+                cell.detailLabel.textColor = UIColor.lightGrayColor()
+                cell.daysleftLabel.textColor = UIColor.lightGrayColor()
             }
             
-            cell.daysleftLabel.textColor = self.use_color!
-            cell.detailLabel.textColor = self.use_color!
-            
-            return cell
+                       return cell
         }else if indexPath.row == 2{
             let cell : FullFoodFridgeCell = tableView.dequeueReusableCellWithIdentifier("FullFoodFridgeCell", forIndexPath: indexPath) as! FullFoodFridgeCell
             
             cell.delegate = self
 
             if self.fooditem.fridge_amount.value != nil{
-                cell.amountTX.text = "\(self.fooditem.fridge_amount.value!)"
+//                cell.amountTX.text = "\(self.fooditem.fridge_amount.value!)"
+                cell.amountleftLabel.text = "\(self.fooditem.fridge_amount.value!)"
+//                var fridge_amount = self.fooditem.fridge_amount.value!
+//                cell.detailLabel.text = self.fooditem.title!
+                
+            }else{
+                cell.amountleftLabel.text = "0"
             }
             
             return cell
@@ -161,7 +171,10 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
             cell.delegate = self
 
             if self.fooditem.shoppingList_amount.value != nil{
-                cell.amountTX.text = "\(self.fooditem.shoppingList_amount.value!)"
+//                cell.amountTX.text = "\(self.fooditem.shoppingList_amount.value!)"
+                cell.amountleftLabel.text = "\(self.fooditem.shoppingList_amount.value!)"
+            }else{
+                cell.amountleftLabel.text = "0"
             }
             
             return cell
@@ -174,6 +187,14 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Depends on the cell
         if indexPath.row == 1{
             display_daysleft()
+        }
+        if indexPath.row == 2{
+            // fridge amount
+            display_change_fridge_alert()
+        }
+        if indexPath.row == 3{
+            // shopping list
+            display_change_shoplist_alert()
         }
     }
     
@@ -214,13 +235,13 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         let color_2 = UIColor(red: 170/255, green: 99/255, blue: 170/255, alpha: 1)
         let color_3 = UIColor(red: 0/255, green: 99/255, blue: 170/255, alpha: 1)
         let color_4 = UIColor(red: 206/255, green: 99/255, blue: 51/255, alpha: 1)
-        let color_5 = UIColor(red: 206/255, green: 192/255, blue: 242/255, alpha: 1)
+//        let color_5 = UIColor(red: 206/255, green: 192/255, blue: 242/255, alpha: 1)
         let color_6 = UIColor(red: 255/255, green: 184/255, blue: 0/255, alpha: 1)
         let color_7 = UIColor(red: 90/255, green: 155/255, blue: 178/255, alpha: 1)
         let color_8 = UIColor(red: 237/255, green: 90/255, blue: 80/255, alpha: 1)
         let color_9 = UIColor(red: 255/255, green: 90/255, blue: 63/255, alpha: 1)
         let color_10 = UIColor(red: 51/255, green: 173/255, blue: 83/255, alpha: 1)
-        let color_11 = UIColor(red: 162/255, green: 217/255, blue: 255/255, alpha: 1)
+//        let color_11 = UIColor(red: 162/255, green: 217/255, blue: 255/255, alpha: 1)
         let color_12 = UIColor(red: 0/255, green: 153/255, blue: 241/255, alpha: 1)
         let color_13 = UIColor(red: 0/255, green: 128/255, blue: 128/255, alpha: 1)
         //        let color_one = UIColor(red: /255, green: /255, blue: /255, alpha: 1)
@@ -229,13 +250,13 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         self.color_array.append(color_2)
         self.color_array.append(color_3)
         self.color_array.append(color_4)
-        self.color_array.append(color_5)
+//        self.color_array.append(color_5)
         self.color_array.append(color_6)
         self.color_array.append(color_7)
         self.color_array.append(color_8)
         self.color_array.append(color_9)
         self.color_array.append(color_10)
-        self.color_array.append(color_11)
+//        self.color_array.append(color_11)
         self.color_array.append(color_12)
         self.color_array.append(color_13)
         
@@ -244,16 +265,69 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let randomFruit = color_array[Int(arc4random_uniform(UInt32(color_array.count)) + 0)]
         
-        self.use_color = randomFruit
+        self.use_color =  UIColor(red: 255/255, green: 218/255, blue: 185/255, alpha: 1)//randomFruit
         
 //        self.view.backgroundColor = use_color
         self.doneButton.backgroundColor = use_color
         tableView.backgroundColor = use_color
         
+//        UIColor(red: 220/255, green: 198/255, blue: 224/255, alpha: 1)
+        //        UIColor(red: 108/255, green: 122/255, blue: 137/255, alpha: 1)
+//        UIColor(red: 149/255, green: 165/255, blue: 166/255, alpha: 1)rgb(255,218,185)
+        
+        //        UIColor(red: 171/255, green: 183/255, blue: 183/255, alpha: 1)
         self.tableView.reloadData()
     }
     
-    
+    func set_cloud_color(){
+        
+        if fooditem.expiration_date != nil{
+            var today = NSDate()
+            let daysleft = fooditem.expiration_date!.timeIntervalSinceDate(today)
+            print(daysleft)
+            
+            var daycount = (daysleft / 86400)
+            daycount = round(daycount)
+            cloud_color(daycount)
+            tableView.reloadData()
+        }
+    }
+    func cloud_color(number : Double)-> UIColor{
+        // Enter in number to determine whether user should think more about the food's current state. We will show color that informs user on expiration state for food item. 
+        // (You could use this instead of the random color)
+        
+        if number >= 15{
+            // Don't Worry About a Thing  rgb(22, 160, 133)
+//            self.use_color = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
+//            self.doneButton.backgroundColor = use_color
+//            tableView.backgroundColor = use_color
+            return UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
+        }else if number < 15 && number >= 10{
+            // Green State, You're Good  rgb(39, 174, 96)
+//            self.use_color =  UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 1)
+//            self.doneButton.backgroundColor = use_color
+//            tableView.backgroundColor = use_color
+            return UIColor(red: 39/255, green: 174/255, blue: 96/255, alpha: 1)
+        }else if number < 10 && number >= 7{
+            // Yellow State, Watch Out!   rgb(241, 196, 15)
+//            self.use_color =  UIColor(red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+//            self.doneButton.backgroundColor = use_color
+//            tableView.backgroundColor = use_color
+            return UIColor(red: 241/255, green: 196/255, blue: 15/255, alpha: 1)
+        }else if number < 7 && number > 3{
+            // Orange State, Do Somehing Fast!   rgb(243, 156, 18)
+//            self.use_color =  UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1)
+//            self.doneButton.backgroundColor = use_color
+//            tableView.backgroundColor = use_color
+            return UIColor(red: 243/255, green: 156/255, blue: 18/255, alpha: 1)
+        }else{
+            // Red State, You might be too late...   rgb(231, 76, 60)
+//            self.use_color =  UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+//            self.doneButton.backgroundColor = use_color
+//            tableView.backgroundColor = use_color
+            return UIColor(red: 231/255, green: 76/255, blue: 60/255, alpha: 1)
+        }
+    }
     
     
     // SET EXPIRATION ALERT
@@ -269,8 +343,8 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
         set_expire_view!.fooditem = self.fooditem
         set_expire_view!.delegate = self
 
-        let yp = self.view.frame.height / 2 - (250 / 2) - 30
-        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 320)
         set_expire_view!.view.alpha = 0
         self.view.addSubview(set_expire_view!.view)
         
@@ -380,6 +454,31 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    func display_change_fridge_alert(){
+        
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        print(fooditem)
+        
+        let alert = ChangeFridge_Alert()
+        let yp = self.view.frame.height / 2 - (185 / 2) - 30
+        let xp = self.view.frame.width / 2 - (250 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 250, height: 185)
+        alert.fooditem = self.fooditem
+        if fooditem.fridge_amount.value != nil{
+            alert.stepper.value = Double(fooditem.fridge_amount.value!)
+        }
+        
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+
+    }
     
     // Expiration Walkthrough
     func check_for_walkthrough(){
@@ -393,6 +492,34 @@ class Full_Food_VC: UIViewController, UITableViewDelegate, UITableViewDataSource
                 })
             }
         }
+    }
+    
+    
+    
+    func display_change_shoplist_alert(){
+        
+        self.dtint = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        dtint!.backgroundColor = UIColor.blackColor()
+        dtint!.tintColor = UIColor.blackColor()
+        dtint!.alpha = 0.4
+        view.addSubview(self.dtint!)
+        
+        print(fooditem)
+        
+        let alert = ChangeShopList_Alert()
+        let yp = self.view.frame.height / 2 - (185 / 2) - 30
+        let xp = self.view.frame.width / 2 - (250 / 2)
+        alert.frame = CGRect(x: xp, y: yp, width: 250, height: 185)
+        alert.fooditem = self.fooditem
+        if fooditem.shoppingList_amount.value != nil{
+            alert.stepper.value = Double(fooditem.shoppingList_amount.value!)
+        }
+        
+        alert.doneButton.addTarget(self, action: "remove_dtint", forControlEvents: .TouchUpInside)
+        alert.alpha = 0
+        self.view.addSubview(alert)
+        alert.fadeIn(duration: 0.45)
+        
     }
     
     

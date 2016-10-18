@@ -165,7 +165,7 @@ class ChooseCategoryVC: UIViewController, UITableViewDelegate, UITableViewDataSo
         
         var label = UILabel(frame: CGRect(x: 9, y: 0, width: aView.frame.width - 20, height: aView.frame.height))
         label.numberOfLines = 0
-        label.text = "Select or Create a Category to put this food in"
+        label.text = "Select or create a category to put this food in"
         label.font = UIFont(name: "Helvetica", size: 17)
         label.textColor = UIColor.grayColor()
         aView.addSubview(label)

@@ -220,7 +220,9 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    
+  
+//    Removing Scroll Animation
+    /*
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if self.collectionView.panGestureRecognizer.translationInView(self.view).y < 0.0 {
@@ -301,7 +303,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         
         
     }
-
+*/
     
     
     // Search Bar 
@@ -958,8 +960,8 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         set_expire_view!.fooditem = fooditem
         set_expire_view!.delegate = self
         
-        let yp = self.view.frame.height / 2 - (250 / 2) - 30
-        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 320)
         set_expire_view!.view.alpha = 0
         self.view.addSubview(set_expire_view!.view)
         

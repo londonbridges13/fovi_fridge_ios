@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeShopList_Alert" customModule="FoviFridge" customModuleProvider="target">
+            <connections>
+                <outlet property="bigLabel" destination="w6B-6H-GTj" id="h71-2z-btP"/>
+                <outlet property="detailLabel" destination="tEi-wy-5vx" id="tpn-fW-zNt"/>
+                <outlet property="doneButton" destination="2ZS-lC-AdQ" id="Jrr-g0-ba4"/>
+                <outlet property="stepper" destination="r8y-TJ-wVy" id="YEu-SB-JKE"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="185"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount in List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6B-6H-GTj">
+                    <rect key="frame" x="14" y="8" width="222" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="222" id="p3G-2Q-Jfb"/>
+                        <constraint firstAttribute="height" constant="43" id="xmg-QE-5Xv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEi-wy-5vx">
+                    <rect key="frame" x="56" y="51" width="138" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="UZa-Gn-7Uy"/>
+                        <constraint firstAttribute="width" constant="138" id="tEI-nT-WkS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8y-TJ-wVy" customClass="GMStepper" customModule="GMStepper">
+                    <rect key="frame" x="27" y="89" width="197" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="197" id="1UI-fR-w9h"/>
+                        <constraint firstAttribute="height" constant="40" id="B4u-Hk-vCJ"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="labelTextColor">
+                            <color key="value" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="labelBackgroundColor">
+                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maximumValue">
+                            <real key="value" value="600000"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZS-lC-AdQ">
+                    <rect key="frame" x="80" y="147" width="90" height="33"/>
+                    <color key="backgroundColor" red="0.3548617141" green="0.60698224170000004" blue="0.69944937730000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="33" id="Fq2-7I-uCW"/>
+                        <constraint firstAttribute="width" constant="90" id="LzT-fX-Umd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="w6B-6H-GTj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="2XZ-lg-XPA"/>
+                <constraint firstItem="tEi-wy-5vx" firstAttribute="top" secondItem="w6B-6H-GTj" secondAttribute="bottom" id="LVs-06-khy"/>
+                <constraint firstItem="tEi-wy-5vx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="NSW-12-Rc6"/>
+                <constraint firstItem="w6B-6H-GTj" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ui7-yU-vcV"/>
+                <constraint firstAttribute="bottom" secondItem="2ZS-lC-AdQ" secondAttribute="bottom" constant="5" id="cv4-n9-PEq"/>
+                <constraint firstItem="r8y-TJ-wVy" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lN2-Un-bTV"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

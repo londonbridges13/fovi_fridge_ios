@@ -55,8 +55,12 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
 
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
-        self.addFoodButton.layer.cornerRadius = 2
-        self.doneButton.layer.cornerRadius = 2
+        self.addFoodButton.layer.cornerRadius = 4
+        self.doneButton.layer.cornerRadius = 4
+//        self.addFoodButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        self.doneButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+//        self.addFoodButton.layer.borderWidth = 1.2
+//        self.doneButton.layer.borderWidth = 1.2
 
         self.doneButton.addTarget(self, action: "add_food_to_fridge", forControlEvents: .TouchUpInside)
         self.addFoodButton.addTarget(self, action: "done_grocerybag_walkthrough", forControlEvents: .TouchUpInside)
@@ -632,8 +636,8 @@ class AddFoodVC: UIViewController,UICollectionViewDataSource, UICollectionViewDe
         set_expire_view!.fooditem = fooditem
         set_expire_view!.delegate = self
         
-        let yp = self.view.frame.height / 2 - (250 / 2) - 30
-        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 250)
+        let yp = self.view.frame.height / 2 - (320 / 2) - 30
+        set_expire_view!.view.frame = CGRect(x: 0, y: yp, width: self.view.frame.width, height: 320)
         set_expire_view!.view.alpha = 0
         self.view.addSubview(set_expire_view!.view)
         

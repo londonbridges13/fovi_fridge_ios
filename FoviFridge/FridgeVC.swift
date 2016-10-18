@@ -18,7 +18,8 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 
 
     
-    var categories = [String]()//[String]() // Change later
+    var categories = [Searchable]()// Change later
+    var checker_category_array = [String]() // An Array that contains all the categories names, this checks for duplicates
     var tint : UIView?
     var dtint : UIView?
     var fullview : Full_Food_VC?
@@ -88,8 +89,6 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         pre_get_all_categories()
 //        get_all_categories()
         self.start()
-
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -168,26 +167,28 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
                 tableView.rowHeight = 45
                 return cell
             }
-            let cell : FridgeFoodsCell = tableView.dequeueReusableCellWithIdentifier("FridgeFoodsCell",
-                                                                                     forIndexPath: indexPath) as! FridgeFoodsCell
+            let cell : TableView_Of_Food_Cell = tableView.dequeueReusableCellWithIdentifier("TableView_Of_Food_Cell",
+                                                                                     forIndexPath: indexPath) as! TableView_Of_Food_Cell
             cell.delegate = self
             cell.fullfoodview_delegate = self
             cell.food.removeAll()
-            if self.categories[indexPath.row - 1] == "Missing"{
+            if self.categories[indexPath.row - 1].category.category == "Missing"{
                 cell.get_missing_food()
-            }else if self.categories[indexPath.row - 1] == "Expiring Soon"{
+            }else if self.categories[indexPath.row - 1].category.category == "Expiring Soon"{
                 cell.get_expiring_foods()
-            }else if self.categories[indexPath.row - 1] == "Expired Food"{
+            }else if self.categories[indexPath.row - 1].category.category == "Expired Food"{
                 cell.get_expired_foods()
             }else{
-                cell.get_fooditems(self.categories[indexPath.row - 1])
+                cell.get_fooditems(self.categories[indexPath.row - 1].category.category)
             }
             cell.design_category_button(indexPath.row)
-            cell.categoryButton.setTitle("\(self.categories[indexPath.row - 1])", forState: .Normal)
-            tableView.rowHeight = 148.0
+            cell.categoryButton.setTitle("\(self.categories[indexPath.row - 1].category.category)", forState: .Normal)
+            var num_of_cells = CGFloat(self.categories[indexPath.row - 1].num_of_food)
+            tableView.rowHeight = 200.0 + (75 * (num_of_cells - 1))//CGFloat(self.categories[indexPath.row - 1].num_of_food))// change back 148.0
             
-            cell.alpha = 0
-            cell.fadeIn(duration: 0.3)
+            print("This is \(self.categories[indexPath.row - 1].category.category)'s RowHieght \(tableView.rowHeight). This is the number of foods counted : \(num_of_cells)")
+            cell.alpha = 1
+//            cell.fadeIn(duration: 0.3)
             
             return cell
         }else{
@@ -216,6 +217,9 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
 
                 if self.searchable_array[indexPath.row].fooditem.title != nil{
                     cell.foodLabel.text = self.searchable_array[indexPath.row].fooditem.title
+                }
+                if self.searchable_array[indexPath.row].fooditem.fridge_amount.value != nil{
+                    cell.quantityLabel.text = "Amount: \(self.searchable_array[indexPath.row].fooditem.fridge_amount.value!)"
                 }
                 tableView.rowHeight = 65
                 
@@ -299,6 +303,9 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
     
     // Animate SearchBar
     func showSearchBar(){
+        var topindex = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.scrollToRowAtIndexPath(topindex, atScrollPosition: .Top, animated: true)
+        
         self.search_button_width.constant = 450
         UIView.animateWithDuration(0.5) {
             self.view.layoutIfNeeded()
@@ -492,13 +499,18 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         print("PREPREPREPREPREPREPRE")
         
         self.categories.removeAll()
+        self.checker_category_array.removeAll()
         
         let realm = try! Realm()
         var user = realm.objects(UserDetails).first
         var missing_foods = realm.objects(FoodItem).filter("previously_purchased = \(true) AND fridge_amount = 0 AND shoppingList_amount = 0")
         
         if missing_foods.count > 0{
-            var missing  = "Missing"
+            var missing  = Searchable()//"Missing"
+            missing.category.category = "Missing"
+//            for afood in missing_foods{
+                missing.num_of_food = missing_foods.count
+//            }
             self.categories.append(missing)
             // Get the other categories
 //            self.get_all_categories()
@@ -515,7 +527,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             // Expired 
             var expired_foods = realm.objects(FoodItem).filter("expiration_date <= %@", today).filter("fridge_amount > 0")
             if expired_foods.count > 0{
-                var expired = "Expired Food"
+                var expired = Searchable()//"Expired Food"
+                expired.category.category = "Expired Food"
+                for afood in expired_foods{
+                    expired.num_of_food += 1
+                }
                 self.categories.append(expired)
             }else{
                 print("No expired items here")
@@ -526,7 +542,11 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
             var expiring_foods = realm.objects(FoodItem).filter("expiration_date <= %@", warning_date).filter("expiration_date >= %@", today).filter("fridge_amount > 0")
             
             if expiring_foods.count > 0{
-                var expiring = "Expiring Soon"
+                var expiring = Searchable()//"Expiring Soon"
+                expiring.category.category = "Expiring Soon"
+                for afood in expiring_foods{
+                    expiring.num_of_food += 1
+                }
                 self.categories.append(expiring)
                 self.get_all_categories()
             }else{
@@ -548,17 +568,51 @@ class FridgeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, YA
         let realm = try! Realm()
         let all_categories = realm.objects(Category)
         for each in all_categories{
-            if self.categories.contains(each.category) == false && each.category != ""{
-                self.categories.append(each.category)
+            if self.checker_category_array.contains(each.category) == false && each.category != ""{
+                var a_category = Searchable()
+                a_category.category = each
+                a_category.is_category = true
+                
+//                a_category.num_of_food += 1
+                get_accurate_food_count(a_category)
+                self.checker_category_array.append(each.category)
                 print("Appended : \(each.category)")
                 self.tableView.reloadData()
+            }else if each.category == ""{
+                // do nothing, we don't want the extra empty cell space in the tablevew
             }else{
                 print("self.categories Already Contains : \(each.category)")
+                // Find the Category again then add one to its food number
+                for cat in self.categories{
+                    if cat.category.category == each.category{
+//                        cat.num_of_food += 1 // add one to food count, using this to determine hieght of the foodcell
+//                        self.tableView.reloadData()
+                    }
+                }
             }
+            
         }
     }
     
     
+    
+    func get_accurate_food_count(the_category : Searchable){
+        // we are going to use the categories in self.categories to find the amount of food items that have this category inside. Then we are going to set that to the_category's num_of_food to determine the row hieght.
+        
+        let realm = try! Realm()
+        var all_food = realm.objects(FoodItem)
+        for each in all_food{
+            for cat in each.category{
+                if cat.category == the_category.category.category && each.title != ""{
+                    // add one to the num_of_foods
+                    the_category.num_of_food += 1
+                    tableView.reloadData()
+                }
+            }
+        }
+        self.categories.append(the_category)
+        tableView.reloadData()
+    }
     
     
     

@@ -15,6 +15,7 @@ class Searchable{
     var is_category : Bool?
     var category = Category()
     var fooditem = FoodItem()
+    var num_of_food = 0 // number of food that the category holds
 }
 
 

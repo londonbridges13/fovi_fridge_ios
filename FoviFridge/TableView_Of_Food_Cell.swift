@@ -1,52 +1,44 @@
 //
-//  FridgeFoodsCell.swift
+//  TableView_Of_Food_Cell.swift
 //  FoviFridge
 //
-//  Created by Lyndon Samual McKay on 6/22/16.
+//  Created by Lyndon Samual McKay on 10/15/16.
 //  Copyright © 2016 Lyndon Samual McKay. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-protocol SettingCategory {
-    func set_cat(cat : String, color : UIColor)
-}
-protocol DisplayFullFoodView {
-    func show_full_foodview(fooditem : FoodItem)
-}
-
-class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionViewDelegate {
-
+class TableView_Of_Food_Cell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
+// Display Section Header as well as food cells
     
+    @IBOutlet var tableview : UITableView!
+    @IBOutlet var categoryButton : UIButton!
+    
+    // Array of all the food in the category
     var food = [FoodItem]()
     
+    // Delegates for FridgeVC
+    var delegate : SettingCategory?
+    var fullfoodview_delegate : DisplayFullFoodView?
+
     // Create the Colors
     var red = UIColor(red: 228/255, green: 81/255, blue: 99/255, alpha: 1)
     var green = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 1)
     var blue = UIColor(red: 61/255, green: 175/255, blue: 241/255, alpha: 1)
-    
     //More Color Options
     var purple = UIColor(red: 170/255, green: 99/255, blue: 170/255, alpha: 1)
     
-    var delegate : SettingCategory?
-    
-    var fullfoodview_delegate : DisplayFullFoodView?
     var catColor : UIColor?
-    
-    @IBOutlet var collectionView: UICollectionView!
-
-    @IBOutlet var categoryButton : UIButton!
-//    var the_category : String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        
+        tableview.delegate = self
+        tableview.dataSource = self
+        categoryButton.layer.cornerRadius = 6
+        categoryButton.layer.shadowOpacity = 0.7
+        categoryButton.layer.shadowOffset = CGSize(width: 0, height: 2)
 
     }
 
@@ -57,57 +49,30 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     }
     
     
-
-    
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-    }
-    
-    
-    // MARK: UICollectionViewDataSource
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //TableView
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return food.count
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: FridgeFoodItemCell = collectionView.dequeueReusableCellWithReuseIdentifier("FridgeFoodItem", forIndexPath: indexPath) as! FridgeFoodItemCell
-        cell.layer.cornerRadius = 9
-        cell.layer.masksToBounds = true
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell : FoodItemTableViewCell = tableView.dequeueReusableCellWithIdentifier("sectionfoodcell", forIndexPath: indexPath) as! FoodItemTableViewCell
+        let fooditem = self.food[indexPath.row]
+        cell.foodImage.image = UIImage(data: fooditem.image!)
+        cell.foodLabel.text = fooditem.title!
+        cell.whiteView.layer.shadowOpacity = 0.4
+        cell.whiteView.layer.shadowOffset = CGSize(width: 2, height: 2)
 
-//        cell.quantityLabel.alpha = 0
-        cell.quantityLabel.layer.cornerRadius = 11
-        cell.quantityLabel.layer.masksToBounds = true
-
-//        let lred = UIColor(red: 255/255, green: 235/255, blue: 242/255, alpha: 1)
-        
         if self.food[indexPath.row].fridge_amount.value != nil{
-            cell.quantityLabel.text = "\(self.food[indexPath.row].fridge_amount.value!)"
-        }else{
-            cell.quantityLabel.text = "0"
+            cell.quantityLabel.text = "Amount: \(self.food[indexPath.row].fridge_amount.value!)"
         }
         
-        
-        if self.food[indexPath.row].image != nil{
-            cell.foodImage.image = UIImage(data: self.food[indexPath.row].image!)
-        }
-        
-        if self.food[indexPath.row].title != nil{
-            cell.foodLabel.text = self.food[indexPath.row].title!
-        }
+        tableView.rowHeight = 75
         
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("Selected cell")
-        print(self.food[indexPath.row])
-        
         if let fullfoodview_delegate = fullfoodview_delegate{
             fullfoodview_delegate.show_full_foodview(self.food[indexPath.row])
         }
@@ -116,13 +81,12 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     
     
     
-    
     // Find FoodItems
     func get_fooditems(category : String){
         let realm = try! Realm()
-//        let predicate = NSPredicate(format: "category CONTAINS '\(category)'")
+        //        let predicate = NSPredicate(format: "category CONTAINS '\(category)'")
         let foods = realm.objects(FoodItem).filter("ANY category.category = '\(category)'")// AND previously_purchased = \(true)")
-
+        
         if foods.count > 0{
             print("Found Some FoodItems")
             for each in foods{
@@ -136,15 +100,15 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
                 }else{
                     print("THIS LIST CONTAINS NO SUCH CATEGORY")
                 }
-//                self.collectionView.reloadData()
+                //                self.collectionView.reloadData()
                 print("Appended \(each.title)")
                 print("\(each.title) is apart of ... \(category)")
             }
-            self.collectionView.reloadData() // should have same effect
+            self.tableview.reloadData() // should have same effect
         }else{
             self.food.removeAll()
             self.food = []
-            self.collectionView.reloadData() // should have same effect
+            self.tableview.reloadData() // should have same effect
         }
     }
     
@@ -152,11 +116,11 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     // Find MISSING Fooditems
     func get_missing_food(){
         let realm = try! Realm()
-        var missing_foods = realm.objects(FoodItem).filter(" previously_purchased = \(true) AND fridge_amount = 0")
+        var missing_foods = realm.objects(FoodItem).filter(" previously_purchased = \(true) AND fridge_amount = 0 AND shoppingList_amount = 0")
         
         for each in missing_foods{
             self.food.append(each)
-            self.collectionView.reloadData()
+            self.tableview.reloadData()
             print("Appended MISSING ITEM: \(each.title)")
         }
     }
@@ -173,7 +137,7 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
             
             for each in expiring_foods{
                 self.food.append(each)
-                self.collectionView.reloadData()
+                self.tableview.reloadData()
                 print("Appended EXPIRING ITEM: \(each.title)")
             }
         }
@@ -192,12 +156,12 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
             
             for each in expired_foods{
                 self.food.append(each)
-                self.collectionView.reloadData()
+                self.tableview.reloadData()
                 print("Appended EXPIRED ITEM: \(each.title)")
             }
         }
     }
-
+    
     
     
     func design_category_button(indexPath_row : Int){
@@ -211,22 +175,22 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
         if i == 0 {
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(red, forState: .Normal)
-//            catColor = red
+            //            catColor = red
         }else if i == 1{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(blue, forState: .Normal)
-//            catColor = blue
+            //            catColor = blue
         }else if i == 2{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(green, forState: .Normal)
-//            catColor = green
+            //            catColor = green
         }else{
             print("This is i : \(i)")
             self.categoryButton.setTitleColor(red, forState: .Normal)
         }
-
+        
         self.catColor = self.categoryButton.currentTitleColor
-
+        
     }
     
     
@@ -238,11 +202,4 @@ class FridgeFoodsCell: UITableViewCell, UICollectionViewDataSource,UICollectionV
     }
     
     
-    
-   
-    
-    
-    
-    
-
 }
