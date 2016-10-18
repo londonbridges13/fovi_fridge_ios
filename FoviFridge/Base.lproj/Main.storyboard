@@ -1006,7 +1006,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-2m-54W">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ui-2m-54W">
                                 <rect key="frame" x="51" y="575" width="219" height="41"/>
                                 <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.38823529410000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -1370,7 +1370,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="Done">
-                                            <color key="titleColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.27450980390000002" green="0.50980392159999999" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="srX-40-Wxd" kind="unwind" unwindAction="unwindToFridge:" id="RjU-Ny-VXM"/>
@@ -1385,7 +1385,7 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                         <color key="tintColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Edit">
-                                            <color key="titleColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="edit:" destination="iUz-rQ-O1q" eventType="touchUpInside" id="M4e-VG-mIN"/>
@@ -1731,7 +1731,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=" Choose Image" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1Y-dz-Ec2">
                                                     <rect key="frame" x="8" y="8" width="418" height="32"/>
-                                                    <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.2473480686" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="6Ws-ni-SpK"/>
                                                     </constraints>
@@ -2022,7 +2022,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4U7-Vu-YgE">
                                                     <rect key="frame" x="45" y="31" width="238" height="42"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.94117647059999998" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="238" id="BAl-Ru-kVf"/>
                                                         <constraint firstAttribute="height" constant="42" id="oHz-Fe-d8P"/>
@@ -2122,7 +2122,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1WN-aE-c6z">
                                         <rect key="frame" x="16" y="51" width="139" height="31"/>
-                                        <color key="backgroundColor" red="0.0" green="0.60001874519999998" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.20392156859999999" green="0.59607843140000005" blue="0.85882352939999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="I3r-yf-Nfc"/>
                                             <constraint firstAttribute="width" constant="139" id="X1w-LA-sVc"/>
@@ -2134,7 +2134,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2y9-Ny-nas">
                                         <rect key="frame" x="168" y="51" width="139" height="31"/>
-                                        <color key="backgroundColor" red="0.92941176469999998" green="0.35294117650000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.1019607843" green="0.73725490199999999" blue="0.61176470589999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="139" id="LLT-K7-jlS"/>
                                             <constraint firstAttribute="height" constant="31" id="WJR-Q4-LjK"/>
@@ -3678,9 +3678,9 @@
         <image name="tomato" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Fkv-H6-rum"/>
         <segue reference="Xg7-cM-Kna"/>
-        <segue reference="m5C-ui-zAX"/>
         <segue reference="0fB-E1-XLq"/>
+        <segue reference="aBf-74-dto"/>
+        <segue reference="Fnb-jY-0tJ"/>
     </inferredMetricsTieBreakers>
 </document>

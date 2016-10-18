@@ -731,7 +731,7 @@ class ChooseFoodVC: UIViewController,UICollectionViewDataSource, UICollectionVie
         
         var loadview = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         
-        let bluecolor = UIColor(red: 0, green: 153/255, blue: 241/255, alpha: 1)
+        let bluecolor = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1)
         loadview.backgroundColor = bluecolor
         loadview.layer.cornerRadius = 9
         

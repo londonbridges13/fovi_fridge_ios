@@ -35,7 +35,7 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     
     var food = [FoodItem]()
     
-    var blue = UIColor(red: 0/255, green: 153/255, blue: 241/255, alpha: 1)
+    var fadedRed = UIColor(red: 240/255, green: 128/255, blue: 128/255, alpha: 1)
     
     var fireRed = UIColor(red: 237/255, green: 90/255, blue: 80/255, alpha: 1)
     
@@ -51,7 +51,7 @@ class CategoryItemsVC: UIViewController, UITableViewDelegate, UITableViewDataSou
         
         // Edit Button
         self.editButton.layer.cornerRadius = 3
-        self.editButton.layer.borderColor = blue.CGColor
+        self.editButton.layer.borderColor = fadedRed.CGColor
         self.editButton.layer.borderWidth = 1.25
         
         //Category Button

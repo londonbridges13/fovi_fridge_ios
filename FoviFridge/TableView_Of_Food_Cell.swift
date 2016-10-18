@@ -23,9 +23,9 @@ class TableView_Of_Food_Cell: UITableViewCell, UITableViewDataSource, UITableVie
     var fullfoodview_delegate : DisplayFullFoodView?
 
     // Create the Colors
-    var red = UIColor(red: 228/255, green: 81/255, blue: 99/255, alpha: 1)
-    var green = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 1)
-    var blue = UIColor(red: 61/255, green: 175/255, blue: 241/255, alpha: 1)
+    var red = UIColor(red: 205/255, green: 92/255, blue: 92/255, alpha: 1)
+    var green = UIColor(red: 60/255, green: 179/255, blue: 113/255, alpha: 1)
+    var blue = UIColor(red: 70/255, green: 130/255, blue: 180/255, alpha: 1)
     //More Color Options
     var purple = UIColor(red: 170/255, green: 99/255, blue: 170/255, alpha: 1)
     
@@ -37,7 +37,7 @@ class TableView_Of_Food_Cell: UITableViewCell, UITableViewDataSource, UITableVie
         tableview.delegate = self
         tableview.dataSource = self
         categoryButton.layer.cornerRadius = 6
-        categoryButton.layer.shadowOpacity = 0.7
+        categoryButton.layer.shadowOpacity = 0.5
         categoryButton.layer.shadowOffset = CGSize(width: 0, height: 2)
 
     }
@@ -59,7 +59,7 @@ class TableView_Of_Food_Cell: UITableViewCell, UITableViewDataSource, UITableVie
         let fooditem = self.food[indexPath.row]
         cell.foodImage.image = UIImage(data: fooditem.image!)
         cell.foodLabel.text = fooditem.title!
-        cell.whiteView.layer.shadowOpacity = 0.4
+        cell.whiteView.layer.shadowOpacity = 0.35
         cell.whiteView.layer.shadowOffset = CGSize(width: 2, height: 2)
 
         if self.food[indexPath.row].fridge_amount.value != nil{
